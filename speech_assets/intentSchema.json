@@ -20,6 +20,13 @@
             ]
         },
         {
+            "intent": "GeeMusicPlaySongIntent",
+            "slots": [
+                {"name":"song_name", "type":"AMAZON.MusicRecording"},
+                {"name":"artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+        },
+        {
             "intent": "AMAZON.HelpIntent"
         }
     ]

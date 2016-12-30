@@ -1,4 +1,14 @@
 GeeMusicPlayArtistIntent Play artist {artist_name}
 GeeMusicPlayArtistIntent Play songs by {artist_name}
+GeeMusicPlayArtistIntent Play top songs by {artist_name}
+GeeMusicPlayArtistIntent Play music by {artist_name}
+
+GeeMusicPlayAlbumIntent Play the album {album_name}
 GeeMusicPlayAlbumIntent Play album {album_name}
+GeeMusicPlayAlbumIntent Play the album {album_name} by {artist_name}
 GeeMusicPlayAlbumIntent Play album {album_name} by {artist_name}
+
+GeeMusicPlaySongIntent Play the song {song_name}
+GeeMusicPlaySongIntent Play song {song_name}
+GeeMusicPlaySongIntent Play the song {song_name} by {artist_name}
+GeeMusicPlaySongIntent Play song {song_name} by {artist_name}
