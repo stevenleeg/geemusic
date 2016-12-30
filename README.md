@@ -49,7 +49,7 @@ Thumbs-down this song
 Play the latest album by Run The Jewels
 Skip to the 3rd song in this album
 Play the third track off of In Rainbows
-Play Kanye West radio
+Play Blink 182 radio
 Play some music (for the I'm Feeling Lucky station)
 Play a station for bedtime
 Play a station for partying
