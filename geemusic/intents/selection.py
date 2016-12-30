@@ -16,6 +16,7 @@ def play_artist(artist_name):
 
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
+    app.logger.debug("Stream URL is %s" % stream_url)
 
     speech_text = "Playing top tracks from %s" % artist['name']
     return audio(speech_text).play(stream_url)

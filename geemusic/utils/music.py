@@ -1,3 +1,4 @@
+from os import environ
 from gmusicapi import Mobileclient
 
 class GMusicWrapper:
@@ -51,6 +52,9 @@ class GMusicWrapper:
 
         return search[0]
 
-    def get_stream_url(self, song_id):
+    def get_google_stream_url(self, song_id):
         return self._api.get_stream_url(song_id)
+
+    def get_stream_url(self, song_id):
+        return "%s/stream/%s" % (environ['APP_URL'], song_id)
 

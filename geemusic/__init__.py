@@ -7,3 +7,4 @@ ask = Ask(app, '/alexa')
 queue = MusicQueue()
 
 import intents
+import controllers
