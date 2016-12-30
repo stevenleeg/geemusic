@@ -10,6 +10,9 @@ def play_artist(artist_name):
     # Fetch the artist
     artist = api.get_artist(artist_name)
 
+    if artist == False:
+        return statement("Sorry, I couldn't find that artist")
+
     # Setup the queue
     song_ids = map(lambda x: x['storeId'], artist['topTracks'])
     first_song_id = queue.reset(song_ids)
@@ -29,6 +32,9 @@ def play_album(album_name, artist_name):
 
     # Fetch the album
     album = api.get_album(album_name, artist_name=artist_name)
+
+    if album == False:
+        return statement("Sorry, I couldn't find that album")
 
     # Setup the queue
     song_ids = map(lambda x: x['storeId'], album['tracks'])
@@ -52,6 +58,9 @@ def play_song(song_name, artist_name):
 
     # Fetch the song
     song = api.get_song(song_name, artist_name=artist_name)
+
+    if song == False:
+        return statement("Sorry, I couldn't find that song")
 
     # Start streaming the first track
     stream_url = api.get_stream_url(song['storeId'])
