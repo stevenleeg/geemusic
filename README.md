@@ -1,6 +1,6 @@
 # Gee, Music!
 GeeMusic is an Alexa skill which bridges Google Music and Amazon's Alexa.
-It hopes to rescue all of those who want an Echo/Dot without needing to switch
+It hopes to rescue all of those who want an Echo/Dot but don't want to switch
 off of Google Music or pay extra for an Amazon Music Unlimited subscription.
 
 This project is still in its early phases and subject to a bit of change, 
@@ -11,7 +11,7 @@ before then).
 
 **Note: This skill is not made by nor endorsed by Google.** That being said, it
 is based off of the wonderful [gmusicapi](https://github.com/simon-weber/gmusicapi)
-by [Simon Weber](http://simon.codes), which has been around since 2012, so this
+by [Simon Weber](https://simon.codes), which has been around since 2012, so this
 should work as long as Google doesn't decide to lock down its APIs in a major
 way.
 
@@ -80,11 +80,11 @@ First things first, clone this repository to your server:
 $ git clone https://github.com/stevenleeg/geemusic.git
 ```
 
-Next, `cd` in and install all of our dependencies, ideally within a
-`virtualenv` if you have it installed, but otherwise you can omit those steps
-and just run the `pip install` command. Note that some of the dependencies
-require Python's C headers (on Ubuntu these can be installed by running `sudo
-apt-get install python-dev`).
+Next, `cd` in and install the dependencies, ideally within a `virtualenv` if
+you have it installed, but otherwise you can omit those steps and just run the
+`pip install` line. Note that some of the dependencies require Python's C
+headers (on Ubuntu these can be installed by running `sudo apt-get install
+python-dev`).
 
 ```bash
 # Run this if you have virtualenv installed:
@@ -170,10 +170,11 @@ on.
 Now that your skill is set up, you should be able to skip the SSL step and move
 right into "Test". Once there, scroll down to the "Service Simulator" section,
 enter some text like `Play album In Rainbows by Radiohead`, click "Ask Gee
-Music", and see some resulting JSON in the Service Response box.
+Music", and you'll ideally see some resulting JSON in the Service Response box.
 
-If all goes well, try it out on your Echo/Dot! Take a look at the features
-section of this Readme to get an idea of what you can tell it to do. 
+If all goes well the skill should also be up and running on your Echo/Dot! Take
+a look at the features section of this Readme to get an idea of what you can
+tell it to do. 
 
 Enjoy streaming Google Music via Alexa!
 
