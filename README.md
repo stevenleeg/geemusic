@@ -38,6 +38,8 @@ Play album and The Anonymous Nobody by De La Soul
 Play the song Fitter Happier
 Play song Cocoa Butter Kisses
 Play the song Drunk Girls by LCD Soundsystem
+
+Start a radio station for artist Weezer
 ```
 
 ### Roadmap
@@ -49,7 +51,6 @@ Thumbs-down this song
 Play the latest album by Run The Jewels
 Skip to the 3rd song in this album
 Play the third track off of In Rainbows
-Play Blink 182 radio
 Play some music (for the I'm Feeling Lucky station)
 Play a station for bedtime
 Play a station for partying

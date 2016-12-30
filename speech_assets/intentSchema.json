@@ -27,6 +27,12 @@
             ]
         },
         {
+            "intent": "GeeMusicPlayArtistRadioIntent",
+            "slots": [
+                {"name":"artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+        },
+        {
             "intent": "AMAZON.HelpIntent"
         }
     ]
