@@ -20,7 +20,8 @@ What can this puppy do, you might ask? Here's a list of example phrases that
 you can try once you get GeeMusic up and running. Remember that each of these
 phrases needs to be prefixed with "Alexa, tell Geemusic to..." in order for
 Alexa to know that you're requesting music from GeeMusic, not the built-in
-music services.
+music services. They're also fuzzy, so feel free to try slight variations of
+phrases to see if they'll work.
 
 
 ### Currently Implemented
@@ -38,6 +39,10 @@ Play album and The Anonymous Nobody by De La Soul
 Play the song Fitter Happier
 Play song Cocoa Butter Kisses
 Play the song Drunk Girls by LCD Soundsystem
+Next
+Previous
+Stop
+Pause
 ```
 
 ### Roadmap
