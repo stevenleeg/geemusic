@@ -1,0 +1,26 @@
+{
+    "intents": [
+        {
+            "intent": "AMAZON.PauseIntent"
+        },
+        {
+            "intent": "AMAZON.ResumeIntent"
+        },
+        {
+            "intent": "GeeMusicPlayArtistIntent",
+            "slots": [
+                {"name":"artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+        },
+        {
+            "intent": "GeeMusicPlayAlbumIntent",
+            "slots": [
+                {"name":"album_name", "type":"AMAZON.MusicAlbum"},
+                {"name":"artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+        },
+        {
+            "intent": "AMAZON.HelpIntent"
+        }
+    ]
+}
