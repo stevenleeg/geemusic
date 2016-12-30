@@ -29,12 +29,6 @@ def nearly_finished():
 def nearly_finished():
     next_id = queue.next()
 
-    if next_id != None:
-        api = GMusicWrapper(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'])
-        stream_url = api.get_stream_url(next_id)
-
-        return audio().play(stream_url)
-
 ##
 # Intents
 #
