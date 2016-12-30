@@ -5,7 +5,7 @@ from geemusic.utils.music import GMusicWrapper
 
 @ask.intent("GeeMusicPlayArtistIntent")
 def play_artist(artist_name):
-    api = GMusicWrapper(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'])
+    api = GMusicWrapper.generate_api()
 
     # Fetch the artist
     artist = api.get_artist(artist_name)
@@ -26,7 +26,7 @@ def play_artist(artist_name):
 
 @ask.intent("GeeMusicPlayAlbumIntent")
 def play_album(album_name, artist_name):
-    api = GMusicWrapper(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'])
+    api = GMusicWrapper.generate_api()
 
     app.logger.debug("Fetching album %s by %s" % (album_name, artist_name))
 
@@ -51,7 +51,7 @@ def play_album(album_name, artist_name):
 
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
-    api = GMusicWrapper(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'])
+    api = GMusicWrapper.generate_api()
     queue.reset()
 
     app.logger.debug("Fetching song %s by %s" % (song_name, artist_name))
@@ -67,3 +67,4 @@ def play_song(song_name, artist_name):
 
     speech_text = "Playing song %s by %s" % (song['title'], song['artist'])
     return audio(speech_text).play(stream_url)
+

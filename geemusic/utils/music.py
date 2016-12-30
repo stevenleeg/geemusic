@@ -58,3 +58,7 @@ class GMusicWrapper:
     def get_stream_url(self, song_id):
         return "%s/stream/%s" % (environ['APP_URL'], song_id)
 
+    @classmethod
+    def generate_api(self):
+        return self(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'])
+
