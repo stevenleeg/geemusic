@@ -22,3 +22,8 @@ GeeMusicPlayArtistRadioIntent Play music like artist {artist_name}
 GeeMusicPlayPlaylistIntent Play {playlist_name} playlist
 GeeMusicPlayPlaylistIntent Playlist {playlist_name}
 GeeMusicPlayPlaylistIntent Start playlist {playlist_name}
+
+GeeMusicPlayIFLRadioIntent Play some music
+GeeMusicPlayIFLRadioIntent Play I'm feeling lucky station
+GeeMusicPlayIFLRadioIntent Play my radio station
+GeeMusicPlayIFLRadioIntent Play my station

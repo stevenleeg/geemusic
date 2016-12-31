@@ -98,7 +98,6 @@ def play_artist_radio(artist_name):
     speech_text = "Playing %s radio" % artist['name']
     return audio(speech_text).play(stream_url)
 
-
 @ask.intent("GeeMusicPlayPlaylistIntent")
 def play_playlist(playlist_name):
     api = GMusicWrapper.generate_api()
@@ -143,3 +142,21 @@ def play_playlist(playlist_name):
     return audio(speech_text).play(stream_url) \
         .simple_card(title="Gee Music",
                      content=speech_text)
+
+@ask.intent("GeeMusicPlayIFLRadioIntent")
+def play_artist_radio(artist_name):
+    api = GMusicWrapper.generate_api()
+    # TODO: Handle track duplicates
+    tracks = api.get_station_tracks("IFL")
+
+    # Sometimes tracks don't have a store id?
+    song_ids = map(lambda x: x.get("storeId", None), tracks)
+    song_ids = filter(lambda x: x != None, song_ids)
+
+    first_song_id = queue.reset(song_ids)
+
+    # Get a streaming URL for the top song
+    stream_url = api.get_stream_url(first_song_id)
+
+    speech_text = "Playing music from your personalized station"
+    return audio(speech_text).play(stream_url)
