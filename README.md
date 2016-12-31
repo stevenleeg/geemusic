@@ -41,6 +41,7 @@ Play song Cocoa Butter Kisses
 Play the song Drunk Girls by LCD Soundsystem
 Start a radio station for artist Weezer
 Play some music (plays your I'm Feeling Lucky station)
+Start playlist Dancy Party
 ```
 
 Of course you can also say things like "Alexa stop," "Alexa next," etc.
@@ -56,7 +57,6 @@ Skip to the 3rd song in this album
 Play the third track off of In Rainbows
 Play a station for bedtime
 Play a station for partying
-Start playlist Dancy Party
 ```
 
 ### Known bugs:
