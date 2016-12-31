@@ -210,7 +210,7 @@ commands, and replace details with your own account credentials and app settings
 ```bash
 $ heroku config:set GOOGLE_EMAIL=steve@stevegattuso.me
 $ heroku config:set GOOGLE_PASSWORD=[password]
-$ heroku config:set APP_URL=https://[heroku_app_name].herokuapp.com/alexa
+$ heroku config:set APP_URL=https://[heroku_app_name].herokuapp.com
 ```
 
 At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.`
