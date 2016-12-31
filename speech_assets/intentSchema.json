@@ -33,6 +33,9 @@
             ]
         },
         {
+            "intent": "GeeMusicPlayIFLRadioIntent"
+        },
+        {
             "intent": "AMAZON.HelpIntent"
         }
     ]
