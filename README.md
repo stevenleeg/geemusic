@@ -182,6 +182,52 @@ tell it to do.
 
 Enjoy streaming Google Music via Alexa!
 
+### (Optional) Setting up a Heroku instance
+
+Setting up an instance on Heroku may be an easier option for you, and these instructions detail how to accomplish this. The following steps replace the need to setup a local server. First one must have Heroku setup on your local machine and an account associated. Go to https://heroku.com for information about this.
+
+One must then clone the repository.
+
+```bash
+$ git clone https://github.com/stevenleeg/geemusic.git
+```
+
+Next, `cd` in to quickly modify and then deploy the code.
+
+Now, open server.py in your text editor, and at the top add the following line of code to the top.
+
+```
+import os
+```
+
+Then, change `app.run(debug=True)` to
+
+```
+app.run(host="0.0.0.0", port=int(os.environ["PORT"]), debug=True)
+```
+
+Next, setup the Heroku server by typing the following two commands
+
+```bash
+$ heroku init
+$ git push heroku master
+```
+
+Go into your Heroku Dashboard and add three environment variables
+
+```
+# Google credentials
+GOOGLE_EMAIL=steve@stevegattuso.me
+GOOGLE_PASSWORD=[password]
+
+# Publicly accessible URL to your Heroku app, WITHOUT trailing slash
+APP_URL=https://[heroku_app_name].herokuapp.com/alexa
+```
+
+I would highly recommend that you enable 2-factor authentication on your Google account and only insert an application specific password into this file! (TODO: fix this!)
+
+At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.`
+
 ## Contributing
 Please feel free to open an issue or PR if you've found a bug. If you're
 looking to implement a feature, please open an issue before creating a PR so I
