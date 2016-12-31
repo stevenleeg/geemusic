@@ -33,6 +33,12 @@
             ]
         },
         {
+            "intent": "GeeMusicPlayPlaylistIntent",
+            "slots": [
+                {"name":"playlist_name", "type":"AMAZON.MusicRecording"}
+            ]
+        },
+        {
             "intent": "AMAZON.HelpIntent"
         }
     ]

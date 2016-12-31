@@ -53,7 +53,7 @@ class GMusicWrapper:
         return search[0]
 
     def get_station(self, title, artist_id=None):
-        if artist_id != None: 
+        if artist_id != None:
             return self._api.create_station(title, artist_id=artist_id)
 
     def get_station_tracks(self, station_id):
@@ -65,7 +65,9 @@ class GMusicWrapper:
     def get_stream_url(self, song_id):
         return "%s/stream/%s" % (environ['APP_URL'], song_id)
 
+    def get_all_user_playlist_contents(self):
+        return self._api.get_all_user_playlist_contents()
+
     @classmethod
     def generate_api(self):
         return self(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'])
-

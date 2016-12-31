@@ -2,6 +2,10 @@ from flask_ask import statement, audio
 from os import environ
 from geemusic import ask, app, queue
 from geemusic.utils.music import GMusicWrapper
+from fuzzywuzzy import fuzz
+
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
 
 @ask.intent("GeeMusicPlayArtistIntent")
 def play_artist(artist_name):
@@ -93,3 +97,49 @@ def play_artist_radio(artist_name):
 
     speech_text = "Playing %s radio" % artist['name']
     return audio(speech_text).play(stream_url)
+
+
+@ask.intent("GeeMusicPlayPlaylistIntent")
+def play_playlist(playlist_name):
+    api = GMusicWrapper.generate_api()
+
+    app.logger.debug("Fetching songs from %s playlist" % (playlist_name))
+    # Retreve the content of all playlists in a users library
+    allplaylists = api.get_all_user_playlist_contents()
+    # Find the closest match for the playlist
+    playlist_number = 0
+    best_playlist = None
+    best_match = 0
+    for list in allplaylists:
+        # fuzz.ratio returns a number of how similar to strings are (higher is better)
+        match = fuzz.ratio(list['name'].lower().replace(" ", ""),
+                           playlist_name.lower().replace(" ", ""))
+        if match > best_match:
+            best_playlist = playlist_number
+            best_match = match
+        playlist_number += 1
+    # may want to raise number (this means there is a 80% similarity)
+    if best_match <= 0:
+        return statement("Sorry, I couldn't find that playlist in your library.")
+
+    playlistname = allplaylists[best_playlist]['name']
+    # appends the song id to song_ids
+    # (some songs do not have a store id so it uses the track id instead)
+    count = 0
+    song_ids = []
+    for ids in allplaylists[best_playlist]['tracks']:
+        try:
+            song_ids.append(allplaylists[best_playlist]['tracks'][count]['track']['storeId'])
+        except KeyError:
+            song_ids.append(allplaylists[best_playlist]['tracks'][count]['trackId'])
+        count += 1
+
+    first_song_id = queue.reset(song_ids)
+
+    # Get a streaming URL for the first song in the playlist
+    stream_url = api.get_stream_url(first_song_id)
+
+    speech_text = "Playing songs from %s" % (playlistname)
+    return audio(speech_text).play(stream_url) \
+        .simple_card(title="Gee Music",
+                     content=speech_text)
