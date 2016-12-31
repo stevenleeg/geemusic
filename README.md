@@ -56,6 +56,7 @@ Skip to the 3rd song in this album
 Play the third track off of In Rainbows
 Play a station for bedtime
 Play a station for partying
+Start playlist Dancy Party
 ```
 
 ### Known bugs:
