@@ -12,3 +12,9 @@ GeeMusicPlaySongIntent Play the song {song_name}
 GeeMusicPlaySongIntent Play song {song_name}
 GeeMusicPlaySongIntent Play the song {song_name} by {artist_name}
 GeeMusicPlaySongIntent Play song {song_name} by {artist_name}
+
+GeeMusicPlayArtistRadioIntent Start radio for artist {artist_name}
+GeeMusicPlayArtistRadioIntent Create a radio station for artist {artist_name}
+GeeMusicPlayArtistRadioIntent Start {artist_name} artist radio
+GeeMusicPlayArtistRadioIntent Start artist radio for {artist_name}
+GeeMusicPlayArtistRadioIntent Play music like artist {artist_name}
