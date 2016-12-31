@@ -182,12 +182,13 @@ tell it to do.
 
 Enjoy streaming Google Music via Alexa!
 
-### (Optional) Setting up a Heroku instance
+### (Optional) Setup a Heroku instance
 
 Setting up an instance on Heroku may be an easier option for you, and these
 instructions detail how to accomplish this. The following steps replace the need
 to setup a local server. First one must have Heroku setup on your local machine and
-an account associated. Go to https://heroku.com for information about this.
+an account associated. Visit [the CLI documentation](https://devcenter.heroku.com/articles/heroku-cli)
+for details on setting this up.
 
 One must then clone the repository.
 
@@ -195,45 +196,22 @@ One must then clone the repository.
 $ git clone https://github.com/stevenleeg/geemusic.git
 ```
 
-Next, `cd` in to quickly modify and then deploy the code.
-
-Now, open server.py in your text editor, and at the top add the following line of
-code to the top.
-
-```
-import os
-```
-
-Then, change `app.run(debug=True)` to
-
-```
-app.run(host="0.0.0.0", port=int(os.environ["PORT"]), debug=True)
-```
-
-Next, setup the Heroku server and commit your modifications locally by typing the
-following four commands
+Next, `cd` in to deploy the code. Then, setup the Heroku server by typing the
+following two commands.
 
 ```bash
-$ git add server.py
-$ git commit -m "Add Heroku support"
 $ heroku init
 $ git push heroku master
 ```
 
-Go into your Heroku Dashboard and add three environment variables
+We now need to configure it to work with your Google account. Type the following
+commands, and replace details with your own account credentials and app settings.
 
+```bash
+$ heroku config:set GOOGLE_EMAIL=steve@stevegattuso.me
+$ heroku config:set GOOGLE_PASSWORD=[password]
+$ heroku config:set APP_URL=https://[heroku_app_name].herokuapp.com/alexa
 ```
-# Google credentials
-GOOGLE_EMAIL=steve@stevegattuso.me
-GOOGLE_PASSWORD=[password]
-
-# Publicly accessible URL to your Heroku app, WITHOUT trailing slash
-APP_URL=https://[heroku_app_name].herokuapp.com/alexa
-```
-
-I would highly recommend that you enable 2-factor authentication on your Google
-account and only insert an application specific password into this file! 
-(TODO: fix this!)
 
 At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.`
 
