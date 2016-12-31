@@ -58,6 +58,7 @@ Play Blink 182 radio
 Play some music (for the I'm Feeling Lucky station)
 Play a station for bedtime
 Play a station for partying
+Start playlist Dancy Party
 ```
 
 ### Known bugs:
