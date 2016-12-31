@@ -4,9 +4,6 @@ from geemusic import ask, app, queue
 from geemusic.utils.music import GMusicWrapper
 from fuzzywuzzy import fuzz
 
-import pprint
-pp = pprint.PrettyPrinter(indent=4)
-
 @ask.intent("GeeMusicPlayArtistIntent")
 def play_artist(artist_name):
     api = GMusicWrapper.generate_api()
