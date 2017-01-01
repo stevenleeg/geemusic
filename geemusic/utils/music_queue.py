@@ -1,6 +1,6 @@
 class MusicQueue:
-    def __init__(self, song_ids=[]):
-        self.song_ids = song_ids
+    def __init__(self, tracks=[]):
+        self.reset(tracks)
         self.current_index = 0
 
     def next(self):
@@ -28,12 +28,33 @@ class MusicQueue:
             return None
 
         return self.song_ids[self.current_index]
-    
-    def reset(self, song_ids=[]):
-        self.song_ids = song_ids
+
+    def current_track(self):
+        if len(self.song_ids) == 0:
+            return None
+
+        return self.tracks[self.current()]
+
+    def reset(self, tracks=[]):
+        self.tracks = {}
+        self.song_ids = []
+
+        for track in tracks:
+            if 'storeId' in track:
+                song_id = track['storeId']
+            elif 'trackId' in track:
+                song_id = track['trackId']
+            elif 'track' in track:
+                song_id = track['track']['storeId']
+            else:
+                continue
+
+            self.song_ids.append(song_id)
+            self.tracks[song_id] = track
+
         self.current_index = 0
 
-        if len(song_ids) == 0:
+        if len(self.song_ids) == 0:
             return None
         else:
             return self.song_ids[self.current_index]
