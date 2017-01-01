@@ -200,7 +200,7 @@ Next, `cd` in to deploy the code. Then, setup the Heroku server by typing the
 following two commands.
 
 ```bash
-$ heroku init
+$ heroku create
 $ git push heroku master
 ```
 
