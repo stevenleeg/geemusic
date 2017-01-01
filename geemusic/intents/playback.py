@@ -81,3 +81,13 @@ def prev_song():
         stream_url = api.get_stream_url(prev_id)
 
         return audio().play(stream_url)
+
+@ask.intent('GeeMusicCurrentlyPlayingIntent')
+def currently_playing():
+    track = queue.current_track()
+    app.logger.debug("Tracks are %s" % queue.tracks)
+
+    if track == None:
+        return audio("Nothing is playing right now")
+
+    return audio("The current track is %s by %s" % (track['title'], track['artist']))

@@ -15,12 +15,10 @@ def play_artist(artist_name):
         return statement("Sorry, I couldn't find that artist")
 
     # Setup the queue
-    song_ids = map(lambda x: x['storeId'], artist['topTracks'])
-    first_song_id = queue.reset(song_ids)
+    first_song_id = queue.reset(artist['topTracks'])
 
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
-    app.logger.debug("Stream URL is %s" % stream_url)
 
     speech_text = "Playing top tracks from %s" % artist['name']
     return audio(speech_text).play(stream_url)
@@ -38,11 +36,7 @@ def play_album(album_name, artist_name):
         return statement("Sorry, I couldn't find that album")
 
     # Setup the queue
-    song_ids = map(lambda x: x['storeId'], album['tracks'])
-    first_song_id = queue.reset(song_ids)
-
-    app.logger.debug('Queue status: %s', queue)
-    app.logger.debug('Sending track id: %s', first_song_id)
+    first_song_id = queue.reset(album['tracks'])
 
     # Start streaming the first track
     stream_url = api.get_stream_url(first_song_id)
@@ -83,11 +77,7 @@ def play_artist_radio(artist_name):
     # TODO: Handle track duplicates
     tracks = api.get_station_tracks(station_id)
 
-    # Sometimes tracks don't have a store id?
-    song_ids = map(lambda x: x.get('storeId', None), tracks)
-    song_ids = filter(lambda x: x != None, song_ids)
-
-    first_song_id = queue.reset(song_ids)
+    first_song_id = queue.reset(tracks)
 
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
@@ -98,8 +88,6 @@ def play_artist_radio(artist_name):
 @ask.intent("GeeMusicPlayPlaylistIntent")
 def play_playlist(playlist_name):
     api = GMusicWrapper.generate_api()
-
-    app.logger.debug("Fetching songs from %s playlist" % (playlist_name))
 
     # Retreve the content of all playlists in a users library
     all_playlists = api.get_all_user_playlist_contents()
@@ -125,16 +113,7 @@ def play_playlist(playlist_name):
         return statement("Sorry, I couldn't find that playlist in your library.")
 
     # Add songs from the playlist onto our queue
-    song_ids = []
-    for track in best_match['tracks']:
-        if 'track' in track:
-            song_ids.append(track['track']['storeId'])
-        elif 'trackId' in track:
-            song_ids.append(track['trackId'])
-        else:
-            pass
-
-    first_song_id = queue.reset(song_ids)
+    first_song_id = queue.reset(best_match['tracks'])
 
     # Get a streaming URL for the first song in the playlist
     stream_url = api.get_stream_url(first_song_id)
@@ -147,16 +126,11 @@ def play_playlist(playlist_name):
 @ask.intent("GeeMusicPlayIFLRadioIntent")
 def play_artist_radio(artist_name):
     api = GMusicWrapper.generate_api()
-    # TODO: Handle track duplicates
+    # TODO: Handle track duplicates?
     tracks = api.get_station_tracks("IFL")
 
-    # Sometimes tracks don't have a store id?
-    song_ids = map(lambda x: x.get("storeId", None), tracks)
-    song_ids = filter(lambda x: x != None, song_ids)
-
-    first_song_id = queue.reset(song_ids)
-
-    # Get a streaming URL for the top song
+    # Get a streaming URL for the first song
+    first_song_id = queue.reset(tracks)
     stream_url = api.get_stream_url(first_song_id)
 
     speech_text = "Playing music from your personalized station"
