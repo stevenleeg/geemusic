@@ -36,7 +36,6 @@ def nearly_finished():
 def resume():
     next_id = queue.current()
 
-    app.logger.debug('Queue status: %s', queue)
     if next_id == None:
         return audio("There are no songs on the queue")
     else:
@@ -81,3 +80,12 @@ def prev_song():
         stream_url = api.get_stream_url(prev_id)
 
         return audio().play(stream_url)
+
+@ask.intent('GeeMusicCurrentlyPlayingIntent')
+def currently_playing():
+    track = queue.current_track()
+
+    if track == None:
+        return audio("Nothing is playing right now")
+
+    return audio("The current track is %s by %s" % (track['title'], track['artist']))

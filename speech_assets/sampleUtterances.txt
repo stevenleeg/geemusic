@@ -27,3 +27,10 @@ GeeMusicPlayIFLRadioIntent Play some music
 GeeMusicPlayIFLRadioIntent Play I'm feeling lucky station
 GeeMusicPlayIFLRadioIntent Play my radio station
 GeeMusicPlayIFLRadioIntent Play my station
+
+GeeMusicCurrentlyPlayingIntent What is the current song?
+GeeMusicCurrentlyPlayingIntent What is currently playing?
+GeeMusicCurrentlyPlayingIntent What is playing right now?
+GeeMusicCurrentlyPlayingIntent What song is this?
+GeeMusicCurrentlyPlayingIntent What is the name of this song?
+GeeMusicCurrentlyPlayingIntent What is this?
