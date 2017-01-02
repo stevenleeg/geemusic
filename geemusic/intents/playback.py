@@ -15,6 +15,7 @@ def stopped(offset):
 def started(offset):
     app.logger.debug("Started at %s" % offset)
 
+next_song_queued = False
 @ask.on_playback_nearly_finished()
 def nearly_finished():
     next_id = queue.up_next()
@@ -22,11 +23,21 @@ def nearly_finished():
     if next_id != None:
         api = GMusicWrapper.generate_api()
         stream_url = api.get_stream_url(next_id)
+        global next_song_queued
+        next_song_queued = True
 
         return audio().enqueue(stream_url)
 
 @ask.on_playback_finished()
 def nearly_finished():
+    if next_song_queued is False:
+        next_id = queue.up_next()
+        if next_id is None:
+            api = GMusicWrapper.generate_api()
+            stream_url = api.get_stream_url(next_id)
+
+            return audio.play(stream_url)
+
     next_id = queue.next()
 
 ##

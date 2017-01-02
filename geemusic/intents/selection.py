@@ -92,7 +92,7 @@ def play_playlist(playlist_name):
     # Retreve the content of all playlists in a users library
     all_playlists = api.get_all_user_playlist_contents()
 
-    # Give each playlist a score based on its similarity to the requested 
+    # Give each playlist a score based on its similarity to the requested
     # playlist name
     request_name = playlist_name.lower().replace(" ", "")
     scored_playlists = []
@@ -135,3 +135,37 @@ def play_artist_radio(artist_name):
 
     speech_text = "Playing music from your personalized station"
     return audio(speech_text).play(stream_url)
+
+@ask.intent("GeeMusicQueueSongIntent")
+def queue_song(song_name, artist_name):
+    api = GMusicWrapper.generate_api()
+
+    app.logger.debug("Queuing song %s by %s" % (song_name, artist_name))
+
+    if queue.current is None:
+        return statement("You must first play a song")
+
+    # Fetch the song
+    song = api.get_song(song_name, artist_name=artist_name)
+
+    if song is False:
+        return statement("Sorry, I couldn't find that song")
+
+    # Queue the track
+    queue.song_ids.append(song['storeId'])
+
+    speech_text = "Queued song %s by %s" % (song['title'], song['artist'])
+    return statement(speech_text)
+
+@ask.intent("GeeMusicUndoQueueIntent")
+def undo_queue():
+    api = GMusicWrapper.generate_api()
+    # revert song queue
+    if queue.current is None:
+        return statement("There is no song to remove")
+        # revert song queue
+    song = queue.song_ids.pop()
+    api.get_track_info(song)
+    speech_text = "Removed %s by %s from the queue." % (song['title'], song['artist'])
+
+    return statement(speech_text)
