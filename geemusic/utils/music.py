@@ -28,7 +28,7 @@ class GMusicWrapper:
         if len(search) == 0:
             return False
 
-        return self._api.get_artist_info(search[0]['artistId'])
+        return self._api.get_artist_info(search[0]['artistId'], max_top_tracks=100)
 
     def get_album(self, name, artist_name=None):
         if artist_name:
