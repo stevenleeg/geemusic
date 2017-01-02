@@ -20,7 +20,7 @@ def nearly_finished():
     next_id = queue.up_next()
 
     if next_id != None:
-        api = GMusicWrapper(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'])
+        api = GMusicWrapper.generate_api()
         stream_url = api.get_stream_url(next_id)
 
         return audio().enqueue(stream_url)
