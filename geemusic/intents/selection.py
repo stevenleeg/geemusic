@@ -15,12 +15,10 @@ def play_artist(artist_name):
         return statement("Sorry, I couldn't find that artist")
 
     # Setup the queue
-    song_ids = map(lambda x: x['storeId'], artist['topTracks'])
-    first_song_id = queue.reset(song_ids)
+    first_song_id = queue.reset(artist['topTracks'])
 
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
-    app.logger.debug("Stream URL is %s" % stream_url)
 
     speech_text = "Playing top tracks from %s" % artist['name']
     return audio(speech_text).play(stream_url)
@@ -38,11 +36,7 @@ def play_album(album_name, artist_name):
         return statement("Sorry, I couldn't find that album")
 
     # Setup the queue
-    song_ids = map(lambda x: x['storeId'], album['tracks'])
-    first_song_id = queue.reset(song_ids)
-
-    app.logger.debug('Queue status: %s', queue)
-    app.logger.debug('Sending track id: %s', first_song_id)
+    first_song_id = queue.reset(album['tracks'])
 
     # Start streaming the first track
     stream_url = api.get_stream_url(first_song_id)
@@ -83,11 +77,7 @@ def play_artist_radio(artist_name):
     # TODO: Handle track duplicates
     tracks = api.get_station_tracks(station_id)
 
-    # Sometimes tracks don't have a store id?
-    song_ids = map(lambda x: x.get('storeId', None), tracks)
-    song_ids = filter(lambda x: x != None, song_ids)
-
-    first_song_id = queue.reset(song_ids)
+    first_song_id = queue.reset(tracks)
 
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
@@ -99,43 +89,36 @@ def play_artist_radio(artist_name):
 def play_playlist(playlist_name):
     api = GMusicWrapper.generate_api()
 
-    app.logger.debug("Fetching songs from %s playlist" % (playlist_name))
     # Retreve the content of all playlists in a users library
-    allplaylists = api.get_all_user_playlist_contents()
-    # Find the closest match for the playlist
-    playlist_number = 0
-    best_playlist = None
-    best_match = 0
-    for list in allplaylists:
-        # fuzz.ratio returns a number of how similar to strings are (higher is better)
-        match = fuzz.ratio(list['name'].lower().replace(" ", ""),
-                           playlist_name.lower().replace(" ", ""))
-        if match > best_match:
-            best_playlist = playlist_number
-            best_match = match
-        playlist_number += 1
-    # may want to raise number (this means there is a 80% similarity)
-    if best_match <= 0:
+    all_playlists = api.get_all_user_playlist_contents()
+
+    # Give each playlist a score based on its similarity to the requested 
+    # playlist name
+    request_name = playlist_name.lower().replace(" ", "")
+    scored_playlists = []
+    for i, playlist in enumerate(all_playlists):
+        name = playlist['name'].lower().replace(" ", "")
+        scored_playlists.append({
+            'index': i,
+            'name': name,
+            'score': fuzz.ratio(name, request_name)
+        })
+
+    sorted_playlists = sorted(scored_playlists, lambda a, b: b['score'] - a['score'])
+    top_scoring = sorted_playlists[0]
+    best_match = all_playlists[top_scoring['index']]
+
+    # Make sure we have a decent match (the score is n where 0 <= n <= 100)
+    if top_scoring['score'] < 80:
         return statement("Sorry, I couldn't find that playlist in your library.")
 
-    playlistname = allplaylists[best_playlist]['name']
-    # appends the song id to song_ids
-    # (some songs do not have a store id so it uses the track id instead)
-    count = 0
-    song_ids = []
-    for ids in allplaylists[best_playlist]['tracks']:
-        try:
-            song_ids.append(allplaylists[best_playlist]['tracks'][count]['track']['storeId'])
-        except KeyError:
-            song_ids.append(allplaylists[best_playlist]['tracks'][count]['trackId'])
-        count += 1
-
-    first_song_id = queue.reset(song_ids)
+    # Add songs from the playlist onto our queue
+    first_song_id = queue.reset(best_match['tracks'])
 
     # Get a streaming URL for the first song in the playlist
     stream_url = api.get_stream_url(first_song_id)
 
-    speech_text = "Playing songs from %s" % (playlistname)
+    speech_text = "Playing songs from %s" % (best_match['name'])
     return audio(speech_text).play(stream_url) \
         .simple_card(title="Gee Music",
                      content=speech_text)
@@ -143,16 +126,11 @@ def play_playlist(playlist_name):
 @ask.intent("GeeMusicPlayIFLRadioIntent")
 def play_artist_radio(artist_name):
     api = GMusicWrapper.generate_api()
-    # TODO: Handle track duplicates
+    # TODO: Handle track duplicates?
     tracks = api.get_station_tracks("IFL")
 
-    # Sometimes tracks don't have a store id?
-    song_ids = map(lambda x: x.get("storeId", None), tracks)
-    song_ids = filter(lambda x: x != None, song_ids)
-
-    first_song_id = queue.reset(song_ids)
-
-    # Get a streaming URL for the top song
+    # Get a streaming URL for the first song
+    first_song_id = queue.reset(tracks)
     stream_url = api.get_stream_url(first_song_id)
 
     speech_text = "Playing music from your personalized station"

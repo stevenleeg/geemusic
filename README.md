@@ -42,6 +42,8 @@ Play the song Drunk Girls by LCD Soundsystem
 Start a radio station for artist Weezer
 Play some music (plays your I'm Feeling Lucky station)
 Start playlist Dancy Party
+
+What is currently playing?
 ```
 
 Of course you can also say things like "Alexa stop," "Alexa next," etc.
