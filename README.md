@@ -215,7 +215,10 @@ $ heroku config:set GOOGLE_PASSWORD=[password]
 $ heroku config:set APP_URL=https://[heroku_app_name].herokuapp.com
 ```
 
-At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.`
+At this point, your server should by live and ready to start accepting requests at
+`https://[heroku_app_name].herokuapp.com/alexa.` Note, that while using the free tier,
+you may experience timeout errors when you server has received no requests for over
+30 minutes.
 
 ## Contributing
 Please feel free to open an issue or PR if you've found a bug. If you're
