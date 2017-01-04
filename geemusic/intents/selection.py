@@ -20,7 +20,10 @@ def help():
                 Play the song Fitter Happier,
                 Start a radio station for artist Weezer,
                 Play some music (plays your I'm Feeling Lucky station),
-                Start playlist Dancy Party, '''
+                Start playlist Dancy Party, 
+                
+                Of course you can also say skip, previous, shuffle, and more of alexa's music commands or, stop, if you're done.
+                '''
 
     prompt = 'For example say, play music by A Tribe Called Quest'
     return question(text).reprompt(prompt)
