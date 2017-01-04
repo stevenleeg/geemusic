@@ -1,8 +1,30 @@
-from flask_ask import statement, audio
+from flask_ask import statement, audio, question
 from os import environ
 from geemusic import ask, app, queue
 from geemusic.utils.music import GMusicWrapper
 from fuzzywuzzy import fuzz
+
+@ask.launch
+def login():
+    text = 'Welcome to Gee Music. Try asking me to play a song or start a playlist'
+    prompt = 'For example say, play music by A Tribe Called Quest'
+    return question(text).reprompt(prompt)
+
+@ask.intent("AMAZON.HelpIntent")
+def help():
+    text = ''' Here are some things you can say:
+                Play artist Radiohead,
+                Play songs by LCD Soundsystem,
+                Play music by A Tribe Called Quest,
+                Play the album Science For Girl,
+                Play the song Fitter Happier,
+                Start a radio station for artist Weezer,
+                Play some music (plays your I'm Feeling Lucky station),
+                Start playlist Dancy Party, '''
+
+    prompt = 'For example say, play music by A Tribe Called Quest'
+    return question(text).reprompt(prompt)
+
 
 @ask.intent("GeeMusicPlayArtistIntent")
 def play_artist(artist_name):
@@ -92,7 +114,7 @@ def play_playlist(playlist_name):
     # Retreve the content of all playlists in a users library
     all_playlists = api.get_all_user_playlist_contents()
 
-    # Give each playlist a score based on its similarity to the requested 
+    # Give each playlist a score based on its similarity to the requested
     # playlist name
     request_name = playlist_name.lower().replace(" ", "")
     scored_playlists = []
