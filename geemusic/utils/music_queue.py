@@ -46,6 +46,8 @@ class MusicQueue:
                 song_id = track['trackId']
             elif 'track' in track:
                 song_id = track['track']['storeId']
+            elif 'u' in track:
+                song_id = track
             else:
                 continue
 

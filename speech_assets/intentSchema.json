@@ -45,6 +45,9 @@
             "intent": "GeeMusicCurrentlyPlayingIntent"
         },
         {
+            "intent": "AMAZON.ShuffleOnIntent"
+        },
+        {
             "intent": "AMAZON.HelpIntent"
         }
     ]
