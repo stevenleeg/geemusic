@@ -84,21 +84,21 @@ def prev_song():
 
 @ask.intent("AMAZON.ShuffleOnIntent")
 def shuffle_tracks():
-    api = GMusicWrapper.generate_api()
-    app.logger.debug("Shuffling Songs")
-    # Shuffle the list using ramdom.shuffle()
-    # This will reorder the song ids there by "shuffling" the tracks
     shuffled_songs = queue.song_ids
-    random.shuffle(shuffled_songs, random.random)
-    # app.logger.debug(shuffled_list)
-    # Start streaming the first track in the new shuffled list
-    if queue.song_ids == [] or None:
+    
+    if shuffled_songs == [] or None:
         return statement("There are no songs to shuffle.")
-
-    first_song_id = queue.reset(shuffled_songs)
-    stream_url = api.get_stream_url(first_song_id)
-    app.logger.debug(stream_url)
-    return audio('Shuffling Songs').play(stream_url)
+    else:
+        api = GMusicWrapper.generate_api()
+    
+        # This will randomly reorder the song ids thereby "shuffling" the tracks
+        random.shuffle(shuffled_songs)
+    
+        # Start streaming the first track in the new shuffled list
+        first_song_id = queue.reset(shuffled_songs)
+        stream_url = api.get_stream_url(first_song_id)
+    
+        return audio('Shuffling Songs').play(stream_url)
 
 
 @ask.intent('GeeMusicCurrentlyPlayingIntent')
