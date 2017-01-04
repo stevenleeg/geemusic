@@ -13,14 +13,12 @@ def login():
 @ask.intent("AMAZON.HelpIntent")
 def help():
     text = ''' Here are some things you can say:
-                Play artist Radiohead,
-                Play songs by LCD Soundsystem,
-                Play music by A Tribe Called Quest,
-                Play the album Science For Girl,
+                Play songs by Radiohead,
+                Play the album Science For Girls,
                 Play the song Fitter Happier,
                 Start a radio station for artist Weezer,
-                Play some music (plays your I'm Feeling Lucky station),
-                Start playlist Dancy Party, 
+                Start playlist Dance Party,
+                and play some music, 
                 
                 Of course you can also say skip, previous, shuffle, and more of alexa's music commands or, stop, if you're done.
                 '''
