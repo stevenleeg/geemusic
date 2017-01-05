@@ -1,3 +1,6 @@
+import random
+
+
 class MusicQueue:
     def __init__(self, tracks=[]):
         self.reset(tracks)
@@ -46,8 +49,6 @@ class MusicQueue:
                 song_id = track['trackId']
             elif 'track' in track:
                 song_id = track['track']['storeId']
-            elif 'u' in track:
-                song_id = track
             else:
                 continue
 
@@ -60,6 +61,16 @@ class MusicQueue:
             return None
         else:
             return self.song_ids[self.current_index]
+
+    def shuffleMode(self, value, ogsong_ids=[]):
+        if value is True:
+            self.cached_song_ids = list(self.song_ids)
+            random.shuffle(self.song_ids)
+        elif value is False:
+            self.song_ids = self.cached_song_ids
+
+        self.current_index = 0
+        return self.song_ids[self.current_index]
 
     def __str__(self):
         return "<Queue: length=%d position=%d items=%s>" % (len(self.song_ids), self.current_index, self.song_ids)

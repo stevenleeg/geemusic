@@ -2,7 +2,6 @@ from flask_ask import statement, audio
 from os import environ
 from geemusic import ask, queue, app
 from geemusic.utils.music import GMusicWrapper
-import random
 
 ##
 # Callbacks
@@ -83,22 +82,30 @@ def prev_song():
         return audio().play(stream_url)
 
 @ask.intent("AMAZON.ShuffleOnIntent")
-def shuffle_tracks():
-    shuffled_songs = queue.song_ids
-    
-    if shuffled_songs == [] or None:
+def shuffle_on():
+
+    if len(queue.song_ids) == 0:
         return statement("There are no songs to shuffle.")
-    else:
-        api = GMusicWrapper.generate_api()
-    
-        # This will randomly reorder the song ids thereby "shuffling" the tracks
-        random.shuffle(shuffled_songs)
-    
-        # Start streaming the first track in the new shuffled list
-        first_song_id = queue.reset(shuffled_songs)
-        stream_url = api.get_stream_url(first_song_id)
-    
-        return audio('Shuffling Songs').play(stream_url)
+    api = GMusicWrapper.generate_api()
+
+    # Start streaming the first track in the new shuffled list
+    first_song_id = queue.shuffleMode(True)
+    stream_url = api.get_stream_url(first_song_id)
+
+    return audio('Shuffling Songs').play(stream_url)
+
+@ask.intent("AMAZON.ShuffleOffIntent")
+def shuffle_off():
+
+    if len(queue.song_ids) == 0:
+        return statement("There are no songs to unshuffle.")
+    api = GMusicWrapper.generate_api()
+
+    # Start streaming the first track in the new shuffled list
+    first_song_id = queue.shuffleMode(False)
+    stream_url = api.get_stream_url(first_song_id)
+
+    return audio('Unshuffling Songs').play(stream_url)
 
 
 @ask.intent('GeeMusicCurrentlyPlayingIntent')
