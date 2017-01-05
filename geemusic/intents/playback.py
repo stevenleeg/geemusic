@@ -89,10 +89,10 @@ def shuffle_on():
     api = GMusicWrapper.generate_api()
 
     # Start streaming the first track in the new shuffled list
-    first_song_id = queue.shuffleMode(True)
+    first_song_id = queue.shuffle_mode(True)
     stream_url = api.get_stream_url(first_song_id)
 
-    return audio('Shuffling Songs').play(stream_url)
+    return audio('Shuffling Songs').enqueue(stream_url)
 
 @ask.intent("AMAZON.ShuffleOffIntent")
 def shuffle_off():
@@ -102,10 +102,10 @@ def shuffle_off():
     api = GMusicWrapper.generate_api()
 
     # Start streaming the first track in the new shuffled list
-    first_song_id = queue.shuffleMode(False)
+    first_song_id = queue.shuffle_mode(False)
     stream_url = api.get_stream_url(first_song_id)
 
-    return audio('Unshuffling Songs').play(stream_url)
+    return audio('Unshuffling Songs').enqueue(stream_url)
 
 
 @ask.intent('GeeMusicCurrentlyPlayingIntent')
