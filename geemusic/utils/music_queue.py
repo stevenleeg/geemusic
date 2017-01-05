@@ -64,12 +64,14 @@ class MusicQueue:
 
     def shuffle_mode(self, value):
         if value is True:
-            self.cached_song_ids = list(self.song_ids)
+            self.ordered_song_ids = list(self.song_ids)
             random.shuffle(self.song_ids)
+            self.current_index = 0
         elif value is False:
-            self.song_ids = self.cached_song_ids
+            self.current_index = self.ordered_song_ids.index(
+                self.song_ids[self.current_index])
+            self.song_ids = self.ordered_song_ids
 
-        self.current_index = 0
         return self.song_ids[self.current_index]
 
     def __str__(self):
