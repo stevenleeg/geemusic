@@ -62,7 +62,7 @@ class MusicQueue:
         else:
             return self.song_ids[self.current_index]
 
-    def shuffleMode(self, value, ogsong_ids=[]):
+    def shuffle_mode(self, value):
         if value is True:
             self.cached_song_ids = list(self.song_ids)
             random.shuffle(self.song_ids)
