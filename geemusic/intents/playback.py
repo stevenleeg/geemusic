@@ -92,7 +92,7 @@ def shuffle_on():
     first_song_id = queue.shuffle_mode(True)
     stream_url = api.get_stream_url(first_song_id)
 
-    return audio('Shuffling Songs').enqueue(stream_url)
+    return audio().enqueue(stream_url)
 
 @ask.intent("AMAZON.ShuffleOffIntent")
 def shuffle_off():
@@ -105,7 +105,7 @@ def shuffle_off():
     first_song_id = queue.shuffle_mode(False)
     stream_url = api.get_stream_url(first_song_id)
 
-    return audio('Unshuffling Songs').enqueue(stream_url)
+    return audio().enqueue(stream_url)
 
 
 @ask.intent('GeeMusicCurrentlyPlayingIntent')
