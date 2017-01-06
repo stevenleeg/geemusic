@@ -13,6 +13,7 @@ class MusicQueue:
 
     def up_next(self):
         if len(self.song_ids) == 0 or self.current_index + 1 >= len(self.song_ids):
+            self.is_next_song_queued = False
             return None
 
         self.is_next_song_queued = True
