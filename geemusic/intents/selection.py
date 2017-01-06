@@ -57,10 +57,11 @@ def play_song(song_name, artist_name):
     if song == False:
         return statement("Sorry, I couldn't find that song")
 
+    queue.song_ids.append(song['storeId'])
     # Start streaming the first track
     stream_url = api.get_stream_url(song['storeId'])
 
-    speech_text = "Playing song %s by %s" % (song['title'], song['artist'])
+    speech_text = "Playing %s by %s" % (song['title'], song['artist'])
     return audio(speech_text).play(stream_url)
 
 @ask.intent("GeeMusicPlayArtistRadioIntent")
@@ -142,7 +143,7 @@ def queue_song(song_name, artist_name):
 
     app.logger.debug("Queuing song %s by %s" % (song_name, artist_name))
 
-    if queue.current is None:
+    if len(queue.song_ids) == 0 is None:
         return statement("You must first play a song")
 
     # Fetch the song
@@ -161,7 +162,7 @@ def queue_song(song_name, artist_name):
 def undo_queue():
     api = GMusicWrapper.generate_api()
     # revert song queue
-    if queue.current is None:
+    if len(queue.song_ids) == 0 is None:
         return statement("There is no song to remove")
         # revert song queue
     song = queue.song_ids.pop()
