@@ -83,7 +83,6 @@ def prev_song():
 
 @ask.intent("AMAZON.ShuffleOnIntent")
 def shuffle_on():
-
     if len(queue.song_ids) == 0:
         return statement("There are no songs to shuffle.")
     api = GMusicWrapper.generate_api()
@@ -96,7 +95,6 @@ def shuffle_on():
 
 @ask.intent("AMAZON.ShuffleOffIntent")
 def shuffle_off():
-
     if len(queue.song_ids) == 0:
         return statement("There are no songs to unshuffle.")
     api = GMusicWrapper.generate_api()
