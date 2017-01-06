@@ -132,7 +132,7 @@ def play_playlist(playlist_name):
     best_match = all_playlists[top_scoring['index']]
 
     # Make sure we have a decent match (the score is n where 0 <= n <= 100)
-    if top_scoring['score'] < 80:
+    if top_scoring['score'] < 70:
         return statement("Sorry, I couldn't find that playlist in your library.")
 
     # Add songs from the playlist onto our queue
