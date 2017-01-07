@@ -81,6 +81,31 @@ def prev_song():
 
         return audio().play(stream_url)
 
+@ask.intent("AMAZON.ShuffleOnIntent")
+def shuffle_on():
+    if len(queue.song_ids) == 0:
+        return statement("There are no songs to shuffle.")
+    api = GMusicWrapper.generate_api()
+
+    # Start streaming the first track in the new shuffled list
+    first_song_id = queue.shuffle_mode(True)
+    stream_url = api.get_stream_url(first_song_id)
+
+    return audio().enqueue(stream_url)
+
+@ask.intent("AMAZON.ShuffleOffIntent")
+def shuffle_off():
+    if len(queue.song_ids) == 0:
+        return statement("There are no songs to unshuffle.")
+    api = GMusicWrapper.generate_api()
+
+    # Start streaming the first track in the new shuffled list
+    first_song_id = queue.shuffle_mode(False)
+    stream_url = api.get_stream_url(first_song_id)
+
+    return audio().enqueue(stream_url)
+
+
 @ask.intent('GeeMusicCurrentlyPlayingIntent')
 def currently_playing():
     track = queue.current_track()
