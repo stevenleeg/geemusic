@@ -1,0 +1,57 @@
+{
+    "intents": [
+        {
+            "intent": "AMAZON.PauseIntent"
+        },
+        {
+            "intent": "AMAZON.ResumeIntent"
+        },
+        {
+            "intent": "GeeMusicPlayArtistIntent",
+            "slots": [
+                {"name":"artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+        },
+        {
+            "intent": "GeeMusicPlayAlbumIntent",
+            "slots": [
+                {"name":"album_name", "type":"AMAZON.MusicAlbum"},
+                {"name":"artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+        },
+        {
+            "intent": "GeeMusicPlaySongIntent",
+            "slots": [
+                {"name":"song_name", "type":"AMAZON.MusicRecording"},
+                {"name":"artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+        },
+        {
+            "intent": "GeeMusicPlayArtistRadioIntent",
+            "slots": [
+                {"name":"artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+        },
+        {
+            "intent": "GeeMusicPlayPlaylistIntent",
+            "slots": [
+                {"name":"playlist_name", "type":"AMAZON.MusicPlaylist"}
+            ]
+        },
+        {
+            "intent": "GeeMusicPlayIFLRadioIntent"
+        },
+        {
+            "intent": "GeeMusicCurrentlyPlayingIntent"
+        },
+        {
+            "intent": "AMAZON.ShuffleOnIntent"
+        },
+        {
+            "intent": "AMAZON.ShuffleOffIntent"
+        },
+        {
+            "intent": "AMAZON.HelpIntent"
+        }
+    ]
+}

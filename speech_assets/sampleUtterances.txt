@@ -1,0 +1,36 @@
+GeeMusicPlayArtistIntent Play artist {artist_name}
+GeeMusicPlayArtistIntent Play songs by {artist_name}
+GeeMusicPlayArtistIntent Play top songs by {artist_name}
+GeeMusicPlayArtistIntent Play music by {artist_name}
+
+GeeMusicPlayAlbumIntent Play the album {album_name}
+GeeMusicPlayAlbumIntent Play album {album_name}
+GeeMusicPlayAlbumIntent Play the album {album_name} by {artist_name}
+GeeMusicPlayAlbumIntent Play album {album_name} by {artist_name}
+
+GeeMusicPlaySongIntent Play the song {song_name}
+GeeMusicPlaySongIntent Play song {song_name}
+GeeMusicPlaySongIntent Play the song {song_name} by {artist_name}
+GeeMusicPlaySongIntent Play song {song_name} by {artist_name}
+
+GeeMusicPlayArtistRadioIntent Start radio for artist {artist_name}
+GeeMusicPlayArtistRadioIntent Create a radio station for artist {artist_name}
+GeeMusicPlayArtistRadioIntent Start {artist_name} artist radio
+GeeMusicPlayArtistRadioIntent Start artist radio for {artist_name}
+GeeMusicPlayArtistRadioIntent Play music like artist {artist_name}
+
+GeeMusicPlayPlaylistIntent Play {playlist_name} playlist
+GeeMusicPlayPlaylistIntent Playlist {playlist_name}
+GeeMusicPlayPlaylistIntent Start playlist {playlist_name}
+
+GeeMusicPlayIFLRadioIntent Play some music
+GeeMusicPlayIFLRadioIntent Play I'm feeling lucky station
+GeeMusicPlayIFLRadioIntent Play my radio station
+GeeMusicPlayIFLRadioIntent Play my station
+
+GeeMusicCurrentlyPlayingIntent What is the current song
+GeeMusicCurrentlyPlayingIntent What is currently playing
+GeeMusicCurrentlyPlayingIntent What is playing right now
+GeeMusicCurrentlyPlayingIntent What song is this
+GeeMusicCurrentlyPlayingIntent What is the name of this song
+GeeMusicCurrentlyPlayingIntent What is this
