@@ -91,7 +91,7 @@ you have it installed, but otherwise you can omit those steps and just run the
 `pip install` line. Note that some of the dependencies require a few packages
 that you may not already have on your system: `python-dev`, `libssl-dev`, and
 `libffi-dev`. On Ubuntu these can be installed by running `sudo apt-get
-install python-dev libssl-dev libffi-dev`).
+install python-dev libssl-dev libffi-dev`.
 
 ```bash
 # Run this if you have virtualenv installed:
