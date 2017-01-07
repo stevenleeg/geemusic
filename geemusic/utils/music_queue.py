@@ -86,5 +86,17 @@ class MusicQueue:
 
         return self.song_ids[self.current_index]
 
+    def loop_mode(self, value):
+        if value is True:
+            self.ordered_song_ids = list(self.song_ids)
+            self.song_ids = list(self.song_ids[self.current_index])
+            self.current_index = 0
+        else:
+            self.current_index = self.ordered_song_ids.index(
+                self.song_ids[self.current_index])
+            self.song_ids = self.ordered_song_ids
+
+        return self.song_ids[self.curent_index]
+
     def __str__(self):
         return "<Queue: length=%d position=%d items=%s>" % (len(self.song_ids), self.current_index, self.song_ids)
