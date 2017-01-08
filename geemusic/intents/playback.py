@@ -112,8 +112,8 @@ def loop_on():
     api = GMusicWrapper.generate_api()
 
     first_song_id = queue.loop_mode(True)
-    stream_url = api.get_stream_url(first_song_id)
 
+    stream_url = api.get_stream_url(first_song_id)
     return audio().enqueue(stream_url)
 
 @ask.intent('AMAZON.LoopOffIntent')
