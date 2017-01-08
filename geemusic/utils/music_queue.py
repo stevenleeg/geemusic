@@ -7,23 +7,35 @@ class MusicQueue:
         self.current_index = 0
 
     def next(self):
-        if len(self.song_ids) == 0 or self.current_index + 1 >= len(self.song_ids):
+        if len(self.song_ids) == 0:
             return None
+        elif self.current_index + 1 >= len(self.song_ids):
+            self.current_index = 0
+        else:
+            self.current_index += 1
 
-        self.current_index += 1
         return self.song_ids[self.current_index]
 
     def up_next(self):
-        if len(self.song_ids) == 0 or self.current_index + 1 >= len(self.song_ids):
+        if len(self.song_ids) == 0:
             return None
+        elif self.current_index + 1 >= len(self.song_ids):
+            next_track_index = 0
+        else:
+            next_track_index = self.current_index + 1
 
-        return self.song_ids[self.current_index + 1]
+        return self.song_ids[next_track_index]
 
     def prev(self):
-        if len(self.song_ids) == 0 or self.current_index - 1 < 0:
+        if len(self.song_ids) == 0:
             return None
+        elif self.current_index - 1 < 0:
+            self.current_index = len(self.song_ids) - 1
+            print len(self.song_ids)
+            print self.current_index
+        else:
+            self.current_index -= 1
 
-        self.current_index -= 1
         return self.song_ids[self.current_index]
 
     def current(self):
@@ -69,7 +81,7 @@ class MusicQueue:
             self.current_index = 0
         elif value is False:
             self.current_index = self.ordered_song_ids.index(
-                self.song_ids[self.current_index])
+                self.song_ids[self.current_index]) + 1
             self.song_ids = self.ordered_song_ids
 
         return self.song_ids[self.current_index]
