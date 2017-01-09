@@ -114,3 +114,24 @@ def currently_playing():
         return audio("Nothing is playing right now")
 
     return audio("The current track is %s by %s" % (track['title'], track['artist']))
+
+@ask.intent("GeeMusicThumbsUpIntent")
+def thumbs_up():
+    if len(queue.song_ids) == 0:
+        return statement("Please play a song to vote")
+
+    api = GMusicWrapper.generate_api()
+    api.rate_song(queue.current(), '5')
+
+    return statement("Upvoted")
+
+
+@ask.intent("GeeMusicThumbsDownIntent")
+def thumbs_down():
+    if len(queue.song_ids) == 0:
+        return statement("Please play a song to vote")
+
+    api = GMusicWrapper.generate_api()
+    api.rate_song(queue.current(), '1')
+
+    return statement("Downvoted")

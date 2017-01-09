@@ -41,6 +41,7 @@ class MusicQueue:
     def reset(self, tracks=[]):
         self.tracks = {}
         self.song_ids = []
+        self.voting_ids = []
 
         for track in tracks:
             # when coming from a playlist, track info is nested
@@ -54,7 +55,6 @@ class MusicQueue:
                 song_id = track['trackId']
             else:
                 continue
-
             self.song_ids.append(song_id)
             self.tracks[song_id] = track
 

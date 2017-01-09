@@ -68,6 +68,18 @@ class GMusicWrapper:
     def get_all_user_playlist_contents(self):
         return self._api.get_all_user_playlist_contents()
 
+    def rate_song(self, song, rating):
+        try:
+            song = self._api.get_track_info(song)
+            return self._api.rate_songs(song, rating)
+        except:
+            tracks = self._api.get_all_songs()
+            for track in tracks:
+                if track['id'] == song:
+                    song = track
+                    break
+            return self._api.rate_songs(song, rating)
+
     @classmethod
     def generate_api(self):
         return self(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'])

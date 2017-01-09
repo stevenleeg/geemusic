@@ -34,3 +34,15 @@ GeeMusicCurrentlyPlayingIntent What is playing right now
 GeeMusicCurrentlyPlayingIntent What song is this
 GeeMusicCurrentlyPlayingIntent What is the name of this song
 GeeMusicCurrentlyPlayingIntent What is this
+
+GeeMusicThumbsUpIntent Up vote
+GeeMusicThumbsUpIntent Up vote this
+GeeMusicThumbsUpIntent Thumbs up this song
+GeeMusicThumbsUpIntent Thumbs up
+GeeMusicThumbsUpIntent Like this song
+
+GeeMusicThumbsDownIntent Down vote
+GeeMusicThumbsDownIntent Down vote this
+GeeMusicThumbsDownIntent Thumbs down this song
+GeeMusicThumbsDownIntent Thumbs down
+GeeMusicThumbsDownIntent Dislike this song
