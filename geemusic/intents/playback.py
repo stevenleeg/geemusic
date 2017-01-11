@@ -46,11 +46,7 @@ def resume():
 
 @ask.intent('AMAZON.ResumeIntent')
 def resume():
-    api = GMusicWrapper.generate_api()
-    stream_url = api.get_stream_url(queue.current())
-    offset = int(context['AudioPlayer']['offsetInMilliseconds'])
-    return audio('Resuming.').play(stream_url=stream_url,
-                                   offset=offset)
+    return audio('Resuming.').resume()
 
 @ask.intent('AMAZON.PauseIntent')
 def pause():
