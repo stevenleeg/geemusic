@@ -25,6 +25,7 @@ GeeMusicPlayPlaylistIntent Play {playlist_name} playlist
 GeeMusicPlayPlaylistIntent Playlist {playlist_name}
 GeeMusicPlayPlaylistIntent Start playlist {playlist_name}
 GeeMusicPlayPlaylistIntent Play songs from my {playlist_name} playlist
+GeeMusicPlayPlaylistIntent Play playlist {playlist_name}
 
 GeeMusicPlayIFLRadioIntent Play some music
 GeeMusicPlayIFLRadioIntent Play I'm feeling lucky station
