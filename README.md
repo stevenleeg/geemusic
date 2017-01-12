@@ -61,10 +61,6 @@ Play a station for bedtime
 Play a station for partying
 ```
 
-### Known bugs:
-* Pausing/resuming currently skips to the beginning of the song. Trust me, I
-  know how annoying this is an I'm actively working on fixing it.
-
 ## Setup
 Let's cut right to the chase: how can you enable this skill on your own
 Dot/Echo? Unfortunately the process is a bit finicky, but I'll try to make it
@@ -220,6 +216,10 @@ At this point, your server should by live and ready to start accepting requests 
 `https://[heroku_app_name].herokuapp.com/alexa.` Note, that while using the free tier,
 you may experience timeout errors when you server has received no requests for over
 30 minutes.
+
+## Troubleshooting
+### Pausing/resuming skips to the beginning of the song.
+Flask Ask used to have a bug that would not resume the song from the correct offset. Make sure it, and the rest of your pip modules are up to date.
 
 ## Contributing
 Please feel free to open an issue or PR if you've found a bug. If you're
