@@ -88,9 +88,10 @@ $ git clone https://github.com/stevenleeg/geemusic.git
 
 Next, `cd` in and install the dependencies, ideally within a `virtualenv` if
 you have it installed, but otherwise you can omit those steps and just run the
-`pip install` line. Note that some of the dependencies require Python's C
-headers (on Ubuntu these can be installed by running `sudo apt-get install
-python-dev`).
+`pip install` line. Note that some of the dependencies require a few packages
+that you may not already have on your system: `python-dev`, `libssl-dev`, and
+`libffi-dev`. On Ubuntu these can be installed by running `sudo apt-get
+install python-dev libssl-dev libffi-dev`.
 
 ```bash
 # Run this if you have virtualenv installed:
@@ -215,7 +216,10 @@ $ heroku config:set GOOGLE_PASSWORD=[password]
 $ heroku config:set APP_URL=https://[heroku_app_name].herokuapp.com
 ```
 
-At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.`
+At this point, your server should by live and ready to start accepting requests at
+`https://[heroku_app_name].herokuapp.com/alexa.` Note, that while using the free tier,
+you may experience timeout errors when you server has received no requests for over
+30 minutes.
 
 ## Contributing
 Please feel free to open an issue or PR if you've found a bug. If you're
