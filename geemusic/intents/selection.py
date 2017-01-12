@@ -158,3 +158,26 @@ def play_artist_radio(artist_name):
 
     speech_text = "Playing music from your personalized station"
     return audio(speech_text).play(stream_url)
+
+@ask.intent("GeeMusicQueueSongIntent")
+def queue_song(song_name, artist_name):
+    api = GMusicWrapper.generate_api()
+
+    app.logger.debug("Queuing song %s by %s" % (song_name, artist_name))
+
+    if len(queue.song_ids) == 0:
+        return statement("You must first play a song")
+
+    # Fetch the song
+    song = api.get_song(song_name, artist_name=artist_name)
+
+    if song is False:
+        return statement("Sorry, I couldn't find that song")
+
+    # Queue the track in the list of song_ids
+    queue.song_ids.append(song['storeId'])
+    stream_url = api.get_stream_url(song)
+    card_text = "Queued %s by %s." % (song['title'], song['artist'])
+    return audio().enqueue(stream_url) \
+        .simple_card(title="Gee Music",
+                     content=card_text)
