@@ -68,6 +68,19 @@ class GMusicWrapper:
     def get_all_user_playlist_contents(self):
         return self._api.get_all_user_playlist_contents()
 
+    def get_artist_album_list(self, artist_name):
+
+        search = self._search("album", artist_name)
+
+        album_list = ""
+
+        for album_name in search:
+            album_list += " " + search['name']
+
+        return album_list
+
+
+
     @classmethod
     def generate_api(self):
         return self(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'])

@@ -1,5 +1,4 @@
 from flask_ask import statement, audio, question
-from os import environ
 from geemusic import ask, app, queue
 from geemusic.utils.music import GMusicWrapper
 from fuzzywuzzy import fuzz
@@ -158,3 +157,9 @@ def play_artist_radio(artist_name):
 
     speech_text = "Playing music from your personalized station"
     return audio(speech_text).play(stream_url)
+
+@ask.intent("GeeMusicListAlbumIntent")
+def list_album_by_artists(artist_name):
+    api = GMusicWrapper.generate_api()
+    artist_album_list = api.get_artist_album_list(artist_name=artist_name)
+    return statement(artist_album_list)
