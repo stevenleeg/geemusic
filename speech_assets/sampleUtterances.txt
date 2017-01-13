@@ -34,3 +34,6 @@ GeeMusicCurrentlyPlayingIntent What is playing right now
 GeeMusicCurrentlyPlayingIntent What song is this
 GeeMusicCurrentlyPlayingIntent What is the name of this song
 GeeMusicCurrentlyPlayingIntent What is this
+
+GeeMusicListAlbumIntent List all albums by {artist_name}
+

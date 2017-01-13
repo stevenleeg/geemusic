@@ -1,5 +1,4 @@
-from flask_ask import statement, audio, context
-from os import environ
+from flask_ask import statement, audio
 from geemusic import ask, queue, app
 from geemusic.utils.music import GMusicWrapper
 

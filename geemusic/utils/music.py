@@ -1,5 +1,6 @@
 from os import environ
 from gmusicapi import Mobileclient
+import operator
 
 class GMusicWrapper:
     def __init__(self, username, password):
@@ -69,18 +70,25 @@ class GMusicWrapper:
         return self._api.get_all_user_playlist_contents()
 
     def get_artist_album_list(self, artist_name):
-
         search = self._search("album", artist_name)
-
-        album_list = ""
-
-        for album_name in search:
-            album_list += " " + search['name']
-
+        album_list = "Here's the album listing for  %s: " % artist_name
+        for index, val in enumerate(search):
+            if search[index]['artist'].lower() != artist_name:
+                search_by_album_id = self._api.get_album_info(album_id=search[index]['albumId'], include_tracks=True)
+                if len(search_by_album_id['tracks']) > 4:
+                    album_list += (search[index]['name'])
+                    if index != 50:
+                        album_list += ", "
         return album_list
 
 
+    """
+    latest album / oldest album
+    same as above but have a dict with the year key,
+    then sort based on a isLatest = true/false
+    """
 
+    # https: // still - earth - 66397.herokuapp.com / alexa
     @classmethod
     def generate_api(self):
         return self(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'])
