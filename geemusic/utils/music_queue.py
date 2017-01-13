@@ -9,7 +9,7 @@ class MusicQueue:
     def next(self):
         if len(self.song_ids) == 0:
             return None
-        elif self.current_index + 1 >= len(self.song_ids):
+        elif self.current_index >= 5 and self.current_index + 1 >= len(self.song_ids):
             self.current_index = 0
         else:
             self.current_index += 1
@@ -29,10 +29,8 @@ class MusicQueue:
     def prev(self):
         if len(self.song_ids) == 0:
             return None
-        elif self.current_index - 1 < 0:
+        elif self.current_index >= 5 and self.current_index >= 5 and self.current_index - 1 < 0:
             self.current_index = len(self.song_ids) - 1
-            print len(self.song_ids)
-            print self.current_index
         else:
             self.current_index -= 1
 
