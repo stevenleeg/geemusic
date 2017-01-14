@@ -44,26 +44,22 @@ Play some music (plays your I'm Feeling Lucky station)
 Start playlist Dancy Party
 
 What is currently playing?
+Like this song
+Dislike this song
+Thumbs-up this song
+Thumbs-down this song
 ```
 
 Of course you can also say things like "Alexa stop," "Alexa next," etc.
 
 ### Roadmap
 ```
-Like this song
-Dislike this song
-Thumbs-up this song
-Thumbs-down this song
 Play the latest album by Run The Jewels
 Skip to the 3rd song in this album
 Play the third track off of In Rainbows
 Play a station for bedtime
 Play a station for partying
 ```
-
-### Known bugs:
-* Pausing/resuming currently skips to the beginning of the song. Trust me, I
-  know how annoying this is an I'm actively working on fixing it.
 
 ## Setup
 Let's cut right to the chase: how can you enable this skill on your own
@@ -220,6 +216,16 @@ At this point, your server should by live and ready to start accepting requests 
 `https://[heroku_app_name].herokuapp.com/alexa.` Note, that while using the free tier,
 you may experience timeout errors when you server has received no requests for over
 30 minutes.
+
+## Troubleshooting
+### Pausing/resuming skips to the beginning of the song.
+Flask Ask used to have a bug that would not resume the song from the correct offset. Make sure it, and the rest of your pip modules are up to date.
+
+### Music won't start playing
+Issues where Alexa responds to your requests but doesn't play music are
+generally caused by the `APP_URL` environment variable being set improperly. Be
+sure that it is set to something like `APP_URL=https://ff9b5cce.ngrok.io` 
+**without a trailing slash or `/alexa`**.
 
 ## Contributing
 Please feel free to open an issue or PR if you've found a bug. If you're

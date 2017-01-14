@@ -1,16 +1,30 @@
 from os import environ
-from gmusicapi import Mobileclient
+import threading, traceback
+
+from gmusicapi import CallFailure, Mobileclient
 
 class GMusicWrapper:
-    def __init__(self, username, password):
+    def __init__(self, username, password, logger=None):
         self._api = Mobileclient()
+        self.logger = logger
         success = self._api.login(username, password, Mobileclient.FROM_MAC_ADDRESS)
 
         if not success:
             raise Exception("Unsuccessful login. Aborting!")
 
+        # Populate our library
+        self.library = {}
+        self.indexing_thread = threading.Thread(
+            target=self.index_library
+        )
+        self.indexing_thread.start()
+
     def _search(self, query_type, query):
-        results = self._api.search(query)
+        try:
+            results = self._api.search(query)
+        except CallFailure:
+            return []
+
         hits_key = "%s_hits" % query_type
 
         if hits_key not in results:
@@ -22,7 +36,27 @@ class GMusicWrapper:
 
         return map(lambda x: x[query_type], results[hits_key])
 
+    def is_indexing(self):
+        return self.indexing_thread.is_alive()
+
+    def index_library(self):
+        """
+        Downloads the a list of every track in a user's library and populates
+        self.library with storeIds -> track definitions
+        """
+        self.logger.debug('Fetching library...')
+        tracks = self.get_all_songs()
+
+        for track in tracks:
+            song_id = track['id']
+            self.library[song_id] = track
+
+        self.logger.debug('Done! Discovered %d tracks.' % len(self.library))
+
     def get_artist(self, name):
+        """
+        Fetches information about an artist given its name
+        """
         search = self._search("artist", name)
 
         if len(search) == 0:
@@ -68,6 +102,25 @@ class GMusicWrapper:
     def get_all_user_playlist_contents(self):
         return self._api.get_all_user_playlist_contents()
 
+    def get_all_songs(self):
+        return self._api.get_all_songs()
+
+    def rate_song(self, song, rating):
+        return self._api.rate_songs(song, rating)
+
+    def extract_track_info(self, track):
+        # When coming from a playlist, track info is nested under the "track"
+        # key
+        if 'track' in track:
+            track = track['track']
+
+        if 'storeId' in track:
+            return (track, track['storeId'])
+        elif 'trackId' in track:
+            return (self.library[track['trackId']], track['trackId'])
+        else:
+            return (None, None)
+
     @classmethod
-    def generate_api(self):
-        return self(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'])
+    def generate_api(cls, **kwargs):
+        return cls(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'], **kwargs)

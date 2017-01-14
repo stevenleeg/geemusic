@@ -43,3 +43,15 @@ GeeMusicQueueSongIntent Next play {song_name}
 GeeMusicQueueSongIntent Next play {song_name} by {artist_name}
 GeeMusicQueueSongIntent Queue {song_name}
 GeeMusicQueueSongIntent Queue {song_name} by {artist_name}
+
+GeeMusicThumbsUpIntent Up vote
+GeeMusicThumbsUpIntent Up vote this
+GeeMusicThumbsUpIntent Thumbs up this song
+GeeMusicThumbsUpIntent Thumbs up
+GeeMusicThumbsUpIntent Like this song
+
+GeeMusicThumbsDownIntent Down vote
+GeeMusicThumbsDownIntent Down vote this
+GeeMusicThumbsDownIntent Thumbs down this song
+GeeMusicThumbsDownIntent Thumbs down
+GeeMusicThumbsDownIntent Dislike this song

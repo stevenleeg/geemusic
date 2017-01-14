@@ -52,6 +52,12 @@
             "intent": "GeeMusicCurrentlyPlayingIntent"
         },
         {
+            "intent": "GeeMusicThumbsUpIntent"
+        },
+        {
+            "intent": "GeeMusicThumbsDownIntent"
+        },
+        {
             "intent": "AMAZON.ShuffleOnIntent"
         },
         {
