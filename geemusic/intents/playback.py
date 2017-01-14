@@ -1,6 +1,6 @@
 from flask_ask import statement, audio
 from os import environ
-from geemusic import ask, queue, app
+from geemusic import ask, queue, app, api
 from geemusic.utils.music import GMusicWrapper
 
 ##
@@ -20,7 +20,6 @@ def nearly_finished():
     next_id = queue.up_next()
 
     if next_id != None:
-        api = GMusicWrapper.generate_api()
         stream_url = api.get_stream_url(next_id)
 
         return audio().enqueue(stream_url)
@@ -39,7 +38,6 @@ def resume():
     if next_id == None:
         return audio("There are no songs on the queue")
     else:
-        api = GMusicWrapper.generate_api()
         stream_url = api.get_stream_url(next_id)
 
         return audio().enqueue(stream_url)
@@ -64,7 +62,6 @@ def next_song():
     if next_id == None:
         return audio("There are no more songs on the queue")
     else:
-        api = GMusicWrapper.generate_api()
         stream_url = api.get_stream_url(next_id)
 
         return audio().play(stream_url)
@@ -76,7 +73,6 @@ def prev_song():
     if prev_id == None:
         return audio("You can't go back any farther in the queue")
     else:
-        api = GMusicWrapper.generate_api()
         stream_url = api.get_stream_url(prev_id)
 
         return audio().play(stream_url)
@@ -85,7 +81,6 @@ def prev_song():
 def shuffle_on():
     if len(queue.song_ids) == 0:
         return statement("There are no songs to shuffle.")
-    api = GMusicWrapper.generate_api()
 
     # Start streaming the first track in the new shuffled list
     first_song_id = queue.shuffle_mode(True)
@@ -97,7 +92,6 @@ def shuffle_on():
 def shuffle_off():
     if len(queue.song_ids) == 0:
         return statement("There are no songs to unshuffle.")
-    api = GMusicWrapper.generate_api()
 
     # Start streaming the first track in the new shuffled list
     first_song_id = queue.shuffle_mode(False)
@@ -125,7 +119,7 @@ def thumbs_up():
 
     if queue.map_user_uploaded_songs.isAlive() is True:
         return statement("Please wait for your tracks to finish indexing")
-    api = GMusicWrapper.generate_api()
+
     api.rate_song(queue.current_track(), '5')
 
     return statement("Upvoted")
@@ -138,7 +132,7 @@ def thumbs_down():
 
     if queue.map_user_uploaded_songs.isAlive() is True:
         return statement("Please wait for your tracks to finish indexing")
-    api = GMusicWrapper.generate_api()
+
     api.rate_song(queue.current_track(), '1')
 
     return statement("Downvoted")
