@@ -43,16 +43,8 @@ class MusicQueue:
         self.song_ids = []
 
         for track in tracks:
-            # when coming from a playlist, track info is nested
-            # under the "track" key
-            if 'track' in track:
-                track = track['track']
-
-            if 'storeId' in track:
-                song_id = track['storeId']
-            elif 'trackId' in track:
-                song_id = track['trackId']
-            else:
+            track, song_id = GMusicWrapper.extract_track_info(track)
+            if track is None:
                 continue
 
             self.tracks[song_id] = track

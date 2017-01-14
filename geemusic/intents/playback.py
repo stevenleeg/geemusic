@@ -102,7 +102,7 @@ def shuffle_off():
 
 @ask.intent('GeeMusicCurrentlyPlayingIntent')
 def currently_playing():
-    if queue.map_user_uploaded_songs.isAlive() is True:
+    if api.is_indexing():
         return statement("Please wait for your tracks to finish indexing")
 
     track = queue.current_track()
@@ -117,7 +117,7 @@ def thumbs_up():
     if len(queue.song_ids) == 0:
         return statement("Please play a song to vote")
 
-    if queue.map_user_uploaded_songs.isAlive() is True:
+    if api.is_indexing():
         return statement("Please wait for your tracks to finish indexing")
 
     api.rate_song(queue.current_track(), '5')
@@ -130,7 +130,7 @@ def thumbs_down():
     if len(queue.song_ids) == 0:
         return statement("Please play a song to vote")
 
-    if queue.map_user_uploaded_songs.isAlive() is True:
+    if api.is_indexing():
         return statement("Please wait for your tracks to finish indexing")
 
     api.rate_song(queue.current_track(), '1')
