@@ -1,5 +1,5 @@
 from os import environ
-from gmusicapi import Mobileclient
+from gmusicapi import CallFailure, Mobileclient
 
 class GMusicWrapper:
     def __init__(self, username, password):
@@ -10,7 +10,11 @@ class GMusicWrapper:
             raise Exception("Unsuccessful login. Aborting!")
 
     def _search(self, query_type, query):
-        results = self._api.search(query)
+        try:
+            results = self._api.search(query)
+        except CallFailure:
+            return []
+
         hits_key = "%s_hits" % query_type
 
         if hits_key not in results:
@@ -67,6 +71,12 @@ class GMusicWrapper:
 
     def get_all_user_playlist_contents(self):
         return self._api.get_all_user_playlist_contents()
+
+    def get_all_songs(self):
+        return self._api.get_all_songs()
+
+    def rate_song(self, song, rating):
+        return self._api.rate_songs(song, rating)
 
     @classmethod
     def generate_api(self):

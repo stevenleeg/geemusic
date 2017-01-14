@@ -1,5 +1,5 @@
+from geemusic.utils.music import GMusicWrapper
 import random
-
 
 class MusicQueue:
     def __init__(self, tracks=[]):
@@ -55,8 +55,8 @@ class MusicQueue:
             else:
                 continue
 
-            self.song_ids.append(song_id)
             self.tracks[song_id] = track
+            self.song_ids.append(song_id)
 
         self.current_index = 0
 

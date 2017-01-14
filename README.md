@@ -44,16 +44,16 @@ Play some music (plays your I'm Feeling Lucky station)
 Start playlist Dancy Party
 
 What is currently playing?
+Like this song
+Dislike this song
+Thumbs-up this song
+Thumbs-down this song
 ```
 
 Of course you can also say things like "Alexa stop," "Alexa next," etc.
 
 ### Roadmap
 ```
-Like this song
-Dislike this song
-Thumbs-up this song
-Thumbs-down this song
 Play the latest album by Run The Jewels
 Skip to the 3rd song in this album
 Play the third track off of In Rainbows
