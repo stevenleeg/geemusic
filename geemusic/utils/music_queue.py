@@ -1,4 +1,6 @@
+from geemusic.utils.music import GMusicWrapper
 import random
+import threading
 
 
 class MusicQueue:
@@ -41,6 +43,7 @@ class MusicQueue:
     def reset(self, tracks=[]):
         self.tracks = {}
         self.song_ids = []
+        user_uploaded_tracks = None
 
         for track in tracks:
             # when coming from a playlist, track info is nested
@@ -50,13 +53,22 @@ class MusicQueue:
 
             if 'storeId' in track:
                 song_id = track['storeId']
+                self.tracks[song_id] = track
             elif 'trackId' in track:
+                user_uploaded_tracks = True
                 song_id = track['trackId']
             else:
                 continue
 
             self.song_ids.append(song_id)
-            self.tracks[song_id] = track
+
+        # GPM doesn't give track metadata for tracks you've uploaded
+        # when you request a playlist. So we have to look it up.
+        self.map_user_uploaded_songs = None
+        if user_uploaded_tracks:
+            self.map_user_uploaded_songs = threading.Thread(
+                target=self.map_track_metadata())
+            self.map_user_uploaded_songs.start()
 
         self.current_index = 0
 
@@ -64,6 +76,14 @@ class MusicQueue:
             return None
         else:
             return self.song_ids[self.current_index]
+
+    def map_track_metadata(self):
+        api = GMusicWrapper.generate_api()
+        tracks_in_library = api.get_all_songs()
+        for song_id in self.song_ids:
+            for track in tracks_in_library:
+                if song_id == track['id']:
+                    self.tracks[song_id] = track
 
     def shuffle_mode(self, value):
         if value is True:

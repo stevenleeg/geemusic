@@ -108,9 +108,12 @@ def shuffle_off():
 
 @ask.intent('GeeMusicCurrentlyPlayingIntent')
 def currently_playing():
+    if queue.map_user_uploaded_songs.isAlive() is True:
+        return statement("Please wait for your tracks to finish indexing")
+
     track = queue.current_track()
 
-    if track == None:
+    if track is None:
         return audio("Nothing is playing right now")
 
     return audio("The current track is %s by %s" % (track['title'], track['artist']))
@@ -120,8 +123,11 @@ def thumbs_up():
     if len(queue.song_ids) == 0:
         return statement("Please play a song to vote")
 
+    if queue.map_user_uploaded_songs.isAlive() is True:
+        return statement("Please wait for your tracks to finish indexing")
     api = GMusicWrapper.generate_api()
-    api.rate_song(queue.current(), '5')
+    api.rate_song(queue.current_track(), '5')
+    # api.rate_song('5')
 
     return statement("Upvoted")
 
@@ -131,7 +137,9 @@ def thumbs_down():
     if len(queue.song_ids) == 0:
         return statement("Please play a song to vote")
 
+    if queue.map_user_uploaded_songs.isAlive() is True:
+        return statement("Please wait for your tracks to finish indexing")
     api = GMusicWrapper.generate_api()
-    api.rate_song(queue.current(), '1')
+    api.rate_song(queue.current_track(), '1')
 
     return statement("Downvoted")
