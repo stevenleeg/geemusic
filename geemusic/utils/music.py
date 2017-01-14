@@ -48,7 +48,7 @@ class GMusicWrapper:
         tracks = self.get_all_songs()
 
         for track in tracks:
-            track, song_id = self.extract_track_info(track)
+            song_id = track['id']
             self.library[song_id] = track
 
         self.logger.debug('Done! Discovered %d tracks.' % len(self.library))
@@ -108,19 +108,17 @@ class GMusicWrapper:
     def rate_song(self, song, rating):
         return self._api.rate_songs(song, rating)
 
-    @classmethod
-    def extract_track_info(cls, track):
+    # @classmethod
+    def extract_track_info(self, track):
         # When coming from a playlist, track info is nested under the "track"
         # key
         if 'track' in track:
             track = track['track']
 
-        if 'songId' in track:
-            return (track, track['songId'])
-        elif 'trackId' in track:
-            return (track, track['trackId'])
-        elif 'storeId' in track:
+        if 'storeId' in track:
             return (track, track['storeId'])
+        elif 'trackId' in track:
+            return (self.library[track['trackId']], track['trackId'])
         else:
             return (None, None)
 

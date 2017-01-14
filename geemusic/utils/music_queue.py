@@ -1,4 +1,4 @@
-from geemusic.utils.music import GMusicWrapper
+from geemusic import api
 import random
 
 class MusicQueue:
@@ -35,7 +35,6 @@ class MusicQueue:
     def current_track(self):
         if len(self.song_ids) == 0:
             return None
-
         return self.tracks[self.current()]
 
     def reset(self, tracks=[]):
@@ -43,12 +42,12 @@ class MusicQueue:
         self.song_ids = []
 
         for track in tracks:
-            track, song_id = GMusicWrapper.extract_track_info(track)
+            track, song_id = api.extract_track_info(track)
             if track is None:
                 continue
 
-            self.tracks[song_id] = track
             self.song_ids.append(song_id)
+            self.tracks[song_id] = track
 
         self.current_index = 0
 
