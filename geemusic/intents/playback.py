@@ -127,7 +127,6 @@ def thumbs_up():
         return statement("Please wait for your tracks to finish indexing")
     api = GMusicWrapper.generate_api()
     api.rate_song(queue.current_track(), '5')
-    # api.rate_song('5')
 
     return statement("Upvoted")
 

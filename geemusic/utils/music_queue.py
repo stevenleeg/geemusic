@@ -43,7 +43,7 @@ class MusicQueue:
     def reset(self, tracks=[]):
         self.tracks = {}
         self.song_ids = []
-        user_uploaded_tracks = None
+        self.song_ids_to_map = []
 
         for track in tracks:
             # when coming from a playlist, track info is nested
@@ -55,8 +55,8 @@ class MusicQueue:
                 song_id = track['storeId']
                 self.tracks[song_id] = track
             elif 'trackId' in track:
-                user_uploaded_tracks = True
                 song_id = track['trackId']
+                self.song_ids_to_map.append(song_id)
             else:
                 continue
 
@@ -64,8 +64,7 @@ class MusicQueue:
 
         # GPM doesn't give track metadata for tracks you've uploaded
         # when you request a playlist. So we have to look it up.
-        self.map_user_uploaded_songs = None
-        if user_uploaded_tracks:
+        if len(self.song_ids_to_map) is not 0:
             self.map_user_uploaded_songs = threading.Thread(
                 target=self.map_track_metadata())
             self.map_user_uploaded_songs.start()
@@ -80,7 +79,7 @@ class MusicQueue:
     def map_track_metadata(self):
         api = GMusicWrapper.generate_api()
         tracks_in_library = api.get_all_songs()
-        for song_id in self.song_ids:
+        for song_id in self.song_ids_to_map:
             for track in tracks_in_library:
                 if song_id == track['id']:
                     self.tracks[song_id] = track
