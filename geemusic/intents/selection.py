@@ -68,7 +68,7 @@ def play_song(song_name, artist_name):
     app.logger.debug("Fetching song %s by %s" % (song_name, artist_name))
 
     # Fetch the song
-    song = api.get_song(song_name, artist_name=artist_name)
+    song = api.get_song(song_name, artist_name)
 
     if song == False:
         return statement("Sorry, I couldn't find that song")
@@ -77,7 +77,7 @@ def play_song(song_name, artist_name):
     first_song_id = queue.reset([song])
     stream_url = api.get_stream_url(first_song_id)
 
-    speech_text = "Playing song %s by %s" % (song['title'], song['artist'])
+    speech_text = "Playing %s by %s" % (song['title'], song['artist'])
     return audio(speech_text).play(stream_url)
 
 @ask.intent("GeeMusicPlayArtistRadioIntent")
@@ -132,9 +132,7 @@ def play_playlist(playlist_name):
     stream_url = api.get_stream_url(first_song_id)
 
     speech_text = "Playing songs from %s" % (best_match['name'])
-    return audio(speech_text).play(stream_url) \
-        .simple_card(title="Gee Music",
-                     content=speech_text)
+    return audio(speech_text).play(stream_url)
 
 @ask.intent("GeeMusicPlayIFLRadioIntent")
 def play_artist_radio(artist_name):
@@ -147,3 +145,22 @@ def play_artist_radio(artist_name):
 
     speech_text = "Playing music from your personalized station"
     return audio(speech_text).play(stream_url)
+
+@ask.intent("GeeMusicQueueSongIntent")
+def queue_song(song_name, artist_name):
+    app.logger.debug("Queuing song %s by %s" % (song_name, artist_name))
+
+    if len(queue.song_ids) == 0:
+        return statement("You must first play a song")
+
+    # Fetch the song
+    song = api.get_song(song_name, artist_name)
+
+    if song is False:
+        return statement("Sorry, I couldn't find that song")
+
+    # Queue the track in the list of song_ids
+    queue.enqueue_track(song)
+    stream_url = api.get_stream_url(song)
+    card_text = "Queued %s by %s." % (song['title'], song['artist'])
+    return audio().enqueue(stream_url)

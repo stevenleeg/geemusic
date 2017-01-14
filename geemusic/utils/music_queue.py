@@ -56,6 +56,13 @@ class MusicQueue:
         else:
             return self.song_ids[self.current_index]
 
+    def enqueue_track(self, song):
+        song_id = song['storeId']
+        self.song_ids.append(song_id)
+        self.tracks[song_id] = song
+
+        return self.song_ids[self.current_index]
+
     def shuffle_mode(self, value):
         if value is True:
             self.ordered_song_ids = list(self.song_ids)

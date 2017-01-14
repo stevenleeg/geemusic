@@ -35,6 +35,15 @@ GeeMusicCurrentlyPlayingIntent What song is this
 GeeMusicCurrentlyPlayingIntent What is the name of this song
 GeeMusicCurrentlyPlayingIntent What is this
 
+GeeMusicQueueSongIntent Next play the song {song_name}
+GeeMusicQueueSongIntent Next play song {song_name}
+GeeMusicQueueSongIntent Next play the song {song_name} by {artist_name}
+GeeMusicQueueSongIntent Next play song {song_name} by {artist_name}
+GeeMusicQueueSongIntent Next play {song_name}
+GeeMusicQueueSongIntent Next play {song_name} by {artist_name}
+GeeMusicQueueSongIntent Queue {song_name}
+GeeMusicQueueSongIntent Queue {song_name} by {artist_name}
+
 GeeMusicThumbsUpIntent Up vote
 GeeMusicThumbsUpIntent Up vote this
 GeeMusicThumbsUpIntent Thumbs up this song

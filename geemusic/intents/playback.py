@@ -99,7 +99,6 @@ def shuffle_off():
 
     return audio().enqueue(stream_url)
 
-
 @ask.intent('GeeMusicCurrentlyPlayingIntent')
 def currently_playing():
     if api.is_indexing():
