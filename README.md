@@ -221,6 +221,12 @@ you may experience timeout errors when you server has received no requests for o
 ### Pausing/resuming skips to the beginning of the song.
 Flask Ask used to have a bug that would not resume the song from the correct offset. Make sure it, and the rest of your pip modules are up to date.
 
+### Music won't start playing
+Issues where Alexa responds to your requests but doesn't play music are
+generally caused by the `APP_URL` environment variable being set improperly. Be
+sure that it is set to something like `APP_URL=https://ff9b5cce.ngrok.io` 
+**without a trailing slash or `/alexa`**.
+
 ## Contributing
 Please feel free to open an issue or PR if you've found a bug. If you're
 looking to implement a feature, please open an issue before creating a PR so I
