@@ -1,5 +1,5 @@
+from geemusic import api
 import random
-
 
 class MusicQueue:
     def __init__(self, tracks=[]):
@@ -35,7 +35,6 @@ class MusicQueue:
     def current_track(self):
         if len(self.song_ids) == 0:
             return None
-
         return self.tracks[self.current()]
 
     def reset(self, tracks=[]):
@@ -43,16 +42,8 @@ class MusicQueue:
         self.song_ids = []
 
         for track in tracks:
-            # when coming from a playlist, track info is nested
-            # under the "track" key
-            if 'track' in track:
-                track = track['track']
-
-            if 'storeId' in track:
-                song_id = track['storeId']
-            elif 'trackId' in track:
-                song_id = track['trackId']
-            else:
+            track, song_id = api.extract_track_info(track)
+            if track is None:
                 continue
 
             self.song_ids.append(song_id)

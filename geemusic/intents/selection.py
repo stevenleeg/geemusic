@@ -1,6 +1,6 @@
 from flask_ask import statement, audio, question
 from os import environ
-from geemusic import ask, app, queue
+from geemusic import ask, queue, app, api
 from geemusic.utils.music import GMusicWrapper
 from fuzzywuzzy import fuzz
 
@@ -18,8 +18,8 @@ def help():
                 Play the song Fitter Happier,
                 Start a radio station for artist Weezer,
                 Start playlist Dance Party,
-                and play some music, 
-                
+                and play some music,
+
                 Of course you can also say skip, previous, shuffle, and more of alexa's music commands or, stop, if you're done.
                 '''
 
@@ -29,8 +29,6 @@ def help():
 
 @ask.intent("GeeMusicPlayArtistIntent")
 def play_artist(artist_name):
-    api = GMusicWrapper.generate_api()
-
     # Fetch the artist
     artist = api.get_artist(artist_name)
 
@@ -48,8 +46,6 @@ def play_artist(artist_name):
 
 @ask.intent("GeeMusicPlayAlbumIntent")
 def play_album(album_name, artist_name):
-    api = GMusicWrapper.generate_api()
-
     app.logger.debug("Fetching album %s by %s" % (album_name, artist_name))
 
     # Fetch the album
@@ -69,9 +65,6 @@ def play_album(album_name, artist_name):
 
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
-    api = GMusicWrapper.generate_api()
-    queue.reset()
-
     app.logger.debug("Fetching song %s by %s" % (song_name, artist_name))
 
     # Fetch the song
@@ -81,15 +74,14 @@ def play_song(song_name, artist_name):
         return statement("Sorry, I couldn't find that song")
 
     # Start streaming the first track
-    stream_url = api.get_stream_url(song['storeId'])
+    first_song_id = queue.reset([song])
+    stream_url = api.get_stream_url(first_song_id)
 
     speech_text = "Playing song %s by %s" % (song['title'], song['artist'])
     return audio(speech_text).play(stream_url)
 
 @ask.intent("GeeMusicPlayArtistRadioIntent")
 def play_artist_radio(artist_name):
-    api = GMusicWrapper.generate_api()
-
     # Fetch the artist
     artist = api.get_artist(artist_name)
 
@@ -110,8 +102,6 @@ def play_artist_radio(artist_name):
 
 @ask.intent("GeeMusicPlayPlaylistIntent")
 def play_playlist(playlist_name):
-    api = GMusicWrapper.generate_api()
-
     # Retreve the content of all playlists in a users library
     all_playlists = api.get_all_user_playlist_contents()
 
@@ -148,7 +138,6 @@ def play_playlist(playlist_name):
 
 @ask.intent("GeeMusicPlayIFLRadioIntent")
 def play_artist_radio(artist_name):
-    api = GMusicWrapper.generate_api()
     # TODO: Handle track duplicates?
     tracks = api.get_station_tracks("IFL")
 
