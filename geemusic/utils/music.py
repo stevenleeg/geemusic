@@ -108,7 +108,6 @@ class GMusicWrapper:
     def rate_song(self, song, rating):
         return self._api.rate_songs(song, rating)
 
-    # @classmethod
     def extract_track_info(self, track):
         # When coming from a playlist, track info is nested under the "track"
         # key
