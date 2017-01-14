@@ -132,9 +132,7 @@ def play_playlist(playlist_name):
     stream_url = api.get_stream_url(first_song_id)
 
     speech_text = "Playing songs from %s" % (best_match['name'])
-    return audio(speech_text).play(stream_url) \
-        .simple_card(title="Gee Music",
-                     content=speech_text)
+    return audio(speech_text).play(stream_url)
 
 @ask.intent("GeeMusicPlayIFLRadioIntent")
 def play_artist_radio(artist_name):
@@ -165,6 +163,4 @@ def queue_song(song_name, artist_name):
     queue.enqueue_track(song)
     stream_url = api.get_stream_url(song)
     card_text = "Queued %s by %s." % (song['title'], song['artist'])
-    return audio().enqueue(stream_url) \
-        .simple_card(title="Gee Music",
-                     content=card_text)
+    return audio().enqueue(stream_url)
