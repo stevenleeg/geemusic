@@ -1,10 +1,10 @@
-from geemusic import api
 import random
 
 class MusicQueue:
-    def __init__(self, tracks=[]):
+    def __init__(self, api, tracks=[]):
         self.reset(tracks)
         self.current_index = 0
+        self.api = api
 
     def next(self):
         if len(self.song_ids) == 0 or self.current_index + 1 >= len(self.song_ids):
@@ -42,7 +42,7 @@ class MusicQueue:
         self.song_ids = []
 
         for track in tracks:
-            track, song_id = api.extract_track_info(track)
+            track, song_id = self.api.extract_track_info(track)
             if track is None:
                 continue
 
