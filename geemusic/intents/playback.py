@@ -27,6 +27,14 @@ def nearly_finished():
 
 @ask.on_playback_finished()
 def nearly_finished():
+    if queue.is_next_song_queued == False:
+        next_id = queue.up_next()
+        if next_id != None:
+            api = GMusicWrapper.generate_api()
+            stream_url = api.get_stream_url(next_id)
+
+            return audio.play(stream_url)
+
     next_id = queue.next()
 
 ##

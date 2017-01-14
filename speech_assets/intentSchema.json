@@ -39,6 +39,16 @@
             ]
         },
         {
+            "intent": "GeeMusicQueueSongIntent",
+            "slots": [
+                {"name":"song_name", "type":"AMAZON.MusicRecording"},
+                {"name":"artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+        },
+        {
+            "intent": "GeeMusicUndoQueueIntent"
+        },
+        {
             "intent": "GeeMusicPlayIFLRadioIntent"
         },
         {
