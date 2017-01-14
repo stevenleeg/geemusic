@@ -18,8 +18,8 @@ def help():
                 Play the song Fitter Happier,
                 Start a radio station for artist Weezer,
                 Start playlist Dance Party,
-                and play some music, 
-                
+                and play some music,
+
                 Of course you can also say skip, previous, shuffle, and more of alexa's music commands or, stop, if you're done.
                 '''
 
@@ -70,20 +70,20 @@ def play_album(album_name, artist_name):
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
     api = GMusicWrapper.generate_api()
-    queue.reset()
 
     app.logger.debug("Fetching song %s by %s" % (song_name, artist_name))
 
     # Fetch the song
-    song = api.get_song(song_name, artist_name=artist_name)
+    song = api.get_song(song_name, artist_name)
 
     if song == False:
         return statement("Sorry, I couldn't find that song")
 
     # Start streaming the first track
-    stream_url = api.get_stream_url(song['storeId'])
+    first_song_id = queue.reset([song])
+    stream_url = api.get_stream_url(first_song_id)
 
-    speech_text = "Playing song %s by %s" % (song['title'], song['artist'])
+    speech_text = "Playing %s by %s" % (song['title'], song['artist'])
     return audio(speech_text).play(stream_url)
 
 @ask.intent("GeeMusicPlayArtistRadioIntent")
@@ -158,3 +158,26 @@ def play_artist_radio(artist_name):
 
     speech_text = "Playing music from your personalized station"
     return audio(speech_text).play(stream_url)
+
+@ask.intent("GeeMusicQueueSongIntent")
+def queue_song(song_name, artist_name):
+    api = GMusicWrapper.generate_api()
+
+    app.logger.debug("Queuing song %s by %s" % (song_name, artist_name))
+
+    if len(queue.song_ids) == 0:
+        return statement("You must first play a song")
+
+    # Fetch the song
+    song = api.get_song(song_name, artist_name)
+
+    if song is False:
+        return statement("Sorry, I couldn't find that song")
+
+    # Queue the track in the list of song_ids
+    queue.enqueue_track(song)
+    stream_url = api.get_stream_url(song)
+    card_text = "Queued %s by %s." % (song['title'], song['artist'])
+    return audio().enqueue(stream_url) \
+        .simple_card(title="Gee Music",
+                     content=card_text)

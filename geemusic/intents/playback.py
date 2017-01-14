@@ -105,7 +105,6 @@ def shuffle_off():
 
     return audio().enqueue(stream_url)
 
-
 @ask.intent('GeeMusicCurrentlyPlayingIntent')
 def currently_playing():
     track = queue.current_track()
