@@ -2,7 +2,6 @@ from geemusic.utils.music import GMusicWrapper
 import random
 import threading
 
-
 class MusicQueue:
     def __init__(self, tracks=[]):
         self.reset(tracks)
