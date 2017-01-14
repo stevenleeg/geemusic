@@ -1,13 +1,23 @@
 from os import environ
+import threading, traceback
+
 from gmusicapi import CallFailure, Mobileclient
 
 class GMusicWrapper:
-    def __init__(self, username, password):
+    def __init__(self, username, password, logger=None):
         self._api = Mobileclient()
+        self.logger = logger
         success = self._api.login(username, password, Mobileclient.FROM_MAC_ADDRESS)
 
         if not success:
             raise Exception("Unsuccessful login. Aborting!")
+
+        # Populate our library
+        self.library = {}
+        self.indexing_thread = threading.Thread(
+            target=self.index_library
+        )
+        self.indexing_thread.start()
 
     def _search(self, query_type, query):
         try:
@@ -26,7 +36,27 @@ class GMusicWrapper:
 
         return map(lambda x: x[query_type], results[hits_key])
 
+    def is_indexing(self):
+        return self.indexing_thread.is_alive()
+
+    def index_library(self):
+        """
+        Downloads the a list of every track in a user's library and populates
+        self.library with storeIds -> track definitions
+        """
+        self.logger.debug('Fetching library...')
+        tracks = self.get_all_songs()
+
+        for track in tracks:
+            track, song_id = self.extract_track_info(track)
+            self.library[song_id] = track
+
+        self.logger.debug('Done! Discovered %d tracks.' % len(self.library))
+
     def get_artist(self, name):
+        """
+        Fetches information about an artist given its name
+        """
         search = self._search("artist", name)
 
         if len(search) == 0:
@@ -79,5 +109,21 @@ class GMusicWrapper:
         return self._api.rate_songs(song, rating)
 
     @classmethod
-    def generate_api(self):
-        return self(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'])
+    def extract_track_info(cls, track):
+        # When coming from a playlist, track info is nested under the "track"
+        # key
+        if 'track' in track:
+            track = track['track']
+
+        if 'songId' in track:
+            return (track, track['songId'])
+        elif 'trackId' in track:
+            return (track, track['trackId'])
+        elif 'storeId' in track:
+            return (track, track['storeId'])
+        else:
+            return (None, None)
+
+    @classmethod
+    def generate_api(cls, **kwargs):
+        return cls(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'], **kwargs)
