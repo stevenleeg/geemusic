@@ -51,7 +51,8 @@ class MusicQueue:
 
     def reset(self, tracks=[]):
         self.tracks = {}
-        self.song_ids_backup = {}
+        self.song_ids_backup = dict()
+        self.song_ids_backup['preloop'] = []
         self.song_ids = []
 
         for track in tracks:
