@@ -1,6 +1,7 @@
+from builtins import object
 import random
 
-class MusicQueue:
+class MusicQueue(object):
     def __init__(self, api, tracks=[]):
         self.reset(tracks)
         self.current_index = 0
