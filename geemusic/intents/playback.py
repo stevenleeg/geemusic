@@ -40,7 +40,7 @@ def resume():
     else:
         stream_url = api.get_stream_url(next_id)
 
-        return audio().enqueue(stream_url)
+        return audio().play(stream_url)
 
 @ask.intent('AMAZON.ResumeIntent')
 def resume():
@@ -95,6 +95,26 @@ def shuffle_off():
 
     # Start streaming the first track in the new shuffled list
     first_song_id = queue.shuffle_mode(False)
+    stream_url = api.get_stream_url(first_song_id)
+
+    return audio().enqueue(stream_url)
+
+@ask.intent('AMAZON.LoopOnIntent')
+def loop_on():
+    if len(queue.song_ids) == 0:
+        return statement("There are no songs in the queue.")
+
+    first_song_id = queue.loop_mode(True)
+
+    stream_url = api.get_stream_url(first_song_id)
+    return audio().enqueue(stream_url)
+
+@ask.intent('AMAZON.LoopOffIntent')
+def loop_off():
+    if len(queue.song_ids) == 0:
+        return statement("There are no songs in the queue.")
+
+    first_song_id = queue.loop_mode(False)
     stream_url = api.get_stream_url(first_song_id)
 
     return audio().enqueue(stream_url)
