@@ -1,4 +1,4 @@
-![GeeMusic](http://i.imgur.com/vJshMwW.png)
+<p align="center"><img src="http://i.imgur.com/vJshMwW.png" /></p>
 
 GeeMusic is an Alexa skill which bridges Google Music and Amazon's Alexa.
 It hopes to rescue all of those who want an Echo/Dot but don't want to switch
