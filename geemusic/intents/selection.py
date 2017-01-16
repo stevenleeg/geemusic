@@ -200,3 +200,29 @@ def queue_song(song_name, artist_name):
                        text='',
                        small_image_url=album_art,
                        large_image_url=album_art)
+
+@ask.intent("GeeMusicPlayLibraryIntent")
+def play_library_tracks():
+    app.logger.debug("Playing tracks from library")
+
+    # Fetch the song
+    song = api.get_song(song_name, artist_name)
+
+    if song == False:
+        return statement("Sorry, I couldn't find that song")
+
+    # Start streaming the first track
+    first_song_id = queue.reset([song])
+    stream_url = api.get_stream_url(first_song_id)
+
+    album_art = song['albumArtRef'][0]['url'].replace("http://", "https://")
+    speech_text = "Playing %s by %s" % (song['title'], song['artist'])
+    return audio(speech_text).play(stream_url) \
+        .standard_card(title=speech_text,
+                       text='',
+                       small_image_url=album_art,
+                       large_image_url=album_art)
+
+@ask.session_ended
+def session_ended():
+    return "", 200
