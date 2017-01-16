@@ -128,7 +128,12 @@ def currently_playing():
     if track is None:
         return audio("Nothing is playing right now")
 
-    return audio("The current track is %s by %s" % (track['title'], track['artist']))
+    album_art = queue.current_track()['albumArtRef'][0]['url'].replace("http://", "https://")
+    return audio("The current track is %s by %s" % (track['title'], track['artist'])) \
+        .standard_card(title="The current track is",
+                       text='%s by %s' % (track['title'], track['artist']),
+                       small_image_url=album_art,
+                       large_image_url=album_art)
 
 @ask.intent("GeeMusicThumbsUpIntent")
 def thumbs_up():
@@ -141,7 +146,6 @@ def thumbs_up():
     api.rate_song(queue.current_track(), '5')
 
     return statement("Upvoted")
-
 
 @ask.intent("GeeMusicThumbsDownIntent")
 def thumbs_down():

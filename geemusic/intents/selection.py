@@ -7,7 +7,9 @@ from fuzzywuzzy import fuzz
 def login():
     text = 'Welcome to Gee Music. Try asking me to play a song or start a playlist'
     prompt = 'For example say, play music by A Tribe Called Quest'
-    return question(text).reprompt(prompt)
+    return question(text).reprompt(prompt) \
+        .simple_card(title='Welcome to GeeMusic!',
+                     content='Try asking me to play a song')
 
 @ask.intent("AMAZON.HelpIntent")
 def help():
@@ -40,8 +42,13 @@ def play_artist(artist_name):
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
 
-    speech_text = "Playing top tracks from %s" % artist['name']
-    return audio(speech_text).play(stream_url)
+    artist_art = artist['artistArtRef'].replace("http://", "https://")
+    speech_text = "Playing top tracks by %s" % artist['name']
+    return audio(speech_text).play(stream_url) \
+        .standard_card(title=speech_text,
+                       text='',
+                       small_image_url=artist_art,
+                       large_image_url=artist_art)
 
 @ask.intent("GeeMusicPlayAlbumIntent")
 def play_album(album_name, artist_name):
@@ -59,8 +66,13 @@ def play_album(album_name, artist_name):
     # Start streaming the first track
     stream_url = api.get_stream_url(first_song_id)
 
+    album_art = album['albumArtRef'].replace("http://", "https://")
     speech_text = "Playing album %s by %s" % (album['name'], album['albumArtist'])
-    return audio(speech_text).play(stream_url)
+    return audio(speech_text).play(stream_url) \
+        .standard_card(title=speech_text,
+                       text='',
+                       small_image_url=album_art,
+                       large_image_url=album_art)
 
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
@@ -76,8 +88,13 @@ def play_song(song_name, artist_name):
     first_song_id = queue.reset([song])
     stream_url = api.get_stream_url(first_song_id)
 
+    album_art = song['albumArtRef'][0]['url'].replace("http://", "https://")
     speech_text = "Playing %s by %s" % (song['title'], song['artist'])
-    return audio(speech_text).play(stream_url)
+    return audio(speech_text).play(stream_url) \
+        .standard_card(title=speech_text,
+                       text='',
+                       small_image_url=album_art,
+                       large_image_url=album_art)
 
 @ask.intent("GeeMusicPlayArtistRadioIntent")
 def play_artist_radio(artist_name):
@@ -88,7 +105,7 @@ def play_artist_radio(artist_name):
         return statement("Sorry, I couldn't find that artist")
 
     station_id = api.get_station("%s Radio" % artist['name'], artist_id=artist['artistId'])
-    # TODO: Handle track duplicates
+    # TODO: Handle track duplicates (this may be possible using session ids)
     tracks = api.get_station_tracks(station_id)
 
     first_song_id = queue.reset(tracks)
@@ -96,8 +113,14 @@ def play_artist_radio(artist_name):
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
 
+    artist_art = artist['artistArtRef'].replace("http://", "https://")
     speech_text = "Playing %s radio" % artist['name']
-    return audio(speech_text).play(stream_url)
+    return audio(speech_text).play(stream_url) \
+        .standard_card(title=speech_text,
+                       text='',
+                       small_image_url=artist_art,
+                       large_image_url=artist_art)
+
 
 @ask.intent("GeeMusicPlayPlaylistIntent")
 def play_playlist(playlist_name):
@@ -129,9 +152,13 @@ def play_playlist(playlist_name):
 
     # Get a streaming URL for the first song in the playlist
     stream_url = api.get_stream_url(first_song_id)
-
+    artist_art = queue.current_track()['albumArtRef'][0]['url'].replace("http://", "https://")
     speech_text = "Playing songs from %s" % (best_match['name'])
-    return audio(speech_text).play(stream_url)
+    return audio(speech_text).play(stream_url) \
+        .standard_card(title=speech_text,
+                       text='',
+                       small_image_url=artist_art,
+                       large_image_url=artist_art)
 
 @ask.intent("GeeMusicPlayIFLRadioIntent")
 def play_artist_radio(artist_name):
@@ -143,7 +170,12 @@ def play_artist_radio(artist_name):
     stream_url = api.get_stream_url(first_song_id)
 
     speech_text = "Playing music from your personalized station"
-    return audio(speech_text).play(stream_url)
+    IFL_art = "https://i.imgur.com/NYTSqHZ.png"
+    return audio(speech_text).play(stream_url) \
+        .standard_card(title="Playing I'm Feeling Lucky Radio",
+                       text='',
+                       small_image_url=IFL_art,
+                       large_image_url=IFL_art)
 
 @ask.intent("GeeMusicQueueSongIntent")
 def queue_song(song_name, artist_name):
@@ -162,4 +194,9 @@ def queue_song(song_name, artist_name):
     queue.enqueue_track(song)
     stream_url = api.get_stream_url(song)
     card_text = "Queued %s by %s." % (song['title'], song['artist'])
-    return audio().enqueue(stream_url)
+    album_art = song['albumArtRef'][0]['url'].replace("http://", "https://")
+    return audio().enqueue(stream_url) \
+        .standard_card(title=card_text,
+                       text='',
+                       small_image_url=album_art,
+                       large_image_url=album_art)

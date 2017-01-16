@@ -102,5 +102,11 @@ class MusicQueue(object):
 
         return self.song_ids[self.current_index]
 
+    def card_details(self):
+        if len(self.song_ids) == 0:
+            return None
+        print(self.tracks[self.current()])
+
+
     def __str__(self):
         return "<Queue: length=%d position=%d items=%s>" % (len(self.song_ids), self.current_index, self.song_ids)
