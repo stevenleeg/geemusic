@@ -1,6 +1,7 @@
 GeeMusicPlayArtistIntent Play artist {artist_name}
 GeeMusicPlayArtistIntent Play songs by {artist_name}
 GeeMusicPlayArtistIntent Play top songs by {artist_name}
+GeeMusicPlayArtistIntent Play top tracks by {artist_name}
 GeeMusicPlayArtistIntent Play music by {artist_name}
 GeeMusicPlayArtistIntent Play tracks by {artist_name}
 
