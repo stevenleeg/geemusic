@@ -35,5 +35,10 @@ GeeMusicCurrentlyPlayingIntent What song is this
 GeeMusicCurrentlyPlayingIntent What is the name of this song
 GeeMusicCurrentlyPlayingIntent What is this
 
-GeeMusicListAlbumIntent List all albums by {artist_name}
+GeeMusicListAllAlbumsIntent List all albums by {artist_name}
+
+GeeMusicListLatestAlbumIntent List the latest albums by {artist_name}
+GeeMusicListLatestAlbumIntent What are latest albums by {artist_name}
+
+GeeMusicPlayLatestAlbumIntent Play the latest album by {artist_name}
 
