@@ -55,3 +55,10 @@ GeeMusicThumbsDownIntent Down vote this
 GeeMusicThumbsDownIntent Thumbs down this song
 GeeMusicThumbsDownIntent Thumbs down
 GeeMusicThumbsDownIntent Dislike this song
+
+GeeMusicListAllAlbumsIntent List all albums by {artist_name}
+
+GeeMusicListLatestAlbumIntent List the latest albums by {artist_name}
+GeeMusicListLatestAlbumIntent What are latest albums by {artist_name}
+
+GeeMusicPlayLatestAlbumIntent Play the latest album by {artist_name}

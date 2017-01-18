@@ -75,6 +75,25 @@ class GMusicWrapper:
 
         return self._api.get_album_info(search[0]['albumId'])
 
+    def get_latest_album(self, artist_name=None):
+        search = self._search("artist", artist_name)
+
+        if len(search) == 0:
+            return False
+
+        artist_info = self._api.get_artist_info(search[0]['artistId'], include_albums=True)
+
+        album_info = artist_info['albums']
+
+        sorted_list = sorted(album_info.__iter__(), key=lambda s: s['year'], reverse=True)
+
+        for index, val in enumerate(sorted_list):
+            album_info = self._api.get_album_info(album_id=sorted_list[index]['albumId'], include_tracks=True)
+            if len(album_info['tracks']) >= 5:
+                return album_info
+
+        return False
+
     def get_song(self, name, artist_name=None):
         if artist_name:
             name = "%s %s" % (artist_name, name)
@@ -120,6 +139,54 @@ class GMusicWrapper:
             return (self.library[track['trackId']], track['trackId'])
         else:
             return (None, None)
+
+    def get_artist_album_list(self, artist_name):
+        search = self._search("artist", artist_name)
+
+        if len(search) == 0:
+            return False
+
+        artist_info = self._api.get_artist_info(search[0]['artistId'], include_albums=True)
+
+        album_list_text = "Here's the album listing for %s: " % artist_name
+
+        counter = 0
+        for index, val in enumerate(artist_info['albums']):
+            if counter > 25:  # alexa will time out if the list takes too long to iterate through
+                break
+            album_info = self._api.get_album_info(album_id=artist_info['albums'][index]['albumId'], include_tracks=True)
+            if len(album_info['tracks']) > 5:
+                counter += 1
+                album_list_text += (artist_info['albums'][index]['name']) + ", "
+
+        return album_list_text
+
+    def get_latest_artist_albums(self, artist_name):
+        search = self._search("artist", artist_name)
+
+        if len(search) == 0:
+            return False
+
+        artist_info = self._api.get_artist_info(search[0]['artistId'], include_albums=True)
+        album_list = artist_info['albums']
+
+        sorted_list = sorted(album_list.__iter__(), key=lambda s: s['year'], reverse=True)
+
+        speech_text = 'The latest albums by %s are ' % artist_name
+
+        counter = 0
+        for index, val in enumerate(sorted_list):
+            if counter > 5:
+                break
+            else:
+                album_info = self._api.get_album_info(album_id=sorted_list[index]['albumId'], include_tracks=True)
+                if len(album_info['tracks']) >= 5:
+                    counter += 1
+                    album_name = sorted_list[index]['name']
+                    album_year = sorted_list[index]['year']
+                    speech_text += '%s, released in %d, ' % (album_name, album_year)
+
+        return speech_text
 
     @classmethod
     def generate_api(cls, **kwargs):

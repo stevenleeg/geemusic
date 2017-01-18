@@ -46,6 +46,27 @@
             ]
         },
         {
+            "intent":"GeeMusicListAllAlbumsIntent",
+            "slots": [
+                {"name": "artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+
+        },
+        {
+            "intent":"GeeMusicListLatestAlbumIntent",
+            "slots": [
+                {"name": "artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+
+        },
+        {
+            "intent":"GeeMusicPlayLatestAlbumIntent",
+            "slots": [
+                {"name": "artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+
+        },
+        {
             "intent": "GeeMusicPlayIFLRadioIntent"
         },
         {
