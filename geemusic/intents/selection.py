@@ -164,3 +164,33 @@ def queue_song(song_name, artist_name):
     stream_url = api.get_stream_url(song)
     card_text = "Queued %s by %s." % (song['title'], song['artist'])
     return audio().enqueue(stream_url)
+
+@ask.intent("GeeMusicListAllAlbumsIntent")
+def list_album_by_artists(artist_name):
+    api = GMusicWrapper.generate_api()
+    artist_album_list = api.get_artist_album_list(artist_name=artist_name)
+    return statement(artist_album_list)
+
+@ask.intent("GeeMusicListLatestAlbumIntent")
+def list_latest_album_by_artist(artist_name):
+    api = GMusicWrapper.generate_api()
+    latest_album = api.get_latest_artist_albums(artist_name=artist_name)
+    return statement(latest_album)
+
+@ask.intent("GeeMusicPlayLatestAlbumIntent")
+def play_latest_album_by_artist(artist_name):
+    api = GMusicWrapper.generate_api()
+    latest_album = api.get_latest_album(artist_name)
+
+    if latest_album == False:
+        return statement("Sorry, I couldn't find that album")
+
+    # Setup the queue
+    first_song_id = queue.reset(latest_album['tracks'])
+
+    # Start streaming the first track
+    stream_url = api.get_stream_url(first_song_id)
+
+    speech_text = "Playing album %s by %s" % (latest_album['name'], latest_album['albumArtist'])
+    return audio(speech_text).play(stream_url)
+
