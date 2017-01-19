@@ -129,7 +129,7 @@ def currently_playing():
         return audio("Nothing is playing right now")
 
     album_art = queue.current_track()['albumArtRef'][0]['url'].replace("http://", "https://")
-    return audio("The current track is %s by %s" % (track['title'], track['artist'])) \
+    return statement("The current track is %s by %s" % (track['title'], track['artist'])) \
         .standard_card(title="The current track is",
                        text='%s by %s' % (track['title'], track['artist']),
                        small_image_url=album_art,
@@ -158,3 +158,12 @@ def thumbs_down():
     api.rate_song(queue.current_track(), '1')
 
     return statement("Downvoted")
+
+@ask.intent("GeeMusicRestartTracksIntent")
+def restart_tracks():
+    if len(queue.song_ids) == 0:
+        return statement("Please play a song to vote")
+
+    queue.current_index = 0
+    stream_url = api.get_stream_url(queue.current())
+    return audio("Restarting tracks").play(stream_url)

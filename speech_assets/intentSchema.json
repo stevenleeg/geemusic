@@ -52,6 +52,9 @@
             "intent": "GeeMusicCurrentlyPlayingIntent"
         },
         {
+            "intent": "GeeMusicRestartTracksIntent"
+        },
+        {
             "intent": "GeeMusicThumbsUpIntent"
         },
         {
