@@ -121,6 +121,9 @@ class GMusicWrapper:
         else:
             return (None, None)
 
+    def increment_song_playcount(self, song_id, plays=1, playtime=None):
+        return self._api.increment_song_playcount(song_id, plays, playtime)
+
     @classmethod
     def generate_api(cls, **kwargs):
         return cls(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'], **kwargs)

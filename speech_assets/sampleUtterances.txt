@@ -55,3 +55,9 @@ GeeMusicThumbsDownIntent Down vote this
 GeeMusicThumbsDownIntent Thumbs down this song
 GeeMusicThumbsDownIntent Thumbs down
 GeeMusicThumbsDownIntent Dislike this song
+
+GeeMusicPlayLibraryIntent play songs from my library
+GeeMusicPlayLibraryIntent play tracks from my library
+GeeMusicPlayLibraryIntent play my library
+GeeMusicPlayLibraryIntent start playing tracks from my library
+GeeMusicPlayLibraryIntent play songs from library

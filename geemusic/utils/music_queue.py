@@ -10,6 +10,7 @@ class MusicQueue:
         if len(self.song_ids) == 0 or self.current_index + 1 >= len(self.song_ids):
             return None
 
+        self.api.increment_song_playcount(self.current_track()['id'])
         self.current_index += 1
         return self.song_ids[self.current_index]
 
