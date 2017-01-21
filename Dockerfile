@@ -12,11 +12,7 @@ COPY . /geemusic
 RUN pip install -r requirements.txt \
  && gem install foreman
 
-# These don't need to be here I think, but I'm defining them for reference.
-ENV GOOGLE_EMAIL
-ENV GOOGLE_PASSWORD
-ENV APP_URL
-
 EXPOSE 4000
 
+# Make sure to run with the GOOGLE_EMAIL, GOOGLE_PASSWORD, and APP_URL environment vars!
 CMD ['foreman', 'start']
