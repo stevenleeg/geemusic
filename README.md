@@ -10,11 +10,17 @@ to run it on your own server for the time being (ideally I'll eventually
 release this on the Alexa Skills marketplace, but there's a lot of work to do
 before then).
 
-**Note: This skill is not made by nor endorsed by Google.** That being said, it
+### Notes
+
+**This skill is not made by nor endorsed by Google.** That being said, it
 is based off of the wonderful [gmusicapi](https://github.com/simon-weber/gmusicapi)
 by [Simon Weber](https://simon.codes), which has been around since 2012, so this
 should work as long as Google doesn't decide to lock down its APIs in a major
 way.
+
+**This skill will only work on English (US) language devices.** This is due
+to a limitation on many of Alexa's Slot Types, see the 
+[Slot Type Reference docs](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference).
 
 ## Features
 What can this puppy do, you might ask? Here's a list of example phrases that
