@@ -3,9 +3,7 @@ MAINTAINER Spencer Julian <hellothere@spencerjulian.com>
 
 RUN apk update \
  && apk upgrade \
- && apk add --update curl wget bash ruby ruby-bundler python3 python3-dev \
- && easy_install pip && pip install --upgrade pip \
- && if [[ ! -e /usr/bin/pip ]]; then ln -sf /usr/bin/pip3 /usr/bin/pip; fi \
+ && apk add --update curl wget bash ruby ruby-bundler python3 python3-dev py-pip dumb-init \
  && rm -rf /var/cache/apk/* \
  && mkdir /geemusic
 
@@ -18,4 +16,5 @@ RUN pip install -r requirements.txt \
 EXPOSE 4000
 
 # Make sure to run with the GOOGLE_EMAIL, GOOGLE_PASSWORD, and APP_URL environment vars!
+ENTRYPOINT ["/usr/bin/dumb-init"]
 CMD ['foreman', 'start']
