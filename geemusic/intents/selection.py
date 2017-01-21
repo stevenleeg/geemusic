@@ -171,6 +171,7 @@ def play_library():
 
     tracks = api.library.values()
     first_song_id = queue.reset(tracks)
+    first_song_id = queue.shuffle_mode(True)
     stream_url = api.get_stream_url(first_song_id)
 
     speech_text = "Playing music from your library"
