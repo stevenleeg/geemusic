@@ -17,4 +17,4 @@ EXPOSE 4000
 
 # Make sure to run with the GOOGLE_EMAIL, GOOGLE_PASSWORD, and APP_URL environment vars!
 ENTRYPOINT ["/usr/bin/dumb-init"]
-CMD ['foreman', 'start']
+CMD ["foreman", "start"]
