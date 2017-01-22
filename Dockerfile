@@ -3,7 +3,7 @@ MAINTAINER Spencer Julian <hellothere@spencerjulian.com>
 
 RUN apk update \
  && apk upgrade \
- && apk add --update curl wget bash ruby ruby-bundler python3 python3-dev dumb-init musl linux-headers build-base libffi-dev openssl-dev\
+ && apk add --update curl wget bash ruby ruby-bundler python3 python3-dev dumb-init musl linux-headers build-base libffi-dev openssl-dev ruby-rdoc\
  && rm -rf /var/cache/apk/* \
  && mkdir /geemusic
 
