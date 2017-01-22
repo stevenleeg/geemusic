@@ -6,7 +6,7 @@ RUN apk update \
  && apk add --update curl wget bash ruby ruby-bundler python3 python3-dev dumb-init musl linux-headers build-base libffi-dev openssl-dev ruby-rdoc ruby-irb\
  && rm -rf /var/cache/apk/* \
  && mkdir /geemusic \
- && ln -s /usr/bin/python3 /usr/bin/python \
+ && ln -s /usr/bin/python3 /usr/bin/python
 
 COPY . /geemusic
 WORKDIR /geemusic
