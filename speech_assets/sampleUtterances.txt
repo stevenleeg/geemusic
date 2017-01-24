@@ -62,3 +62,6 @@ GeeMusicListLatestAlbumIntent List the latest albums by {artist_name}
 GeeMusicListLatestAlbumIntent What are latest albums by {artist_name}
 
 GeeMusicPlayLatestAlbumIntent Play the latest album by {artist_name}
+
+GeeMusicPlayAlbumByArtistIntent Play an album by the band {artist_name}
+GeeMusicPlayAlbumByArtistIntent Play an album by artist {artist_name}

@@ -1,3 +1,4 @@
+import random
 from os import environ
 import threading, traceback
 
@@ -93,6 +94,18 @@ class GMusicWrapper:
                 return album_info
 
         return False
+
+    def get_album_by_artist(self, artist_name, album_name=None):
+        search = self._search("artist", artist_name)
+
+        if len(search) == 0:
+            return False
+
+        artist_info = self._api.get_artist_info(search[0]['artistId'], include_albums=True)
+
+        album_info = artist_info['albums']
+
+        return self._api.get_album_info(album_info[random.randint(0, len(album_info) - 1)]['albumId'])
 
     def get_song(self, name, artist_name=None):
         if artist_name:

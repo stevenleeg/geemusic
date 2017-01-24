@@ -194,3 +194,20 @@ def play_latest_album_by_artist(artist_name):
     speech_text = "Playing album %s by %s" % (latest_album['name'], latest_album['albumArtist'])
     return audio(speech_text).play(stream_url)
 
+@ask.intent("GeeMusicPlayAlbumByArtistIntent")
+def play_album_by_artist(artist_name):
+    api = GMusicWrapper.generate_api()
+    album = api.get_album_by_artist(artist_name=artist_name)
+
+    if album == False:
+        return statement("Sorry, I couldn't find that album")
+
+    # Setup the queue
+    first_song_id = queue.reset(album['tracks'])
+
+    # Start streaming the first track
+    stream_url = api.get_stream_url(first_song_id)
+
+    speech_text = "Playing album %s by %s" % (album['name'], album['albumArtist'])
+    return audio(speech_text).play(stream_url)
+
