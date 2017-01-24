@@ -54,8 +54,6 @@ class GMusicWrapper:
 
         self.logger.debug('Done! Discovered %d tracks.' % len(self.library))
 
-#https://ancient-fjord-97368.herokuapp.com
-
     def get_artist(self, name):
         """
         Fetches information about an artist given its name
