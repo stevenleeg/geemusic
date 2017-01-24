@@ -54,6 +54,8 @@ class GMusicWrapper:
 
         self.logger.debug('Done! Discovered %d tracks.' % len(self.library))
 
+#https://ancient-fjord-97368.herokuapp.com
+
     def get_artist(self, name):
         """
         Fetches information about an artist given its name
@@ -83,9 +85,7 @@ class GMusicWrapper:
             return False
 
         artist_info = self._api.get_artist_info(search[0]['artistId'], include_albums=True)
-
         album_info = artist_info['albums']
-
         sorted_list = sorted(album_info.__iter__(), key=lambda s: s['year'], reverse=True)
 
         for index, val in enumerate(sorted_list):
@@ -97,15 +97,22 @@ class GMusicWrapper:
 
     def get_album_by_artist(self, artist_name, album_name=None):
         search = self._search("artist", artist_name)
-
         if len(search) == 0:
             return False
 
         artist_info = self._api.get_artist_info(search[0]['artistId'], include_albums=True)
-
         album_info = artist_info['albums']
+        albums = []
 
-        return self._api.get_album_info(album_info[random.randint(0, len(album_info) - 1)]['albumId'])
+        for index, val in enumerate(album_info):
+            album = self._api.get_album_info(album_id=album_info[index]['albumId'], include_tracks=True)
+            if len(album['tracks']) >= 5:
+                albums.append(album)
+
+        if len(albums) == 0:
+            return False
+
+        return albums[random.randint(0, len(albums) - 1)]
 
     def get_song(self, name, artist_name=None):
         if artist_name:
@@ -155,12 +162,10 @@ class GMusicWrapper:
 
     def get_artist_album_list(self, artist_name):
         search = self._search("artist", artist_name)
-
         if len(search) == 0:
             return False
 
         artist_info = self._api.get_artist_info(search[0]['artistId'], include_albums=True)
-
         album_list_text = "Here's the album listing for %s: " % artist_name
 
         counter = 0
@@ -171,7 +176,6 @@ class GMusicWrapper:
             if len(album_info['tracks']) > 5:
                 counter += 1
                 album_list_text += (artist_info['albums'][index]['name']) + ", "
-
         return album_list_text
 
     def get_latest_artist_albums(self, artist_name):
