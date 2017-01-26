@@ -8,6 +8,7 @@ def redirect_to_stream(song_id):
     stream_url = api.get_google_stream_url(song_id)
     # Scrobble if Last.fm is setup
     if environ['LAST_FM_ACTIVE']:
+        from utils import last_fm
         last_fm.execute(song_id)
 
     app.logger.debug('URL is %s' % stream_url)
