@@ -69,4 +69,5 @@ def get_google_song(song_id):
 def execute(song_id):
     print "Finding: ", song_id
     track = get_google_song(song_id)
+    print "Found: ", track.title, track.artist
     scrobble(track.title, track.artist, os.environ['LAST_FM_SESSION_KEY'])
