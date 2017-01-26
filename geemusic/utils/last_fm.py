@@ -61,14 +61,3 @@ def hashRequest(obj, secretKey):
     stringToHash = string.encode('utf8')
     requestHash = md5.new(stringToHash).hexdigest()
     return requestHash
-
-def get_google_song(song_id):
-    gApi = Mobileclient()
-    info = gApi.get_track_info(song_id)
-    return info
-
-def execute(song_id):
-    print "Finding: ", song_id
-    track = get_google_song(song_id)
-    print "Found: ", track.title, track.artist
-    scrobble(track.title, track.artist, os.environ['LAST_FM_SESSION_KEY'])

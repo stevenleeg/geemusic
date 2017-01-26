@@ -9,7 +9,12 @@ def redirect_to_stream(song_id):
     # Scrobble if Last.fm is setup
     if environ['LAST_FM_ACTIVE']:
         from utils import last_fm
-        last_fm.execute(song_id)
+        song_info = api.get_song_data(song_id)
+        last_fm.scrobble(
+            song_info.title,
+            song_info.artist,
+            environ['LAST_FM_SESSION_KEY']
+        )
 
     app.logger.debug('URL is %s' % stream_url)
 
