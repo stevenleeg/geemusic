@@ -63,7 +63,8 @@ def hashRequest(obj, secretKey):
     return requestHash
 
 def get_google_song(song_id):
-    info = Mobileclient.get_track_info(song_id)
+    gApi = MobileClient()
+    info = gApi.get_track_info(song_id)
     return info
 
 def execute(song_id):
