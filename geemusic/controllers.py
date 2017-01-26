@@ -11,8 +11,8 @@ def redirect_to_stream(song_id):
         from utils import last_fm
         song_info = api.get_song_data(song_id)
         last_fm.scrobble(
-            song_info.title,
-            song_info.artist,
+            song_info['title'],
+            song_info['artist'],
             environ['LAST_FM_SESSION_KEY']
         )
 
