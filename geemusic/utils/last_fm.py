@@ -40,7 +40,7 @@ def scrobble(song_name, artist_name, session_key):
     params = {
             'method': 'track.scrobble',
             'api_key': os.environ['LAST_FM_API'],
-            'timestamp': str( int( time.time() ),
+            'timestamp': str( int( time.time() ) ),
             'track': song_name,
             'artist': artist_name,
             'sk': session_key
