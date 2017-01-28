@@ -1,6 +1,7 @@
+from builtins import object
 import random
 
-class MusicQueue:
+class MusicQueue(object):
     def __init__(self, api, tracks=[]):
         self.reset(tracks)
         self.current_index = 0
@@ -9,6 +10,8 @@ class MusicQueue:
     def next(self):
         if len(self.song_ids) == 0 or self.current_index + 1 >= len(self.song_ids):
             return None
+        if len(self.song_ids_backup['loop']) > 0:
+            return self.song_ids[self.current_index]
 
         self.current_index += 1
         return self.song_ids[self.current_index]
@@ -16,12 +19,16 @@ class MusicQueue:
     def up_next(self):
         if len(self.song_ids) == 0 or self.current_index + 1 >= len(self.song_ids):
             return None
+        if len(self.song_ids_backup['loop']) > 0:
+            return self.song_ids[self.current_index]
 
         return self.song_ids[self.current_index + 1]
 
     def prev(self):
         if len(self.song_ids) == 0 or self.current_index - 1 < 0:
             return None
+        if len(self.song_ids_backup['loop']) > 0:
+            return self.song_ids[self.current_index]
 
         self.current_index -= 1
         return self.song_ids[self.current_index]
@@ -39,6 +46,8 @@ class MusicQueue:
 
     def reset(self, tracks=[]):
         self.tracks = {}
+        self.song_ids_backup = dict()
+        self.song_ids_backup['loop'] = []
         self.song_ids = []
 
         for track in tracks:
@@ -65,13 +74,25 @@ class MusicQueue:
 
     def shuffle_mode(self, value):
         if value is True:
-            self.ordered_song_ids = list(self.song_ids)
+            self.song_ids_backup['shuffle'] = list(self.song_ids)
             random.shuffle(self.song_ids)
             self.current_index = 0
         elif value is False:
-            self.current_index = self.ordered_song_ids.index(
+            self.current_index = self.song_ids_backup['shuffle'].index(
                 self.song_ids[self.current_index])
-            self.song_ids = self.ordered_song_ids
+            self.song_ids = self.song_ids_backup['shuffle']
+
+        return self.song_ids[self.current_index]
+
+    def loop_mode(self, value):
+        if value is True:
+            self.song_ids_backup['loop'] = list(self.song_ids)
+            self.song_ids = [self.song_ids[self.current_index]]
+        elif value is False:
+            self.current_index = self.song_ids_backup['loop'].index(
+                self.song_ids[self.current_index])
+            self.song_ids = self.song_ids_backup['loop']
+            self.song_ids_backup['loop'] = []
 
         return self.song_ids[self.current_index]
 

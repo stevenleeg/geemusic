@@ -1,9 +1,10 @@
+from builtins import object
 from os import environ
 import threading, traceback
 
 from gmusicapi import CallFailure, Mobileclient
 
-class GMusicWrapper:
+class GMusicWrapper(object):
     def __init__(self, username, password, logger=None):
         self._api = Mobileclient()
         self.logger = logger
@@ -34,7 +35,7 @@ class GMusicWrapper:
         if query_type == 'song':
             query_type = 'track'
 
-        return map(lambda x: x[query_type], results[hits_key])
+        return [x[query_type] for x in results[hits_key]]
 
     def is_indexing(self):
         return self.indexing_thread.is_alive()
