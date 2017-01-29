@@ -1,17 +1,22 @@
 GeeMusicPlayArtistIntent Play artist {artist_name}
 GeeMusicPlayArtistIntent Play songs by {artist_name}
 GeeMusicPlayArtistIntent Play top songs by {artist_name}
+GeeMusicPlayArtistIntent Play top tracks by {artist_name}
 GeeMusicPlayArtistIntent Play music by {artist_name}
+GeeMusicPlayArtistIntent Play tracks by {artist_name}
 
 GeeMusicPlayAlbumIntent Play the album {album_name}
 GeeMusicPlayAlbumIntent Play album {album_name}
 GeeMusicPlayAlbumIntent Play the album {album_name} by {artist_name}
 GeeMusicPlayAlbumIntent Play album {album_name} by {artist_name}
+GeeMusicPlayAlbumIntent Play songs from the album {album_name} by {artist_name}
 
 GeeMusicPlaySongIntent Play the song {song_name}
 GeeMusicPlaySongIntent Play song {song_name}
 GeeMusicPlaySongIntent Play the song {song_name} by {artist_name}
 GeeMusicPlaySongIntent Play song {song_name} by {artist_name}
+GeeMusicPlaySongIntent Play {song_name}
+GeeMusicPlaySongIntent Play {song_name} by {artist_name}
 
 GeeMusicPlayArtistRadioIntent Start radio for artist {artist_name}
 GeeMusicPlayArtistRadioIntent Create a radio station for artist {artist_name}
@@ -22,6 +27,8 @@ GeeMusicPlayArtistRadioIntent Play music like artist {artist_name}
 GeeMusicPlayPlaylistIntent Play {playlist_name} playlist
 GeeMusicPlayPlaylistIntent Playlist {playlist_name}
 GeeMusicPlayPlaylistIntent Start playlist {playlist_name}
+GeeMusicPlayPlaylistIntent Play songs from my {playlist_name} playlist
+GeeMusicPlayPlaylistIntent Play playlist {playlist_name}
 
 GeeMusicPlayIFLRadioIntent Play some music
 GeeMusicPlayIFLRadioIntent Play I'm feeling lucky station
@@ -61,3 +68,8 @@ GeeMusicPlayLibraryIntent play tracks from my library
 GeeMusicPlayLibraryIntent play my library
 GeeMusicPlayLibraryIntent start playing tracks from my library
 GeeMusicPlayLibraryIntent play songs from library
+
+GeeMusicRestartTracksIntent Restart tracks
+GeeMusicRestartTracksIntent Restart songs
+GeeMusicRestartTracksIntent Restart the playlist
+GeeMusicRestartTracksIntent Reset the playlist to the beginning
