@@ -1,6 +1,7 @@
 from builtins import object
 import random
 
+
 class MusicQueue(object):
     def __init__(self, api, tracks=[]):
         self.reset(tracks)
@@ -8,7 +9,8 @@ class MusicQueue(object):
         self.api = api
 
     def next(self):
-        if len(self.song_ids) == 0 or self.current_index + 1 >= len(self.song_ids):
+        if len(self.song_ids) == 0 or \
+                self.current_index + 1 >= len(self.song_ids):
             return None
         if len(self.song_ids_backup['loop']) > 0:
             return self.song_ids[self.current_index]
@@ -17,7 +19,8 @@ class MusicQueue(object):
         return self.song_ids[self.current_index]
 
     def up_next(self):
-        if len(self.song_ids) == 0 or self.current_index + 1 >= len(self.song_ids):
+        if len(self.song_ids) == 0 or \
+                self.current_index + 1 >= len(self.song_ids):
             return None
         if len(self.song_ids_backup['loop']) > 0:
             return self.song_ids[self.current_index]
@@ -97,4 +100,5 @@ class MusicQueue(object):
         return self.song_ids[self.current_index]
 
     def __str__(self):
-        return "<Queue: length=%d position=%d items=%s>" % (len(self.song_ids), self.current_index, self.song_ids)
+        return "<Queue: length=%d position=%d items=%s>" % (
+            len(self.song_ids), self.current_index, self.song_ids)

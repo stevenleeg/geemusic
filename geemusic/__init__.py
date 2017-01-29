@@ -6,7 +6,7 @@ from .utils.music import GMusicWrapper
 from .utils.music_queue import MusicQueue
 
 app = Flask(__name__)
-ask = Ask(app, '/alexa')
+ask = Ask(app, '/geemusic')
 
 api = GMusicWrapper.generate_api(logger=app.logger)
 queue = MusicQueue(api)

@@ -1,80 +1,92 @@
 from flask_ask import statement, audio
-from os import environ
 from geemusic import ask, queue, app, api
 
 ##
 # Callbacks
 #
+
+
 @ask.on_playback_stopped()
 def stopped(offset):
     queue.paused_offset = offset
     app.logger.debug("Stopped at %s" % offset)
 
+
 @ask.on_playback_started()
 def started(offset):
     app.logger.debug("Started at %s" % offset)
+
 
 @ask.on_playback_nearly_finished()
 def nearly_finished():
     next_id = queue.up_next()
 
-    if next_id != None:
+    if next_id is not None:
         stream_url = api.get_stream_url(next_id)
 
         return audio().enqueue(stream_url)
 
+
 @ask.on_playback_finished()
-def nearly_finished():
-    next_id = queue.next()
+def finished():
+    queue.next()
 
 ##
 # Intents
 #
+
+
 @ask.intent('AMAZON.StartOverIntent')
-def resume():
+def start_over():
     next_id = queue.current()
 
-    if next_id == None:
+    if next_id is None:
         return audio("There are no songs on the queue")
     else:
         stream_url = api.get_stream_url(next_id)
 
         return audio().play(stream_url)
 
+
 @ask.intent('AMAZON.ResumeIntent')
 def resume():
     return audio('Resuming').resume()
 
+
 @ask.intent('AMAZON.PauseIntent')
 def pause():
     return audio('Pausing').stop()
+
 
 @ask.intent('AMAZON.StopIntent')
 def stop():
     queue.reset()
     return audio('Stopping').stop()
 
+
 @ask.intent('AMAZON.NextIntent')
 def next_song():
     next_id = queue.next()
 
-    if next_id == None:
+    if next_id is None:
         return audio("There are no more songs on the queue")
     else:
         stream_url = api.get_stream_url(next_id)
 
         return audio().play(stream_url)
 
+
 @ask.intent('AMAZON.PreviousIntent')
 def prev_song():
     prev_id = queue.prev()
 
-    if prev_id == None:
+    if prev_id is None:
         return audio("You can't go back any farther in the queue")
     else:
         stream_url = api.get_stream_url(prev_id)
 
         return audio().play(stream_url)
+
 
 @ask.intent("AMAZON.ShuffleOnIntent")
 def shuffle_on():
@@ -87,6 +99,7 @@ def shuffle_on():
 
     return audio().enqueue(stream_url)
 
+
 @ask.intent("AMAZON.ShuffleOffIntent")
 def shuffle_off():
     if len(queue.song_ids) == 0:
@@ -98,6 +111,7 @@ def shuffle_off():
 
     return audio().enqueue(stream_url)
 
+
 @ask.intent('AMAZON.LoopOnIntent')
 def loop_on():
     if len(queue.song_ids) == 0:
@@ -107,6 +121,7 @@ def loop_on():
 
     stream_url = api.get_stream_url(first_song_id)
     return audio().enqueue(stream_url)
+
 
 @ask.intent('AMAZON.LoopOffIntent')
 def loop_off():
@@ -118,6 +133,7 @@ def loop_off():
 
     return audio().enqueue(stream_url)
 
+
 @ask.intent('GeeMusicCurrentlyPlayingIntent')
 def currently_playing():
     if api.is_indexing():
@@ -128,12 +144,14 @@ def currently_playing():
     if track is None:
         return audio("Nothing is playing right now")
 
-    album_art = queue.current_track()['albumArtRef'][0]['url'].replace("http://", "https://")
-    return statement("The current track is %s by %s" % (track['title'], track['artist'])) \
+    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    return statement("The current track is %s by %s" % (track['title'],
+                                                        track['artist'])) \
         .standard_card(title="The current track is",
                        text='%s by %s' % (track['title'], track['artist']),
-                       small_image_url=album_art,
-                       large_image_url=album_art)
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)
+
 
 @ask.intent("GeeMusicThumbsUpIntent")
 def thumbs_up():
@@ -147,6 +165,7 @@ def thumbs_up():
 
     return statement("Upvoted")
 
+
 @ask.intent("GeeMusicThumbsDownIntent")
 def thumbs_down():
     if len(queue.song_ids) == 0:
@@ -159,11 +178,22 @@ def thumbs_down():
 
     return statement("Downvoted")
 
+
 @ask.intent("GeeMusicRestartTracksIntent")
 def restart_tracks():
     if len(queue.song_ids) == 0:
-        return statement("Please play a song to vote")
+        return statement("You must first play tracks to restart them")
 
     queue.current_index = 0
     stream_url = api.get_stream_url(queue.current())
     return audio("Restarting tracks").play(stream_url)
+
+
+@ask.intent('AMAZON.CancelIntent')
+def cancel():
+    return "", 200
+
+
+@ask.session_ended
+def session_ended():
+    return "", 200
