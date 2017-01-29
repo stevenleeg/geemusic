@@ -1,14 +1,16 @@
 from builtins import object
 from os import environ
-import threading, traceback
+import threading
 
 from gmusicapi import CallFailure, Mobileclient
+
 
 class GMusicWrapper(object):
     def __init__(self, username, password, logger=None):
         self._api = Mobileclient()
         self.logger = logger
-        success = self._api.login(username, password, Mobileclient.FROM_MAC_ADDRESS)
+        success = self._api.login(username, password,
+                                  Mobileclient.FROM_MAC_ADDRESS)
 
         if not success:
             raise Exception("Unsuccessful login. Aborting!")
@@ -63,7 +65,8 @@ class GMusicWrapper(object):
         if len(search) == 0:
             return False
 
-        return self._api.get_artist_info(search[0]['artistId'], max_top_tracks=100)
+        return self._api.get_artist_info(search[0]['artistId'],
+                                         max_top_tracks=100)
 
     def get_album(self, name, artist_name=None):
         if artist_name:
@@ -88,7 +91,7 @@ class GMusicWrapper(object):
         return search[0]
 
     def get_station(self, title, artist_id=None):
-        if artist_id != None:
+        if artist_id is not None:
             return self._api.create_station(title, artist_id=artist_id)
 
     def get_station_tracks(self, station_id):
@@ -98,7 +101,10 @@ class GMusicWrapper(object):
         return self._api.get_stream_url(song_id)
 
     def get_stream_url(self, song_id):
-        return "%s/stream/%s" % (environ['APP_URL'], song_id)
+        return "%s/geemusic/stream/%s" % (environ['APP_URL'], song_id)
+
+    def get_thumbnail(self, artist_art):
+        return artist_art.replace("http://", "https://")
 
     def get_all_user_playlist_contents(self):
         return self._api.get_all_user_playlist_contents()
@@ -124,4 +130,5 @@ class GMusicWrapper(object):
 
     @classmethod
     def generate_api(cls, **kwargs):
-        return cls(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'], **kwargs)
+        return cls(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'],
+                   **kwargs)

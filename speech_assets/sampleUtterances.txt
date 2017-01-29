@@ -67,4 +67,3 @@ GeeMusicRestartTracksIntent Restart tracks
 GeeMusicRestartTracksIntent Restart songs
 GeeMusicRestartTracksIntent Restart the playlist
 GeeMusicRestartTracksIntent Reset the playlist to the beginning
-GeeMusicRestartTracksIntent Restart

@@ -1,15 +1,17 @@
 from flask_ask import statement, audio, question
-from os import environ
 from geemusic import ask, queue, app, api
 from fuzzywuzzy import fuzz
 
+
 @ask.launch
 def login():
-    text = 'Welcome to Gee Music. Try asking me to play a song or start a playlist'
+    text = 'Welcome to Gee Music. \
+            Try asking me to play a song or start a playlist'
     prompt = 'For example say, play music by A Tribe Called Quest'
     return question(text).reprompt(prompt) \
         .simple_card(title='Welcome to GeeMusic!',
                      content='Try asking me to play a song')
+
 
 @ask.intent("AMAZON.HelpIntent")
 def help():
@@ -21,7 +23,8 @@ def help():
                 Start playlist Dance Party,
                 and play some music,
 
-                Of course you can also say skip, previous, shuffle, and more of alexa's music commands or, stop, if you're done.
+                Of course you can also say skip, previous, shuffle, and more
+                of alexa's music commands or, stop, if you're done.
                 '''
 
     prompt = 'For example say, play music by A Tribe Called Quest'
@@ -33,7 +36,7 @@ def play_artist(artist_name):
     # Fetch the artist
     artist = api.get_artist(artist_name)
 
-    if artist == False:
+    if artist is False:
         return statement("Sorry, I couldn't find that artist")
 
     # Setup the queue
@@ -42,22 +45,23 @@ def play_artist(artist_name):
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
 
-    artist_art = artist['artistArtRef'].replace("http://", "https://")
+    thumbnail = api.get_thumbnail(artist['artistArtRef'])
     speech_text = "Playing top tracks by %s" % artist['name']
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
-                       small_image_url=artist_art,
-                       large_image_url=artist_art)
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)
+
 
 @ask.intent("GeeMusicPlayAlbumIntent")
 def play_album(album_name, artist_name):
     app.logger.debug("Fetching album %s by %s" % (album_name, artist_name))
 
     # Fetch the album
-    album = api.get_album(album_name, artist_name=artist_name)
+    album = api.get_album(album_name, artist_name)
 
-    if album == False:
+    if album is False:
         return statement("Sorry, I couldn't find that album")
 
     # Setup the queue
@@ -66,13 +70,15 @@ def play_album(album_name, artist_name):
     # Start streaming the first track
     stream_url = api.get_stream_url(first_song_id)
 
-    album_art = album['albumArtRef'].replace("http://", "https://")
-    speech_text = "Playing album %s by %s" % (album['name'], album['albumArtist'])
+    thumbnail = api.get_thumbnail(album['albumArtRef'])
+    speech_text = "Playing album %s by %s" % \
+                  (album['name'], album['albumArtist'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
-                       small_image_url=album_art,
-                       large_image_url=album_art)
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)
+
 
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
@@ -81,30 +87,32 @@ def play_song(song_name, artist_name):
     # Fetch the song
     song = api.get_song(song_name, artist_name)
 
-    if song == False:
+    if song is False:
         return statement("Sorry, I couldn't find that song")
 
     # Start streaming the first track
     first_song_id = queue.reset([song])
     stream_url = api.get_stream_url(first_song_id)
 
-    album_art = song['albumArtRef'][0]['url'].replace("http://", "https://")
+    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
     speech_text = "Playing %s by %s" % (song['title'], song['artist'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
-                       small_image_url=album_art,
-                       large_image_url=album_art)
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)
+
 
 @ask.intent("GeeMusicPlayArtistRadioIntent")
 def play_artist_radio(artist_name):
     # Fetch the artist
     artist = api.get_artist(artist_name)
 
-    if artist == False:
+    if artist is False:
         return statement("Sorry, I couldn't find that artist")
 
-    station_id = api.get_station("%s Radio" % artist['name'], artist_id=artist['artistId'])
+    station_id = api.get_station("%s Radio" %
+                                 artist['name'], artist_id=artist['artistId'])
     # TODO: Handle track duplicates (this may be possible using session ids)
     tracks = api.get_station_tracks(station_id)
 
@@ -113,13 +121,13 @@ def play_artist_radio(artist_name):
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
 
-    artist_art = artist['artistArtRef'].replace("http://", "https://")
+    thumbnail = api.get_thumbnail(artist['artistArtRef'])
     speech_text = "Playing %s radio" % artist['name']
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
-                       small_image_url=artist_art,
-                       large_image_url=artist_art)
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)
 
 
 @ask.intent("GeeMusicPlayPlaylistIntent")
@@ -139,7 +147,7 @@ def play_playlist(playlist_name):
             'score': fuzz.ratio(name, request_name)
         })
 
-    sorted_playlists = sorted(scored_playlists, lambda a, b: b['score'] - a['score'])
+    sorted_playlists = sorted(scored_playlists, key=lambda a: a['score'], reverse=True)
     top_scoring = sorted_playlists[0]
     best_match = all_playlists[top_scoring['index']]
 
@@ -152,16 +160,17 @@ def play_playlist(playlist_name):
 
     # Get a streaming URL for the first song in the playlist
     stream_url = api.get_stream_url(first_song_id)
-    artist_art = queue.current_track()['albumArtRef'][0]['url'].replace("http://", "https://")
+    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
     speech_text = "Playing songs from %s" % (best_match['name'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
-                       small_image_url=artist_art,
-                       large_image_url=artist_art)
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)
+
 
 @ask.intent("GeeMusicPlayIFLRadioIntent")
-def play_artist_radio(artist_name):
+def play_IFL_radio(artist_name):
     # TODO: Handle track duplicates?
     tracks = api.get_station_tracks("IFL")
 
@@ -170,12 +179,13 @@ def play_artist_radio(artist_name):
     stream_url = api.get_stream_url(first_song_id)
 
     speech_text = "Playing music from your personalized station"
-    IFL_art = "https://i.imgur.com/NYTSqHZ.png"
+    thumbnail = api.get_thumbnail("https://i.imgur.com/NYTSqHZ.png")
     return audio(speech_text).play(stream_url) \
         .standard_card(title="Playing I'm Feeling Lucky Radio",
                        text='',
-                       small_image_url=IFL_art,
-                       large_image_url=IFL_art)
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)
+
 
 @ask.intent("GeeMusicQueueSongIntent")
 def queue_song(song_name, artist_name):
@@ -194,13 +204,9 @@ def queue_song(song_name, artist_name):
     queue.enqueue_track(song)
     stream_url = api.get_stream_url(song)
     card_text = "Queued %s by %s." % (song['title'], song['artist'])
-    album_art = song['albumArtRef'][0]['url'].replace("http://", "https://")
+    thumbnail = api.get_thumbnail(song['albumArtRef'][0]['url'])
     return audio().enqueue(stream_url) \
         .standard_card(title=card_text,
                        text='',
-                       small_image_url=album_art,
-                       large_image_url=album_art)
-
-@ask.session_ended
-def session_ended():
-    return "", 200
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)

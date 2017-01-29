@@ -7,7 +7,7 @@ cryptography==1.7.1
 decorator==4.0.10
 enum34==1.1.6
 Flask==0.12
-Flask-Ask==0.8.4
+Flask-Ask==0.8.7
 funcsigs==1.0.2
 future==0.16.0
 gmusicapi==10.1.0
