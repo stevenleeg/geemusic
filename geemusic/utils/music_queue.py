@@ -7,6 +7,7 @@ class MusicQueue:
         self.api = api
 
     def next(self):
+        self.api.increment_song_playcount(self.current())
         if len(self.song_ids) == 0 or self.current_index + 1 >= len(self.song_ids):
             return None
 
