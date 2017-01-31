@@ -124,6 +124,9 @@ class GMusicWrapper:
     def increment_song_playcount(self, song_id, plays=1, playtime=None):
         return self._api.increment_song_playcount(song_id, plays, playtime)
 
+    def get_song_data(self, song_id):
+        return self._api.get_track_info(song_id)
+
     @classmethod
     def generate_api(cls, **kwargs):
         return cls(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'], **kwargs)

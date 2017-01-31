@@ -218,6 +218,10 @@ At this point, your server should by live and ready to start accepting requests 
 you may experience timeout errors when you server has received no requests for over
 30 minutes.
 
+### (Optional) Last.fm support
+*Only attempt this if you have significant technical expertise.* To scrobble all played tracks to [Last.fm](http://www.last.fm) follow the instructions at [this repo](https://github.com/huberf/lastfm-scrobbler) to get auth tokens.
+Then add them as environement variables to your setup (e.g. `LAST_FM_API`, `LAST_FM_SECRET`, `LAST_FM_SESSION_KEY`). To finish enabling create a `LAST_FM_ACTIVE` environement variable and set it to `True`.
+
 ## Troubleshooting
 ### Pausing/resuming skips to the beginning of the song.
 Flask Ask used to have a bug that would not resume the song from the correct offset. Make sure it, and the rest of your pip modules are up to date.
@@ -225,8 +229,7 @@ Flask Ask used to have a bug that would not resume the song from the correct off
 ### Music won't start playing
 Issues where Alexa responds to your requests but doesn't play music are
 generally caused by the `APP_URL` environment variable being set improperly. Be
-sure that it is set to something like `APP_URL=https://ff9b5cce.ngrok.io` 
-**without a trailing slash or `/alexa`**.
+sure that it is set to something like `APP_URL=https://ff9b5cce.ngrok.io` **without a trailing slash or `/alexa`**.
 
 ## Contributing
 Please feel free to open an issue or PR if you've found a bug. If you're
