@@ -7,7 +7,7 @@ class GMusicWrapper:
     def __init__(self, username, password, logger=None):
         self._api = Mobileclient()
         self.logger = logger
-        success = self._api.login(username, password, Mobileclient.FROM_MAC_ADDRESS)
+        success = self._api.login(username, password, environ.get('ANDROID_ID', Mobileclient.FROM_MAC_ADDRESS))
 
         if not success:
             raise Exception("Unsuccessful login. Aborting!")
