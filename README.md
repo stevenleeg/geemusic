@@ -10,11 +10,17 @@ to run it on your own server for the time being (ideally I'll eventually
 release this on the Alexa Skills marketplace, but there's a lot of work to do
 before then).
 
-**Note: This skill is not made by nor endorsed by Google.** That being said, it
+### Notes
+
+**This skill is not made by nor endorsed by Google.** That being said, it
 is based off of the wonderful [gmusicapi](https://github.com/simon-weber/gmusicapi)
 by [Simon Weber](https://simon.codes), which has been around since 2012, so this
 should work as long as Google doesn't decide to lock down its APIs in a major
 way.
+
+**This skill will only work on English (US) language devices.** This is due
+to a limitation on many of Alexa's Slot Types, see the 
+[Slot Type Reference docs](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference).
 
 ## Features
 What can this puppy do, you might ask? Here's a list of example phrases that
@@ -248,6 +254,10 @@ $ docker run -d -e GOOGLE_EMAIL=steve@stevegattuso.me -e GOOGLE_PASSWORD=[passwo
 
 At this point you're set up and ready. 
 
+### (Optional) Last.fm support
+*Only attempt this if you have significant technical expertise.* To scrobble all played tracks to [Last.fm](http://www.last.fm) follow the instructions at [this repo](https://github.com/huberf/lastfm-scrobbler) to get auth tokens.
+Then add them as environement variables to your setup (e.g. `LAST_FM_API`, `LAST_FM_SECRET`, `LAST_FM_SESSION_KEY`). To finish enabling create a `LAST_FM_ACTIVE` environement variable and set it to `True`.
+
 ## Troubleshooting
 ### Pausing/resuming skips to the beginning of the song.
 Flask Ask used to have a bug that would not resume the song from the correct offset. Make sure it, and the rest of your pip modules are up to date.
@@ -255,8 +265,7 @@ Flask Ask used to have a bug that would not resume the song from the correct off
 ### Music won't start playing
 Issues where Alexa responds to your requests but doesn't play music are
 generally caused by the `APP_URL` environment variable being set improperly. Be
-sure that it is set to something like `APP_URL=https://ff9b5cce.ngrok.io` 
-**without a trailing slash or `/alexa`**.
+sure that it is set to something like `APP_URL=https://ff9b5cce.ngrok.io` **without a trailing slash or `/alexa`**.
 
 ## Contributing
 Please feel free to open an issue or PR if you've found a bug. If you're
