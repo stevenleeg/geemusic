@@ -6,11 +6,12 @@ This project is still in its early phases and subject to a bit of change, howeve
 
 ### Notes
 
-**This skill is not made by nor endorsed by Google.** That being said, it is based off of the wonderful [gmusicapi](https://github.com/simon-weber/gmusicapi) by [Simon Weber](https://simon.codes), which has been around since 2012, so this should work as long as Google doesn't decide to lock down its APIs in a major way.
+**This Skill is not made by nor endorsed by Google.** That being said, it is based off of the wonderful [gmusicapi](https://github.com/simon-weber/gmusicapi) by [Simon Weber](https://simon.codes), which has been around since 2012, so this should work as long as Google doesn't decide to lock down its APIs in a major way.
 
-**This skill will only work on English (US) language devices.** This is due
-to the Skill using features from the [Developer Preview of the ASK Built-in Library](https://developer.amazon.com/blogs/post/Tx2EWC85F6H422/Introducing-the-ASK-Built-in-Library-Developer-Preview-Pre-Built-Models-for-Hund). Which frustratingly has only been made available to developers in the US.
+**This Skill was developed to only work on English (US) language devices.**
+This is due to the Skill using features from the [Developer Preview of the ASK Built-in Library](https://developer.amazon.com/blogs/post/Tx2EWC85F6H422/Introducing-the-ASK-Built-in-Library-Developer-Preview-Pre-Built-Models-for-Hund). Which frustratingly has only been made available to developers in the US.
 
+There is a workaround for UK users if they setup the Skill slightly differently, instructions are included below. 
 
 
 ## Features
@@ -45,13 +46,13 @@ Thumbs-down this song
 Of course you can also say things like "Alexa stop," "Alexa next," etc.
 
 ### Roadmap
-```
-Play the latest album by Run The Jewels
-Skip to the 3rd song in this album
-Play the third track off of In Rainbows
-Play a station for bedtime
-Play a station for partying
-```
+
+- [ ] Play the latest album by Run The Jewels
+- [ ] Skip to the 3rd song in this album
+- [ ] Play the third track off of In Rainbows
+- [ ] Play a station for bedtime
+- [ ] Play a station for partying
+
 
 ## Setup
 Let's cut right to the chase: how can you enable this skill on your own Dot/Echo? Unfortunately the process is a bit finicky, but I'll try to make it as simple as I can.
@@ -83,7 +84,7 @@ Once the requirements are installed we'll need to create a file, `.env` to store
 ```
 # Google credentials
 GOOGLE_EMAIL=steve@stevegattuso.me
-GOOGLE_PASSWORD=[password]
+GOOGLE_PASSWORD=password
 
 # Publicly accessible URL to your server, WITHOUT trailing slash
 APP_URL=https://alexa-geemusic.stevegattuso.me
@@ -101,13 +102,13 @@ $ foreman start
 
 and you should see your web server start at http://localhost:4000 (although it won't do much if you visit it with your browser).
 
-### Create the development Skill on Amazon
+## Create the development Skill on Amazon
 
 Open up the [Alexa Dashboard](https://developer.amazon.com/edw/home.html), click "Get Started" in the **Alexa Skills Kit** box. Then click on the yellow "Add a New Skill" button in the top right corner.
 
 Going through the various sections
 
-#### Skill Information
+### Skill Information
 
 | Field | Value |
 | ----- | ----- |
@@ -165,7 +166,7 @@ If all goes well the skill should also be up and running on your Echo/Dot! Take 
 
 Enjoy streaming Google Music via Alexa!
 
-### (Optional) Setup a Heroku instance
+## (Optional) Setup a Heroku instance
 
 Setting up an instance on Heroku may be an easier option for you, and these instructions detail how to accomplish this. The following steps replace the need to setup a local server. First one must have Heroku setup on your local machine and an account associated. Visit [the CLI documentation](https://devcenter.heroku.com/articles/heroku-cli) for details on setting this up.
 
@@ -192,7 +193,7 @@ $ heroku config:set APP_URL=https://[heroku_app_name].herokuapp.com
 
 At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.` Note, that while using the free tier, you may experience timeout errors when you server has received no requests for over 30 minutes.
 
-### (Optional) Use Docker
+## (Optional) Use Docker
 
 If you have docker running on a server, running this server as a docker container may make the most sense for your setup. As of right now there is not an image available in the dockerhub, but building the container is very easy.
 
@@ -217,7 +218,7 @@ $ docker run -d -e GOOGLE_EMAIL=steve@stevegattuso.me -e GOOGLE_PASSWORD=[passwo
 
 At this point you're set up and ready. 
 
-### (Optional) Last.fm support
+## (Optional) Last.fm support
 *Only attempt this if you have significant technical expertise.* To scrobble all played tracks to [Last.fm](http://www.last.fm) follow the instructions at [this repo](https://github.com/huberf/lastfm-scrobbler) to get auth tokens.
 
 Then add them as environement variables to your setup (e.g. `LAST_FM_API`, `LAST_FM_SECRET`, `LAST_FM_SESSION_KEY`). To finish enabling create a `LAST_FM_ACTIVE` environement variable and set it to `True`.
