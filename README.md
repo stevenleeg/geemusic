@@ -224,6 +224,36 @@ At this point, your server should by live and ready to start accepting requests 
 you may experience timeout errors when you server has received no requests for over
 30 minutes.
 
+### (Optional) Use Docker
+
+If you have docker running on a server, running this server as a docker container 
+may make the most sense for your setup. As of right now there is not an image
+available in the dockerhub, but building the container is very easy.
+
+First, clone this repository.
+
+```bash
+$ git clone https://github.com/stevenleeg/geemusic.git
+```
+
+Now, `cd` in and build the container. We'll tag it 'geemusic', but you can call it
+whatever you want.
+
+```bash
+$ docker build -t geemusic .
+```
+
+Finally, run the container with the appropriate environment variables and port
+forwards. Alternatively set up a compose file or your orchestration engine, but
+those are outside the scope of this readme.
+
+```bash
+$ docker run -d -e GOOGLE_EMAIL=steve@stevegattuso.me -e GOOGLE_PASSWORD=[password] \
+-e APP_URL=http://alexa-geemusic.stevegattuso.me -p 4000:4000 geemusic
+```
+
+At this point you're set up and ready. 
+
 ### (Optional) Last.fm support
 *Only attempt this if you have significant technical expertise.* To scrobble all played tracks to [Last.fm](http://www.last.fm) follow the instructions at [this repo](https://github.com/huberf/lastfm-scrobbler) to get auth tokens.
 Then add them as environement variables to your setup (e.g. `LAST_FM_API`, `LAST_FM_SECRET`, `LAST_FM_SESSION_KEY`). To finish enabling create a `LAST_FM_ACTIVE` environement variable and set it to `True`.
