@@ -100,17 +100,17 @@ class GMusicWrapper:
 
         artist_info = self._api.get_artist_info(search[0]['artistId'], include_albums=True)
         album_info = artist_info['albums']
-        albums = []
+        random.shuffle(album_info)
 
         for index, val in enumerate(album_info):
             album = self._api.get_album_info(album_id=album_info[index]['albumId'], include_tracks=True)
-            if len(album['tracks']) >= 5:
-                albums.append(album)
+            if album['name'] != album_name:
+                if len(album['tracks']) >= 5:
+                    return album
 
-        if len(albums) == 0:
-            return False
+        return False
 
-        return albums[random.randint(0, len(albums) - 1)]
+
 
     def get_song(self, name, artist_name=None):
         if artist_name:

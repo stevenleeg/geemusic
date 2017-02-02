@@ -65,3 +65,4 @@ GeeMusicPlayLatestAlbumIntent Play the latest album by {artist_name}
 
 GeeMusicPlayAlbumByArtistIntent Play an album by the band {artist_name}
 GeeMusicPlayAlbumByArtistIntent Play an album by artist {artist_name}
+GeeMusicPlayDifferentAlbumIntent Play a different album

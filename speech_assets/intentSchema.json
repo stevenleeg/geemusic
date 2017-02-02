@@ -86,6 +86,9 @@
             "intent": "GeeMusicThumbsDownIntent"
         },
         {
+            "intent": "GeeMusicPlayDifferentAlbumIntent"
+        },
+        {
             "intent": "AMAZON.ShuffleOnIntent"
         },
         {

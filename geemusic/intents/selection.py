@@ -182,8 +182,8 @@ def play_latest_album_by_artist(artist_name):
     api = GMusicWrapper.generate_api()
     latest_album = api.get_latest_album(artist_name)
 
-    if latest_album == False:
-        return statement("Sorry, I couldn't find that album")
+    if latest_album is False:
+        return statement("Sorry, I couldn't find any albums")
 
     # Setup the queue
     first_song_id = queue.reset(latest_album['tracks'])
@@ -199,8 +199,8 @@ def play_album_by_artist(artist_name):
     api = GMusicWrapper.generate_api()
     album = api.get_album_by_artist(artist_name=artist_name)
 
-    if album == False:
-        return statement("Sorry, I couldn't find that album")
+    if album is False:
+        return statement("Sorry, I couldn't find any albums.")
 
     # Setup the queue
     first_song_id = queue.reset(album['tracks'])
@@ -210,4 +210,23 @@ def play_album_by_artist(artist_name):
 
     speech_text = "Playing album %s by %s" % (album['name'], album['albumArtist'])
     return audio(speech_text).play(stream_url)
+
+@ask.intent("GeeMusicPlayDifferentAlbumIntent")
+def play_different_album(artist_name):
+    api = GMusicWrapper.generate_api()
+
+    album = api.get_album_by_artist(artist_name=artist_name, album_name=None)
+
+    if album is False:
+        return statement("Sorry, I couldn't find any albums.")
+
+    # Setup the queue
+    first_song_id = queue.reset(album['tracks'])
+
+    # Start streaming the first track
+    stream_url = api.get_stream_url(first_song_id)
+
+    speech_text = "Playing album %s by %s" % (album['name'], album['albumArtist'])
+    return audio(speech_text).play(stream_url)
+
 
