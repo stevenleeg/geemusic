@@ -46,6 +46,34 @@
             ]
         },
         {
+            "intent":"GeeMusicListAllAlbumsIntent",
+            "slots": [
+                {"name": "artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+
+        },
+        {
+            "intent":"GeeMusicListLatestAlbumIntent",
+            "slots": [
+                {"name": "artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+
+        },
+        {
+            "intent":"GeeMusicPlayLatestAlbumIntent",
+            "slots": [
+                {"name": "artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+
+        },
+        {
+            "intent":"GeeMusicPlayAlbumByArtistIntent",
+            "slots": [
+                {"name": "artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+
+        },
+        {
             "intent": "GeeMusicPlayIFLRadioIntent"
         },
         {
@@ -56,6 +84,9 @@
         },
         {
             "intent": "GeeMusicThumbsDownIntent"
+        },
+        {
+            "intent": "GeeMusicPlayDifferentAlbumIntent"
         },
         {
             "intent": "AMAZON.ShuffleOnIntent"
