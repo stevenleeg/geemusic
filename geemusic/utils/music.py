@@ -93,7 +93,7 @@ class GMusicWrapper:
 
         return False
 
-    def get_album_by_artist(self, artist_name, album_name=None):
+    def get_album_by_artist(self, artist_name, album_id=None):
         search = self._search("artist", artist_name)
         if len(search) == 0:
             return False
@@ -104,7 +104,7 @@ class GMusicWrapper:
 
         for index, val in enumerate(album_info):
             album = self._api.get_album_info(album_id=album_info[index]['albumId'], include_tracks=True)
-            if album['name'] != album_name:
+            if album['albumId'] != album_id:
                 if len(album['tracks']) >= 5:
                     return album
 

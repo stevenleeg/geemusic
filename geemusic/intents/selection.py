@@ -212,10 +212,15 @@ def play_album_by_artist(artist_name):
     return audio(speech_text).play(stream_url)
 
 @ask.intent("GeeMusicPlayDifferentAlbumIntent")
-def play_different_album(artist_name):
+def play_different_album():
     api = GMusicWrapper.generate_api()
 
-    album = api.get_album_by_artist(artist_name=artist_name, album_name=None)
+    current_track = queue.current_track()
+
+    if current_track is None:
+        return statement("Sorry, there's no album playing currently")
+
+    album = api.get_album_by_artist(artist_name=current_track['artist'], album_id=current_track['albumId'])
 
     if album is False:
         return statement("Sorry, I couldn't find any albums.")
