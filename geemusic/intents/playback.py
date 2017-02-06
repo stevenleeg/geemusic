@@ -1,4 +1,4 @@
-from flask_ask import statement, audio
+from flask_ask import statement, audio, context
 from os import environ
 from geemusic import ask, queue, app, api
 from geemusic.utils.music import GMusicWrapper
@@ -44,7 +44,7 @@ def resume():
 
 @ask.intent('AMAZON.ResumeIntent')
 def resume():
-    return audio('Resuming').resume()
+    return audio('Resuming.').resume()
 
 @ask.intent('AMAZON.PauseIntent')
 def pause():
