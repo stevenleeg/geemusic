@@ -104,9 +104,8 @@ class GMusicWrapper:
 
         for index, val in enumerate(album_info):
             album = self._api.get_album_info(album_id=album_info[index]['albumId'], include_tracks=True)
-            if album['albumId'] != album_id:
-                if len(album['tracks']) >= 5:
-                    return album
+            if album['albumId'] != album_id and len(album['tracks']) >= 5:
+                return album
 
         return False
 
