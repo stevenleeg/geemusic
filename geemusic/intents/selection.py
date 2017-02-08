@@ -162,8 +162,8 @@ def queue_song(song_name, artist_name):
     # Queue the track in the list of song_ids
     queue.enqueue_track(song)
     stream_url = api.get_stream_url(song)
-    card_text = "Queued %s by %s." % (song['title'], song['artist'])
     return audio().enqueue(stream_url)
+
 
 @ask.intent("GeeMusicListAllAlbumsIntent")
 def list_album_by_artists(artist_name):
@@ -234,4 +234,15 @@ def play_different_album():
     speech_text = "Playing album %s by %s" % (album['name'], album['albumArtist'])
     return audio(speech_text).play(stream_url)
 
+@ask.intent("GeeMusicPlayLibraryIntent")
+def play_library():
+    if api.is_indexing():
+        return statement("Please wait for your tracks to finish indexing")
 
+    tracks = api.library.values()
+    first_song_id = queue.reset(tracks)
+    first_song_id = queue.shuffle_mode(True)
+    stream_url = api.get_stream_url(first_song_id)
+
+    speech_text = "Playing music from your library"
+    return audio(speech_text).play(stream_url)

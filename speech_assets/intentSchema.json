@@ -77,6 +77,9 @@
             "intent": "GeeMusicPlayIFLRadioIntent"
         },
         {
+            "intent": "GeeMusicPlayLibraryIntent"
+        },
+        {
             "intent": "GeeMusicCurrentlyPlayingIntent"
         },
         {

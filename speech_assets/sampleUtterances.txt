@@ -66,3 +66,9 @@ GeeMusicPlayLatestAlbumIntent Play the latest album by {artist_name}
 GeeMusicPlayAlbumByArtistIntent Play an album by the band {artist_name}
 GeeMusicPlayAlbumByArtistIntent Play an album by artist {artist_name}
 GeeMusicPlayDifferentAlbumIntent Play a different album
+
+GeeMusicPlayLibraryIntent play songs from my library
+GeeMusicPlayLibraryIntent play tracks from my library
+GeeMusicPlayLibraryIntent play my library
+GeeMusicPlayLibraryIntent start playing tracks from my library
+GeeMusicPlayLibraryIntent play songs from library
