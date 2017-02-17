@@ -1,4 +1,5 @@
 from builtins import object
+from fuzzywuzzy import fuzz
 from os import environ
 import threading
 
@@ -90,9 +91,8 @@ class GMusicWrapper(object):
 
         return search[0]
 
-    def get_station(self, title, artist_id=None):
-        if artist_id is not None:
-            return self._api.create_station(title, artist_id=artist_id)
+    def get_station(self, name, artist_id=None, genre_id=None):
+        return self._api.create_station(name, genre_id)
 
     def get_station_tracks(self, station_id):
         return self._api.get_station_tracks(station_id)
@@ -101,7 +101,7 @@ class GMusicWrapper(object):
         return self._api.get_stream_url(song_id)
 
     def get_stream_url(self, song_id):
-        return "%s/geemusic/stream/%s" % (environ['APP_URL'], song_id)
+        return "%s/alexa/stream/%s" % (environ['APP_URL'], song_id)
 
     def get_thumbnail(self, artist_art):
         return artist_art.replace("http://", "https://")
@@ -127,6 +127,32 @@ class GMusicWrapper(object):
             return (self.library[track['trackId']], track['trackId'])
         else:
             return (None, None)
+
+    def closest_match(self, request_name, all_matches, minimum_score=0):
+        # Give each match a score based on its similarity to the requested
+        # name
+        request_name = request_name.lower().replace(" ", "")
+        scored_matches = []
+        for i, match in enumerate(all_matches):
+            name = match['name'].lower().replace(" ", "")
+            scored_matches.append({
+                'index': i,
+                'name': name,
+                'score': fuzz.ratio(name, request_name)
+            })
+
+        sorted_matches = sorted(scored_matches, key=lambda a: a['score'], reverse=True)
+        top_scoring = sorted_matches[0]
+        best_match = all_matches[top_scoring['index']]
+
+        # Make sure we have a decent match (the score is n where 0 <= n <= 100)
+        if top_scoring['score'] < minimum_score:
+            return None
+
+        return best_match
+
+    def get_genres(self, parent_genre_id=None):
+        return self._api.get_genres(parent_genre_id)
 
     def increment_song_playcount(self, song_id, plays=1, playtime=None):
         return self._api.increment_song_playcount(song_id, plays, playtime)

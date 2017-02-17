@@ -2,7 +2,7 @@ from flask import redirect
 from geemusic import app, api
 
 
-@app.route("/geemusic/stream/<song_id>")
+@app.route("/alexa/stream/<song_id>")
 def redirect_to_stream(song_id):
     stream_url = api.get_google_stream_url(song_id)
 
