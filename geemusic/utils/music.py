@@ -127,7 +127,7 @@ class GMusicWrapper(object):
         else:
             return (None, None)
 
-    def closest_match(self, request_name, all_matches, minimum_score=0):
+    def closest_match(self, request_name, all_matches, minimum_score=70):
         # Give each match a score based on its similarity to the requested
         # name
         request_name = request_name.lower().replace(" ", "")
