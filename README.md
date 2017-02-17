@@ -68,7 +68,7 @@ First things first, clone this repository to your server:
 $ git clone https://github.com/stevenleeg/geemusic.git
 ```
 
-Next, `cd` in and install the dependencies, you ideally want to do this within a `virtualenv` if you have it installed, but otherwise you can omit those steps and just run the `pip3 install` line. Note that some of the dependencies require a few packages that you may not already have on your system: `python3-dev`, `libssl-dev`, and `libffi-dev`. On Ubuntu these can be installed by running `sudo apt-get install python3-dev libssl-dev libffi-dev`.
+Next make sure you have Python 3 installed and `cd` in and install the dependencies, you ideally want to do this within a `virtualenv` if you have it installed, but otherwise you can omit those steps and just run the `pip3 install` line. Note that some of the dependencies require a few packages that you may not already have on your system: `python3-dev`, `libssl-dev`, and `libffi-dev`. On Ubuntu these can be installed by running `sudo apt-get install python3-dev libssl-dev libffi-dev`.
 
 ```bash
 # Run this if you have virtualenv installed:
