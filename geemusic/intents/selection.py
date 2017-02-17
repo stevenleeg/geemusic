@@ -1,6 +1,5 @@
 from flask_ask import statement, audio, question
 from geemusic import ask, queue, app, api
-from fuzzywuzzy import fuzz
 
 
 @ask.launch
@@ -135,24 +134,10 @@ def play_playlist(playlist_name):
     # Retreve the content of all playlists in a users library
     all_playlists = api.get_all_user_playlist_contents()
 
-    # Give each playlist a score based on its similarity to the requested
-    # playlist name
-    request_name = playlist_name.lower().replace(" ", "")
-    scored_playlists = []
-    for i, playlist in enumerate(all_playlists):
-        name = playlist['name'].lower().replace(" ", "")
-        scored_playlists.append({
-            'index': i,
-            'name': name,
-            'score': fuzz.ratio(name, request_name)
-        })
+    # Get the closest match
+    best_match = api.closest_match(playlist_name, all_playlists)
 
-    sorted_playlists = sorted(scored_playlists, key=lambda a: a['score'], reverse=True)
-    top_scoring = sorted_playlists[0]
-    best_match = all_playlists[top_scoring['index']]
-
-    # Make sure we have a decent match (the score is n where 0 <= n <= 100)
-    if top_scoring['score'] < 70:
+    if best_match is None:
         return statement("Sorry, I couldn't find that playlist in your library.")
 
     # Add songs from the playlist onto our queue
@@ -210,3 +195,17 @@ def queue_song(song_name, artist_name):
                        text='',
                        small_image_url=thumbnail,
                        large_image_url=thumbnail)
+
+
+@ask.intent("GeeMusicPlayLibraryIntent")
+def play_library():
+    if api.is_indexing():
+        return statement("Please wait for your tracks to finish indexing")
+
+    tracks = api.library.values()
+    first_song_id = queue.reset(tracks)
+    first_song_id = queue.shuffle_mode(True)
+    stream_url = api.get_stream_url(first_song_id)
+
+    speech_text = "Playing music from your library"
+    return audio(speech_text).play(stream_url)

@@ -49,6 +49,9 @@
             "intent": "GeeMusicPlayIFLRadioIntent"
         },
         {
+            "intent": "GeeMusicPlayLibraryIntent"
+        },
+        {
             "intent": "GeeMusicCurrentlyPlayingIntent"
         },
         {
@@ -74,9 +77,6 @@
         },
         {
             "intent": "AMAZON.HelpIntent"
-        },
-        {
-            "intent": "AMAZON.CancelIntent"
         }
     ]
 }

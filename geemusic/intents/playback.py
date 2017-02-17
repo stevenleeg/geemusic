@@ -189,11 +189,6 @@ def restart_tracks():
     return audio("Restarting tracks").play(stream_url)
 
 
-@ask.intent('AMAZON.CancelIntent')
-def cancel():
-    return "", 200
-
-
 @ask.session_ended
 def session_ended():
     return "", 200
