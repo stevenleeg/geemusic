@@ -68,7 +68,7 @@ First things first, clone this repository to your server:
 $ git clone https://github.com/stevenleeg/geemusic.git
 ```
 
-Next, `cd` in and install the dependencies, you ideally want to do this within a `virtualenv` if you have it installed, but otherwise you can omit those steps and just run the `pip install` line. Note that some of the dependencies require a few packages that you may not already have on your system: `python-dev`, `libssl-dev`, and `libffi-dev`. On Ubuntu these can be installed by running `sudo apt-get install python-dev libssl-dev libffi-dev`.
+Next make sure you have Python 3 installed and `cd` in and install the dependencies, you ideally want to do this within a `virtualenv` if you have it installed, but otherwise you can omit those steps and just run the `pip3 install` line. Note that some of the dependencies require a few packages that you may not already have on your system: `python3-dev`, `libssl-dev`, and `libffi-dev`. On Ubuntu these can be installed by running `sudo apt-get install python3-dev libssl-dev libffi-dev`.
 
 ```bash
 # Run this if you have virtualenv installed:
@@ -76,7 +76,7 @@ $ virtualenv .venv
 $ source .venv/bin/activate
 
 # Continue on if you have virtualenv or start here if you don't:
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
 
 Once the requirements are installed we'll need to create a file, `.env` to store our credentials. Here's an example:
