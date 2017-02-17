@@ -11,7 +11,7 @@ This project is still in its early phases and subject to a bit of change, howeve
 **This Skill was developed to only work on English (US) language devices.**
 This is due to the Skill using features from the [Developer Preview of the ASK Built-in Library](https://developer.amazon.com/blogs/post/Tx2EWC85F6H422/Introducing-the-ASK-Built-in-Library-Developer-Preview-Pre-Built-Models-for-Hund). Which frustratingly has only been made available to developers in the US.
 
-There is a workaround for UK users if they setup the Skill slightly differently, instructions are included below. 
+There is a workaround for UK users if they setup the Skill slightly differently, instructions are included below.
 
 
 ## Features
@@ -68,7 +68,7 @@ First things first, clone this repository to your server:
 $ git clone https://github.com/stevenleeg/geemusic.git
 ```
 
-Next, `cd` in and install the dependencies, you ideally want to do this within a `virtualenv` if you have it installed, but otherwise you can omit those steps and just run the `pip install` line. Note that some of the dependencies require a few packages that you may not already have on your system: `python-dev`, `libssl-dev`, and `libffi-dev`. On Ubuntu these can be installed by running `sudo apt-get install python-dev libssl-dev libffi-dev`.
+Next, `cd` in and install the dependencies, you ideally want to do this within a `virtualenv` if you have it installed, but otherwise you can omit those steps and just run the `pip3 install` line. Note that some of the dependencies require a few packages that you may not already have on your system: `python3-dev`, `libssl-dev`, and `libffi-dev`. On Ubuntu these can be installed by running `sudo apt-get install python3-dev libssl-dev libffi-dev`.
 
 ```bash
 # Run this if you have virtualenv installed:
@@ -76,7 +76,7 @@ $ virtualenv .venv
 $ source .venv/bin/activate
 
 # Continue on if you have virtualenv or start here if you don't:
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
 
 Once the requirements are installed we'll need to create a file, `.env` to store our credentials. Here's an example:
@@ -148,9 +148,9 @@ After you have added the "Custom Slots" you need to copy and paste the contents 
 
 We'll point our skill at the URL for our development server. Select HTTPS as the endpoint type and enter your server's URL in the corresponding box. Remember that your development server must be publicly accessible AND using HTTPS in order for Amazon to be able to connect/interact with it.
 
-If your development server is running on a server that is already available on the internet, type its URL (such as `https://geemusic.example.com/alexa`). Make sure you include the `/alexa`, otherwise this won't work!
+If your development server is running on a server that is already available on the internet, type its URL (such as `https://geemusic.example.com/geemusic`). Make sure you include the `/alexa`, otherwise this won't work!
 
-If you are running the server on a computer behind a firewall we'll need to expose the server via a tunnel in order for this to work. I usually use [ngrok](https://ngrok.com/) for these situations and have used it to develop this project. To start a tunnel run `ngrok http 4000` in a console window. You should then see a few URLs, one of which being a publicly accessible HTTPS link to your development server. Copy this URL, being sure to append `/alexa` so the final result looks something like `https://[some-code].ngrok.io/alexa`. **Important:** Make sure you update your `.env` file's `APP_URL` to this new URL, otherwise Alexa will not be able to stream music!
+If you are running the server on a computer behind a firewall we'll need to expose the server via a tunnel in order for this to work. I usually use [ngrok](https://ngrok.com/) for these situations and have used it to develop this project. To start a tunnel run `ngrok http 4000` in a console window. You should then see a few URLs, one of which being a publicly accessible HTTPS link to your development server. Copy this URL, being sure to append `/alexa` so the final result looks something like `https://[some-code].ngrok.io/geemusic`. **Important:** Make sure you update your `.env` file's `APP_URL` to this new URL, otherwise Alexa will not be able to stream music!
 
 You'll also want to select "No" for the "Account Linking" field before moving on.
 
@@ -197,7 +197,7 @@ $ heroku config:set GOOGLE_PASSWORD=[password]
 $ heroku config:set APP_URL=https://[heroku_app_name].herokuapp.com
 ```
 
-At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.` Note, that while using the free tier, you may experience timeout errors when you server has received no requests for over 30 minutes.
+At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/geemusic.` Note, that while using the free tier, you may experience timeout errors when you server has received no requests for over 30 minutes.
 
 ## (Optional) Use Docker
 
@@ -222,7 +222,7 @@ $ docker run -d -e GOOGLE_EMAIL=steve@stevegattuso.me -e GOOGLE_PASSWORD=[passwo
 -e APP_URL=http://alexa-geemusic.stevegattuso.me -p 4000:4000 geemusic
 ```
 
-At this point you're set up and ready. 
+At this point you're set up and ready.
 
 ## (Optional) Last.fm support
 *Only attempt this if you have significant technical expertise.* To scrobble all played tracks to [Last.fm](http://www.last.fm) follow the instructions at [this repo](https://github.com/huberf/lastfm-scrobbler) to get auth tokens.
@@ -234,7 +234,7 @@ Then add them as environement variables to your setup (e.g. `LAST_FM_API`, `LAST
 Flask Ask used to have a bug that would not resume the song from the correct offset. Make sure it, and the rest of your pip modules are up to date.
 
 ### Music won't start playing
-Issues where Alexa responds to your requests but doesn't play music are generally caused by the `APP_URL` environment variable being set improperly. Be sure that it is set to something like `APP_URL=https://ff9b5cce.ngrok.io` **without a trailing slash or `/alexa`**.
+Issues where Alexa responds to your requests but doesn't play music are generally caused by the `APP_URL` environment variable being set improperly. Be sure that it is set to something like `APP_URL=https://ff9b5cce.ngrok.io` **without a trailing slash or `/geemusic`**.
 
 ## Contributing
 Please feel free to open an issue or PR if you've found a bug. If you're looking to implement a feature, please open an issue before creating a PR so I can review it and make sure it's something that should be added.
