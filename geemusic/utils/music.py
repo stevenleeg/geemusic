@@ -90,8 +90,9 @@ class GMusicWrapper(object):
 
         return search[0]
 
-    def get_station(self, name, artist_id=None, genre_id=None):
-        return self._api.create_station(name, genre_id)
+    def get_station(self, title, artist_id=None):
+        if artist_id is not None:
+            return self._api.create_station(title, artist_id=artist_id)
 
     def get_station_tracks(self, station_id):
         return self._api.get_station_tracks(station_id)
