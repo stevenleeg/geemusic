@@ -1,10 +1,12 @@
-import random
+from builtins import object
+from fuzzywuzzy import fuzz
 from os import environ
-import threading, traceback
+import threading, random
 
 from gmusicapi import CallFailure, Mobileclient
 
-class GMusicWrapper:
+
+class GMusicWrapper(object):
     def __init__(self, username, password, logger=None):
         self._api = Mobileclient()
         self.logger = logger
@@ -35,7 +37,7 @@ class GMusicWrapper:
         if query_type == 'song':
             query_type = 'track'
 
-        return map(lambda x: x[query_type], results[hits_key])
+        return [x[query_type] for x in results[hits_key]]
 
     def is_indexing(self):
         return self.indexing_thread.is_alive()
@@ -63,7 +65,8 @@ class GMusicWrapper:
         if len(search) == 0:
             return False
 
-        return self._api.get_artist_info(search[0]['artistId'], max_top_tracks=100)
+        return self._api.get_artist_info(search[0]['artistId'],
+                                         max_top_tracks=100)
 
     def get_album(self, name, artist_name=None):
         if artist_name:
@@ -123,7 +126,7 @@ class GMusicWrapper:
         return search[0]
 
     def get_station(self, title, artist_id=None):
-        if artist_id != None:
+        if artist_id is not None:
             return self._api.create_station(title, artist_id=artist_id)
 
     def get_station_tracks(self, station_id):
@@ -133,7 +136,10 @@ class GMusicWrapper:
         return self._api.get_stream_url(song_id)
 
     def get_stream_url(self, song_id):
-        return "%s/stream/%s" % (environ['APP_URL'], song_id)
+        return "%s/alexa/stream/%s" % (environ['APP_URL'], song_id)
+
+    def get_thumbnail(self, artist_art):
+        return artist_art.replace("http://", "https://")
 
     def get_all_user_playlist_contents(self):
         return self._api.get_all_user_playlist_contents()
@@ -156,7 +162,6 @@ class GMusicWrapper:
             return (self.library[track['trackId']], track['trackId'])
         else:
             return (None, None)
-
 
     def get_artist_album_list(self, artist_name):
         search = self._search("artist", artist_name)
@@ -203,6 +208,32 @@ class GMusicWrapper:
 
         return speech_text
 
+    def closest_match(self, request_name, all_matches, minimum_score=70):
+        # Give each match a score based on its similarity to the requested
+        # name
+        request_name = request_name.lower().replace(" ", "")
+        scored_matches = []
+        for i, match in enumerate(all_matches):
+            name = match['name'].lower().replace(" ", "")
+            scored_matches.append({
+                'index': i,
+                'name': name,
+                'score': fuzz.ratio(name, request_name)
+            })
+
+        sorted_matches = sorted(scored_matches, key=lambda a: a['score'], reverse=True)
+        top_scoring = sorted_matches[0]
+        best_match = all_matches[top_scoring['index']]
+
+        # Make sure we have a decent match (the score is n where 0 <= n <= 100)
+        if top_scoring['score'] < minimum_score:
+            return None
+
+        return best_match
+
+    def get_genres(self, parent_genre_id=None):
+        return self._api.get_genres(parent_genre_id)
+
     def increment_song_playcount(self, song_id, plays=1, playtime=None):
         return self._api.increment_song_playcount(song_id, plays, playtime)
 
@@ -212,4 +243,5 @@ class GMusicWrapper:
 
     @classmethod
     def generate_api(cls, **kwargs):
-        return cls(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'], **kwargs)
+        return cls(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'],
+                   **kwargs)
