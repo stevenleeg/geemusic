@@ -1,9 +1,10 @@
-from flask import redirect
+from flask import Response, stream_with_context
+import requests
 from os import environ
 from geemusic import app, api
-from geemusic.utils.music import GMusicWrapper
 
-@app.route("/stream/<song_id>")
+
+@app.route("/alexa/stream/<song_id>")
 def redirect_to_stream(song_id):
     stream_url = api.get_google_stream_url(song_id)
     # Scrobble if Last.fm is setup
@@ -17,5 +18,5 @@ def redirect_to_stream(song_id):
         )
 
     app.logger.debug('URL is %s' % stream_url)
-
-    return redirect(stream_url, code=302)
+    req = requests.get(stream_url, stream=False)
+    return Response(stream_with_context(req.iter_content(chunk_size=1024 * 1024)), content_type=req.headers['content-type'])
