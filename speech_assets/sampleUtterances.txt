@@ -63,6 +63,17 @@ GeeMusicThumbsDownIntent Thumbs down this song
 GeeMusicThumbsDownIntent Thumbs down
 GeeMusicThumbsDownIntent Dislike this song
 
+GeeMusicListAllAlbumsIntent List all albums by {artist_name}
+
+GeeMusicListLatestAlbumIntent List the latest albums by {artist_name}
+GeeMusicListLatestAlbumIntent What are latest albums by {artist_name}
+
+GeeMusicPlayLatestAlbumIntent Play the latest album by {artist_name}
+
+GeeMusicPlayAlbumByArtistIntent Play an album by the band {artist_name}
+GeeMusicPlayAlbumByArtistIntent Play an album by artist {artist_name}
+GeeMusicPlayDifferentAlbumIntent Play a different album
+
 GeeMusicPlayLibraryIntent play songs from my library
 GeeMusicPlayLibraryIntent play tracks from my library
 GeeMusicPlayLibraryIntent play my library
