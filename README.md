@@ -47,20 +47,18 @@ List the latest albums by The Wonder Years
 List all albums by Pink Floyd (up to 25 listed)
 Play an album by Dryjacket
 Play a different album
+
+Skip to Scar Tissue by Red Hot Chili Peppers
+Jump to Knee Deep by Zac Brown Band
 ```
 
 Of course you can also say things like "Alexa stop," "Alexa next," etc.
 
 ### Roadmap
 ```
-Skip to the 3rd song in this album
-Play the third track off of In Rainbows
 Play a station for bedtime
 Play a station for partying
 ```
-- [ ] Play the latest album by Run The Jewels
-- [ ] Skip to the 3rd song in this album
-- [ ] Play the third track off of In Rainbows
 - [ ] Play a station for bedtime
 - [ ] Play a station for partying
 

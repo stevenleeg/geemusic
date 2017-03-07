@@ -198,18 +198,19 @@ def queue_song(song_name, artist_name):
                        large_image_url=thumbnail)
 
 
-
 @ask.intent("GeeMusicListAllAlbumsIntent")
 def list_album_by_artists(artist_name):
     api = GMusicWrapper.generate_api()
     artist_album_list = api.get_artist_album_list(artist_name=artist_name)
     return statement(artist_album_list)
 
+
 @ask.intent("GeeMusicListLatestAlbumIntent")
 def list_latest_album_by_artist(artist_name):
     api = GMusicWrapper.generate_api()
     latest_album = api.get_latest_artist_albums(artist_name=artist_name)
     return statement(latest_album)
+
 
 @ask.intent("GeeMusicPlayLatestAlbumIntent")
 def play_latest_album_by_artist(artist_name):
@@ -228,6 +229,7 @@ def play_latest_album_by_artist(artist_name):
     speech_text = "Playing album %s by %s" % (latest_album['name'], latest_album['albumArtist'])
     return audio(speech_text).play(stream_url)
 
+
 @ask.intent("GeeMusicPlayAlbumByArtistIntent")
 def play_album_by_artist(artist_name):
     api = GMusicWrapper.generate_api()
@@ -244,6 +246,7 @@ def play_album_by_artist(artist_name):
 
     speech_text = "Playing album %s by %s" % (album['name'], album['albumArtist'])
     return audio(speech_text).play(stream_url)
+
 
 @ask.intent("GeeMusicPlayDifferentAlbumIntent")
 def play_different_album():
@@ -267,6 +270,7 @@ def play_different_album():
 
     speech_text = "Playing album %s by %s" % (album['name'], album['albumArtist'])
     return audio(speech_text).play(stream_url)
+
 
 @ask.intent("GeeMusicPlayLibraryIntent")
 def play_library():
