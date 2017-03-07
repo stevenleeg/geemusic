@@ -197,7 +197,7 @@ def skip_to(song_name, artist_name):
 
     if artist_name is None:
         artist_name = ""
-    best_match = api.closest_match(song_name, queue.tracks, artist_name, 0)
+    best_match = api.closest_match(song_name, queue.tracks, artist_name, 30)
 
     if best_match is None:
         return statement("Sorry, I couldn't find a close enough match.")
