@@ -46,6 +46,13 @@
 			]
 		},
 		{
+            		"intent":"GeeMusicSkipTo",
+            		"slots": [
+                		{"name":"song_name", "type":"MUSICRECORDING"},
+                		{"name":"artist_name", "type":"MUSICGROUP"}
+            		]
+        	},
+		{
 			"intent": "GeeMusicPlayIFLRadioIntent"
 		},
 		{
