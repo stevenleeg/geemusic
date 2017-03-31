@@ -84,3 +84,12 @@ GeeMusicRestartTracksIntent Restart tracks
 GeeMusicRestartTracksIntent Restart songs
 GeeMusicRestartTracksIntent Restart the playlist
 GeeMusicRestartTracksIntent Reset the playlist to the beginning
+
+GeeMusicSkipTo Skip to {song_name}
+GeeMusicSkipTo Skip to {song_name} by {artist_name}
+GeeMusicSkipTo Go to {song_name}
+GeeMusicSkipTo Go to {song_name} by {artist_name}
+GeeMusicSkipTo Skip to the song {song_name}
+GeeMusicSkipTo Skip to the song {song_name} by {artist_name}
+GeeMusicSkipTo Jump to {song_name}
+GeeMusicSkipTo Jump to {song_name} by {artist_name}

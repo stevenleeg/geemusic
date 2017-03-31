@@ -1,7 +1,8 @@
 from builtins import object
 from fuzzywuzzy import fuzz
 from os import environ
-import threading, random
+import threading
+import random
 
 from gmusicapi import CallFailure, Mobileclient
 
@@ -208,13 +209,21 @@ class GMusicWrapper(object):
 
         return speech_text
 
-    def closest_match(self, request_name, all_matches, minimum_score=70):
+    def closest_match(self, request_name, all_matches, artist_name='', minimum_score=70):
         # Give each match a score based on its similarity to the requested
         # name
-        request_name = request_name.lower().replace(" ", "")
+        self.logger.debug("The artist name is " + str(artist_name))
+        request_name = request_name.lower() + artist_name.lower()
         scored_matches = []
         for i, match in enumerate(all_matches):
-            name = match['name'].lower().replace(" ", "")
+            try:
+                name = match['name'].lower()
+            except (KeyError, TypeError):
+                i = match
+                name = all_matches[match]['title'].lower()
+                if artist_name != "":
+                    name += all_matches[match]['artist'].lower()
+
             scored_matches.append({
                 'index': i,
                 'name': name,
@@ -223,6 +232,7 @@ class GMusicWrapper(object):
 
         sorted_matches = sorted(scored_matches, key=lambda a: a['score'], reverse=True)
         top_scoring = sorted_matches[0]
+        self.logger.debug("The top scoring match was: " + str(top_scoring))
         best_match = all_matches[top_scoring['index']]
 
         # Make sure we have a decent match (the score is n where 0 <= n <= 100)
