@@ -137,7 +137,7 @@ class GMusicWrapper(object):
         return self._api.get_stream_url(song_id)
 
     def get_stream_url(self, song_id):
-        return "%s/alexa/stream/%s" % (environ['APP_URL'], song_id)
+        return "%s/stream/%s" % (environ['APP_URL'], song_id)
 
     def get_thumbnail(self, artist_art):
         return artist_art.replace("http://", "https://")
