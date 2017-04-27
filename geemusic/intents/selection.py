@@ -44,14 +44,20 @@ def play_artist(artist_name):
 
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
-
-    thumbnail = api.get_thumbnail(artist['artistArtRef'])
+    try:
+        thumbnail = api.get_thumbnail(artist['artistArtRef'])
+    except:
+        thumbnail = ""
     speech_text = "Playing top tracks by %s" % artist['name']
-    return audio(speech_text).play(stream_url) \
-        .standard_card(title=speech_text,
-                       text='',
-                       small_image_url=thumbnail,
-                       large_image_url=thumbnail)
+    if (thumbnail==""):
+        return audio(speech_text).play(stream_url) \
+                                 .standard_card(title=speech_text,
+                                                text='',
+                                                small_image_url=thumbnail,
+                                                large_image_url=thumbnail)
+    else:
+        return audio(speech_text).play(stream_url) \
+         .simple_card(title=speech_text, content='')
 
 
 @ask.intent("GeeMusicPlayAlbumIntent")
@@ -70,15 +76,21 @@ def play_album(album_name, artist_name):
     # Start streaming the first track
     stream_url = api.get_stream_url(first_song_id)
 
-    thumbnail = api.get_thumbnail(album['albumArtRef'])
+    try:
+        thumbnail = api.get_thumbnail(album['albumArtRef'])
+    except:
+        thumbnail = ""
     speech_text = "Playing album %s by %s" % \
                   (album['name'], album['albumArtist'])
-    return audio(speech_text).play(stream_url) \
-        .standard_card(title=speech_text,
-                       text='',
-                       small_image_url=thumbnail,
-                       large_image_url=thumbnail)
-
+    if (thumbnail==""):
+        return audio(speech_text).play(stream_url) \
+                                 .standard_card(title=speech_text,
+                                                text='',
+                                                small_image_url=thumbnail,
+                                                large_image_url=thumbnail)
+    else:
+        return audio(speech_text).play(stream_url) \
+         .simple_card(title=speech_text, content='')
 
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
@@ -94,13 +106,20 @@ def play_song(song_name, artist_name):
     first_song_id = queue.reset([song])
     stream_url = api.get_stream_url(first_song_id)
 
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    try:
+        thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    except:
+        thumbnail = ""
     speech_text = "Playing %s by %s" % (song['title'], song['artist'])
-    return audio(speech_text).play(stream_url) \
-        .standard_card(title=speech_text,
-                       text='',
-                       small_image_url=thumbnail,
-                       large_image_url=thumbnail)
+    if (thumbnail==""):
+        return audio(speech_text).play(stream_url) \
+                                 .standard_card(title=speech_text,
+                                                text='',
+                                                small_image_url=thumbnail,
+                                                large_image_url=thumbnail)
+    else:
+        return audio(speech_text).play(stream_url) \
+         .simple_card(title=speech_text, content='')
 
 
 @ask.intent("GeeMusicPlayArtistRadioIntent")
@@ -121,13 +140,20 @@ def play_artist_radio(artist_name):
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
 
-    thumbnail = api.get_thumbnail(artist['artistArtRef'])
+    try:
+        thumbnail = api.get_thumbnail(artist['artistArtRef'])
+    except:
+        thumbnail = ""
     speech_text = "Playing %s radio" % artist['name']
-    return audio(speech_text).play(stream_url) \
-        .standard_card(title=speech_text,
-                       text='',
-                       small_image_url=thumbnail,
-                       large_image_url=thumbnail)
+    if (thumbnail==""):
+        return audio(speech_text).play(stream_url) \
+                                 .standard_card(title=speech_text,
+                                                text='',
+                                                small_image_url=thumbnail,
+                                                large_image_url=thumbnail)
+    else:
+        return audio(speech_text).play(stream_url) \
+         .simple_card(title=speech_text, content='')
 
 
 @ask.intent("GeeMusicPlayPlaylistIntent")
@@ -146,13 +172,20 @@ def play_playlist(playlist_name):
 
     # Get a streaming URL for the first song in the playlist
     stream_url = api.get_stream_url(first_song_id)
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    try:
+        thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    except:
+        thumbnail = ""
     speech_text = "Playing songs from %s" % (best_match['name'])
-    return audio(speech_text).play(stream_url) \
-        .standard_card(title=speech_text,
-                       text='',
-                       small_image_url=thumbnail,
-                       large_image_url=thumbnail)
+    if (thumbnail != ""):
+        return audio(speech_text).play(stream_url) \
+                                 .standard_card(title=speech_text,
+                                                text='',
+                                                small_image_url=thumbnail,
+                                                large_image_url=thumbnail)
+    else:
+        return audio(speech_text).play(stream_url) \
+         .simple_card(title=speech_text, content='')
 
 
 @ask.intent("GeeMusicPlayIFLRadioIntent")
@@ -165,12 +198,19 @@ def play_IFL_radio(artist_name):
     stream_url = api.get_stream_url(first_song_id)
 
     speech_text = "Playing music from your personalized station"
-    thumbnail = api.get_thumbnail("https://i.imgur.com/NYTSqHZ.png")
-    return audio(speech_text).play(stream_url) \
-        .standard_card(title="Playing I'm Feeling Lucky Radio",
-                       text='',
-                       small_image_url=thumbnail,
-                       large_image_url=thumbnail)
+    try:
+        thumbnail = api.get_thumbnail("https://i.imgur.com/NYTSqHZ.png")
+    except:
+        thumbnail = ""
+    if (thumbnail==""):
+        return audio(speech_text).play(stream_url) \
+                                 .standard_card(title=speech_text,
+                                                text='',
+                                                small_image_url=thumbnail,
+                                                large_image_url=thumbnail)
+    else:
+        return audio(speech_text).play(stream_url) \
+         .simple_card(title=speech_text, content='')
 
 
 @ask.intent("GeeMusicQueueSongIntent")
@@ -190,12 +230,19 @@ def queue_song(song_name, artist_name):
     queue.enqueue_track(song)
     stream_url = api.get_stream_url(song)
     card_text = "Queued %s by %s." % (song['title'], song['artist'])
-    thumbnail = api.get_thumbnail(song['albumArtRef'][0]['url'])
-    return audio().enqueue(stream_url) \
-        .standard_card(title=card_text,
-                       text='',
-                       small_image_url=thumbnail,
-                       large_image_url=thumbnail)
+    try:
+        thumbnail = api.get_thumbnail(song['albumArtRef'][0]['url'])
+    except:
+        thumbnail = ""
+    if (thumbnail==""):
+        return audio(speech_text).play(stream_url) \
+                                 .standard_card(title=speech_text,
+                                                text='',
+                                                small_image_url=thumbnail,
+                                                large_image_url=thumbnail)
+    else:
+        return audio(speech_text).play(stream_url) \
+         .simple_card(title=speech_text, content='')
 
 
 @ask.intent("GeeMusicListAllAlbumsIntent")
