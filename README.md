@@ -8,11 +8,14 @@ This project is still in its early phases and subject to a bit of change, howeve
 
 **This Skill is not made by nor endorsed by Google.** That being said, it is based off of the wonderful [gmusicapi](https://github.com/simon-weber/gmusicapi) by [Simon Weber](https://simon.codes), which has been around since 2012, so this should work as long as Google doesn't decide to lock down its APIs in a major way.
 
-**This Skill was developed to only work on English (US) language devices.**
-This is due to the Skill using features from the [Developer Preview of the ASK Built-in Library](https://developer.amazon.com/blogs/post/Tx2EWC85F6H422/Introducing-the-ASK-Built-in-Library-Developer-Preview-Pre-Built-Models-for-Hund). Which frustratingly has only been made available to developers in the US.
+### Supported Echo languages
 
-There is a workaround for UK users if they setup the Skill slightly differently, instructions are included below.
+**This Skill was developed to only work on devices (Echo, Dot, Tap etc) using English(US) on a Amazon US account**
+This is due to the Skill using features from the [Developer Preview of the ASK Built-in Library](https://developer.amazon.com/blogs/post/Tx2EWC85F6H422/Introducing-the-ASK-Built-in-Library-Developer-Preview-Pre-Built-Models-for-Hund). Which frustratingly has only been made available to developers in the US (edit: six months later and there is still no access for UK/DE).
 
+There is a workaround for English(UK) users (Amazon UK account) if they setup the Skill slightly differently, instructions are included below.
+
+This language issue only affects the Echo/Amazon side of things and not your Google Music account [#100](https://github.com/stevenleeg/geemusic/issues/100)
 
 ## Features
 What can this puppy do, you might ask? Here's a list of example phrases that you can try once you get GeeMusic up and running. Remember that each of these phrases needs to be prefixed with "Alexa, tell Geemusic to..." in order for Alexa to know that you're requesting music from GeeMusic, not the built-in music services. They're also fuzzy, so feel free to try slight variations of phrases to see if they'll work.
@@ -127,6 +130,10 @@ Going through the various sections
 | Audio Player | Yes |
 
 ### Interaction model
+
+This setup varies depending on the language settings your Echo device is using.
+
+See the note at the top about supported languages. 
 
 #### US English users
 
