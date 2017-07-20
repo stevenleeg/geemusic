@@ -45,29 +45,72 @@
 				{"name": "artist_name", "type": "MUSICGROUP"}
 			]
 		},
+        {
+            "intent":"GeeMusicListAllAlbumsIntent",
+            "slots": [
+                {"name": "artist_name", "type": "MUSICGROUP"}
+            ]
+        },
+        {
+            "intent":"GeeMusicListLatestAlbumIntent",
+            "slots": [
+                {"name": "artist_name", "type": "MUSICGROUP"}
+            ]
+        },
+        {
+            "intent":"GeeMusicPlayLatestAlbumIntent",
+            "slots": [
+                {"name": "artist_name", "type": "MUSICGROUP"}
+            ]
+        },
+        {
+            "intent":"GeeMusicPlayAlbumByArtistIntent",
+            "slots": [
+                {"name": "artist_name", "type": "MUSICGROUP"}
+            ]
+        },
 		{
-			"intent": "GeeMusicPlayIFLRadioIntent"
+			"intent":"GeeMusicSkipTo",
+			"slots": [
+				{"name":"song_name", "type":"MUSICRECORDING"},
+				{"name":"artist_name", "type":"MUSICGROUP"}
+			]
 		},
-		{
-			"intent": "GeeMusicPlayLibraryIntent"
-		},
-		{
-			"intent": "GeeMusicCurrentlyPlayingIntent"
-		},
-		{
-			"intent": "GeeMusicThumbsUpIntent"
-		},
-		{
-			"intent": "GeeMusicThumbsDownIntent"
-		},
-		{
-			"intent": "AMAZON.ShuffleOnIntent"
-		},
-		{
-			"intent": "AMAZON.ShuffleOffIntent"
-		},
-		{
-			"intent": "AMAZON.HelpIntent"
-		}
+        {
+            "intent": "GeeMusicPlayIFLRadioIntent"
+        },
+        {
+            "intent": "GeeMusicPlayLibraryIntent"
+        },
+        {
+            "intent": "GeeMusicCurrentlyPlayingIntent"
+        },
+        {
+            "intent": "GeeMusicRestartTracksIntent"
+        },
+        {
+            "intent": "GeeMusicThumbsUpIntent"
+        },
+        {
+            "intent": "GeeMusicThumbsDownIntent"
+        },
+        {
+            "intent": "GeeMusicPlayDifferentAlbumIntent"
+        },
+        {
+            "intent": "AMAZON.ShuffleOnIntent"
+        },
+        {
+            "intent": "AMAZON.ShuffleOffIntent"
+        },
+        {
+            "intent": "AMAZON.LoopOnIntent"
+        },
+        {
+            "intent": "AMAZON.LoopOffIntent"
+        },
+        {
+            "intent": "AMAZON.HelpIntent"
+        }
 	]
 }
