@@ -97,9 +97,9 @@
         {
             "intent": "GeeMusicPlayDifferentAlbumIntent"
         },
-				{
-						"intent": "GeeMusicListAllPlaylists"
-				},
+	{
+	    "intent": "GeeMusicListAllPlaylists"
+	},
         {
             "intent": "AMAZON.ShuffleOnIntent"
         },
