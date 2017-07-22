@@ -95,6 +95,9 @@
             "intent": "GeeMusicThumbsDownIntent"
         },
         {
+            "intent": "GeeMusicListAllPlaylists"
+        },
+        {
             "intent": "GeeMusicPlayDifferentAlbumIntent"
         },
         {
