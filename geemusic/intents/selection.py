@@ -39,8 +39,6 @@ def play_artist(artist_name):
 
     if artist is False:
         return statement("Sorry, I couldn't find that artist")
-
-    #app.logger.debug("play_artist(): Top tracks %s" % (artist['topTracks']))
     
     #api.get_artist found somthing from store api search 
     if 'topTracks' in artist:

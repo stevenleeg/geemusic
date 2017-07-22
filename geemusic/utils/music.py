@@ -85,7 +85,6 @@ class GMusicWrapper(object):
         if len(search) == 0:
             searchLib = self._search_library("artist", name)
             if searchLib is not None:
-                self.logger.debug(searchLib)
                 return searchLib
             return False
 
