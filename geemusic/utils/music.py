@@ -171,7 +171,9 @@ class GMusicWrapper(object):
     def get_thumbnail(self, artist_art):
         artistArtKey = 'artistArtRef'
         albumArtKey = 'albumArtRef'
-        if artistArtKey in artist_art:
+        if artist_art is None:
+            return self.default_thumbnail()  
+        elif artistArtKey in artist_art:
             artist_art = artist_art[artistArtKey] 
         elif albumArtKey in artist_art:
             artist_art = artist_art[albumArtKey] 
@@ -207,17 +209,16 @@ class GMusicWrapper(object):
         # key
         if 'track' in track:
             track = track['track']
-        
+
+        if 'trackId' in track:
+            return (self.library[track['trackId']], track['trackId'])
         if self.use_library_first():
         #Using free version track id first
             if 'id' in track:
                 return (track, track['id'])
         if 'storeId' in track:
             return (track, track['storeId'])
-        elif 'trackId' in track:
-            return (self.library[track['trackId']], track['trackId'])
-        else:
-            return (None, None)
+        return (None, None)
 
     def get_artist_album_list(self, artist_name):
         search = self._search("artist", artist_name)
@@ -290,7 +291,7 @@ class GMusicWrapper(object):
         self.logger.debug("The top scoring match was: " + str(top_scoring))
         best_match = all_matches[top_scoring['index']]
 
-        # Make sure we have a decent match (the score is n where 0 <= n <= 100)
+        # Make sure the score is at least the min score value
         if top_scoring['score'] < minimum_score:
             return None
 

@@ -157,7 +157,7 @@ def play_playlist(playlist_name):
     all_playlists = api.get_all_user_playlist_contents()
 
     # Get the closest match
-    best_match = api.closest_match(playlist_name, all_playlists)
+    best_match = api.closest_match(playlist_name, all_playlists, '', 30)
 
     if best_match is None:
         return statement("Sorry, I couldn't find that playlist in your library.")
