@@ -239,6 +239,13 @@ $ docker run -d -e GOOGLE_EMAIL=steve@stevegattuso.me -e GOOGLE_PASSWORD=[passwo
 
 At this point you're set up and ready.
 
+## Free Google Music Support
+If you do not subscribe to Google Music and would like to play your Uploaded Music Library, put in this enviornment variable (in your .env file):
+# Set to only use my uploaded library and ignore the store ids, use this if you are a free google user
+USE_LIBRARY_FIRST=true
+
+This will search your library instead of querying the api for store versions of songs.
+
 ## (Optional) Last.fm support
 *Only attempt this if you have significant technical expertise.* To scrobble all played tracks to [Last.fm](http://www.last.fm) follow the instructions at [this repo](https://github.com/huberf/lastfm-scrobbler) to get auth tokens.
 
