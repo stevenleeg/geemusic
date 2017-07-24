@@ -33,6 +33,14 @@
             ]
         },
         {
+            "intent": "GeeMusicPlaySongRadioIntent",
+            "slots": [
+                {"name":"song_name", "type":"AMAZON.MusicRecording"},
+                {"name":"artist_name", "type":"AMAZON.MusicGroup"},
+                {"name":"album_name", "type":"AMAZON.MusicAlbum"}
+            ]
+        },
+        {
             "intent": "GeeMusicPlayPlaylistIntent",
             "slots": [
                 {"name":"playlist_name", "type":"AMAZON.MusicPlaylist"}

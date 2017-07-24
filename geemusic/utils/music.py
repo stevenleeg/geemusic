@@ -113,21 +113,29 @@ class GMusicWrapper(object):
 
         return False
 
-
-
-    def get_song(self, name, artist_name=None):
+    def get_song(self, name, artist_name=None, album_name=None):
         if artist_name:
             name = "%s %s" % (artist_name, name)
+        elif album_name:
+            name = "%s %s" % (album_name, name)
 
         search = self._search("song", name)
 
         if len(search) == 0:
             return False
 
+        if album_name:
+            for i in range(0, len(search) - 1):
+                if(album_name in search[i]['album']):
+                    return search[i]
         return search[0]
 
-    def get_station(self, title, artist_id=None):
+    def get_station(self, title, track_id=None, artist_id=None, album_id=None):
         if artist_id is not None:
+            if album_id is not None:
+                if track_id is not None:
+                   return self._api.create_station(title, track_id=track_id)
+                return self._api.create_station(title, album_id=album_id)
             return self._api.create_station(title, artist_id=artist_id)
 
     def get_station_tracks(self, station_id):
