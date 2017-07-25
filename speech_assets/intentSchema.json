@@ -20,6 +20,9 @@
             ]
         },
         {
+            "intent": "GeeMusicPlaySimilarSongsRadioIntent"
+        },
+        {
             "intent": "GeeMusicPlaySongIntent",
             "slots": [
                 {"name":"song_name", "type":"AMAZON.MusicRecording"},

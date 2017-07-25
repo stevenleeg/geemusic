@@ -11,6 +11,10 @@ GeeMusicPlayAlbumIntent Play the album {album_name} by {artist_name}
 GeeMusicPlayAlbumIntent Play album {album_name} by {artist_name}
 GeeMusicPlayAlbumIntent Play songs from the album {album_name} by {artist_name}
 
+GeeMusicPlaySimilarSongsRadioIntent Play similar songs
+GeeMusicPlaySimilarSongsRadioIntent Play songs like this
+GeeMusicPlaySimilarSongsRadioIntent Start radio with this song
+
 GeeMusicPlaySongIntent Play the song {song_name}
 GeeMusicPlaySongIntent Play song {song_name}
 GeeMusicPlaySongIntent Play the song {song_name} by {artist_name}
