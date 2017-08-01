@@ -20,6 +20,9 @@
             ]
         },
         {
+            "intent": "GeeMusicPlaySimilarSongsRadioIntent"
+        },
+        {
             "intent": "GeeMusicPlaySongIntent",
             "slots": [
                 {"name":"song_name", "type":"AMAZON.MusicRecording"},
@@ -30,6 +33,14 @@
             "intent": "GeeMusicPlayArtistRadioIntent",
             "slots": [
                 {"name":"artist_name", "type":"AMAZON.MusicGroup"}
+            ]
+        },
+        {
+            "intent": "GeeMusicPlaySongRadioIntent",
+            "slots": [
+                {"name":"song_name", "type":"AMAZON.MusicRecording"},
+                {"name":"artist_name", "type":"AMAZON.MusicGroup"},
+                {"name":"album_name", "type":"AMAZON.MusicAlbum"}
             ]
         },
         {
