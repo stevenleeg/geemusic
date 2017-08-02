@@ -11,11 +11,11 @@ app = Flask(__name__)
 ask = Ask(app, '/alexa')
 
 if str(environ['DEBUG_MODE']) is True:
-    logLevel = logging.DEBUG
+    log_level = logging.DEBUG
 else:
-    logLevel = logging.INFO
+    log_level = logging.INFO
 
-logging.getLogger("flask_ask").setLevel(logLevel)
+logging.getLogger("flask_ask").setLevel(log_level)
 
 api = GMusicWrapper.generate_api(logger=app.logger)
 queue = MusicQueue(api)
