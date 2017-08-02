@@ -155,7 +155,7 @@ def currently_playing():
 
 
 @ask.intent('GeeMusicListAllPlaylists')
-def listAllPlaylists():
+def list_all_playlists():
     if api.is_indexing():
         return statement("Please wait for your tracks to finish indexing")
 
@@ -164,17 +164,17 @@ def listAllPlaylists():
     for i, match in enumerate(all_playlists):
 
         playlist_names.append(match['name'])
-        totalPlaylists = i + 1
+        total_playlists = i + 1
 
     # Adds "and" before the last playlist to sound more natural when speaking
     if len(playlist_names) >= 3:
-        andPlacement = len(playlist_names) - 1
-        playlist_names.insert(andPlacement, 'and')
+        and_placement = len(playlist_names) - 1
+        playlist_names.insert(and_placement, 'and')
 
     app.logger.debug(playlist_names)
     playlist_names = ', '.join(playlist_names)
 
-    speech_text = "You have %s playlists in your library. They are, %s." % (totalPlaylists, playlist_names)
+    speech_text = "You have %s playlists in your library. They are, %s." % (total_playlists, playlist_names)
     return statement(speech_text)
 
 
