@@ -189,6 +189,37 @@ def restart_tracks():
     return audio("Restarting tracks").play(stream_url)
 
 
+@ask.intent("GeeMusicSkipTo")
+# https://github.com/stevenleeg/geemusic/issues/28
+def skip_to(song_name, artist_name):
+    if song_name is None:
+        return statement("Please say a song name to use this feature")
+
+    if artist_name is None:
+        artist_name = ""
+    best_match = api.closest_match(song_name, queue.tracks, artist_name, 30)
+
+    if best_match is None:
+        return statement("Sorry, I couldn't find a close enough match.")
+
+    try:
+        song, song_id = api.extract_track_info(best_match)
+        index = queue.song_ids.index(song_id)
+    except:
+        return statement("Sorry, I couldn't find that song in the queue")
+
+    queue.current_index = index
+    stream_url = api.get_stream_url(queue.current())
+
+    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    speech_text = "Skipping to %s by %s" % (queue.current_track()['title'], queue.current_track()['artist'])
+    return audio(speech_text).play(stream_url) \
+        .standard_card(title=speech_text,
+                       text='',
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)
+
+
 @ask.session_ended
 def session_ended():
     return "", 200

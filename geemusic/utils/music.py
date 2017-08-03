@@ -1,7 +1,8 @@
 from builtins import object
 from fuzzywuzzy import fuzz
 from os import environ
-import threading, random
+import threading
+import random
 
 from gmusicapi import CallFailure, Mobileclient
 
@@ -112,21 +113,29 @@ class GMusicWrapper(object):
 
         return False
 
-
-
-    def get_song(self, name, artist_name=None):
+    def get_song(self, name, artist_name=None, album_name=None):
         if artist_name:
             name = "%s %s" % (artist_name, name)
+        elif album_name:
+            name = "%s %s" % (album_name, name)
 
         search = self._search("song", name)
 
         if len(search) == 0:
             return False
 
+        if album_name:
+            for i in range(0, len(search) - 1):
+                if(album_name in search[i]['album']):
+                    return search[i]
         return search[0]
 
-    def get_station(self, title, artist_id=None):
+    def get_station(self, title, track_id=None, artist_id=None, album_id=None):
         if artist_id is not None:
+            if album_id is not None:
+                if track_id is not None:
+                   return self._api.create_station(title, track_id=track_id)
+                return self._api.create_station(title, album_id=album_id)
             return self._api.create_station(title, artist_id=artist_id)
 
     def get_station_tracks(self, station_id):
@@ -208,13 +217,21 @@ class GMusicWrapper(object):
 
         return speech_text
 
-    def closest_match(self, request_name, all_matches, minimum_score=70):
+    def closest_match(self, request_name, all_matches, artist_name='', minimum_score=70):
         # Give each match a score based on its similarity to the requested
         # name
-        request_name = request_name.lower().replace(" ", "")
+        self.logger.debug("The artist name is " + str(artist_name))
+        request_name = request_name.lower() + artist_name.lower()
         scored_matches = []
         for i, match in enumerate(all_matches):
-            name = match['name'].lower().replace(" ", "")
+            try:
+                name = match['name'].lower()
+            except (KeyError, TypeError):
+                i = match
+                name = all_matches[match]['title'].lower()
+                if artist_name != "":
+                    name += all_matches[match]['artist'].lower()
+
             scored_matches.append({
                 'index': i,
                 'name': name,
@@ -223,6 +240,7 @@ class GMusicWrapper(object):
 
         sorted_matches = sorted(scored_matches, key=lambda a: a['score'], reverse=True)
         top_scoring = sorted_matches[0]
+        self.logger.debug("The top scoring match was: " + str(top_scoring))
         best_match = all_matches[top_scoring['index']]
 
         # Make sure we have a decent match (the score is n where 0 <= n <= 100)
