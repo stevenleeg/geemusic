@@ -106,3 +106,10 @@ GeeMusicSkipTo Skip to the song {song_name}
 GeeMusicSkipTo Skip to the song {song_name} by {artist_name}
 GeeMusicSkipTo Jump to {song_name}
 GeeMusicSkipTo Jump to {song_name} by {artist_name}
+
+GeeMusicListAllPlaylists what playlists do I have
+GeeMusicListAllPlaylists list my playlists
+GeeMusicListAllPlaylists to list my playlists
+GeeMusicListAllPlaylists tell me what playlists are in my library
+GeeMusicListAllPlaylists to list my playlists
+GeeMusicListAllPlaylists list playlists
