@@ -1,5 +1,6 @@
 from flask_ask import statement, audio
 from geemusic import ask, queue, app, api
+import json
 
 ##
 # Callbacks
@@ -153,6 +154,30 @@ def currently_playing():
                        large_image_url=thumbnail)
 
 
+@ask.intent('GeeMusicListAllPlaylists')
+def list_all_playlists():
+    if api.is_indexing():
+        return statement("Please wait for your tracks to finish indexing")
+
+    all_playlists = api.get_all_user_playlist_contents()
+    playlist_names = []
+    for i, match in enumerate(all_playlists):
+
+        playlist_names.append(match['name'])
+        total_playlists = i + 1
+
+    # Adds "and" before the last playlist to sound more natural when speaking
+    if len(playlist_names) >= 3:
+        and_placement = len(playlist_names) - 1
+        playlist_names.insert(and_placement, 'and')
+
+    app.logger.debug(playlist_names)
+    playlist_names = ', '.join(playlist_names)
+
+    speech_text = "You have %s playlists in your library. They are, %s." % (total_playlists, playlist_names)
+    return statement(speech_text)
+
+
 @ask.intent("GeeMusicThumbsUpIntent")
 def thumbs_up():
     if len(queue.song_ids) == 0:
@@ -197,7 +222,7 @@ def skip_to(song_name, artist_name):
 
     if artist_name is None:
         artist_name = ""
-    best_match = api.closest_match(song_name, queue.tracks, artist_name, 30)
+    best_match = api.closest_match(song_name, queue.tracks, artist_name, 0)
 
     if best_match is None:
         return statement("Sorry, I couldn't find a close enough match.")
