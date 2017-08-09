@@ -56,7 +56,7 @@ def play_artist(artist_name):
 
 @ask.intent("GeeMusicPlayAlbumIntent")
 def play_album(album_name, artist_name):
-    app.logger.debug("Fetching album %s by %s" % (album_name, artist_name))
+    app.logger.debug("Fetching album %s" % album_name)
 
     # Fetch the album
     album = api.get_album(album_name, artist_name)
@@ -73,6 +73,9 @@ def play_album(album_name, artist_name):
     thumbnail = api.get_thumbnail(album['albumArtRef'])
     speech_text = "Playing album %s by %s" % \
                   (album['name'], album['albumArtist'])
+
+    app.logger.debug(speech_text)
+
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
@@ -110,7 +113,6 @@ def play_similar_song_radio():
 
     if api.is_indexing():
         return statement("Please wait for your tracks to finish indexing")
-
 
     # Fetch the song
     song = queue.current_track()
@@ -154,7 +156,6 @@ def play_song_radio(song_name, artist_name, album_name):
         album = api.get_album(album_name)
     else:
         album = api.get_album(song['album'])
-
 
     if song is False:
         return statement("Sorry, I couldn't find that song")
