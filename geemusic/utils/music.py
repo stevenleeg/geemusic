@@ -126,7 +126,7 @@ class GMusicWrapper(object):
 
         if album_name:
             for i in range(0, len(search) - 1):
-                if(album_name in search[i]['album']):
+                if album_name in search[i]['album']:
                     return search[i]
         return search[0]
 
@@ -134,7 +134,7 @@ class GMusicWrapper(object):
         if artist_id is not None:
             if album_id is not None:
                 if track_id is not None:
-                   return self._api.create_station(title, track_id=track_id)
+                    return self._api.create_station(title, track_id=track_id)
                 return self._api.create_station(title, album_id=album_id)
             return self._api.create_station(title, artist_id=artist_id)
 
@@ -166,23 +166,23 @@ class GMusicWrapper(object):
             track = track['track']
 
         if 'storeId' in track:
-            return (track, track['storeId'])
+            return track, track['storeId']
         elif 'trackId' in track:
-            return (self.library[track['trackId']], track['trackId'])
+            return self.library[track['trackId']], track['trackId']
         else:
-            return (None, None)
+            return None, None
 
     def get_artist_album_list(self, artist_name):
         search = self._search("artist", artist_name)
         if len(search) == 0:
-            return False
+            return "Unable to find the artist you requested."
 
         artist_info = self._api.get_artist_info(search[0]['artistId'], include_albums=True)
         album_list_text = "Here's the album listing for %s: " % artist_name
 
         counter = 0
         for index, val in enumerate(artist_info['albums']):
-            if counter > 25:  # alexa will time out if the list takes too long to iterate through
+            if counter > 25:  # alexa will time out after 10 seconds if the list takes too long to iterate through
                 break
             album_info = self._api.get_album_info(album_id=artist_info['albums'][index]['albumId'], include_tracks=True)
             if len(album_info['tracks']) > 5:
@@ -257,7 +257,6 @@ class GMusicWrapper(object):
 
     def get_song_data(self, song_id):
         return self._api.get_track_info(song_id)
-
 
     @classmethod
     def generate_api(cls, **kwargs):
