@@ -213,6 +213,7 @@ We now need to configure it to work with your Google account. Type the following
 $ heroku config:set GOOGLE_EMAIL=steve@stevegattuso.me
 $ heroku config:set GOOGLE_PASSWORD=[password]
 $ heroku config:set APP_URL=https://[heroku_app_name].herokuapp.com
+$ heroku config:set DEBUG_MODE=False
 ```
 
 At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.` Note, that while using the free tier, you may experience timeout errors when you server has received no requests for over 30 minutes.
