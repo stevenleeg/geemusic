@@ -4,7 +4,7 @@ import os
 import time
 import datetime
 import requests
-import md5
+import hashlib
 
 from gmusicapi import CallFailure, Mobileclient
 
@@ -59,5 +59,7 @@ def hashRequest(obj, secretKey):
         string += obj[i]
     string += secretKey
     stringToHash = string.encode('utf8')
-    requestHash = md5.new(stringToHash).hexdigest()
+    m = hashlib.md5()
+    m.update(stringToHash)
+    requestHash = m.hexdigest()
     return requestHash
