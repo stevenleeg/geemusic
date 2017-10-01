@@ -242,6 +242,29 @@ $ docker run -d -e GOOGLE_EMAIL=steve@stevegattuso.me -e GOOGLE_PASSWORD=[passwo
 
 At this point you're set up and ready.
 
+## (Optional) Use Docker the lazy way
+
+This setup gets geemusic running withing five minutes with ssl and everything setup correctly.
+
+Get reverse proxy with lets encrypt support:
+
+```bash
+mkdir /certs/
+docker run -d -p 80:80 -p 443:443 --name nginx-proxy -v /certs:/etc/nginx/certs:ro -v /etc/nginx/vhost.d -v /usr/share/nginx/html -v /var/run/docker.sock:/tmp/docker.sock:ro --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true jwilder/nginx-proxy
+```
+
+```bash
+docker run -d -v /certs:/etc/nginx/certs:rw -v /var/run/docker.sock:/var/run/docker.sock:ro --volumes-from nginx-proxy jrcs/letsencrypt-nginx-proxy-companion
+```
+
+Launch geemusic:
+
+```bash
+docker run --restart=always -d -e "LETSENCRYPT_HOST=<your-url>" -e "LETSENCRYPT_EMAIL=<your-email>" -e "VIRTUAL_HOST=<your-url>" -e GOOGLE_EMAIL=<your-account> -e GOOGLE_PASSWORD=<your-password> -e APP_URL=https://<your-url> -e DEBUG_MODE=True -p 5000:5000 -e "VIRTUAL_PORT=5000" geemusic
+```
+
+And you are good to go.
+
 ## (Optional) Last.fm support
 *Only attempt this if you have significant technical expertise.* To scrobble all played tracks to [Last.fm](http://www.last.fm) follow the instructions at [this repo](https://github.com/huberf/lastfm-scrobbler) to get auth tokens.
 
