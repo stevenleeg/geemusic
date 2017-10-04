@@ -7,6 +7,12 @@
             "intent": "AMAZON.ResumeIntent"
         },
         {
+            "intent": "AMAZON.NextIntent"
+        },
+        {
+            "intent": "AMAZON.PreviousIntent"
+        },        
+        {
             "intent": "GeeMusicPlayArtistIntent",
             "slots": [
                 {"name":"artist_name", "type":"AMAZON.MusicGroup"}
