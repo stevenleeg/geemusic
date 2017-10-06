@@ -246,7 +246,7 @@ At this point you're set up and ready.
 ## (Optional) Last.fm support
 *Only attempt this if you have significant technical expertise.* To scrobble all played tracks to [Last.fm](http://www.last.fm) follow the instructions at [this repo](https://github.com/huberf/lastfm-scrobbler) to get auth tokens.
 
-Then add them as environement variables to your setup (e.g. `LAST_FM_API`, `LAST_FM_SECRET`, `LAST_FM_SESSION_KEY`). To finish enabling create a `LAST_FM_ACTIVE` environement variable and set it to `True`.
+Then add them as environement variables to your setup (e.g. `LAST_FM_API`, `LAST_FM_API_SECRET`, `LAST_FM_SESSION_KEY`). To finish enabling create a `LAST_FM_ACTIVE` environement variable and set it to `True`.
 
 ## Troubleshooting
 ### Pausing/resuming skips to the beginning of the song.
