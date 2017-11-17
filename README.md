@@ -8,8 +8,7 @@ This project is still in its early phases and subject to a bit of change, howeve
 
 **This Skill is not made by nor endorsed by Google.** That being said, it is based off of the wonderful [gmusicapi](https://github.com/simon-weber/gmusicapi) by [Simon Weber](https://simon.codes), which has been around since 2012, so this should work as long as Google doesn't decide to lock down its APIs in a major way.
 
-**The use of 2FA (2 factor authentification) and an app-specific password are highly recommended.** If you fail to use an app-specifc password and 2FA, Google may ask you to reset your password until you use one. There have been multiple reports of logins failed bacause of the failure to follow this step.
-(More info about app-specific passwords [here](https://support.google.com/accounts/answer/185833) and 2FA [here](https://support.google.com/accounts/answer/185839)).
+**The use of 2FA (2-Factory Authentication) and an app-specific password are highly recommended.** If you fail to use an app-specifc password and 2FA, Google may ask you to reset your password until you use one. There have been multiple reports of logins failed bacause of the failure to follow this step. More info about app-specific passwords [here](https://support.google.com/accounts/answer/185833) and 2FA [here](https://support.google.com/accounts/answer/185839)).
 
 ### Supported Echo languages
 
