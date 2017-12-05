@@ -104,6 +104,9 @@ APP_URL=https://alexa-geemusic.stevegattuso.me
 
 # Debug mode: Set to True or False
 DEBUG_MODE=False
+
+#Use your library of music instead of Google Play's (for free users)
+USE_LIBRARY_FIRST="True" or "False" (w/o quotes), depending on your Play Music Subscription status.
 ```
 
 I would *highly reccomend* that you enable 2-factor authentication on your Google account and only insert an application specific password into this file. Remember that it is stored in plaintext on your local computer! (TODO: fix this!)
