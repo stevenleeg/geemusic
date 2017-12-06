@@ -69,7 +69,7 @@ class MusicQueue(object):
         else:
             return self.song_ids[self.current_index]
 
-    def enqueue_track(self, song):
+    def enqueue_track(self, song, song_id):
         song_id = song['storeId']
         self.song_ids.append(song_id)
         self.tracks[song_id] = song

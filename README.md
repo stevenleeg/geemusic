@@ -104,6 +104,9 @@ APP_URL=https://alexa-geemusic.stevegattuso.me
 
 # Debug mode: Set to True or False
 DEBUG_MODE=False
+
+# Use your library of music instead of Google Play's (for free users)
+USE_LIBRARY_FIRST="True" or "False" (w/o quotes), depending on your Play Music Subscription status and whether or not you want to play the songs from your account's music library (the songs you have uploaded, for example).
 ```
 
 I would *highly reccomend* that you enable 2-factor authentication on your Google account and only insert an application specific password into this file. Remember that it is stored in plaintext on your local computer! (TODO: fix this!)
@@ -216,6 +219,7 @@ $ heroku config:set GOOGLE_EMAIL=steve@stevegattuso.me
 $ heroku config:set GOOGLE_PASSWORD=[password]
 $ heroku config:set APP_URL=https://[heroku_app_name].herokuapp.com
 $ heroku config:set DEBUG_MODE=False
+$ heroku config:set USE_LIBRARY_FIRST=True
 ```
 
 At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.` Note, that while using the free tier, you may experience timeout errors when you server has received no requests for over 30 minutes.

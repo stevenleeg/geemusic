@@ -1,3 +1,9 @@
+# General Python files
 *.pyc
 .venv
 .env
+
+#Visual Studio 2017 files
+*.sln
+*.pyproj
+.vs
