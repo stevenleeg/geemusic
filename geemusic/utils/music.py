@@ -23,7 +23,7 @@ class GMusicWrapper(object):
         )
         self.indexing_thread.start()
 
-    def populate_library(self):
+    def populate_library(self): #TODO: Use this as a function to refresh the library with Alexa via voice commands.
         # Populate our library
         self.library = {}
         self.indexing_thread = threading.Thread(

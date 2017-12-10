@@ -194,13 +194,21 @@ def play_artist_radio(artist_name):
 
     station_id = api.get_station("%s Radio" %
                                  artist['name'], artist_id=artist['artistId'])
+
+
+    if str(environ['USE_LIBRARY_FIRST']) is True:
+       _station_info = api.get_station_info(station_id, 999) # 999 is the maximium number of tracks to return. I will set it to a lower amount should this cause some lag...
+    
     # TODO: Handle track duplicates (this may be possible using session ids)
     tracks = api.get_station_tracks(station_id)
 
     first_song_id = queue.reset(tracks)
-
-    # Get a streaming URL for the top song
-    stream_url = api.get_stream_url(first_song_id)
+    if str(enviorn['USE_LIBRARY_FIRST']) is True:
+        # Get a radio station for free accounts
+        stream_url = api.get_station_track_stream_url(first_song_id, _station_info.get('wentryid', None), _station_info.get('sessionToken', None))
+    else: 
+        # Get a streaming URL for the top song
+        stream_url = api.get_stream_url(first_song_id)
 
     thumbnail = api.get_thumbnail(artist)
     speech_text = "Playing %s radio" % artist['name']
