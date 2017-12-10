@@ -193,7 +193,7 @@ def play_artist_radio(artist_name):
         return statement("Sorry, I couldn't find that artist")
 
     station_id = api.get_station("%s Radio" %
-                                 artist['name'], artist_id=artist['artistId'])
+                                 artist['name'][0], artist_id=artist['artistId'][0])
 
 
     if str(environ['USE_LIBRARY_FIRST']) is True:
