@@ -195,7 +195,7 @@ def play_artist_radio(artist_name):
 
 
     # station_id = api.get_station("%s Radio" % artist['name'], artist_id=artist['artistId'])
-    station_id = api.get_station("%s Radio" % artist[0], artist_id=artist['artistId'])
+    station_id = api.get_station("%s Radio" % artist[0], artist_id=artist[0])
 
     if str(environ['USE_LIBRARY_FIRST']) is True:
        _station_info = api.get_station_info(station_id, 999) # 999 is the maximium number of tracks to return. I will set it to a lower amount should this cause some lag...
