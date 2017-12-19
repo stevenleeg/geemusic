@@ -109,6 +109,9 @@
             "intent": "GeeMusicThumbsUpIntent"
         },
         {
+            "intent": "GeeMusicThumbsUpPlayIntent"
+        },
+        {
             "intent": "GeeMusicThumbsDownIntent"
         },
         {
