@@ -76,6 +76,10 @@ GeeMusicThumbsDownIntent Thumbs down this song
 GeeMusicThumbsDownIntent Thumbs down
 GeeMusicThumbsDownIntent Dislike this song
 
+GeeMusicThumbsUpPlayIntent Play promoted songs
+GeeMusicThumbsUpPlayIntent Play up voted songs
+GeeMusicThumbsUpPlayIntent Play thumbs up songs
+
 GeeMusicListAllAlbumsIntent List all albums by {artist_name}
 
 GeeMusicListLatestAlbumIntent List the latest albums by {artist_name}
