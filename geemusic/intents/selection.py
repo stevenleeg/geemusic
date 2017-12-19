@@ -82,6 +82,7 @@ def play_album(album_name, artist_name):
                        small_image_url=thumbnail,
                        large_image_url=thumbnail)
 
+
 @ask.intent("GeeMusicThumbsUpPlayIntent")
 def play_promoted_songs():
     app.logger.debug("Fetching songs that you have up voted.")
@@ -100,6 +101,7 @@ def play_promoted_songs():
                        text='',
                        small_image_url=thumbnail,
                        large_image_url=thumbnail)    
+
 
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
