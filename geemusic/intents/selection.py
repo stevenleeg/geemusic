@@ -82,6 +82,24 @@ def play_album(album_name, artist_name):
                        small_image_url=thumbnail,
                        large_image_url=thumbnail)
 
+@ask.intent("GeeMusicThumbsUpPlayIntent")
+def play_promoted_songs():
+    app.logger.debug("Fetching songs that you have up voted.")
+    
+    promoted_songs = api.get_promoted_songs()
+    if promoted_songs is False:
+        return statement("Sorry, I couldnt find any up voted songs.")
+    
+    first_song_id = queue.reset(promoted_songs[0])
+    stream_url = api.get_stream_url(first_song_id)
+    
+    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    speech_text = "Playing your upvoted songs."
+    return audio(speech_text).play(stream_url) \
+        .standard_card(title=speech_text,
+                       text='',
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)    
 
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
