@@ -91,7 +91,7 @@ def play_promoted_songs():
     if promoted_songs is False:
         return statement("Sorry, I couldnt find any up voted songs.")
     
-    first_song_id = queue.reset(promoted_songs['tracks'])
+    first_song_id = queue.reset(promoted_songs)
     stream_url = api.get_stream_url(first_song_id)
 
     thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
