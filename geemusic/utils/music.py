@@ -140,7 +140,7 @@ class GMusicWrapper(object):
                     return self._api.create_station(title, track_id=track_id)
                 return self._api.create_station(title, album_id=album_id)
             return self._api.create_station(title, artist_id=artist_id)
-  
+
     def get_station_tracks(self, station_id):
         return self._api.get_station_tracks(station_id)
 
