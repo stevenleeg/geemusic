@@ -93,7 +93,7 @@ def play_promoted_songs():
     
     first_song_id = queue.reset(promoted_songs['tracks'])
     stream_url = api.get_stream_url(first_song_id)
-    :
+
     thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
     speech_text = "Playing your upvoted songs."
     return audio(speech_text).play(stream_url) \
