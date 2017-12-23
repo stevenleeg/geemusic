@@ -133,7 +133,7 @@ def play_album(album_name, artist_name):
 
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
-    app.logger.debug("Fetching song %s by %s" % (song_name, artist_name))
+    app.logger.debug("Fetching song %s by %s" % (song_name, artist_name)) # TODO: fix the "song by artist" retrieval system
 
     # Fetch the song
     song = api.get_song(song_name, artist_name)
@@ -185,35 +185,35 @@ def play_song(song_name, artist_name):
 #                       large_image_url=thumbnail)
 
 @ask.intent("GeeMusicPlayArtistRadioIntent")
-def play_artist_radio(artist_name):
+def play_artist_radio(name):
     # Fetch the artist
-    artist = api.get_artist(artist_name)
+	artist = api.get_artist(name)
 
-    if artist is False:
-        return statement("Sorry, I couldn't find that artist")
+	if artist is False:
+		return statement("Sorry, I couldn't find that artist")
 
 
 
     # station_id = api.get_station("%s Radio" % artist['name'], artist_id=artist['artistId'])
-    station_id = api.get_station("%s Radio" % artist['name'], artist_id=artist['artistId'])
+	station_id = api.get_station("%s Radio" % artist['name'], artist_id=artist['artistId'])
 
-    if str(environ['USE_LIBRARY_FIRST']) is True:
-       _station_info = api.get_station_info(station_id, 999) # 999 is the maximium number of tracks to return. I will set it to a lower amount should this cause some lag...
+    #if str(environ['USE_LIBRARY_FIRST']) is True:
+       #_station_info = api.get_station_info(station_id, 999) # 999 is the maximium number of tracks to return. I will set it to a lower amount should this cause some lag...
     
     # TODO: Handle track duplicates (this may be possible using session ids)
-    tracks = api.get_station_tracks(station_id)
+	tracks = api.get_station_tracks(station_id)
 
-    first_song_id = queue.reset(tracks)
-    if str(enviorn['USE_LIBRARY_FIRST']) is True:
+	first_song_id = queue.reset(tracks)
+    #if str(enviorn['USE_LIBRARY_FIRST']) is True:
         # Get a radio station for free accounts
-        stream_url = api.get_station_track_stream_url(first_song_id, _station_info.get('wentryid', None), _station_info.get('sessionToken', None))
-    else: 
+        #stream_url = api.get_station_track_stream_url(first_song_id, _station_info.get('wentryid', None), _station_info.get('sessionToken', None))
+    #else: 
         # Get a streaming URL for the top song
-        stream_url = api.get_stream_url(first_song_id)
+	stream_url = api.get_stream_url(first_song_id)
 
-    thumbnail = api.get_thumbnail(artist)
-    speech_text = "Playing %s radio" % artist['name']
-    return audio(speech_text).play(stream_url) \
+	thumbnail = api.get_thumbnail(artist)
+	speech_text = "Playing %s radio" % artist['name']
+	return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
                        small_image_url=thumbnail,

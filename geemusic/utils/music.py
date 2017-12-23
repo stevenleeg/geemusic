@@ -149,11 +149,11 @@ class GMusicWrapper(object):
 
         return False
 
-    def get_song(self, name, artist_name=None, album_name=None):
+    def get_song(self, song_name, artist_name=None, album_name=None):
         if artist_name:
-            name = "%s %s" % (artist_name, name)
+            name = "%s %s" % (artist_name, song_name)
         elif album_name:
-            name = "%s %s" % (album_name, name)
+            name = "%s %s" % (album_name, song_name)
 
         self.logger.debug("get_song() : name: %s" % (name))
 
