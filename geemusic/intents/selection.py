@@ -187,8 +187,8 @@ def play_song(song_name, artist_name):
 @ask.intent("GeeMusicPlayArtistRadioIntent")
 def play_artist_radio(name):
 	if str(environ['USE_LIBRARY_FIRST']) is True:
-		return statement("Sorry, artist radios aren't currently supported at the moment.")
-	
+		# return statement("Sorry, artist radios aren't currently supported at the moment.")
+		return None
     # Fetch the artist
 	artist = api.get_artist(name)
 
