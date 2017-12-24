@@ -380,6 +380,3 @@ def play_library():
 
     speech_text = "Playing music from your library"
     return audio(speech_text).play(stream_url)
-
-
-play_artist_radio("Mormon Tabernacle Choir")
