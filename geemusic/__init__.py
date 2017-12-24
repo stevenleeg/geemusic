@@ -10,7 +10,7 @@ from .utils.music_queue import MusicQueue
 app = Flask(__name__)
 ask = Ask(app, '/alexa')
 
-if str(environ['DEBUG_MODE']) is 'True':
+if str(environ['DEBUG_MODE']) is True:
 	log_level = logging.DEBUG
 	app.debug = True
 else:
