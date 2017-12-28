@@ -245,6 +245,62 @@ $ docker run -d -e GOOGLE_EMAIL=steve@stevegattuso.me -e GOOGLE_PASSWORD=[passwo
 
 At this point you're set up and ready.
 
+## (Optional) Use AWS Lambda
+
+Setting this up for AWS Lambda actually isn't that bad. You need to create an AWS account first though, [AWS](https://aws.amazon.com), and click "Create an AWS Account" and follow the instructions to create the account.
+
+We are also going to need a few more dependencies, so while you are in your virtualenv type the following: `pip install zappa awscli` and then `pip freeze > requirements.txt` if you wish to overwrite the base requirements.txt file with the proper requirements to deploy to AWS.
+
+### Deployment Part 1. Setting up IAM Account.
+Once your account is created:
+  1. Open the [IAM Console](https://console.aws.amazon.com/iam/home#/home), and sign in with your account that you should have by now.
+  2. In the navigation pane, choose Users.
+  3. Click the `Add User` button.
+  4. Name the user zappa-deploy, choose `Programmatic` access for the Access type, then click the `Next: Permissions` button.
+  5. On the permissions page, click the Attach existing policies directly option.
+  6. A large list of policies is diplayed. Locate the AdministratorAccess policy, click its checkbox, then click the `Next: Review` button.
+  7. Finally, review the information that displays with the steps above and then click the `Create User button`.
+  8. Once the user is created, its `Access key ID` and `Secret access key` are displayed (click the `Show` link next to the Secret access to show it).
+  9. Keep that tab open or copy them to a safe place because we will need those later. Treat those keys like you would your password because they have the same privileges.
+
+### Deployment Part 2. Configure IAM credentials locally.
+Type `aws configure` to begin the local setup.
+
+Follow the propts to input your `Access key ID` and `Secret access key`.
+For Default region name, type: `us-east-1` (it must be a valid region)
+For Default output format, accept the default by hitting the Enter key.
+
+The `aws configure` command installs credentials and config in an `.aws` directory inside your home directoy. Zappa knows how to use this figuration to create the AWS resources it needs to deploy Flask-Ask skills to Lambda.
+
+We're now almost ready to deploy our skill with Zappa.
+
+### Deployment Part 3. Deploy the skill with Zappa.
+In the terminal, create a zappa configuration file by typing:
+`zappa init`
+
+Once the initialization is complete, deploy the skill by typing:
+`zappa deploy dev`
+
+Open the `zappa_settings.json` and add a comma the the last key-value pair in the `dev` json object and add the following to add the environment variables to your lambda:
+
+```
+"dev": {
+  "app_function":geemusic.app",
+  ...,
+  "environment_variables": {
+    "APP_URL":"the-app-url-that-was-echoed-from-zappa-deploy-dev",
+    "DEBUG_MODE":"False",
+    "GOOGLE_EMAIL":"youremail.example.com",
+    "GOOGLE_PASSWORD":"your-password"
+  }
+}
+```
+
+Then type the following:
+`zappa update dev`
+
+Finally you have to update your Alexa Skills Configuration tab to use this URL + /alexa. For example it looks like this, `https://[random-stuff].execute-api.us-east-1.amazonaws.com/dev/alexa`. Everything else for the configuration is the same as the `heroku` setup. It still uses a wildcard SSL cert and doesn't use Account linking or list read/writes.
+
 ## (Optional) Last.fm support
 *Only attempt this if you have significant technical expertise.* To scrobble all played tracks to [Last.fm](http://www.last.fm) follow the instructions at [this repo](https://github.com/huberf/lastfm-scrobbler) to get auth tokens.
 
