@@ -266,11 +266,11 @@ Once your account is created:
 ### Deployment Part 2. Configure IAM credentials locally.
 Type `aws configure` to begin the local setup.
 
-Follow the propts to input your `Access key ID` and `Secret access key`.
+Follow the prompts to input your `Access key ID` and `Secret access key`.
 For Default region name, type: `us-east-1` (it must be a valid region)
 For Default output format, accept the default by hitting the Enter key.
 
-The `aws configure` command installs credentials and config in an `.aws` directory inside your home directoy. Zappa knows how to use this figuration to create the AWS resources it needs to deploy Flask-Ask skills to Lambda.
+The `aws configure` command installs credentials and config in an `.aws` directory inside your home directoy. Zappa knows how to use this configuration to create the AWS resources it needs to deploy Flask-Ask skills to Lambda.
 
 We're now almost ready to deploy our skill with Zappa.
 
