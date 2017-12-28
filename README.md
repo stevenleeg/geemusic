@@ -285,7 +285,7 @@ Open the `zappa_settings.json` and add a comma the the last key-value pair in th
 
 ```
 "dev": {
-  "app_function":geemusic.app",
+  "app_function":"geemusic.app",
   ...,
   "environment_variables": {
     "APP_URL":"the-app-url-that-was-echoed-from-zappa-deploy-dev",
