@@ -11,9 +11,11 @@ app = Flask(__name__)
 ask = Ask(app, '/alexa')
 
 if str(environ['DEBUG_MODE']) is True:
-    log_level = logging.DEBUG
+	log_level = logging.DEBUG
+	app.debug = True
 else:
-    log_level = logging.INFO
+	log_level = logging.INFO
+	app.debug = False 
 
 logging.getLogger("flask_ask").setLevel(log_level)
 
