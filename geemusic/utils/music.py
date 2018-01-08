@@ -91,10 +91,10 @@ class GMusicWrapper(object):
         search = self._search("artist", name)
 
         if len(search) == 0:
-            searchLib = self._search_library("artist", name)
-            if searchLib is not None:
-                self.logger.debug(searchLib)
-                return searchLib
+            search_lib = self._search_library("artist", name)
+            if search_lib is not None:
+                self.logger.debug(search_lib)
+                return search_lib
             return False
 
         return self._api.get_artist_info(search[0]['artistId'],
@@ -108,10 +108,10 @@ class GMusicWrapper(object):
         search = self._search("album", name)
 
         if len(search) == 0:
-            searchLib = self._search_library("album", name)
-            if searchLib is not None:
-                self.logger.debug(searchLib)
-                return searchLib
+            search_lib = self._search_library("album", name)
+            if search_lib is not None:
+                self.logger.debug(search_lib)
+                return search_lib
             return False
 
         return self._api.get_album_info(search[0]['albumId'])
@@ -162,9 +162,9 @@ class GMusicWrapper(object):
         self.logger.debug("result length: %d" % len(search))
 
         if len(search) == 0:
-            searchLib = self._search_library_for_first("title", name)
-            if searchLib is not None:
-                return searchLib
+            search_lib = self._search_library_for_first("title", name)
+            if search_lib is not None:
+                return search_lib
             return False
 
         if album_name:
