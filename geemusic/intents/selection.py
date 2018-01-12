@@ -44,20 +44,20 @@ def play_artist(artist_name):
     if 'topTracks' in artist:
         # Setup the queue
         first_song_id = queue.reset(artist['topTracks'])
-        name_key = 'name'
+        name = 'name'
         track_type = 'top'
     else: #api.get_artist searched the uploaded library instead, artist is a list
         shuffle(artist)
         first_song_id = queue.reset(artist)
         artist = artist[0]
-        name_key = 'artist'
+        name = 'artist'
         track_type = 'random library'
 
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
 
     thumbnail = api.get_thumbnail(artist)
-    speech_text = "Playing %s tracks by %s" % (track_type, artist[name_key])
+    speech_text = "Playing %s tracks by %s" % (track_type, artist[name])
 
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
@@ -76,11 +76,11 @@ def play_album(album_name, artist_name):
     if type(album) is dict:
         # Setup the queue
         first_song_id = queue.reset(sorted(album, key=lambda record: record['trackNumber']))
-        album_name_key = 'name'
+        name = 'name'
     else: #library list
         first_song_id = queue.reset(sorted(album, key=lambda record: record['trackNumber']))
         album = album[0]
-        album_name_key = 'album'
+        name = 'album'
 
     if album is False:
         return statement("Sorry, I couldn't find that album")
@@ -90,7 +90,7 @@ def play_album(album_name, artist_name):
 
     thumbnail = api.get_thumbnail(album['albumArtRef'])
     speech_text = "Playing album %s by %s" % \
-                  (album[album_name_key], album['albumArtist'])
+                  (album[name], album['albumArtist'])
 
     app.logger.debug(speech_text)
 
