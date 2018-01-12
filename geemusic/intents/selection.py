@@ -44,20 +44,20 @@ def play_artist(artist_name):
     if 'topTracks' in artist:
         # Setup the queue
         first_song_id = queue.reset(artist['topTracks'])
-        nameKey = 'name'
-        trackType = 'top'
+        name_key = 'name'
+        track_type = 'top'
     else: #api.get_artist searched the uploaded library instead, artist is a list
         shuffle(artist)
         first_song_id = queue.reset(artist)
         artist = artist[0]
-        nameKey = 'artist'
-        trackType = 'random library'
+        name_key = 'artist'
+        track_type = 'random library'
 
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
 
     thumbnail = api.get_thumbnail(artist)
-    speech_text = "Playing %s tracks by %s" % (trackType, artist[nameKey])
+    speech_text = "Playing %s tracks by %s" % (track_type, artist[name_key])
 
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
