@@ -1,4 +1,5 @@
 from geemusic import app
+import geemusic
 import os
 
 if __name__ == '__main__':
