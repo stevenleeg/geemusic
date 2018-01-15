@@ -145,7 +145,7 @@ def currently_playing():
     if track is None:
         return audio("Nothing is playing right now")
 
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    thumbnail = api.get_thumbnail(queue.current_track())
     return statement("The current track is %s by %s" % (track['title'],
                                                         track['artist'])) \
         .standard_card(title="The current track is",
@@ -236,7 +236,7 @@ def skip_to(song_name, artist_name):
     queue.current_index = index
     stream_url = api.get_stream_url(queue.current())
 
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    thumbnail = api.get_thumbnail(queue.current_track())
     speech_text = "Skipping to %s by %s" % (queue.current_track()['title'], queue.current_track()['artist'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
