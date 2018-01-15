@@ -47,6 +47,10 @@ Dislike this song
 Thumbs-up this song
 Thumbs-down this song
 
+Play promoted songs
+Play up voted songs
+Play thumbs up songs
+
 Play the latest album by Run The Jewels
 List the latest albums by The Wonder Years
 List all albums by Pink Floyd (up to 25 listed)
