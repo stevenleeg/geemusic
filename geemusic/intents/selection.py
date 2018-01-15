@@ -46,7 +46,8 @@ def play_artist(artist_name):
         first_song_id = queue.reset(artist['topTracks'])
         name = 'name'
         track_type = 'top'
-    else: #api.get_artist searched the uploaded library instead, artist is a list
+    else: 
+        #api.get_artist searched the uploaded library instead, artist is a list
         shuffle(artist)
         first_song_id = queue.reset(artist)
         artist = artist[0]
@@ -60,10 +61,10 @@ def play_artist(artist_name):
     speech_text = "Playing %s tracks by %s" % (track_type, artist[name])
 
     return audio(speech_text).play(stream_url) \
-        .standard_card(title=speech_text,
-                        text='',
-                      small_image_url=thumbnail,
-                      large_image_url=thumbnail)
+          .standard_card(title=speech_text,
+                         text='',
+                         small_image_url=thumbnail,
+                         large_image_url=thumbnail)
 
 @ask.intent("GeeMusicPlayAlbumIntent")
 def play_album(album_name, artist_name):
@@ -77,7 +78,8 @@ def play_album(album_name, artist_name):
         # Setup the queue
         first_song_id = queue.reset(sorted(album, key=lambda record: record['trackNumber']))
         name = 'name'
-    else: #library list
+    else: 
+        #library list
         first_song_id = queue.reset(sorted(album, key=lambda record: record['trackNumber']))
         album = album[0]
         name = 'album'
@@ -142,6 +144,42 @@ def play_song(song_name, artist_name):
                        text='',
                        small_image_url=thumbnail,
                        large_image_url=thumbnail)
+
+
+@ask.intent("GeeMusicPlaySimilarSongsRadioIntent")
+def play_similar_song_radio():
+    if len(queue.song_ids) == 0:
+        return statement("Please play a song to start radio")
+
+    if api.is_indexing():
+        return statement("Please wait for your tracks to finish indexing")
+
+    # Fetch the song
+    song = queue.current_track()
+    artist = api.get_artist(song['artist'])
+    album = api.get_album(song['album'])
+
+    app.logger.debug("Fetching songs like %s by %s from %s" % (song['title'], artist['name'], album['name']))
+
+    if song is False:
+        return statement("Sorry, I couldn't find that song")
+
+    station_id = api.get_station("%s Radio" % song['title'], 
+                                 track_id=song['storeId'], 
+                                 artist_id=artist['artistId'], 
+                                 album_id=album['albumId'])
+    tracks = api.get_station_tracks(station_id)
+
+    first_song_id = queue.reset(tracks)
+    stream_url = api.get_stream_url(first_song_id)
+
+    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    speech_text = "Playing %s by %s" % (song['title'], song['artist'])
+    return audio(speech_text).play(stream_url) \
+           .standard_card(title=speech_text,
+                          text='',
+                          small_image_url=thumbnail,
+                          large_image_url=thumbnail)
 
 
 @ask.intent("GeeMusicPlayArtistRadioIntent")

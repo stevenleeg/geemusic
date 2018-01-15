@@ -14,11 +14,11 @@ def lambda_handler(event, _context):
     return ask.run_aws_lambda(event)
 
 if str(environ['DEBUG_MODE']) is True:
-	log_level = logging.DEBUG
-	app.debug = True
+    log_level = logging.DEBUG
+    app.debug = True
 else:
-	log_level = logging.INFO
-	app.debug = False 
+    log_level = logging.INFO
+    app.debug = False 
 
 logging.getLogger("flask_ask").setLevel(log_level)
 

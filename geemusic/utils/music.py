@@ -23,14 +23,6 @@ class GMusicWrapper(object):
         )
         self.indexing_thread.start()
 
-    def populate_library(self): #TODO: Use this as a function to refresh the library with Alexa via voice commands.
-        # Populate our library
-        self.library = {}
-        self.indexing_thread = threading.Thread(
-            target=self.index_library
-        )
-        self.indexing_thread.start()
-
     def _search(self, query_type, query):
         try:
             results = self._api.search(query)
@@ -194,7 +186,6 @@ class GMusicWrapper(object):
         return "%s/alexa/stream/%s" % (environ['APP_URL'], song_id)
 
     def get_thumbnail(self, artist_art):
-        # return artist_art.replace("http://", "https://") //OLD
         artistArtKey = 'artistArtRef'
         albumArtKey = 'albumArtRef'
         if artist_art is None:
