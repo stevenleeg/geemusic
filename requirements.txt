@@ -1,10 +1,7 @@
 aniso8601==1.2.1
 appdirs==1.4.3
-asn1crypto==0.24.0
 beautifulsoup4==4.6.0
-certifi==2018.1.18
 cffi==1.10.0
-chardet==3.0.4
 click==6.7
 cryptography==2.0.3
 decorator==4.1.2
@@ -13,7 +10,6 @@ Flask==0.12.2
 Flask-Ask==0.9.6
 funcsigs==1.0.2
 future==0.16.0
-fuzzywuzzy==0.15.1
 gmusicapi==10.1.2
 gpsoauth==0.4.1
 httplib2==0.10.3
@@ -27,7 +23,6 @@ mock==2.0.0
 mutagen==1.38
 oauth2client==4.1.2
 pbr==3.1.1
-pkg-resources==0.0.0
 proboscis==1.2.6.0
 protobuf==3.3.0
 pyasn1==0.3.2
@@ -36,11 +31,11 @@ pycparser==2.18
 pycryptodomex==3.4.6
 pyOpenSSL==17.2.0
 python-dateutil==2.6.1
-python-Levenshtein==0.12.0
 PyYAML==3.12
 requests==2.18.3
 rsa==3.4.2
 six==1.10.0
-urllib3==1.22
 validictory==1.1.1
 Werkzeug==0.12.2
+fuzzywuzzy==0.15.1
+python-Levenshtein==0.12.0
