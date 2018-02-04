@@ -48,6 +48,7 @@ WORDS = {
                 "speech_text"  : "Skipping to %s by %s" },
             },
         "de" : "implement_same_as_above_for_extending_to_german"
+        "jp" : "implement_same_as_above_for_extending_to_japanese"
 }
 
 
