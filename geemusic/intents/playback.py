@@ -47,7 +47,7 @@ WORDS = {
                 "no_song_match": "Sorry, I couldn't find that song in the queue.",
                 "speech_text"  : "Skipping to %s by %s" },
             },
-        "de" : "implement_same_as_above_for_extending_to_german"
+        "de" : "implement_same_as_above_for_extending_to_german",
         "jp" : "implement_same_as_above_for_extending_to_japanese"
 }
 
