@@ -19,10 +19,10 @@ if str(environ['DEBUG_MODE']) is True:
 else:
     log_level = logging.INFO
 
-if str(environ['LANGUAGE']) is False:
-    language = "en"
-else:
+if 'LANGUAGE' in environ.keys():
     language = environ['LANGUAGE']
+else:
+    language = "en"
 
 logging.getLogger("flask_ask").setLevel(log_level)
 
