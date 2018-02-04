@@ -25,28 +25,28 @@ WORDS = {
                 "indexing"      : "Please wait for your tracks to finish indexing.",
                 "none"          : "Nothing is playing right now",
                 "success_title" : "The current track is",
-                "success_text"  : "%s by %s" }
+                "success_text"  : "%s by %s" },
             "list_all_playlists" : {
                 "indexing"           : "Please wait for your tracks to finish indexing.",
                 "playlist_separator" : "and",
-                "speech_text"        : "You have %s playlists in your library. They are, %s." }
+                "speech_text"        : "You have %s playlists in your library. They are, %s." },
             "thumbs_up"          : {
                 "no_song" : "Please play a song to vote.",
                 "indexing": "Please wait for your tracks to finish indexing.",
-                "speech_text": "Upvoted" }
+                "speech_text": "Upvoted" },
             "thumbs_down"        : {
                 "no_song"     : "Please play a song to vote.",
                 "indexing"    : "Please wait for your tracks to finish indexing.",
-                "speech_text" : "Downvoted." }
+                "speech_text" : "Downvoted." },
             "restart_tracks" : {
                 "no_song"    : "You must first play tracks to restart them",
-                "speech_text": "Restarting tracks." }
+                "speech_text": "Restarting tracks." },
             "skip_to" : {
                 "no_song"      : "Please say a song name to use this feature.",
                 "no_match"     : "Sorry, I couldn't find a close enough match.",
                 "no_song_match": "Sorry, I couldn't find that song in the queue.",
-                "speech_text"  : "Skipping to %s by %s" }
-            }
+                "speech_text"  : "Skipping to %s by %s" },
+            },
         "de" : "implement_same_as_above_for_extending_to_german"
 }
 
