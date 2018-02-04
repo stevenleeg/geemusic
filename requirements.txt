@@ -10,7 +10,7 @@ cryptography==2.0.3
 decorator==4.1.2
 enum34==1.1.6
 Flask==0.12.2
--e git://github.com/johnwheeler/flask-ask@792546e6fd73a17e7e6d59dd123772d0448f4ace#egg=Flask_Ask
+Flask-Ask==0.9.6
 funcsigs==1.0.2
 future==0.16.0
 fuzzywuzzy==0.15.1
