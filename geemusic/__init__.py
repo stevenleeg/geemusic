@@ -10,10 +10,19 @@ from .utils.music_queue import MusicQueue
 app = Flask(__name__)
 ask = Ask(app, '/alexa')
 
+def lambda_handler(event, _context):
+    return ask.run_aws_lambda(event)
+
+
 if str(environ['DEBUG_MODE']) is True:
     log_level = logging.DEBUG
 else:
     log_level = logging.INFO
+
+if str(environ['LANGUAGE']) is False:
+    language = "en"
+else:
+    language = environ['LANGUAGE']
 
 logging.getLogger("flask_ask").setLevel(log_level)
 

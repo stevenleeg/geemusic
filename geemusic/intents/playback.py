@@ -2,6 +2,55 @@ from flask_ask import statement, audio
 from geemusic import ask, queue, app, api
 import json
 
+
+##
+# Constants
+#
+
+WORDS = {
+        "en": {
+            "stopped"            : "Stopped at %s",
+            "started"            : "Started at %s",
+            "start_over"         : "There are no songs on the queue",
+            "resume"             : "Resuming",
+            "pause"              : "Pausing",
+            "stop"               : "Stopping",
+            "next_song"          : "There are no more songs on the queue",
+            "prev_song"          : "You can't go back any further in the queue.",
+            "shuffle_on"         : "There are no songs to shuffle.",
+            "shuffle_off"        : "There are no songs to unshuffle.",
+            "loop_on"            : "There are no songs in the queue.",
+            "loop_off"           : "There are no songs in the queue.",
+            "currently_playing"  : {
+                "indexing"      : "Please wait for your tracks to finish indexing.",
+                "none"          : "Nothing is playing right now",
+                "success_title" : "The current track is",
+                "success_text"  : "%s by %s" }
+            "list_all_playlists" : {
+                "indexing"           : "Please wait for your tracks to finish indexing.",
+                "playlist_separator" : "and",
+                "speech_text"        : "You have %s playlists in your library. They are, %s." }
+            "thumbs_up"          : {
+                "no_song" : "Please play a song to vote.",
+                "indexing": "Please wait for your tracks to finish indexing.",
+                "speech_text": "Upvoted" }
+            "thumbs_down"        : {
+                "no_song"     : "Please play a song to vote.",
+                "indexing"    : "Please wait for your tracks to finish indexing.",
+                "speech_text" : "Downvoted." }
+            "restart_tracks" : {
+                "no_song"    : "You must first play tracks to restart them",
+                "speech_text": "Restarting tracks." }
+            "skip_to" : {
+                "no_song"      : "Please say a song name to use this feature.",
+                "no_match"     : "Sorry, I couldn't find a close enough match.",
+                "no_song_match": "Sorry, I couldn't find that song in the queue.",
+                "speech_text"  : "Skipping to %s by %s" }
+            }
+        "de" : "implement_same_as_above_for_extending_to_german"
+}
+
+
 ##
 # Callbacks
 #
@@ -10,7 +59,7 @@ import json
 @ask.on_playback_stopped()
 def stopped(offset):
     queue.paused_offset = offset
-    app.logger.debug("Stopped at %s" % offset)
+    app.logger.debug(WORDS[lang]["stopped"] % offset)
 
 
 @ask.on_playback_started()
