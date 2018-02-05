@@ -13,7 +13,7 @@ WORDS = {
             "started"            : "Started at %s",
             "start_over"         : "There are no songs on the queue",
             "resume"             : "Resuming",
-            "pause"              : "Pausing",
+            "pause"              : "Pawnee",
             "stop"               : "Stopping",
             "next_song"          : "There are no more songs on the queue",
             "prev_song"          : "You can't go back any further in the queue.",
@@ -106,7 +106,7 @@ def resume():
 
 @ask.intent('AMAZON.PauseIntent')
 def pause():
-    return audio('Pausing').stop()
+    return audio(WORDS[lang]["pause"]).stop()
 
 
 @ask.intent('AMAZON.StopIntent')
