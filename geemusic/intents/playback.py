@@ -1,5 +1,5 @@
 from flask_ask import statement, audio
-from geemusic import ask, queue, app, api
+from geemusic import ask, queue, app, api, language
 import json
 
 
@@ -60,7 +60,7 @@ WORDS = {
 @ask.on_playback_stopped()
 def stopped(offset):
     queue.paused_offset = offset
-    app.logger.debug(WORDS[app.language]["stopped"] % offset)
+    app.logger.debug(WORDS[language]["stopped"] % offset)
 
 
 @ask.on_playback_started()
@@ -101,12 +101,12 @@ def start_over():
 
 @ask.intent('AMAZON.ResumeIntent')
 def resume():
-    return audio(WORDS[app.language]["resume"]).resume()
+    return audio(WORDS[language]["resume"]).resume()
 
 
 @ask.intent('AMAZON.PauseIntent')
 def pause():
-    return audio(WORDS[app.language]["pause"]).stop()
+    return audio(WORDS[language]["pause"]).stop()
 
 
 @ask.intent('AMAZON.StopIntent')
