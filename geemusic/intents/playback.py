@@ -13,7 +13,7 @@ WORDS = {
             "started"            : "Started at %s",
             "start_over"         : "There are no songs on the queue",
             "resume"             : "Resuming",
-            "pause"              : "Pawnee",
+            "pause"              : "Pausing",
             "stop"               : "Stopping",
             "next_song"          : "There are no more songs on the queue",
             "prev_song"          : "You can't go back any further in the queue.",
@@ -65,7 +65,7 @@ def stopped(offset):
 
 @ask.on_playback_started()
 def started(offset):
-    app.logger.debug("Started at %s" % offset)
+    app.logger.debug(WORDS[language]["started"] % offset)
 
 
 @ask.on_playback_nearly_finished()
@@ -92,7 +92,7 @@ def start_over():
     next_id = queue.current()
 
     if next_id is None:
-        return audio("There are no songs on the queue")
+        return audio(WORDS[language]["start_over"])
     else:
         stream_url = api.get_stream_url(next_id)
 
@@ -120,7 +120,7 @@ def next_song():
     next_id = queue.next()
 
     if next_id is None:
-        return audio("There are no more songs on the queue")
+        return audio(WORDS[language]["next_song"])
     else:
         stream_url = api.get_stream_url(next_id)
 
@@ -132,7 +132,7 @@ def prev_song():
     prev_id = queue.prev()
 
     if prev_id is None:
-        return audio("You can't go back any farther in the queue")
+        return audio(WORDS[language]["prev_song"])
     else:
         stream_url = api.get_stream_url(prev_id)
 
@@ -142,7 +142,7 @@ def prev_song():
 @ask.intent("AMAZON.ShuffleOnIntent")
 def shuffle_on():
     if len(queue.song_ids) == 0:
-        return statement("There are no songs to shuffle.")
+        return statement(WORDS[language]["shuffle_on"])
 
     # Start streaming the first track in the new shuffled list
     first_song_id = queue.shuffle_mode(True)
@@ -154,7 +154,7 @@ def shuffle_on():
 @ask.intent("AMAZON.ShuffleOffIntent")
 def shuffle_off():
     if len(queue.song_ids) == 0:
-        return statement("There are no songs to unshuffle.")
+        return statement(WORDS[language]["shuffle_off"])
 
     # Start streaming the first track in the new shuffled list
     first_song_id = queue.shuffle_mode(False)
@@ -166,7 +166,7 @@ def shuffle_off():
 @ask.intent('AMAZON.LoopOnIntent')
 def loop_on():
     if len(queue.song_ids) == 0:
-        return statement("There are no songs in the queue.")
+        return statement(WORDS[language]["loop_on"])
 
     first_song_id = queue.loop_mode(True)
 
@@ -177,7 +177,7 @@ def loop_on():
 @ask.intent('AMAZON.LoopOffIntent')
 def loop_off():
     if len(queue.song_ids) == 0:
-        return statement("There are no songs in the queue.")
+        return statement(WORDS[language]["loop_off"])
 
     first_song_id = queue.loop_mode(False)
     stream_url = api.get_stream_url(first_song_id)
@@ -188,26 +188,27 @@ def loop_off():
 @ask.intent('GeeMusicCurrentlyPlayingIntent')
 def currently_playing():
     if api.is_indexing():
-        return statement("Please wait for your tracks to finish indexing")
+        return statement(WORDS[language]["currently_playing"]["indexing"])
 
     track = queue.current_track()
 
     if track is None:
-        return audio("Nothing is playing right now")
+        return audio(WORDS[language]["currently_playing"]["none"])
 
     thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
-    return statement("The current track is %s by %s" % (track['title'],
-                                                        track['artist'])) \
-        .standard_card(title="The current track is",
-                       text='%s by %s' % (track['title'], track['artist']),
-                       small_image_url=thumbnail,
-                       large_image_url=thumbnail)
+    return statement(WORDS[language]["currently_playing"]["success_title"] \
+                           + WORDS[language]["currently_playing"]["success_text"] \
+                           % (track['title'], track['artist'])) \
+                           .standard_card(title=WORDS[language]["currently_playing"]["success_title"],
+                     text=WORDS[language]["currently_playing"]["success_text"] % (track['title'], track['artist']),
+                     small_image_url=thumbnail,
+                     large_image_url=thumbnail)
 
 
 @ask.intent('GeeMusicListAllPlaylists')
 def list_all_playlists():
     if api.is_indexing():
-        return statement("Please wait for your tracks to finish indexing")
+        return statement(WORDS[language]["list_all_playlists"]["indexing"])
 
     all_playlists = api.get_all_user_playlist_contents()
     playlist_names = []
@@ -219,75 +220,75 @@ def list_all_playlists():
     # Adds "and" before the last playlist to sound more natural when speaking
     if len(playlist_names) >= 3:
         and_placement = len(playlist_names) - 1
-        playlist_names.insert(and_placement, 'and')
+        playlist_names.insert(and_placement, WORDS[language]["list_all_playlists"]["playlist_separator"])
 
     app.logger.debug(playlist_names)
     playlist_names = ', '.join(playlist_names)
 
-    speech_text = "You have %s playlists in your library. They are, %s." % (total_playlists, playlist_names)
+    speech_text = WORDS[language]["list_all_playlists"]["speech_text"] % (total_playlists, playlist_names)
     return statement(speech_text)
 
 
 @ask.intent("GeeMusicThumbsUpIntent")
 def thumbs_up():
     if len(queue.song_ids) == 0:
-        return statement("Please play a song to vote")
+        return statement(WORDS[language]["thumbs_up"]["no_song"])
 
     if api.is_indexing():
-        return statement("Please wait for your tracks to finish indexing")
+        return statement(WORDS[language]["thumbs_up"]["indexing"])
 
     api.rate_song(queue.current_track(), '5')
 
-    return statement("Upvoted")
+    return statement(WORDS[language]["thumbs_up"]["speech_text"])
 
 
 @ask.intent("GeeMusicThumbsDownIntent")
 def thumbs_down():
     if len(queue.song_ids) == 0:
-        return statement("Please play a song to vote")
+        return statement(WORDS[language]["thumbs_down"]["no_song"])
 
     if api.is_indexing():
-        return statement("Please wait for your tracks to finish indexing")
+        return statement(WORDS[language]["thumbs_down"]["indexing"])
 
     api.rate_song(queue.current_track(), '1')
 
-    return statement("Downvoted")
+    return statement(WORDS[language]["thumbs_down"]["speech_text"])
 
 
 @ask.intent("GeeMusicRestartTracksIntent")
 def restart_tracks():
     if len(queue.song_ids) == 0:
-        return statement("You must first play tracks to restart them")
+        return statement(WORDS[language]["restart_tracks"]["no_song"])
 
     queue.current_index = 0
     stream_url = api.get_stream_url(queue.current())
-    return audio("Restarting tracks").play(stream_url)
+    return audio(WORDS[language]["restart_tracks"]["speech_text"]).play(stream_url)
 
 
 @ask.intent("GeeMusicSkipTo")
 # https://github.com/stevenleeg/geemusic/issues/28
 def skip_to(song_name, artist_name):
     if song_name is None:
-        return statement("Please say a song name to use this feature")
+        return statement(WORDS[language]["skip_to"]["no_song"])
 
     if artist_name is None:
         artist_name = ""
     best_match = api.closest_match(song_name, queue.tracks, artist_name, 0)
 
     if best_match is None:
-        return statement("Sorry, I couldn't find a close enough match.")
+        return statement(WORDS[language]["skip_to"]["no_match"])
 
     try:
         song, song_id = api.extract_track_info(best_match)
         index = queue.song_ids.index(song_id)
     except:
-        return statement("Sorry, I couldn't find that song in the queue")
+        return statement(WORDS[language]["skip_to"]["no_song_match"])
 
     queue.current_index = index
     stream_url = api.get_stream_url(queue.current())
 
     thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
-    speech_text = "Skipping to %s by %s" % (queue.current_track()['title'], queue.current_track()['artist'])
+    speech_text = WORDS[language]["skip_to"]["speech_text"] % (queue.current_track()['title'], queue.current_track()['artist'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
