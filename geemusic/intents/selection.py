@@ -1,6 +1,83 @@
 from flask_ask import statement, audio, question
-from geemusic import ask, queue, app, api
+from geemusic import ask, queue, app, api, language
 from geemusic.utils.music import GMusicWrapper
+
+WORDS = {
+    "en" : {
+        "login"                      : {
+            "text"   : "Welcome to Gee Music. \
+                        Try asking me to play a song or start a playlist",
+            "prompt" : "For example say, play music by A Tribe Called Quest",
+            "title"  : "Welcome to GeeMusic!",
+            "content": "Try asking me to play a song" },
+        "help"                       : {
+            "text"  : ''' Here are some things you can say:
+                          Play songs by Radiohead,
+                          Play the album Science For Girls,
+                          Play the song Fitter Happier,
+                          Start a radio station for artist Weezer,
+                          Start playlist Dance Party,
+                          and play some music,
+                          Of course you can also say skip, previous, shuffle, and more
+                          of alexa's music commands or, stop, if you're done.
+                          ''',
+            "prompt": "For example say, play music by A Tribe Called Quest" },
+        "play_artist"                : {
+            "none"       : "Sorry, I couldn't find that artist.",
+            "speech_text": "Playing top tracks by %s" },
+        "play_album"                 : {
+            "debug"      : "Fetching album %s",
+            "no_album"   : "Sorry, I couldn't find that album",
+            "speech_text": "Playing album %s by %s" },
+        "play_promoted_songs"        : {
+            "debug"      : "Fetching songs that you have up voted.",
+            "no_songs"   : "Sorry, I couldn't find any up voted songs.",
+            "speech_text": "Playing your up voted songs." },
+        "play_song"                  : {
+            "debug"      : "Fetching song %s by %s",
+            "no_song"    : "Sorry, I couldn't find that song.",
+            "speech_text": "Playing %s by %s." },
+        "play_similar_song_radio"    : {
+            "no_song"        : "Please play a song to start radio.",
+            "index"          : "Please wait for your tracks to finish indexing.",
+            "debug"          : "Fetching songs like %s by %s from %s",
+            "no_similar_song": "Sorry, I couldn't find that song.",
+            "speech_text"    : "Playing %s by %s" },
+        "play_song_radio"            : {
+            "debug"          : "Fetching song %s by %s from %s.",
+            "no_song"        : "Sorry, I couldn't find that song.",
+            "speech_text"    : "Playing %s by %s." },
+        "play_artist_radio"          : {
+            "no_artist"      : "Sorry, I couldn't find that artist.",
+            "speech_text"    : "Playing %s radio." },
+        "play_playlist"              : {
+            "no_match"       : "Sorry, I couldn't find that playlist in your library.",
+            "speech_text"    : "Playing songs from %s." },
+        "play_IFL_radio"             : {
+            "speech_text" : "Playing music from your personalized station.",
+            "speech_title": "Playing I'm Feeling Lucky Radio." },
+        "queue_song"                 : {
+            "debug"       : "Queuing song %s by %s.",
+            "no_song"     : "You must first play a song.",
+            "no_match"    : "Sorry, I couldn't find that song.",
+            "queued"      : "Queued %s by %s." },
+        "play_latest_album_by_artist": {
+            "no_album"    : "Sorry, I couldn't find any albums.",
+            "speech_text" : "Playing album %s by %s." },
+        "play_album_by_artist"       : {
+            "no_album"    : "Sorry, I couldn't find any albums.",
+            "speech_text" : "Playing album %s by %s." },
+        "play_different_album"       : {
+            "no_track"    : "Sorry, there's no album playing currently.",
+            "no_album"    : "Sorry, I couldn't find any albums.",
+            "speech_text" : "Playing album %s by %s." },
+        "play_library"               : {
+            "index"      : "Please wait for your tracks to finish indexing.",
+            "speech_text": "Playing music from your library." }
+    },
+    "jp" : "fill_out_translations_in_same_scaffolding_as_en",
+    "de" : "fill_out_translations_in_same_scaffolding_as_en"
+}
 
 
 @ask.launch
