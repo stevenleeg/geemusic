@@ -47,7 +47,45 @@ WORDS = {
                 "no_song_match": "Sorry, I couldn't find that song in the queue.",
                 "speech_text"  : "Skipping to %s by %s" },
             },
-        "de" : "implement_same_as_above_for_extending_to_german",
+        "de" : {
+            "stopped"            : "Gestoppt bei %s",
+            "started"            : "Gestartet bei %s",
+            "start_over"         : "Es sind keine Lieder in der Warteschlange.",
+            "resume"             : "Setze fort",
+            "pause"              : "Pausiere",
+            "stop"               : "Stoppe",
+            "next_song"          : "Es sind keine weiteren Lieder in der Warteschlange.",
+            "prev_song"          : "Du kannst nicht weiter als bis zum Beginn der Warteschlange zurück gehen.",
+            "shuffle_on"         : "Es sind keine Lieder zur Zufallswiedergabe ausgewählt.",
+            "shuffle_off"        : "Es sind keine Lieder zur normalen Wiedergabe ausgewählt.",
+            "loop_on"            : "Es sind keine Lieder in der Warteschlange.",
+            "loop_off"           : "Es sind keine Lieder in der Warteschlange.",
+            "currently_playing"  : {
+                "indexing"      : "Bitte warte, bis das Einlesen deiner Lieder beendet ist.",
+                "none"          : "Die Wiedergabe ist gerade gestoppt.",
+                "success_title" : "Das aktuelle Lied ist",
+                "success_text"  : "%s von %s" },
+            "list_all_playlists" : {
+                "indexing"           : "Bitte warte, bis das Einlesen deiner Lieder beendet ist.",
+                "playlist_separator" : "und",
+                "speech_text"        : "Du hast %s Playlists in deiner Sammlung. Sie sind, %s." },
+            "thumbs_up"          : {
+                "no_song" : "Bitte spiele ein Lied ab, um es zu bewerten.",
+                "indexing": "Bitte warte, bis das Einlesen deiner Lieder beendet ist.",
+                "speech_text": "Du magst dieses Lied." },
+            "thumbs_down"        : {
+                "no_song"     : "Bitte spiele ein Lied ab, um es zu bewerten.",
+                "indexing"    : "Bitte warte, bis das Einlesen deiner Lieder beendet ist.",
+                "speech_text" : "Du magst dieses Lied nicht." },
+            "restart_tracks" : {
+                "no_song"    : "Du musst erst ein Lied abspielen, um es von vorne zu starten.",
+                "speech_text": "Starte Lied neu" },
+            "skip_to" : {
+                "no_song"      : "Bitte sag einen Liednamen, um diese Funktion zu nutzen.",
+                "no_match"     : "Entschuldigung, ich habe kein passendes Lied gefunden.",
+                "no_song_match": "Entschuldigung, ich habe dieses Lied in der Warteschlange nicht gefunden.",
+                "speech_text"  : "Wechsle zu %s von %s" },
+            },
         "jp" : "implement_same_as_above_for_extending_to_japanese"
 }
 

@@ -76,7 +76,78 @@ WORDS = {
             "speech_text": "Playing music from your library." }
     },
     "jp" : "fill_out_translations_in_same_scaffolding_as_en",
-    "de" : "fill_out_translations_in_same_scaffolding_as_en"
+    "de" : {
+        "login"                      : {
+            "text"   : "Willkommen bei Gee Music. \
+                        Frage mich nach einem Lied, oder einer Playlist.",
+            "prompt" : "Zum Beispiel, starte Music von A Tribe called Quest",
+            "title"  : "Willkommen bei Gee Music!",
+            "content": "Frage mich nach einem Lied." },
+        "help"                       : {
+            "text"  : ''' Hier sind einige Dinge, die du sagen kannst:
+                          Spiele Lieder von Radiohead,
+                          Spiel das Album Science For Girls,
+                          Spiele das Lied Fitter Happier,
+                          Starte ein Radio für die Band Weezer,
+                          Starte die Playlist Dance Party,
+                          und spiele etwas Musik,
+                          Natürlich kannst du auch Lieder überspringen, stoppen und mehr von
+                          Alexas Musikbefehlen sagen, oder stoppen, wenn du fertig bist.
+                          ''',
+            "prompt": "Sag zum Beispiel, Spiele Musik von A Tribe called Quest" },
+        "play_artist"                : {
+            "none"       : "Entschuldigung, ich konnte diesen Künstler nicht finden.",
+            "speech_text": "Spiele Top Lieder von %s" },
+        "play_album"                 : {
+            "debug"      : "Hole Album %s",
+            "no_album"   : "Entschuldigung, ich konnte dieses Album nicht finden",
+            "speech_text": "Spiele Album %s von %s" },
+        "play_promoted_songs"        : {
+            "debug"      : "Hole Lieder, die du gut findest",
+            "no_songs"   : "Entschuldigung, ich konnte keine Lieder, die du gut findest, finden",
+            "speech_text": "Spiele Lieder, die du gut findest" },
+        "play_song"                  : {
+            "debug"      : "Hole Lied %s von %s",
+            "no_song"    : "Entschuldigung, ich konnte dieses Lied nicht finden",
+            "speech_text": "Spiele %s von %s." },
+        "play_similar_song_radio"    : {
+            "no_song"        : "Bitte spiele ein Lied ab, um ein dazu passendes Radio zu starten.",
+            "index"          : "Bitte warte, bis das Einlesen deiner Sammlung beendet ist.",
+            "debug"          : "Spiele Lieder wie %s von %s vom Album %s",
+            "no_similar_song": "Entschuldigung, ich konnte keine passenden Lieder finden",
+            "speech_text"    : "Spiele %s von %s" },
+        "play_song_radio"            : {
+            "debug"          : "Hole Lied %s von %s von %s.",
+            "no_song"        : "Entschuldigung, ich konnte dieses Lied nicht finden.",
+            "speech_text"    : "Spiele %s von %s." },
+        "play_artist_radio"          : {
+            "no_artist"      : "Entschuldigung, ich konnte diesen Künstler nicht finden.",
+            "speech_text"    : "Spiele %s Radio." },
+        "play_playlist"              : {
+            "no_match"       : "Entschuldigung, ich konnte diese Playlist in deiner Sammlung nicht finden.",
+            "speech_text"    : "Spiele Lieder von %s." },
+        "play_IFL_radio"             : {
+            "speech_text" : "Spiele Musik aus deiner persönlichen Radiostation.",
+            "speech_title": "Spiele Zufallsradio." },
+        "queue_song"                 : {
+            "debug"       : "Reihe Lied %s von %s ein.",
+            "no_song"     : "Du musst erst ein Lied abspielen, um es einzureihen.",
+            "no_match"    : "Entschuldigung, ich konnte dieses Lied nicht finden.",
+            "queued"      : "Ich habe %s von %s eingereiht." },
+        "play_latest_album_by_artist": {
+            "no_album"    : "Entschuldigung, ich konnte kein Album finden.",
+            "speech_text" : "Spiele Album %s von %s." },
+        "play_album_by_artist"       : {
+            "no_album"    : "Entschuldigung, ich konnte keine Alben finden.",
+            "speech_text" : "Spiele Album %s von %s." },
+        "play_different_album"       : {
+            "no_track"    : "Entschuldigung, aber es wird gerade kein Album wiedergegeben.",
+            "no_album"    : "Entschuldigung, ich konnte keine Alben finden",
+            "speech_text" : "Spiele Album %s von %s." },
+        "play_library"               : {
+            "index"      : "Bitte warte, bis das Einlesen deiner Sammlung beendet ist.",
+            "speech_text": "Spiele Musik aus deiner Sammlung." }
+    }
 }
 
 

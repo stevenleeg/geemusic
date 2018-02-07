@@ -1,0 +1,114 @@
+GeeMusicPlayArtistIntent Spiele {artist_name}
+GeeMusicPlayArtistIntent Spiele Lieder von {artist_name}
+GeeMusicPlayArtistIntent Spiele top Songs von {artist_name}
+GeeMusicPlayArtistIntent Spiele Hits von {artist_name}
+GeeMusicPlayArtistIntent Spiele Musik von {artist_name}
+GeeMusicPlayArtistIntent Spiele {artist_name} ab
+
+GeeMusicPlayAlbumIntent Spiele das Album {album_name}
+GeeMusicPlayAlbumIntent Spiele Album {album_name}
+GeeMusicPlayAlbumIntent Spiele das Album {album_name} von {artist_name}
+GeeMusicPlayAlbumIntent Spiele Album {album_name} von {artist_name}
+GeeMusicPlayAlbumIntent Spiele Lieder vom Album {album_name} von {artist_name}
+GeeMusicPlayAlbumIntent Spiele Lieder aus dem Album {album_name} von {artist_name}
+
+GeeMusicPlaySimilarSongsRadioIntent Spiele ähnliche Lieder
+GeeMusicPlaySimilarSongsRadioIntent Spiele Lieder die so sind wie dieses
+GeeMusicPlaySimilarSongsRadioIntent Starte ein Radio mit diesem Lied
+
+GeeMusicPlaySongIntent Spiele das Lied {song_name}
+GeeMusicPlaySongIntent Spiele Lied {song_name}
+GeeMusicPlaySongIntent Spiele das Lied {song_name} von {artist_name}
+GeeMusicPlaySongIntent Spiele Lied {song_name} von {artist_name}
+GeeMusicPlaySongIntent Spiele {song_name}
+GeeMusicPlaySongIntent Spiele {song_name} von {artist_name}
+
+GeeMusicPlayArtistRadioIntent Starte ein Radio für {artist_name}
+GeeMusicPlayArtistRadioIntent Erstelle einen Radiosender für {artist_name}
+GeeMusicPlayArtistRadioIntent Starte {artist_name} Radio
+GeeMusicPlayArtistRadioIntent Starte Künstlerradio für {artist_name}
+GeeMusicPlayArtistRadioIntent Spiele Künstler so ähnlich wie {artist_name}
+
+GeeMusicPlaySongRadioIntent Starte ein Radio für das Lied {song_name}
+GeeMusicPlaySongRadioIntent Erstelle eine Radiostation für das Lied {song_name}
+GeeMusicPlaySongRadioIntent Starte {song_name} Liederradio
+GeeMusicPlaySongRadioIntent Starte Radio für {song_name}
+GeeMusicPlaySongRadioIntent Spiele Lieder wie {song_name}
+GeeMusicPlaySongRadioIntent Spiele Lieder wie {song_name} aus dem Album {album_name}
+GeeMusicPlaySongRadioIntent Spiele Lieder wie {song_name} von {artist_name}
+GeeMusicPlaySongRadioIntent Spiele Lieder wie {song_name} von {artist_name} aus dem Album {album_name}
+
+GeeMusicPlayPlaylistIntent Spiele Playlist {playlist_name}
+GeeMusicPlayPlaylistIntent Playlist {playlist_name}
+GeeMusicPlayPlaylistIntent Starte Playlist {playlist_name}
+GeeMusicPlayPlaylistIntent Spiele Lieder von meiner {playlist_name} Playlist
+GeeMusicPlayPlaylistIntent Starte Playlist {playlist_name}
+
+GeeMusicPlayIFLRadioIntent Spiele Musik
+GeeMusicPlayIFLRadioIntent Spiele Zufallsradio
+GeeMusicPlayIFLRadioIntent Spiele zufällige Musik
+GeeMusicPlayIFLRadioIntent Spiele meine Musik
+
+GeeMusicCurrentlyPlayingIntent Wie heißt das Lied
+GeeMusicCurrentlyPlayingIntent Welches Lied läuft gerade
+GeeMusicCurrentlyPlayingIntent Was läuft gerade
+GeeMusicCurrentlyPlayingIntent Was für ein Lied ist das
+GeeMusicCurrentlyPlayingIntent Was ist der Name dieses Liedes
+GeeMusicCurrentlyPlayingIntent Was ist das
+
+GeeMusicQueueSongIntent Spiel den Song {song_name} als nächstes
+GeeMusicQueueSongIntent Spiel als nächstes {song_name}
+GeeMusicQueueSongIntent Spiel als nächstes {song_name} von {artist_name}
+GeeMusicQueueSongIntent Spiele gleich {song_name} von {artist_name}
+GeeMusicQueueSongIntent Als nächstes spiele {song_name}
+GeeMusicQueueSongIntent Spiele {song_name} von {artist_name} als nächstes
+GeeMusicQueueSongIntent Reihe {song_name} ein
+GeeMusicQueueSongIntent Reihe {song_name} von {artist_name} ein
+
+GeeMusicThumbsUpIntent Ich mag das
+GeeMusicThumbsUpIntent Ich mag dieses Lied
+GeeMusicThumbsUpIntent Daumen hoch für das Lied
+GeeMusicThumbsUpIntent Das gefällt mir
+GeeMusicThumbsUpIntent Tolles Lied
+
+GeeMusicThumbsDownIntent Ich mag das nicht
+GeeMusicThumbsDownIntent Ich mag dieses Lied nicht
+GeeMusicThumbsDownIntent Daumen runter für das Lied
+GeeMusicThumbsDownIntent Das gefällt mir nicht
+
+GeeMusicPlayThumbsUpIntent Spiele angesagte Lieder
+GeeMusicPlayThumbsUpIntent Spiele beliebte Lieder
+GeeMusicPlayThumbsUpIntent Spiele Lieder die ich mag
+
+GeeMusicListAllAlbumsIntent Welche Alben hat {artist_name} gemacht
+
+GeeMusicListLatestAlbumIntent Was sind die neuesten Alben von {artist_name}
+GeeMusicListLatestAlbumIntent Was sind die aktuellsten Alben {artist_name}
+
+GeeMusicPlayLatestAlbumIntent Spiel das neueste Album von {artist_name}
+
+GeeMusicPlayAlbumByArtistIntent Spiele ein Album von {artist_name}
+GeeMusicPlayAlbumByArtistIntent Spiele ein Album von der Band {artist_name}
+GeeMusicPlayDifferentAlbumIntent Spiele ein anderes Album 
+
+GeeMusicPlayLibraryIntent Spiele Lieder aus meiner Bibliothek
+GeeMusicPlayLibraryIntent Spiele Songs aus meiner Bibliothek
+GeeMusicPlayLibraryIntent Spiele meine Musik
+GeeMusicPlayLibraryIntent Spiele meine Lieder
+GeeMusicPlayLibraryIntent Spiele Lieder aus meiner Musik
+
+GeeMusicRestartTracksIntent Starte das Lied neu
+GeeMusicRestartTracksIntent Starte das Stück neu
+GeeMusicRestartTracksIntent Starte die Playlist neu
+GeeMusicRestartTracksIntent Setze die Playlist auf Anfang
+
+GeeMusicSkipTo Springe zu {song_name}
+GeeMusicSkipTo Springe zu {song_name} von {artist_name}
+GeeMusicSkipTo Wechsle zu {song_name}
+GeeMusicSkipTo Wechsle zu {song_name} von {artist_name}
+
+GeeMusicListAllPlaylists Was für Playlists habe ich
+GeeMusicListAllPlaylists Zähle meine Playlists auf
+GeeMusicListAllPlaylists nach meinen Playlists
+GeeMusicListAllPlaylists welche Playlists habe ich in meiner Bibliothek
+GeeMusicListAllPlaylists welche Playlists ich in meiner Bibliothek habe
