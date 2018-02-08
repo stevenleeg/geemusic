@@ -23,9 +23,6 @@ WORDS = {
                           of alexa's music commands or, stop, if you're done.
                           ''',
             "prompt": "For example say, play music by A Tribe Called Quest" },
-        "play_artist"                : {
-            "none"       : "Sorry, I couldn't find that artist.",
-            "speech_text": "Playing top tracks by %s" },
         "play_album"                 : {
             "debug"      : "Fetching album %s",
             "no_album"   : "Sorry, I couldn't find that album",
