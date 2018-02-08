@@ -7,8 +7,15 @@ import logging
 from .utils.music import GMusicWrapper
 from .utils.music_queue import MusicQueue
 
+if 'LANGUAGE' in environ.keys():
+    language = environ['LANGUAGE']
+else:
+    language = "en"
+
+TEMPLATE_DIR = "templates/" + language
+    
 app = Flask(__name__)
-ask = Ask(app, '/alexa')
+ask = Ask(app, '/alexa', path=TEMPLATE_DIR)
 
 def lambda_handler(event, _context):
     return ask.run_aws_lambda(event)
@@ -18,11 +25,6 @@ if str(environ['DEBUG_MODE']) is True:
     log_level = logging.DEBUG
 else:
     log_level = logging.INFO
-
-if 'LANGUAGE' in environ.keys():
-    language = environ['LANGUAGE']
-else:
-    language = "en"
 
 logging.getLogger("flask_ask").setLevel(log_level)
 
