@@ -373,8 +373,8 @@ def play_different_album():
     # Start streaming the first track
     stream_url = api.get_stream_url(first_song_id)
 
-    speech_text = render_template("play_album_text"
-                                  album=album['name'],
+    speech_text = render_template("play_album_text",
+                                  album=album['name],
                                   artist=album['albumArtist'])
     return audio(speech_text).play(stream_url)
 
