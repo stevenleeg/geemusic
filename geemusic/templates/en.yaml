@@ -61,4 +61,4 @@ restart_tracks_text: "Restarting tracks."
 skip_to_no_song: "Please say a song name to use this feature."
 skip_to_no_match: "Sorry, I couldn't find a close enough match."
 skip_to_no_song_match: "Sorry, I couldn't find that song in the queue."
-skip_to_speech_text: "Skipping to {{ song }} by {{ artist }}
+skip_to_speech_text: "Skipping to {{ song }} by {{ artist }}"
