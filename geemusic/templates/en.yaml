@@ -12,16 +12,15 @@ login_text: "Welcome to Gee Music. Try asking me to play a song or start a playl
 login_prompt: "For example, say play music by A Tribe Called Quest."
 login_title: "Welcome to Gee Music!"
 login_content: "Try asking me to play a song"
-help_text: >-
-               Here are some things you can say:
-               Play songs by Radiohead,
-               Play the album Science For Girls,
-               Play the song Fitter Happier,
-               Start a radio station for artist Weezer,
-               Start playlist Dance Party,
-               and play some music,
-               Of course you can also say skip, previous, shuffle, and more
-               of alexa's music commands or, stop, if you're done.
+help_text: "Here are some things you can say: \
+            Play songs by Radiohead, \
+            Play the album Science For Girls, \
+            Play the song Fitter Happier, \
+            Start a radio station for artist Weezer, \
+            Start playlist Dance Party, \
+            and play some music, \
+            Of course you can also say skip, previous, shuffle, and more \
+            of alexa's music commands or, stop, if you're done."
 help_prompt: "For example say, play music by A Tribe Called Quest."
 play_promoted_songs_no_songs: "Sorry, I couldn't find any up voted songs."
 play_promoted_songs_text: "Playing your up voted songs."
