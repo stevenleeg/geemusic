@@ -1,1 +1,2 @@
-
+play_artist_none: "Sorry, I couldn't find that artist."
+play_artist_text: "Playing top tracks by {{ artist }}"
