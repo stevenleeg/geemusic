@@ -51,7 +51,7 @@ shuffle_off: "There are no songs to unshuffle."
 loop_text: "There are no songs in the queue."
 currently_playing_none: "Nothing is playing right now."
 success_title: "The current track is "
-success_text: "{{ song }} by {{ artist }}
+success_text: "{{ song }} by {{ artist }}"
 playlist_separator: "and"
 list_all_playlists_text: "You have {{ playlist_count }} playlists in your library. They are, {{ playlist_list }}."
 thumbs_no_song: "Please play a song to vote."
