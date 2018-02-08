@@ -277,7 +277,7 @@ def queue_song(song_name, artist_name):
     app.logger.debug("Queuing song %s by %s" % (song_name, artist_name))
 
     if len(queue.song_ids) == 0:
-        return statement(render_template("queue_song_no_song")
+        return statement(render_template("queue_song_no_song"))
 
     # Fetch the song
     song = api.get_song(song_name, artist_name)
