@@ -25,11 +25,11 @@ WORDS = {
                 "indexing"      : "Please wait for your tracks to finish indexing.",
                 "none"          : "Nothing is playing right now",
                 "success_title" : "The current track is",
-                "success_text"  : "%s by %s" },
+                "success_text"  : "{0} by {1}" },
             "list_all_playlists" : {
                 "indexing"           : "Please wait for your tracks to finish indexing.",
                 "playlist_separator" : "and",
-                "speech_text"        : "You have %s playlists in your library. They are, %s." },
+                "speech_text"        : "You have {0} playlists in your library. They are, {1}." },
             "thumbs_up"          : {
                 "no_song" : "Please play a song to vote.",
                 "indexing": "Please wait for your tracks to finish indexing.",
@@ -45,7 +45,7 @@ WORDS = {
                 "no_song"      : "Please say a song name to use this feature.",
                 "no_match"     : "Sorry, I couldn't find a close enough match.",
                 "no_song_match": "Sorry, I couldn't find that song in the queue.",
-                "speech_text"  : "Skipping to %s by %s" },
+                "speech_text"  : "Skipping to {0} by {1}" },
             },
         "de" : "implement_same_as_above_for_extending_to_german",
         "jp" : "implement_same_as_above_for_extending_to_japanese"
@@ -196,9 +196,9 @@ def currently_playing():
         return audio(WORDS[language]["currently_playing"]["none"])
 
     thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
-    return statement(WORDS[language]["currently_playing"]["success_title"] \
-                           + WORDS[language]["currently_playing"]["success_text"] \
-                           % (track['title'], track['artist'])) \
+    return statement(WORDS[language]["currently_playing"]["success_title"]\
+                           + WORDS[language]["currently_playing"]["success_text"]\
+                           .format(track['title'], track['artist']))\
                            .standard_card(title=WORDS[language]["currently_playing"]["success_title"],
                      text=WORDS[language]["currently_playing"]["success_text"] % (track['title'], track['artist']),
                      small_image_url=thumbnail,
@@ -225,7 +225,7 @@ def list_all_playlists():
     app.logger.debug(playlist_names)
     playlist_names = ', '.join(playlist_names)
 
-    speech_text = WORDS[language]["list_all_playlists"]["speech_text"] % (total_playlists, playlist_names)
+    speech_text = WORDS[language]["list_all_playlists"]["speech_text"].format(total_playlists, playlist_names)
     return statement(speech_text)
 
 
@@ -288,7 +288,7 @@ def skip_to(song_name, artist_name):
     stream_url = api.get_stream_url(queue.current())
 
     thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
-    speech_text = WORDS[language]["skip_to"]["speech_text"] % (queue.current_track()['title'], queue.current_track()['artist'])
+    speech_text = WORDS[language]["skip_to"]["speech_text"].format(queue.current_track()['title'], queue.current_track()['artist'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',

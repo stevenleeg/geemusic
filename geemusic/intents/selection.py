@@ -28,25 +28,25 @@ WORDS = {
         "play_album"                 : {
             "debug"      : "Fetching album %s",
             "no_album"   : "Sorry, I couldn't find that album",
-            "speech_text": "Playing album %s by %s" },
+            "speech_text": "Playing album {0} by {1}" },
         "play_promoted_songs"        : {
             "debug"      : "Fetching songs that you have up voted.",
             "no_songs"   : "Sorry, I couldn't find any up voted songs.",
             "speech_text": "Playing your up voted songs." },
         "play_song"                  : {
-            "debug"      : "Fetching song %s by %s",
+            "debug"      : "Fetching song {0} by {1}",
             "no_song"    : "Sorry, I couldn't find that song.",
-            "speech_text": "Playing %s by %s." },
+            "speech_text": "Playing {0} by {1}." },
         "play_similar_song_radio"    : {
             "no_song"        : "Please play a song to start radio.",
             "index"          : "Please wait for your tracks to finish indexing.",
-            "debug"          : "Fetching songs like %s by %s from %s",
+            "debug"          : "Fetching songs like {0} by {1} from {2}",
             "no_similar_song": "Sorry, I couldn't find that song.",
-            "speech_text"    : "Playing %s by %s" },
+            "speech_text"    : "Playing {0} by {1}" },
         "play_song_radio"            : {
-            "debug"          : "Fetching song %s by %s from %s.",
+            "debug"          : "Fetching song {0} by {1} from {2}.",
             "no_song"        : "Sorry, I couldn't find that song.",
-            "speech_text"    : "Playing %s by %s." },
+            "speech_text"    : "Playing {0} by {1}." },
         "play_artist_radio"          : {
             "no_artist"      : "Sorry, I couldn't find that artist.",
             "speech_text"    : "Playing %s radio." },
@@ -57,20 +57,20 @@ WORDS = {
             "speech_text" : "Playing music from your personalized station.",
             "speech_title": "Playing I'm Feeling Lucky Radio." },
         "queue_song"                 : {
-            "debug"       : "Queuing song %s by %s.",
+            "debug"       : "Queuing song {0} by {1}.",
             "no_song"     : "You must first play a song.",
             "no_match"    : "Sorry, I couldn't find that song.",
-            "queued"      : "Queued %s by %s." },
+            "queued"      : "Queued {0} by {1}." },
         "play_latest_album_by_artist": {
             "no_album"    : "Sorry, I couldn't find any albums.",
-            "speech_text" : "Playing album %s by %s." },
+            "speech_text" : "Playing album {0} by {1}." },
         "play_album_by_artist"       : {
             "no_album"    : "Sorry, I couldn't find any albums.",
-            "speech_text" : "Playing album %s by %s." },
+            "speech_text" : "Playing album {0} by {1}." },
         "play_different_album"       : {
             "no_track"    : "Sorry, there's no album playing currently.",
             "no_album"    : "Sorry, I couldn't find any albums.",
-            "speech_text" : "Playing album %s by %s." },
+            "speech_text" : "Playing album {0} by {1}." },
         "play_library"               : {
             "index"      : "Please wait for your tracks to finish indexing.",
             "speech_text": "Playing music from your library." }
@@ -137,8 +137,8 @@ def play_album(album_name, artist_name):
     stream_url = api.get_stream_url(first_song_id)
 
     thumbnail = api.get_thumbnail(album['albumArtRef'])
-    speech_text = WORDS[language]["play_album"]["speech_text"] % \
-                  (album['name'], album['albumArtist'])
+    speech_text = WORDS[language]["play_album"]["speech_text"]\
+                  .format(album['name'], album['albumArtist'])
 
     app.logger.debug(speech_text)
 
@@ -171,7 +171,7 @@ def play_promoted_songs():
 
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
-    app.logger.debug(WORDS[language]["play_song"]["debug"] % (song_name, artist_name))
+    app.logger.debug(WORDS[language]["play_song"]["debug"].format(song_name, artist_name))
 
     # Fetch the song
     song = api.get_song(song_name, artist_name)
@@ -184,7 +184,8 @@ def play_song(song_name, artist_name):
     stream_url = api.get_stream_url(first_song_id)
 
     thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
-    speech_text = WORDS[language]["play_song"]["speech_text"] % (song['title'], song['artist'])
+    speech_text = WORDS[language]["play_song"]["speech_text"]\
+                  .format(song['title'], song['artist'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
@@ -205,20 +206,26 @@ def play_similar_song_radio():
     artist = api.get_artist(song['artist'])
     album = api.get_album(song['album'])
 
-    app.logger.debug(WORDS[language]["play_similar_song_radio"]["debug"] % (song['title'], artist['name'], album['name']))
+    app.logger.debug(WORDS[language]["play_similar_song_radio"]["debug"]\
+                     .format(song['title'], artist['name'], album['name']))
 
     if song is False:
         return statement(WORDS[language]["play_similar_song_radio"]["no_similar_song"])
 
     station_id = api.get_station("%s Radio" %
-                                 song['title'], track_id=song['storeId'], artist_id=artist['artistId'], album_id=album['albumId'])
+                                 song['title'], 
+                                 track_id=song['storeId'], 
+                                 artist_id=artist['artistId'], 
+                                 album_id=album['albumId'])
+
     tracks = api.get_station_tracks(station_id)
 
     first_song_id = queue.reset(tracks)
     stream_url = api.get_stream_url(first_song_id)
 
     thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
-    speech_text = WORDS[language]["play_similar_song_radio"]["speech_text"] % (song['title'], song['artist'])
+    speech_text = WORDS[language]["play_similar_song_radio"]["speech_text"]\
+                  .format(song['title'], song['artist'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
@@ -228,7 +235,8 @@ def play_similar_song_radio():
 
 @ask.intent("GeeMusicPlaySongRadioIntent")
 def play_song_radio(song_name, artist_name, album_name):
-    app.logger.debug(WORDS[language]["play_song_radio"]["debug"] % (song_name, artist_name, album_name))
+    app.logger.debug(WORDS[language]["play_song_radio"]["debug"]\
+                     .format(song_name, artist_name, album_name))
 
     # Fetch the song
 
@@ -247,14 +255,19 @@ def play_song_radio(song_name, artist_name, album_name):
         return statement(WORDS[language]["play_song_radio"]["no_song"])
 
     station_id = api.get_station("%s Radio" %
-                                 song['title'], track_id=song['storeId'], artist_id=artist['artistId'], album_id=album['albumId'])
+                                 song['title'], 
+                                 track_id=song['storeId'], 
+                                 artist_id=artist['artistId'], 
+                                 album_id=album['albumId'])
+
     tracks = api.get_station_tracks(station_id)
 
     first_song_id = queue.reset(tracks)
     stream_url = api.get_stream_url(first_song_id)
 
     thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
-    speech_text = WORDS[language]["play_song_radio"]["speech_text"] % (song['title'], song['artist'])
+    speech_text = WORDS[language]["play_song_radio"]["speech_text"]\
+                  .format(song['title'], song['artist'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
@@ -334,7 +347,7 @@ def play_IFL_radio(artist_name):
 
 @ask.intent("GeeMusicQueueSongIntent")
 def queue_song(song_name, artist_name):
-    app.logger.debug(WORDS[language]["queue_song"]["debug"] % (song_name, artist_name))
+    app.logger.debug(WORDS[language]["queue_song"]["debug"].format(song_name, artist_name))
 
     if len(queue.song_ids) == 0:
         return statement(WORDS[language]["queue_song"]["no_song"])
@@ -348,7 +361,7 @@ def queue_song(song_name, artist_name):
     # Queue the track in the list of song_ids
     queue.enqueue_track(song)
     stream_url = api.get_stream_url(song)
-    card_text = WORDS[language]["queue_song"]["queued"] % (song['title'], song['artist'])
+    card_text = WORDS[language]["queue_song"]["queued"].format(song['title'], song['artist'])
     thumbnail = api.get_thumbnail(song['albumArtRef'][0]['url'])
     return audio().enqueue(stream_url) \
         .standard_card(title=card_text,
@@ -385,7 +398,8 @@ def play_latest_album_by_artist(artist_name):
     # Start streaming the first track
     stream_url = api.get_stream_url(first_song_id)
 
-    speech_text = WORDS[language]["play_latest_album_by_artist"]["speech_text"] % (latest_album['name'], latest_album['albumArtist'])
+    speech_text = WORDS[language]["play_latest_album_by_artist"]["speech_text"]\
+                  .format(latest_album['name'], latest_album['albumArtist'])
     return audio(speech_text).play(stream_url)
 
 
@@ -403,7 +417,8 @@ def play_album_by_artist(artist_name):
     # Start streaming the first track
     stream_url = api.get_stream_url(first_song_id)
 
-    speech_text = WORDS[language]["play_album_by_artist"]["speech_text"] % (album['name'], album['albumArtist'])
+    speech_text = WORDS[language]["play_album_by_artist"]["speech_text"]\
+                  .format(album['name'], album['albumArtist'])
     return audio(speech_text).play(stream_url)
 
 
@@ -427,7 +442,8 @@ def play_different_album():
     # Start streaming the first track
     stream_url = api.get_stream_url(first_song_id)
 
-    speech_text = WORDS[language]["play_different_album"]["speech_text"] % (album['name'], album['albumArtist'])
+    speech_text = WORDS[language]["play_different_album"]["speech_text"]\
+                  .format(album['name'], album['albumArtist'])
     return audio(speech_text).play(stream_url)
 
 
