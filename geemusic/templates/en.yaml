@@ -1,2 +1,36 @@
-play_artist_none: "Sorry, I couldn't find that artist."
+no_song: "Sorry, I couldn't find that song."
+no_artist: "Sorry, I couldn't find that artist."
+no_album: "Sorry, I couldnt find that album."
+no_albums: "Sorry, I couldn't find any albums."
+indexing: "Please wait for your tracks to finish indexing."
+play_album_text: "Playing album {{ album }} by {{ artist }}."
+play_song_text: "Playing {{ song }} by {{ artist }}"
+
+login_text: "Welcome to Gee Music. Try asking me to play a song or start a playlist."
+login_prompt: "For example, say play music by A Tribe Called Quest."
+login_title: "Welcome to Gee Music!"
+login_content: "Try asking me to play a song"
+help_text: >-
+               Here are some things you can say:
+               Play songs by Radiohead,
+               Play the album Science For Girls,
+               Play the song Fitter Happier,
+               Start a radio station for artist Weezer,
+               Start playlist Dance Party,
+               and play some music,
+               Of course you can also say skip, previous, shuffle, and more
+               of alexa's music commands or, stop, if you're done.
+help_prompt: "For example say, play music by A Tribe Called Quest."
+play_promoted_songs_no_songs: "Sorry, I couldn't find any up voted songs."
+play_promoted_songs_text: "Playing your up voted songs."
 play_artist_text: "Playing top tracks by {{ artist }}"
+play_similar_song_radio_no_song: "Please play a song to start radio."
+play_artist_radio_text: "Playing {{ artist }} radio."
+queue_song_no_song: "You must first play a song."
+queue_song_queued: "Queued {{ song }} by {{ artist }}"
+play_playlist_no_match: "Sorry, I couldn't find that playlist in your library."
+play_playlist_text: "Playing songs from {{ playlist }}"
+play_IFL_radio_text: "Playing music from your personalized station."
+play_IFL_radio_title: "Playing I'm Feeling Lucky Radio."
+play_different_album_no_track: "Sorry, there's no album playing currently."
+play_library_text: "Playing music from your library."
