@@ -1,3 +1,4 @@
+from flask import render_template
 from flask_ask import statement, audio, question
 from geemusic import ask, queue, app, api, language
 from geemusic.utils.music import GMusicWrapper
@@ -103,7 +104,7 @@ def play_artist(artist_name):
     artist = api.get_artist(artist_name)
 
     if artist is False:
-        return statement(WORDS[language]["play_artist"]["none"])
+        return statement(render_template("play_artist_none"))
 
     # Setup the queue
     first_song_id = queue.reset(artist['topTracks'])
@@ -112,7 +113,7 @@ def play_artist(artist_name):
     stream_url = api.get_stream_url(first_song_id)
 
     thumbnail = api.get_thumbnail(artist['artistArtRef'])
-    speech_text = WORDS[language]["play_artist"]["speech_text"] % artist['name']
+    speech_text = render_template("play_artist_text", artist=artist['name'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
