@@ -1,6 +1,6 @@
 from flask import render_template
 from flask_ask import statement, audio, question
-from geemusic import ask, queue, app, api, language
+from geemusic import ask, queue, app, api
 from geemusic.utils.music import GMusicWrapper
 
 
@@ -16,7 +16,6 @@ def login():
 @ask.intent("AMAZON.HelpIntent")
 def help():
     text = render_template("help_text")
-
     prompt = render_template("help_prompt")
     return question(text).reprompt(prompt)
 
@@ -136,10 +135,9 @@ def play_similar_song_radio():
                      % (song['title'], artist['name'], album['name']))
 
     if song is False:
-        return statement(WORDS[language]["play_similar_song_radio"]["no_similar_song"])
+        return statement(render_template("no_song"))
 
-    station_id = api.get_station("%s Radio" %
-                                 song['title'], 
+    station_id = api.get_station("%s Radio" % song['title'], 
                                  track_id=song['storeId'], 
                                  artist_id=artist['artistId'], 
                                  album_id=album['albumId'])
