@@ -12,7 +12,7 @@ if 'LANGUAGE' in environ.keys():
 else:
     language = "en"
 
-TEMPLATE_DIR = "templates/" + language
+TEMPLATE_DIR = "templates/" + language + ".yaml"
     
 app = Flask(__name__)
 ask = Ask(app, '/alexa', path=TEMPLATE_DIR)
