@@ -258,7 +258,7 @@ If your desired language is listed below you can simply set your `LANGUAGE` envi
 LANGUAGE=en
 ```
 
-If you want to add a language submit a PR to this repository and add translations for the two `WORDS` dictionaries in `selection.py` and `playback.py`, with the global two character country code.
+If you want to add a language submit a PR to this repository and add translations for the language you want to support in `geemusic/templates/` dir with the global two character country code + `yaml`. For example, the English the file is `geemusic/templates/en.yaml`.
 
 ## Troubleshooting
 ### Pausing/resuming skips to the beginning of the song.
