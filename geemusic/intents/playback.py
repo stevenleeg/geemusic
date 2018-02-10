@@ -161,6 +161,7 @@ def list_all_playlists():
 
     all_playlists = api.get_all_user_playlist_contents()
     playlist_names = []
+    total_playlists = 0
     for i, match in enumerate(all_playlists):
 
         playlist_names.append(match['name'])
