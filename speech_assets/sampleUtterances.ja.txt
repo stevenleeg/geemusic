@@ -86,13 +86,17 @@ GeeMusicRestartTracksIntent プレイリストをもう一度再生
 GeeMusicRestartTracksIntent 最初の曲まで戻って
 
 GeeMusicThumbsUpIntent お気に入りに追加
-GeeMusicThumbsUpIntent この曲を評価
+GeeMusicThumbsUpIntent この曲を高評価
+GeeMusicThumbsUpIntent この曲を高く評価
 
 GeeMusicPlayThumbsUpIntent お気に入りの曲を再生
 GeeMusicPlayThumbsUpIntent お気に入りを再生
-GeeMusicPlayThumbsUpIntent 評価した曲を再生
+GeeMusicPlayThumbsUpIntent 高評価した曲を再生
+GeeMusicPlayThumbsUpIntent 高く評価した曲を再生
 
 GeeMusicThumbsDownIntent この曲を低く評価
+GeeMusicThumbsDownIntent この曲に低評価して
+GeeMusicThumbsDownIntent この曲を低評価
 GeeMusicThumbsDownIntent この曲は嫌い
 
 GeeMusicPlayDifferentAlbumIntent 違うアルバムを再生
