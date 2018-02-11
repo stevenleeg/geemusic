@@ -15,7 +15,7 @@ This project is still in its early phases and subject to a bit of change, howeve
 **This Skill was developed to only work on devices (Echo, Dot, Tap etc) using English(US) on a Amazon US account**
 This is due to the Skill using features from the [Developer Preview of the ASK Built-in Library](https://developer.amazon.com/blogs/post/Tx2EWC85F6H422/Introducing-the-ASK-Built-in-Library-Developer-Preview-Pre-Built-Models-for-Hund). Which frustratingly has only been made available to developers in the US (edit: six months later and there is still no access for UK/DE).
 
-There is a workaround for English(UK) users (Amazon UK account) if they setup the Skill slightly differently, instructions are included below.
+There is a workaround for English(UK) and Japanese users if they setup the Skill slightly differently, instructions are included below.
 
 This language issue only affects the Echo/Amazon side of things and not your Google Music account [#100](https://github.com/stevenleeg/geemusic/issues/100)
 
@@ -129,7 +129,7 @@ Going through the various sections
 | Field | Value |
 | ----- | ----- |
 | Skill Type | Custom Interaction Model |
-| Language | Select US English or UK English |
+| Language | Select US English, UK English or Japanese |
 | Name | Gee Music |
 | Invocation Name | gee music |
 | Audio Player | Yes |
@@ -144,7 +144,7 @@ See the note at the top about supported languages.
 
 On the "Interaction Model" step, paste in the contents of `speech_assets/intentSchema.json` to the intent schema field and the contents of `speech_assets/sampleUtterances.txt` to the sample utterances field.
 
-#### UK English users
+#### Other language users
 
 On the "Interaction Model" step, you need to create your Custom Slot Types before the intent schema and sample utterances.
 
@@ -161,7 +161,7 @@ Repeat the process for each of the slots.
 
 The sample data was scraped from the UK top 100 singles and album chart. For the MUSICPLAYLISTS there are some generic sample phrases. The sample data is fine to use, don't feel you need to fill these slots to match your own collection.
 
-After you have added the "Custom Slots" you need to copy and paste the contents of `/speech_assets/non_us_custom_slot_version/intentSchema.json` to the intent schema field and the contents of `speech_assets/sampleUtterances.txt` to the sample utterances field.
+After you have added the "Custom Slots" you need to copy and paste the contents of `/speech_assets/non_us_custom_slot_version/intentSchema.json` to the intent schema field and the contents of `speech_assets/sampleUtterances.txt` to the sample utterances field. For Japanese users, use `speech_assets/sampleUtterances.ja.txt` to the utterances field.
 
 
 ### Configuration
