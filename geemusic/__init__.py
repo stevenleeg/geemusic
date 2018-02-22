@@ -7,8 +7,15 @@ import logging
 from .utils.music import GMusicWrapper
 from .utils.music_queue import MusicQueue
 
+if 'LANGUAGE' in environ.keys():
+    language = environ['LANGUAGE']
+else:
+    language = "en"
+
+TEMPLATE_DIR = "templates/" + language + ".yaml"
+    
 app = Flask(__name__)
-ask = Ask(app, '/alexa')
+ask = Ask(app, '/alexa', path=TEMPLATE_DIR)
 
 if str(environ['DEBUG_MODE']) is True:
     log_level = logging.DEBUG

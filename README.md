@@ -250,6 +250,16 @@ At this point you're set up and ready.
 
 Then add them as environement variables to your setup (e.g. `LAST_FM_API`, `LAST_FM_API_SECRET`, `LAST_FM_SESSION_KEY`). To finish enabling create a `LAST_FM_ACTIVE` environement variable and set it to `True`.
 
+## (Optional) Language support
+If your desired language is listed below you can simply set your `LANGUAGE` environment variable to the 2 character country code specified below:
+
+```
+# English
+LANGUAGE=en
+```
+
+If you want to add a language submit a PR to this repository and add translations for the language you want to support in `geemusic/templates/` dir with the global two character country code + `yaml`. For example, the English the file is `geemusic/templates/en.yaml`.
+
 ## Troubleshooting
 ### Pausing/resuming skips to the beginning of the song.
 Flask Ask used to have a bug that would not resume the song from the correct offset. Make sure it, and the rest of your pip modules are up to date.
