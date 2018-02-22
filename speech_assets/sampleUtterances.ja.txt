@@ -1,0 +1,106 @@
+GeeMusicPlayArtistIntent {artist_name}の曲を再生して
+GeeMusicPlayArtistIntent {artist_name}の曲を再生
+GeeMusicPlayArtistIntent アーティストの {artist_name} を再生
+GeeMusicPlayArtistIntent {artist_name} の曲を再生
+GeeMusicPlayArtistIntent {artist_name} の有名な曲を再生
+GeeMusicPlayArtistIntent {artist_name} の音楽を再生
+GeeMusicPlayArtistIntent {artist_name} のアルバムを再生
+
+GeeMusicPlayAlbumIntent {album_name} のアルバムを再生
+GeeMusicPlayAlbumIntent {album_name} のアルバムの曲を再生
+GeeMusicPlayAlbumIntent アルバムの {album_name} を再生
+GeeMusicPlayAlbumIntent {artist_name} の アルバム {album_name} を再生
+GeeMusicPlayAlbumIntent {artist_name} の {album_name} のアルバムを再生
+GeeMusicPlayAlbumIntent {artist_name} の {album_name} のアルバムの曲 を再生
+
+GeeMusicPlaySimilarSongsRadioIntent 似てる曲を再生
+GeeMusicPlaySimilarSongsRadioIntent 似た曲を再生
+GeeMusicPlaySimilarSongsRadioIntent この曲のラジオを開始
+
+GeeMusicPlaySongIntent {song_name} の曲を再生
+GeeMusicPlaySongIntent {artist_name} の {song_name} の曲を再生
+GeeMusicPlaySongIntent {artist_name} の曲 {song_name} を再生
+GeeMusicPlaySongIntent {song_name} を再生
+GeeMusicPlaySongIntent {artist_name} の {song_name} を再生
+
+GeeMusicPlayArtistRadioIntent アーティスト {artist_name} のラジオを開始
+GeeMusicPlayArtistRadioIntent {artist_name} のアーティストのラジオを開始
+GeeMusicPlayArtistRadioIntent {artist_name} のアーティストのラジオステーションを作成
+GeeMusicPlayArtistRadioIntent {artist_name} のアーティストラジオを開始
+GeeMusicPlayArtistRadioIntent {artist_name} に似たアーティストを再生
+
+GeeMusicPlaySongRadioIntent {song_name} の曲のラジオを開始
+GeeMusicPlaySongRadioIntent {song_name} の曲のラジオステーションを作成
+GeeMusicPlaySongRadioIntent {song_name} に似た曲を再生
+GeeMusicPlaySongRadioIntent {artist_name} の {song_name} に似た曲を再生
+GeeMusicPlaySongRadioIntent {album_name} の {artist_name} の {song_name} に似た曲を再生
+
+GeeMusicPlayPlaylistIntent {playlist_name} のプレイリストを再生
+GeeMusicPlayPlaylistIntent プレイリスト {playlist_name}
+GeeMusicPlayPlaylistIntent プレイリスト {playlist_name} を再生
+GeeMusicPlayPlaylistIntent {playlist_name} のプレイリストを開始
+GeeMusicPlayPlaylistIntent {playlist_name} のプレイリストの曲を再生
+
+GeeMusicQueueSongIntent {song_name} の曲を次に再生
+GeeMusicQueueSongIntent {song_name} を次に再生
+GeeMusicQueueSongIntent {artist_name} の {song_name} を次に再生
+GeeMusicQueueSongIntent {artist_name} の曲 {song_name} を次に再生
+GeeMusicQueueSongIntent {artist_name} の {song_name} の曲を次に再生
+GeeMusicQueueSongIntent {song_name} をキューに追加
+GeeMusicQueueSongIntent {artist_name} の {song_name} をキューに追加
+
+GeeMusicListAllAlbumsIntent {artist_name} のアルバムを教えて
+
+GeeMusicListLatestAlbumIntent {artist_name} の最新のアルバムを教えて
+GeeMusicListLatestAlbumIntent {artist_name} の最新のアルバムは
+
+GeeMusicPlayLatestAlbumIntent {artist_name} の最新のアルバムを再生
+
+GeeMusicPlayAlbumByArtistIntent {artist_name} のバンドのアルバムを再生
+GeeMusicPlayAlbumByArtistIntent {artist_name} のアルバムを再生
+
+GeeMusicSkipTo {song_name} にスキップ
+GeeMusicSkipTo {artist_name} の {song_name} にスキップ
+
+GeeMusicPlayIFLRadioIntent 音楽をかけて
+GeeMusicPlayIFLRadioIntent 音楽を再生して
+GeeMusicPlayIFLRadioIntent 曲をかけて
+GeeMusicPlayIFLRadioIntent 曲を再生して
+GeeMusicPlayIFLRadioIntent アイムフィーリングラッキーを再生
+GeeMusicPlayIFLRadioIntent ラジオステーションを再生
+GeeMusicPlayIFLRadioIntent ラジオステーションを開始
+
+GeeMusicPlayLibraryIntent ライブラリーの曲を再生
+GeeMusicPlayLibraryIntent ライブラリーの楽曲を再生
+GeeMusicPlayLibraryIntent ライブラリーを再生
+
+GeeMusicCurrentlyPlayingIntent この曲は何
+GeeMusicCurrentlyPlayingIntent この曲について教えて
+GeeMusicCurrentlyPlayingIntent 今流れている曲は
+GeeMusicCurrentlyPlayingIntent 何が流れてる
+GeeMusicCurrentlyPlayingIntent この曲の名前は
+GeeMusicCurrentlyPlayingIntent これは何
+
+GeeMusicRestartTracksIntent もう一度再生
+GeeMusicRestartTracksIntent プレイリストをもう一度再生
+GeeMusicRestartTracksIntent 最初の曲まで戻って
+
+GeeMusicThumbsUpIntent お気に入りに追加
+GeeMusicThumbsUpIntent この曲を高評価
+GeeMusicThumbsUpIntent この曲を高く評価
+
+GeeMusicPlayThumbsUpIntent お気に入りの曲を再生
+GeeMusicPlayThumbsUpIntent お気に入りを再生
+GeeMusicPlayThumbsUpIntent 高評価した曲を再生
+GeeMusicPlayThumbsUpIntent 高く評価した曲を再生
+
+GeeMusicThumbsDownIntent この曲を低く評価
+GeeMusicThumbsDownIntent この曲に低評価して
+GeeMusicThumbsDownIntent この曲を低評価
+GeeMusicThumbsDownIntent この曲は嫌い
+
+GeeMusicPlayDifferentAlbumIntent 違うアルバムを再生
+
+GeeMusicListAllPlaylists どんなプレイリストがある
+GeeMusicListAllPlaylists プレイリストを教えて
+GeeMusicListAllPlaylists プレイリストをリストアップ
