@@ -3,6 +3,9 @@ import requests
 from os import environ
 from geemusic import app, api
 
+@app.route('/wake-up')
+def index():
+	return 'I am not sleeping!'
 
 @app.route("/alexa/stream/<song_id>")
 def redirect_to_stream(song_id):
