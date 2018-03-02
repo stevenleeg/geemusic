@@ -16,7 +16,7 @@ TEMPLATE_DIR = "templates/" + language + ".yaml"
 app = Flask(__name__)
 ask = Ask(app, '/alexa', path=TEMPLATE_DIR)
 
-if str(getenv('DEBUG_MODE')) is True:
+if getenv('DEBUG_MODE') == "True":
     log_level = logging.DEBUG
 else:
     log_level = logging.INFO
