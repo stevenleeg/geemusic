@@ -97,9 +97,23 @@
         {
             "intent": "GeeMusicPlayDifferentAlbumIntent"
         },
-	{
+        {
+            "intent": "GeeMusicPlaySimilarSongsRadioIntent"
+        },
+        {
+            "intent": "GeeMusicPlaySongRadioIntent",
+            "slots": [
+			    {"name":"song_name", "type":"MUSICRECORDING"},
+                {"name": "album_name", "type": "MUSICALBUM"},
+                {"name":"artist_name", "type":"MUSICGROUP"}
+			]
+        },
+        {
+            "intent": "GeeMusicPlayThumbsUpIntent"
+        },
+        {
 	    "intent": "GeeMusicListAllPlaylists"
-	},
+	    },
         {
             "intent": "AMAZON.ShuffleOnIntent"
         },
