@@ -161,7 +161,7 @@ Repeat the process for each of the slots.
 
 The sample data was scraped from the UK top 100 singles and album chart. For the MUSICPLAYLISTS there are some generic sample phrases. The sample data is fine to use, don't feel you need to fill these slots to match your own collection.
 
-After you have added the "Custom Slots" you need to copy and paste the contents of `/speech_assets/non_us_custom_slot_version/intentSchema.json` to the intent schema field and the contents of `speech_assets/sampleUtterances.txt` to the sample utterances field. For Japanese users, use `speech_assets/sampleUtterances.ja.txt` to the utterances field.
+After you have added the "Custom Slots" you need to copy and paste the contents of `/speech_assets/non_us_custom_slot_version/intentSchema.json` to the intent schema field and the contents of `speech_assets/sampleUtterances.txt` to the sample utterances field. For other languages, use `speech_assets/sampleUtterances.<language>.txt`, e.g. `speech_assets/sampleUtterances.ja.txt` to the utterances field.
 
 
 ### Configuration
@@ -240,7 +240,7 @@ Finally, run the container with the appropriate environment variables and port f
 
 ```bash
 $ docker run -d -e GOOGLE_EMAIL=steve@stevegattuso.me -e GOOGLE_PASSWORD=[password] \
--e APP_URL=http://alexa-geemusic.stevegattuso.me -p 4000:4000 geemusic
+-e APP_URL=http://alexa-geemusic.stevegattuso.me -p 5000:5000 geemusic
 ```
 
 At this point you're set up and ready.
