@@ -4,6 +4,12 @@ GeeMusicPlayArtistIntent Spiele top Songs von {artist_name}
 GeeMusicPlayArtistIntent Spiele Hits von {artist_name}
 GeeMusicPlayArtistIntent Spiele Musik von {artist_name}
 GeeMusicPlayArtistIntent Spiele {artist_name} ab
+GeeMusicPlayArtistIntent Spiele {artist_name} auf Gee Music
+GeeMusicPlayArtistIntent Spiele Lieder von {artist_name} auf Gee Music
+GeeMusicPlayArtistIntent Spiele top Songs von {artist_name} auf Gee Music
+GeeMusicPlayArtistIntent Spiele Hits von {artist_name} auf Gee Music
+GeeMusicPlayArtistIntent Spiele Musik von {artist_name} auf Gee Music
+GeeMusicPlayArtistIntent Spiele {artist_name} auf Gee Musicab
 
 GeeMusicPlayAlbumIntent Spiele das Album {album_name}
 GeeMusicPlayAlbumIntent Spiele Album {album_name}
@@ -11,7 +17,16 @@ GeeMusicPlayAlbumIntent Spiele das Album {album_name} von {artist_name}
 GeeMusicPlayAlbumIntent Spiele Album {album_name} von {artist_name}
 GeeMusicPlayAlbumIntent Spiele Lieder vom Album {album_name} von {artist_name}
 GeeMusicPlayAlbumIntent Spiele Lieder aus dem Album {album_name} von {artist_name}
+GeeMusicPlayAlbumIntent Spiele das Album {album_name} auf Gee Music
+GeeMusicPlayAlbumIntent Spiele Album {album_name} auf Gee Music
+GeeMusicPlayAlbumIntent Spiele das Album {album_name} von {artist_name} auf Gee Music
+GeeMusicPlayAlbumIntent Spiele Album {album_name} von {artist_name} auf Gee Music
+GeeMusicPlayAlbumIntent Spiele Lieder vom Album {album_name} von {artist_name} auf Gee Music
+GeeMusicPlayAlbumIntent Spiele Lieder aus dem Album {album_name} von {artist_name} auf Gee Music
 
+GeeMusicPlaySimilarSongsRadioIntent Spiele ähnliche Lieder auf Gee Music
+GeeMusicPlaySimilarSongsRadioIntent Spiele Lieder die so sind wie dieses auf Gee Music
+GeeMusicPlaySimilarSongsRadioIntent Starte ein Radio mit diesem Lied auf Gee Music
 GeeMusicPlaySimilarSongsRadioIntent Spiele ähnliche Lieder
 GeeMusicPlaySimilarSongsRadioIntent Spiele Lieder die so sind wie dieses
 GeeMusicPlaySimilarSongsRadioIntent Starte ein Radio mit diesem Lied

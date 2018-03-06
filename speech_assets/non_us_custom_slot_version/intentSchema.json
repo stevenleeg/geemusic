@@ -1,50 +1,50 @@
 {
-	"intents": [
-		{
-			"intent": "AMAZON.PauseIntent"
-		},
-		{
-			"intent": "AMAZON.ResumeIntent"
-		},
-		{
-			"intent": "GeeMusicPlayArtistIntent",
-			"slots": [
-				{"name": "artist_name", "type": "MUSICGROUP"}
-			]
-		},
-		{
-			"intent": "GeeMusicPlayAlbumIntent",
-			"slots": [
-				{"name": "album_name", "type": "MUSICALBUM"},
-				{"name": "artist_name", "type": "MUSICGROUP"}
-			]
-		},
-		{
-			"intent": "GeeMusicPlaySongIntent",
-			"slots": [
-				{"name": "song_name", "type": "MUSICRECORDING"},
-				{"name": "artist_name", "type": "MUSICGROUP"}
-			]
-		},
-		{
-			"intent": "GeeMusicPlayArtistRadioIntent",
-			"slots": [
-				{"name": "artist_name", "type": "MUSICGROUP"}
-			]
-		},
-		{
-			"intent": "GeeMusicPlayPlaylistIntent",
-			"slots": [
-				{"name": "playlist_name", "type": "MUSICPLAYLIST"}
-			]
-		},
-		{
-			"intent": "GeeMusicQueueSongIntent",
-			"slots": [
-				{"name": "song_name", "type": "MUSICRECORDING"},
-				{"name": "artist_name", "type": "MUSICGROUP"}
-			]
-		},
+    "intents": [
+        {
+            "intent": "AMAZON.PauseIntent"
+        },
+        {
+            "intent": "AMAZON.ResumeIntent"
+        },
+        {
+            "intent": "GeeMusicPlayArtistIntent",
+            "slots": [
+                {"name": "artist_name", "type": "MUSICGROUP"}
+            ]
+        },
+        {
+            "intent": "GeeMusicPlayAlbumIntent",
+            "slots": [
+                {"name": "album_name", "type": "MUSICALBUM"},
+                {"name": "artist_name", "type": "MUSICGROUP"}
+            ]
+        },
+        {
+            "intent": "GeeMusicPlaySongIntent",
+            "slots": [
+                {"name": "song_name", "type": "MUSICRECORDING"},
+                {"name": "artist_name", "type": "MUSICGROUP"}
+            ]
+        },
+        {
+            "intent": "GeeMusicPlayArtistRadioIntent",
+            "slots": [
+                {"name": "artist_name", "type": "MUSICGROUP"}
+            ]
+        },
+        {
+            "intent": "GeeMusicPlayPlaylistIntent",
+            "slots": [
+                {"name": "playlist_name", "type": "MUSICPLAYLIST"}
+            ]
+        },
+        {
+            "intent": "GeeMusicQueueSongIntent",
+            "slots": [
+                {"name": "song_name", "type": "MUSICRECORDING"},
+                {"name": "artist_name", "type": "MUSICGROUP"}
+            ]
+        },
         {
             "intent":"GeeMusicListAllAlbumsIntent",
             "slots": [
@@ -69,13 +69,13 @@
                 {"name": "artist_name", "type": "MUSICGROUP"}
             ]
         },
-		{
-			"intent":"GeeMusicSkipTo",
-			"slots": [
-				{"name":"song_name", "type":"MUSICRECORDING"},
-				{"name":"artist_name", "type":"MUSICGROUP"}
-			]
-		},
+        {
+            "intent":"GeeMusicSkipTo",
+            "slots": [
+                {"name":"song_name", "type":"MUSICRECORDING"},
+                {"name":"artist_name", "type":"MUSICGROUP"}
+            ]
+        },
         {
             "intent": "GeeMusicPlayIFLRadioIntent"
         },
@@ -103,17 +103,17 @@
         {
             "intent": "GeeMusicPlaySongRadioIntent",
             "slots": [
-			    {"name":"song_name", "type":"MUSICRECORDING"},
+                {"name":"song_name", "type":"MUSICRECORDING"},
                 {"name": "album_name", "type": "MUSICALBUM"},
                 {"name":"artist_name", "type":"MUSICGROUP"}
-			]
+            ]
         },
         {
             "intent": "GeeMusicPlayThumbsUpIntent"
         },
         {
-	    "intent": "GeeMusicListAllPlaylists"
-	    },
+        "intent": "GeeMusicListAllPlaylists"
+        },
         {
             "intent": "AMAZON.ShuffleOnIntent"
         },
@@ -129,5 +129,5 @@
         {
             "intent": "AMAZON.HelpIntent"
         }
-	]
+    ]
 }
