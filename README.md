@@ -116,7 +116,7 @@ Once `foreman` is ready to go, simply run
 $ foreman start
 ```
 
-and you should see your web server start at http://localhost:4000 (although it won't do much if you visit it with your browser).
+and you should see your web server start at http://localhost:5000 (although it won't do much if you visit it with your browser).
 
 ## Create the development Skill on Amazon
 
@@ -240,7 +240,7 @@ Finally, run the container with the appropriate environment variables and port f
 
 ```bash
 $ docker run -d -e GOOGLE_EMAIL=steve@stevegattuso.me -e GOOGLE_PASSWORD=[password] \
--e APP_URL=http://alexa-geemusic.stevegattuso.me -p 4000:4000 geemusic
+-e APP_URL=http://alexa-geemusic.stevegattuso.me -p 5000:5000 geemusic
 ```
 
 At this point you're set up and ready.
