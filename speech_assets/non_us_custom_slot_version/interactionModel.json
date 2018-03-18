@@ -1,0 +1,3245 @@
+{
+    "languageModel":
+    {
+        "invocationName": "gee music",
+        "intents": [
+        {
+            "name": "AMAZON.PauseIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.CancelIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.StopIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.ResumeIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.NextIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.PreviousIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.ShuffleOnIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.ShuffleOffIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.LoopOnIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.LoopOffIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.HelpIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "GeeMusicPlayArtistIntent",
+            "slots": [
+            {
+                "name": "artist_name",
+                "type": "MUSICGROUP"
+            }],
+            "samples": [
+                "Play artist {artist_name}",
+                "Play songs by {artist_name}",
+                "Play top songs by {artist_name}",
+                "Play top tracks by {artist_name}",
+                "Play music by {artist_name}",
+                "Play tracks by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayAlbumIntent",
+            "slots": [
+            {
+                "name": "album_name",
+                "type": "MUSICALBUM"
+            },
+            {
+                "name": "artist_name",
+                "type": "MUSICGROUP"
+            }],
+            "samples": [
+                "Play the album {album_name}",
+                "Play album {album_name}",
+                "Play the album {album_name} by {artist_name}",
+                "Play album {album_name} by {artist_name}",
+                "Play songs from the album {album_name} by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlaySimilarSongsRadioIntent",
+            "slots": [],
+            "samples": [
+                "Play similar songs",
+                "Play songs like this",
+                "Start radio with this song"
+            ]
+        },
+        {
+            "name": "GeeMusicPlaySongIntent",
+            "slots": [
+            {
+                "name": "song_name",
+                "type": "MUSICRECORDING"
+            },
+            {
+                "name": "artist_name",
+                "type": "MUSICGROUP"
+            }],
+            "samples": [
+                "Play the song {song_name}",
+                "Play song {song_name}",
+                "Play the song {song_name} by {artist_name}",
+                "Play song {song_name} by {artist_name}",
+                "Play {song_name}",
+                "Play {song_name} by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayArtistRadioIntent",
+            "slots": [
+            {
+                "name": "artist_name",
+                "type": "MUSICGROUP"
+            }],
+            "samples": [
+                "Start radio for artist {artist_name}",
+                "Create a radio station for artist {artist_name}",
+                "Start {artist_name} artist radio",
+                "Start artist radio for {artist_name}",
+                "Play artists like {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlaySongRadioIntent",
+            "slots": [
+            {
+                "name": "song_name",
+                "type": "MUSICRECORDING"
+            },
+            {
+                "name": "artist_name",
+                "type": "MUSICGROUP"
+            },
+            {
+                "name": "album_name",
+                "type": "MUSICALBUM"
+            }],
+            "samples": [
+                "Start radio for song {song_name}",
+                "Create a radio station for song {song_name}",
+                "Start {song_name} song radio",
+                "Start song radio for {song_name}",
+                "Play songs like {song_name}",
+                "Play songs like {song_name} from {album_name}",
+                "Play songs like {song_name} by {artist_name}",
+                "Play songs like {song_name} by {artist_name} from {album_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayPlaylistIntent",
+            "slots": [
+            {
+                "name": "playlist_name",
+                "type": "MUSICPLAYLIST"
+            }],
+            "samples": [
+                "Play {playlist_name} playlist",
+                "Playlist {playlist_name}",
+                "Start playlist {playlist_name}",
+                "Play songs from my {playlist_name} playlist",
+                "Play playlist {playlist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicQueueSongIntent",
+            "slots": [
+            {
+                "name": "song_name",
+                "type": "MUSICRECORDING"
+            },
+            {
+                "name": "artist_name",
+                "type": "MUSICGROUP"
+            }],
+            "samples": [
+                "next play the song {song_name}",
+                "next play song {song_name}",
+                "next play the song {song_name} by {artist_name}",
+                "next play song {song_name} by {artist_name}",
+                "next play {song_name}",
+                "next play {song_name} by {artist_name}",
+                "queue {song_name}",
+                "queue {song_name} by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicListAllAlbumsIntent",
+            "slots": [
+            {
+                "name": "artist_name",
+                "type": "MUSICGROUP"
+            }],
+            "samples": [
+                "List all albums by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicListLatestAlbumIntent",
+            "slots": [
+            {
+                "name": "artist_name",
+                "type": "MUSICGROUP"
+            }],
+            "samples": [
+                "List the latest albums by {artist_name}",
+                "What are latest albums by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayLatestAlbumIntent",
+            "slots": [
+            {
+                "name": "artist_name",
+                "type": "MUSICGROUP"
+            }],
+            "samples": [
+                "play the latest album by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayAlbumByArtistIntent",
+            "slots": [
+            {
+                "name": "artist_name",
+                "type": "MUSICGROUP"
+            }],
+            "samples": [
+                "Play an album by the band {artist_name}",
+                "Play an album by artist {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicSkipTo",
+            "slots": [
+            {
+                "name": "song_name",
+                "type": "MUSICRECORDING"
+            },
+            {
+                "name": "artist_name",
+                "type": "MUSICGROUP"
+            }],
+            "samples": [
+                "Skip to {song_name}",
+                "Skip to {song_name} by {artist_name}",
+                "Go to {song_name}",
+                "Go to {song_name} by {artist_name}",
+                "Skip to the song {song_name}",
+                "Skip to the song {song_name} by {artist_name}",
+                "Jump to {song_name}",
+                "Jump to {song_name} by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayIFLRadioIntent",
+            "slots": [],
+            "samples": [
+                "play some music",
+                "play i'm feeling lucky station",
+                "play my radio station",
+                "play my station"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayLibraryIntent",
+            "slots": [],
+            "samples": [
+                "play songs from my library",
+                "play tracks from my library",
+                "play my library",
+                "start playing tracks from my library",
+                "play songs from library"
+            ]
+        },
+        {
+            "name": "GeeMusicCurrentlyPlayingIntent",
+            "slots": [],
+            "samples": [
+                "What is the current song",
+                "What is currently playing",
+                "What is playing right now",
+                "What song is this",
+                "What is the name of this song",
+                "What is this"
+            ]
+        },
+        {
+            "name": "GeeMusicRestartTracksIntent",
+            "slots": [],
+            "samples": [
+                "Restart tracks",
+                "Restart songs",
+                "Restart the playlist",
+                "Reset the playlist to the beginning"
+            ]
+        },
+        {
+            "name": "GeeMusicThumbsUpIntent",
+            "slots": [],
+            "samples": [
+                "up vote",
+                "up vote this",
+                "thumbs up this song",
+                "thumbs up",
+                "like this song"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayThumbsUpIntent",
+            "slots": [],
+            "samples": [
+                "play promoted songs",
+                "play up voted songs",
+                "play thumbs up songs"
+            ]
+        },
+        {
+            "name": "GeeMusicThumbsDownIntent",
+            "slots": [],
+            "samples": [
+                "down vote",
+                "down vote this",
+                "thumbs down this song",
+                "thumbs down",
+                "dislike this song"
+            ]
+        },
+        {
+            "name": "GeeMusicListAllPlaylists",
+            "slots": [],
+            "samples": [
+                "what playlists do I have",
+                "list my playlists",
+                "to list my playlists",
+                "tell me what playlists are in my library",
+                "list playlists"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayDifferentAlbumIntent",
+            "slots": [],
+            "samples": [
+                "Play a different album"
+            ]
+        }],
+        "types": [
+        {
+            "name": "MUSICGROUP",
+            "values": [
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "1975",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "abba",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "adele",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "after the afterparty",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "alan walker",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "aled jones",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "alessia cara",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "alexander armstrong",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "amy winehouse",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "andre rieu and johann strauss",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "anne-marie",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "arctic monkeys",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "ariana grande",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "ariana grande featuring nicki minaj",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "bastille",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "beatles",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "beyonce",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "biffy clyro",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "birdy",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "blossoms",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "bob marley and the wailers",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "bon jovi",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "bradley walsh",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "bring me the horizon",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "bruno mars",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "calum scott",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "calvin harris",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "calvin harris featuring rihanna",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "catfish and the bottlemen",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "chainsmokers",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "chainsmokers featuring daya",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "chainsmokers featuring halsey",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "chainsmokers featuring phoebe ryan",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "charli xcx featuring lil yachty",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "charlie puth",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "childish gambino",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "chris brown and gucci mane and usher",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "christine and the queens",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "clean bandit",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "cliff richard",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "coldplay",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "craig david",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "david bowie",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "dj snake featuring justin bieber",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "drake",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "drake featuring rihanna",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "drake featuring wizkid and kyla",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "dua lipa",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "ed sheeran",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "ellie goulding",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "elo",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "elvis presley",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "emeli sande",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "eminem",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "fleetwood mac",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "frank ocean",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "galantis and hook n sling",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "giggs featuring donaeo",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "green day",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "gregory porter",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "hailee steinfeld and grey and zedd",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "hozier",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "j cole",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "jack savoretti",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "james arthur",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "james bay",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "jax jones featuring raye",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "jess glynne",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "john legend",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "jonas blue featuring jp cooper",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "jonas blue featuring raye",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "jp coope",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "julia michaels",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "justin bieber",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "justin timberlake",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "kate bush",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "killers",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "kings of leon",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "kungs vs cookin' on 3 burners",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "la la land cast",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "lady gaga",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "last shadow puppets",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "leonard cohen",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "little mix",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "little mix featuring charlie puth",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "louis tomlinson and steve aoki",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "louisa johnson",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "lukas graham",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "m o and kent jones",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "machine gun kelly and cabello",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "madness",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "major lazer and justin bieber and mo",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "maroon 5 featuring kendrick lamar",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "martin garrix and bebe rexha",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "martin jensen",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "metallica",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "mic lowry",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "michael ball and alfie boe",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "michael buble",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "michael jackson",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "migos",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "mike posner",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "motion picture cast recording",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "mumford and sons",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "mura masa featuring asap rocky",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "nathan sykes",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "naughty boy and kyla and popcaan",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "neiked",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "nevada and mark morrison and fetty wap",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "noah cyrus featuring labrinth",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "oasis",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "olly murs",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "one direction",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "panic at the disco",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "pete tong",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "phil collins",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "prince",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "queen",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "radiohead",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "rae sremmurd featuring gucci mane",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "rag'n'bone man",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "red hot chili peppers",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "rick astley",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "rihanna",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "robbie williams",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "rolling stones",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "roy orbison",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "ryan gosling and emma stone",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "sage the gemini",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "sam smith",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "schulz and guetta and cheat codes",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "sean paul featuring dua lipa",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "shawn mendes",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "sia",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "sia featuring kendrick lamar",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "sigala and digital farm animals",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "sigma featuring birdy",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "skepta",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "snakehips and mo",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "starley",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "taylor swift",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "tinie tempah featuring tinashe",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "tom odell",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "tom zanetti featuring sadie ama",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "twenty one pilots",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "vamps featuring matoma",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "weeknd",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "weeknd featuring daft punk",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "X.X.",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "years and years",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "zara larsson",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "zayn and taylor swift",
+                    "synonyms": []
+                }
+            }]
+        },
+        {
+            "name": "MUSICALBUM",
+            "values": [
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "1",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "1000 forms of fear",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "1989",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "21",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "24 hrs",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "24k magic",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "25",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "4ever",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "50",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "a head full of dreams",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "a moon shaped pool",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "all over the world",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "am",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "anti",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "back from the edge",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "back to black",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "beautiful lies",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "beauty behind the madness",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "before the dawn",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "best of bowie",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "blackstar",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "blonde",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "blossoms",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "blue and lonesome",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "blurryface",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "can't touch us now",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "chaleur humaine",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "chaos and the calm",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "chasing dreams",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "christmas",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "classic house",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "communion",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "curtain call",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "dangerous woman",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "death of a bachelor",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "delirium",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "ellipsis",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "everything you've come to expect",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "falling in love",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "following my intuition",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "get weird",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "glory days",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "gold",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "greatest hits",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "handwritten",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "hardwired to self-destruct",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "hozier",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "hunky dory",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "i cry when i laugh",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "i like it when you sleep for you are so",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "if i can dream",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "illuminate",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "in the lonely hour",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "joanne",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "just fabulous rock-n-roll",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "konnichiwa",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "legacy",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "legend",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "lemonade",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "long live the angels",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "lukas graham",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "made in the am",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "nine track mind",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "nobody but me",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "nothing has changed",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "number ones",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "one voice",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "purpose",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "revolution radio",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "rumours",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "starboy",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "take me to the alley",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "that's the spirit",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the 1975",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the balcony",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the getaway",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the heavy entertainment show",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the ride",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the rise and fall of ziggy stardust",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the singles",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the ultimate collection",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the very best of",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the wonder of you",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "this is acting",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "time flies",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "together",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "trolls",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "upon a different shore",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "vessel",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "views",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "walls",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "wild world",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "wilder mind",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "written in scars",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "wrong crowd",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "x",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "you want it darker",
+                    "synonyms": []
+                }
+            }]
+        },
+        {
+            "name": "MUSICRECORDING",
+            "values": [
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "24k magic",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "7 years",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "ain't my fault",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "alarm",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "all night",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "all we know",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "another day of sun",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "bad and boujee",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "bad things",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "be the one",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "black beatles",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "by your side",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "call on me",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "can't stop the feeling",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "castle on the hill",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "cheap thrills",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "city of stars",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "closer",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "cold water",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "controlla",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "dancing on my own",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "deja vu",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "don't leave",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "don't let me down",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "don't wanna know",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "everglow",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "faded",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "fake love",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "find me",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "heathens",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "hello",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "how far I'll go",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "human",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "hymn for the weekend",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "I don't wanna live forever",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "I feel it coming",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "I took a pill in ibiza",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "I would like",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "in the name of love",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "into you",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "issues",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "just hold on",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "let me love you",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "lock doh",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "love me now",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "love my life",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "love on me",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "love yourself",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "lovesick",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "lush life",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "make me cry",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "mercy",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "mr brightside",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "my way",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "no lie",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "not in love",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "now and later",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "oh lord",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "on hold",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "one dance",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "only one",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "oops",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "paris",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "party",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "party monster",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "perfect strangers",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "photograph",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "redbone",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "rockabye",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "say you won't let go",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "scars to your beautiful",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "september song",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "sexual",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "shape of you",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "shed a light",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "should've been me",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "shout out to my ex",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "side to side",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "so good",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "solo dance",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "sorry",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "starboy",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "starving",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "stitches",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "stressed out",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "text from your ex",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the a team",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the greatest",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the mack",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "there's only one of you",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "thinking out loud",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "this girl",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "this is what you came for",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "too good",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "touch",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "treat you better",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "water under the bridge",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "you don't know me",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "you want me",
+                    "synonyms": []
+                }
+            }]
+        },
+        {
+            "name": "MUSICPLAYLIST",
+            "values": [
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "hello",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "hi there",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "it's cold here",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "my name is alexa",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the weather outside is frightful",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the meaning of life is forty two",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "what is the weather in miami beach",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "you get nothing you lose good day sir",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "the quick brown fox jumps over the lazy dog",
+                    "synonyms": []
+                }
+            },
+            {
+                "id": "",
+                "name":
+                {
+                    "value": "we are the music makers we are the dreamers of dreams",
+                    "synonyms": []
+                }
+            }]
+        }]
+    }
+}
