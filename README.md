@@ -144,7 +144,7 @@ See the note at the top about supported languages.
 
 #### US English users
 
-On the "Interaction Model" step, paste in the contents of `speech_assets/intentSchema.json` to the intent schema field and the contents of `speech_assets/sampleUtterances.txt` to the sample utterances field.
+On the "Interaction Model" step, paste in the contents of `speech_assets/interactionModel.json` to the JSON Editor.
 
 #### Other language users
 
@@ -157,13 +157,13 @@ You need to make four slots and fill them with sample data for each of the follo
 * MUSICRECORDING
 * MUSICPLAYLIST
 
-Click "Add Slot Type" and enter `MUSICALBUM` into the "type", then copy and paste the contents of `/speech_assets/non_us_custom_slot_version/sample_slot_data/MUSICALBUM.txt` into the "values" section.
+Click "Add Slot Type" and enter `MUSICALBUM` into the "type", then copy and paste the contents of `/speech_assets/non_us/sample_slot_data/MUSICALBUM.txt` into the "values" section.
 
 Repeat the process for each of the slots.
 
 The sample data was scraped from the UK top 100 singles and album chart. For the MUSICPLAYLISTS there are some generic sample phrases. The sample data is fine to use, don't feel you need to fill these slots to match your own collection.
 
-After you have added the "Custom Slots" you need to copy and paste the contents of `/speech_assets/non_us_custom_slot_version/intentSchema.json` to the intent schema field and the contents of `speech_assets/sampleUtterances.txt` to the sample utterances field. For Japanese users, use `speech_assets/sampleUtterances.ja.txt` to the utterances field.
+After you have added the "Custom Slots" you need to copy and paste the contents of `/speech_assets/non_us/intentSchema.json` to the intent schema field and the contents of `speech_assets/non_us/sampleUtterances.txt` to the sample utterances field. For Japanese users, use `speech_assets/non_us/sampleUtterances.ja.txt` to the utterances field.
 
 
 ### Configuration
