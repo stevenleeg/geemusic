@@ -1,0 +1,365 @@
+{
+    "languageModel":
+    {
+        "invocationName": "gee music",
+        "intents": [
+        {
+            "name": "AMAZON.PauseIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.CancelIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.StopIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.ResumeIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.NextIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.PreviousIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.ShuffleOnIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.ShuffleOffIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.LoopOnIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.LoopOffIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "AMAZON.HelpIntent",
+            "slots": [],
+            "samples": []
+        },
+        {
+            "name": "GeeMusicPlayArtistIntent",
+            "slots": [
+            {
+                "name": "artist_name",
+                "type": "AMAZON.MusicGroup"
+            }],
+            "samples": [
+                "Play artist {artist_name}",
+                "Play songs by {artist_name}",
+                "Play top songs by {artist_name}",
+                "Play top tracks by {artist_name}",
+                "Play music by {artist_name}",
+                "Play tracks by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayAlbumIntent",
+            "slots": [
+            {
+                "name": "album_name",
+                "type": "AMAZON.MusicAlbum"
+            },
+            {
+                "name": "artist_name",
+                "type": "AMAZON.MusicGroup"
+            }],
+            "samples": [
+                "Play the album {album_name}",
+                "Play album {album_name}",
+                "Play the album {album_name} by {artist_name}",
+                "Play album {album_name} by {artist_name}",
+                "Play songs from the album {album_name} by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlaySimilarSongsRadioIntent",
+            "slots": [],
+            "samples": [
+                "Play similar songs",
+                "Play songs like this",
+                "Start radio with this song"
+            ]
+        },
+        {
+            "name": "GeeMusicPlaySongIntent",
+            "slots": [
+            {
+                "name": "song_name",
+                "type": "AMAZON.MusicRecording"
+            },
+            {
+                "name": "artist_name",
+                "type": "AMAZON.MusicGroup"
+            }],
+            "samples": [
+                "Play the song {song_name}",
+                "Play song {song_name}",
+                "Play the song {song_name} by {artist_name}",
+                "Play song {song_name} by {artist_name}",
+                "Play {song_name}",
+                "Play {song_name} by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayArtistRadioIntent",
+            "slots": [
+            {
+                "name": "artist_name",
+                "type": "AMAZON.MusicGroup"
+            }],
+            "samples": [
+                "Start radio for artist {artist_name}",
+                "Create a radio station for artist {artist_name}",
+                "Start {artist_name} artist radio",
+                "Start artist radio for {artist_name}",
+                "Play artists like {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlaySongRadioIntent",
+            "slots": [
+            {
+                "name": "song_name",
+                "type": "AMAZON.MusicRecording"
+            },
+            {
+                "name": "artist_name",
+                "type": "AMAZON.MusicGroup"
+            },
+            {
+                "name": "album_name",
+                "type": "AMAZON.MusicAlbum"
+            }],
+            "samples": [
+                "Start radio for song {song_name}",
+                "Create a radio station for song {song_name}",
+                "Start {song_name} song radio",
+                "Start song radio for {song_name}",
+                "Play songs like {song_name}",
+                "Play songs like {song_name} from {album_name}",
+                "Play songs like {song_name} by {artist_name}",
+                "Play songs like {song_name} by {artist_name} from {album_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayPlaylistIntent",
+            "slots": [
+            {
+                "name": "playlist_name",
+                "type": "AMAZON.MusicPlaylist"
+            }],
+            "samples": [
+                "Play {playlist_name} playlist",
+                "Playlist {playlist_name}",
+                "Start playlist {playlist_name}",
+                "Play songs from my {playlist_name} playlist",
+                "Play playlist {playlist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicQueueSongIntent",
+            "slots": [
+            {
+                "name": "song_name",
+                "type": "AMAZON.MusicRecording"
+            },
+            {
+                "name": "artist_name",
+                "type": "AMAZON.MusicGroup"
+            }],
+            "samples": [
+                "next play the song {song_name}",
+                "next play song {song_name}",
+                "next play the song {song_name} by {artist_name}",
+                "next play song {song_name} by {artist_name}",
+                "next play {song_name}",
+                "next play {song_name} by {artist_name}",
+                "queue {song_name}",
+                "queue {song_name} by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicListAllAlbumsIntent",
+            "slots": [
+            {
+                "name": "artist_name",
+                "type": "AMAZON.MusicGroup"
+            }],
+            "samples": [
+                "List all albums by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicListLatestAlbumIntent",
+            "slots": [
+            {
+                "name": "artist_name",
+                "type": "AMAZON.MusicGroup"
+            }],
+            "samples": [
+                "List the latest albums by {artist_name}",
+                "What are latest albums by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayLatestAlbumIntent",
+            "slots": [
+            {
+                "name": "artist_name",
+                "type": "AMAZON.MusicGroup"
+            }],
+            "samples": [
+                "play the latest album by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayAlbumByArtistIntent",
+            "slots": [
+            {
+                "name": "artist_name",
+                "type": "AMAZON.MusicGroup"
+            }],
+            "samples": [
+                "Play an album by the band {artist_name}",
+                "Play an album by artist {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicSkipTo",
+            "slots": [
+            {
+                "name": "song_name",
+                "type": "AMAZON.MusicRecording"
+            },
+            {
+                "name": "artist_name",
+                "type": "AMAZON.MusicGroup"
+            }],
+            "samples": [
+                "Skip to {song_name}",
+                "Skip to {song_name} by {artist_name}",
+                "Go to {song_name}",
+                "Go to {song_name} by {artist_name}",
+                "Skip to the song {song_name}",
+                "Skip to the song {song_name} by {artist_name}",
+                "Jump to {song_name}",
+                "Jump to {song_name} by {artist_name}"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayIFLRadioIntent",
+            "slots": [],
+            "samples": [
+                "play some music",
+                "play i'm feeling lucky station",
+                "play my radio station",
+                "play my station"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayLibraryIntent",
+            "slots": [],
+            "samples": [
+                "play songs from my library",
+                "play tracks from my library",
+                "play my library",
+                "start playing tracks from my library",
+                "play songs from library"
+            ]
+        },
+        {
+            "name": "GeeMusicCurrentlyPlayingIntent",
+            "slots": [],
+            "samples": [
+                "What is the current song",
+                "What is currently playing",
+                "What is playing right now",
+                "What song is this",
+                "What is the name of this song",
+                "What is this"
+            ]
+        },
+        {
+            "name": "GeeMusicRestartTracksIntent",
+            "slots": [],
+            "samples": [
+                "Restart tracks",
+                "Restart songs",
+                "Restart the playlist",
+                "Reset the playlist to the beginning"
+            ]
+        },
+        {
+            "name": "GeeMusicThumbsUpIntent",
+            "slots": [],
+            "samples": [
+                "up vote",
+                "up vote this",
+                "thumbs up this song",
+                "thumbs up",
+                "like this song"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayThumbsUpIntent",
+            "slots": [],
+            "samples": [
+                "play promoted songs",
+                "play up voted songs",
+                "play thumbs up songs"
+            ]
+        },
+        {
+            "name": "GeeMusicThumbsDownIntent",
+            "slots": [],
+            "samples": [
+                "down vote",
+                "down vote this",
+                "thumbs down this song",
+                "thumbs down",
+                "dislike this song"
+            ]
+        },
+        {
+            "name": "GeeMusicListAllPlaylists",
+            "slots": [],
+            "samples": [
+                "what playlists do I have",
+                "list my playlists",
+                "to list my playlists",
+                "tell me what playlists are in my library",
+                "list playlists"
+            ]
+        },
+        {
+            "name": "GeeMusicPlayDifferentAlbumIntent",
+            "slots": [],
+            "samples": [
+                "Play a different album"
+            ]
+        }],
+        "types": []
+    }
+}

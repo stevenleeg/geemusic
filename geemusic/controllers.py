@@ -3,13 +3,16 @@ import requests
 from os import environ
 from geemusic import app, api
 
+@app.route('/wake-up')
+def index():
+	return 'I am not sleeping!'
 
 @app.route("/alexa/stream/<song_id>")
 def redirect_to_stream(song_id):
     stream_url = api.get_google_stream_url(song_id)
     # Scrobble if Last.fm is setup
     if environ.get('LAST_FM_ACTIVE'):
-        from utils import last_fm
+        from .utils import last_fm
         song_info = api.get_song_data(song_id)
         last_fm.scrobble(
             song_info['title'],

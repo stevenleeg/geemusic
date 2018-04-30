@@ -2,18 +2,20 @@
 
 GeeMusic is an Alexa skill which bridges Google Music and Amazon's Alexa. It hopes to rescue all of those who want an Echo/Dot but don't want to switch off of Google Music or pay extra for an Amazon Music Unlimited subscription.
 
-This project is still in its early phases and subject to a bit of change, however it is functional and ready for use! The only catch is that you'll need to run it on your own server for the time being (ideally I'll eventually release this on the Alexa Skills marketplace, but there's a lot of work to do before then).
+This project is still in its early phases and subject to a bit of change, however it is functional and ready for use! The only catch is that you'll need to run it on your own server for the time being (ideally I'll eventually release this on the Alexa Skills marketplace, but there's a lot of work to do before then). This means that you should be familiar with how to set up your own HTTPS web server for now.
 
 ### Notes
 
 **This Skill is not made by nor endorsed by Google.** That being said, it is based off of the wonderful [gmusicapi](https://github.com/simon-weber/gmusicapi) by [Simon Weber](https://simon.codes), which has been around since 2012, so this should work as long as Google doesn't decide to lock down its APIs in a major way.
+
+**The use of 2FA (2-Factory Authentication) and an app-specific password are highly recommended.** If you fail to use an app-specifc password and 2FA, Google may ask you to reset your password until you use one. There have been multiple reports of logins failed bacause of the failure to follow this step. More info about app-specific passwords [here](https://support.google.com/accounts/answer/185833) and 2FA [here](https://support.google.com/accounts/answer/185839).
 
 ### Supported Echo languages
 
 **This Skill was developed to only work on devices (Echo, Dot, Tap etc) using English(US) on a Amazon US account**
 This is due to the Skill using features from the [Developer Preview of the ASK Built-in Library](https://developer.amazon.com/blogs/post/Tx2EWC85F6H422/Introducing-the-ASK-Built-in-Library-Developer-Preview-Pre-Built-Models-for-Hund). Which frustratingly has only been made available to developers in the US (edit: six months later and there is still no access for UK/DE).
 
-There is a workaround for English(UK) users (Amazon UK account) if they setup the Skill slightly differently, instructions are included below.
+There is a workaround for English(UK) and Japanese users if they setup the Skill slightly differently, instructions are included below.
 
 This language issue only affects the Echo/Amazon side of things and not your Google Music account [#100](https://github.com/stevenleeg/geemusic/issues/100)
 
@@ -114,7 +116,9 @@ Once `foreman` is ready to go, simply run
 $ foreman start
 ```
 
-and you should see your web server start at http://localhost:4000 (although it won't do much if you visit it with your browser).
+and you should see your web server start at http://localhost:5000 (although it won't do much if you visit it with your browser).
+
+For alternatives on setting up your server, see the optional sections, notably the Heroku section if you're not familiar with configuring your own HTTPS server.
 
 ## Create the development Skill on Amazon
 
@@ -127,7 +131,7 @@ Going through the various sections
 | Field | Value |
 | ----- | ----- |
 | Skill Type | Custom Interaction Model |
-| Language | Select US English or UK English |
+| Language | Select US English, UK English or Japanese |
 | Name | Gee Music |
 | Invocation Name | gee music |
 | Audio Player | Yes |
@@ -140,26 +144,11 @@ See the note at the top about supported languages.
 
 #### US English users
 
-On the "Interaction Model" step, paste in the contents of `speech_assets/intentSchema.json` to the intent schema field and the contents of `speech_assets/sampleUtterances.txt` to the sample utterances field.
+On the "Interaction Model" step, paste in the contents of `speech_assets/interactionModel.json` to the JSON Editor.
 
-#### UK English users
+#### Other language users
 
-On the "Interaction Model" step, you need to create your Custom Slot Types before the intent schema and sample utterances.
-
-You need to make four slots and fill them with sample data for each of the following:
-
-* MUSICALBUM
-* MUSICGROUP
-* MUSICRECORDING
-* MUSICPLAYLIST
-
-Click "Add Slot Type" and enter `MUSICALBUM` into the "type", then copy and paste the contents of `/speech_assets/non_us_custom_slot_version/sample_slot_data/MUSICALBUM.txt` into the "values" section.
-
-Repeat the process for each of the slots.
-
-The sample data was scraped from the UK top 100 singles and album chart. For the MUSICPLAYLISTS there are some generic sample phrases. The sample data is fine to use, don't feel you need to fill these slots to match your own collection.
-
-After you have added the "Custom Slots" you need to copy and paste the contents of `/speech_assets/non_us_custom_slot_version/intentSchema.json` to the intent schema field and the contents of `speech_assets/sampleUtterances.txt` to the sample utterances field.
+On the "Interaction Model" step, paste in the contents of `speech_assets/non_us_custom_slot_version/interactionModel.json` to the JSON Editor.
 
 
 ### Configuration
@@ -213,9 +202,10 @@ We now need to configure it to work with your Google account. Type the following
 $ heroku config:set GOOGLE_EMAIL=steve@stevegattuso.me
 $ heroku config:set GOOGLE_PASSWORD=[password]
 $ heroku config:set APP_URL=https://[heroku_app_name].herokuapp.com
+$ heroku config:set DEBUG_MODE=False
 ```
 
-At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.` Note, that while using the free tier, you may experience timeout errors when you server has received no requests for over 30 minutes.
+At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.` Note, that while using the free tier, you may experience timeout errors when you server has received no requests for over 30 minutes. However, you can use a service, such as [Kaffeine](http://kaffeine.herokuapp.com/) to minimize your downtime.
 
 ## (Optional) Use Docker
 
@@ -237,7 +227,7 @@ Finally, run the container with the appropriate environment variables and port f
 
 ```bash
 $ docker run -d -e GOOGLE_EMAIL=steve@stevegattuso.me -e GOOGLE_PASSWORD=[password] \
--e APP_URL=http://alexa-geemusic.stevegattuso.me -p 4000:4000 geemusic
+-e APP_URL=http://alexa-geemusic.stevegattuso.me -p 5000:5000 geemusic
 ```
 
 At this point you're set up and ready.
@@ -245,7 +235,20 @@ At this point you're set up and ready.
 ## (Optional) Last.fm support
 *Only attempt this if you have significant technical expertise.* To scrobble all played tracks to [Last.fm](http://www.last.fm) follow the instructions at [this repo](https://github.com/huberf/lastfm-scrobbler) to get auth tokens.
 
-Then add them as environement variables to your setup (e.g. `LAST_FM_API`, `LAST_FM_SECRET`, `LAST_FM_SESSION_KEY`). To finish enabling create a `LAST_FM_ACTIVE` environement variable and set it to `True`.
+Then add them as environement variables to your setup (e.g. `LAST_FM_API`, `LAST_FM_API_SECRET`, `LAST_FM_SESSION_KEY`). To finish enabling create a `LAST_FM_ACTIVE` environement variable and set it to `True`.
+
+## (Optional) Language support
+If your desired language is listed below you can simply set your `LANGUAGE` environment variable to the 2 character country code specified below:
+
+```
+# English
+LANGUAGE=en
+
+# German
+LANGUAGE=de
+```
+
+If you want to add a language submit a PR to this repository and add translations for the language you want to support in `geemusic/templates/` dir with the global two character country code + `yaml`. For example, the English the file is `geemusic/templates/en.yaml`.
 
 ## Troubleshooting
 ### Pausing/resuming skips to the beginning of the song.

@@ -4,7 +4,7 @@ import os
 import time
 import datetime
 import requests
-import md5
+import hashlib
 
 from gmusicapi import CallFailure, Mobileclient
 
@@ -52,12 +52,14 @@ def scrobble(song_name, artist_name, session_key):
 
 def hashRequest(obj, secretKey):
     string = ''
-    items = obj.keys()
+    items = list(obj.keys())
     items.sort()
     for i in items:
         string += i
         string += obj[i]
     string += secretKey
     stringToHash = string.encode('utf8')
-    requestHash = md5.new(stringToHash).hexdigest()
+    m = hashlib.md5()
+    m.update(stringToHash)
+    requestHash = m.hexdigest()
     return requestHash
