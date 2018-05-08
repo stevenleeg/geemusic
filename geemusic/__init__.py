@@ -28,3 +28,9 @@ queue = MusicQueue(api)
 
 from . import intents
 from . import controllers
+
+if __name__ == '__main__':
+    verify = getenv("ASK_VERIFY_REQUESTS", "false").lower()
+    if verify == "false":
+        app.config["ASK_VERIFY_REQUESTS"] = False
+    app.run(debug=True)
