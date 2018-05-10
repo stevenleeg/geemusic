@@ -15,15 +15,12 @@ def proxy_response(req):
     bucket = s3.Bucket(BUCKET_NAME)
     file_name = str(uuid4())
 
-    app.debug = False
     obj = bucket.put_object(
             Key=file_name,
             Body = req.content,
             ACL="authenticated-read",
             ContentType=req.headers["content-type"]
           )
-    
-    app.debug = True
     
     url = s3_client.generate_presigned_url(
             "get_object", 
