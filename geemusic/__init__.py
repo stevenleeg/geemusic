@@ -29,6 +29,9 @@ queue = MusicQueue(api)
 from . import intents
 from . import controllers
 
+logging.getLogger("boto3").setLevel(logging.CRITICAL)
+logging.getLogger("botocore").setLevel(logging.CRITICAL)
+
 if __name__ == '__main__':
     verify = getenv("ASK_VERIFY_REQUESTS", "false").lower()
     if verify == "false":
