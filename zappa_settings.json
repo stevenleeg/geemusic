@@ -1,7 +1,7 @@
 {
     "dev": {
         "apigateway_description": "API for Gee Music using Zappa",
-        "app_function": "geemusic.app",
+        "app_function": "geemusic.lambda_handler",
         "aws_region": "us-east-1",
         "project_name": "geemusic-skill",
         "runtime": "python3.6", 
@@ -14,7 +14,9 @@
             "APP_URL": "redacted",
             "DEBUG_MODE": "False",
             "GOOGLE_EMAIL": "redacted",
-            "GOOGLE_PASSWORD": "redacted"
+            "GOOGLE_PASSWORD": "redacted",
+            "USE_S3_BUCKET"  : "True",
+            "S3_BUCKET_NAME" : "redacted"
         }
     }
 }
