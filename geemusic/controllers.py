@@ -22,4 +22,4 @@ def redirect_to_stream(song_id):
 
     app.logger.debug('URL is %s' % stream_url)
     req = requests.get(stream_url, stream=False)
-    return Response(stream_with_context(req.iter_content(chunk_size=512 * 512)), content_type=req.headers['content-type'])
+    return Response(stream_with_context(req.iter_content(chunk_size=1024 * 1024)), content_type=req.headers['content-type'])
