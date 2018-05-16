@@ -26,6 +26,9 @@ logging.getLogger("flask_ask").setLevel(log_level)
 api = GMusicWrapper.generate_api(logger=app.logger)
 queue = MusicQueue(api)
 
+def lambda_handler(event, _context):
+    return ask.run_aws_lambda(event)
+
 from . import intents
 from . import controllers
 
