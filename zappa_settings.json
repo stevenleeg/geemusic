@@ -1,7 +1,7 @@
 {
     "dev": {
         "apigateway_description": "API for Gee Music using Zappa",
-        "app_function": "geemusic.lambda_handler",
+        "app_function": "geemusic.app",
         "aws_region": "us-east-1",
         "project_name": "geemusic-skill",
         "runtime": "python3.6", 
