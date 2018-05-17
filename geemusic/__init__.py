@@ -26,17 +26,8 @@ logging.getLogger("flask_ask").setLevel(log_level)
 api = GMusicWrapper.generate_api(logger=app.logger)
 queue = MusicQueue(api)
 
-def lambda_handler(event, _context):
-    return ask.run_aws_lambda(event)
-
 from . import intents
 from . import controllers
 
 logging.getLogger("boto3").setLevel(logging.CRITICAL)
 logging.getLogger("botocore").setLevel(logging.CRITICAL)
-
-if __name__ == '__main__':
-    verify = getenv("ASK_VERIFY_REQUESTS", "false").lower()
-    if verify == "false":
-        app.config["ASK_VERIFY_REQUESTS"] = False
-    app.run(debug=True)
