@@ -28,3 +28,6 @@ queue = MusicQueue(api)
 
 from . import intents
 from . import controllers
+
+logging.getLogger("boto3").setLevel(logging.CRITICAL)
+logging.getLogger("botocore").setLevel(logging.CRITICAL)
