@@ -264,7 +264,9 @@ We're now almost ready to deploy our skill with Zappa.
 
 ### Deployment Part 3. Deploy the skill with Zappa.
 
-In the terminal, create a zappa configuration file by typing: `zappa init`
+In the terminal, create a zappa configuration file by typing: `zappa init` or by typing `mv gmusic_zappa_settings.json zappa_settings.json` to copy this skeleton file and update all the `redacted` fields with your own values.
+
+*Note: After a while you might have to grab an old valid working device ID from your account using the `Mobileclient.get_registered_devices()`. You'll have to login via a python shell using the `gmusicapi` on a computer that has a valid device id as Lambda functions don't have a MAC address.*
 
 Once the initialization is complete, deploy the skill by typing: `zappa deploy dev`
 
@@ -275,6 +277,8 @@ Then type the following: `zappa update dev`
 Finally you have to update your Alexa Skills Configuration tab to use this URL + /alexa. For example it looks like this, `https://[random-stuff].execute-api.us-east-1.amazonaws.com/dev/alexa`. Everything else for the configuration is the same as the heroku setup. 
 
 It still uses a wildcard SSL cert and doesn't use Account linking or list read/writes.
+
+
 
 ## (Optional) Last.fm support
 *Only attempt this if you have significant technical expertise.* To scrobble all played tracks to [Last.fm](http://www.last.fm) follow the instructions at [this repo](https://github.com/huberf/lastfm-scrobbler) to get auth tokens.
