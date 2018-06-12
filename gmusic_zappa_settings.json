@@ -16,7 +16,8 @@
             "GOOGLE_EMAIL": "redacted",
             "GOOGLE_PASSWORD": "redacted",
             "USE_S3_BUCKET"  : "True",
-            "S3_BUCKET_NAME" : "redacted"
+            "S3_BUCKET_NAME" : "redacted",
+            "ANDROID_ID" : "valid_device_id"
         }
     }
 }

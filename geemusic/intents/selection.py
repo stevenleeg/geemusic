@@ -148,7 +148,7 @@ def play_similar_song_radio():
     stream_url = api.get_stream_url(first_song_id)
 
     thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
-    speech_text = render_template("play_song_text",
+    speech_text = render_template("play_song_radio_text",
                                   song=song['title'],
                                   artist=song['artist'])
     return audio(speech_text).play(stream_url) \
