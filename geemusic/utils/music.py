@@ -1,6 +1,6 @@
 from builtins import object
 from fuzzywuzzy import fuzz
-from os import environ
+from os import getenv
 import threading
 import random
 
@@ -11,7 +11,7 @@ class GMusicWrapper(object):
     def __init__(self, username, password, logger=None):
         self._api = Mobileclient()
         self.logger = logger
-        success = self._api.login(username, password, environ.get('ANDROID_ID', Mobileclient.FROM_MAC_ADDRESS))
+        success = self._api.login(username, password, getenv('ANDROID_ID', Mobileclient.FROM_MAC_ADDRESS))
 
         if not success:
             raise Exception("Unsuccessful login. Aborting!")
@@ -22,6 +22,9 @@ class GMusicWrapper(object):
             target=self.index_library
         )
         self.indexing_thread.start()
+
+    def log(self, log_str):
+        self.logger.debug(log_str)
 
     def _search(self, query_type, query):
         try:
@@ -48,15 +51,16 @@ class GMusicWrapper(object):
         Downloads the a list of every track in a user's library and populates
         self.library with storeIds -> track definitions
         """
-        self.logger.debug('Fetching library...')
+        self.log('Fetching library...')
+        
         tracks = self.get_all_songs()
 
         for track in tracks:
             song_id = track['id']
             self.library[song_id] = track
 
-        self.logger.debug('Done! Discovered %d tracks.' % len(self.library))
-
+        self.log('Fetching library...')
+        
     def get_artist(self, name):
         """
         Fetches information about an artist given its name
@@ -148,7 +152,7 @@ class GMusicWrapper(object):
         return self._api.get_stream_url(song_id)
 
     def get_stream_url(self, song_id):
-        return "%s/alexa/stream/%s" % (environ['APP_URL'], song_id)
+        return "%s/alexa/stream/%s" % (getenv('APP_URL'), song_id)
 
     def get_thumbnail(self, artist_art):
         return artist_art.replace("http://", "https://")
@@ -223,7 +227,8 @@ class GMusicWrapper(object):
     def closest_match(self, request_name, all_matches, artist_name='', minimum_score=70):
         # Give each match a score based on its similarity to the requested
         # name
-        self.logger.debug("The artist name is " + str(artist_name))
+        self.log('Fetching library...')
+        
         request_name = request_name.lower() + artist_name.lower()
         scored_matches = []
         for i, match in enumerate(all_matches):
@@ -243,7 +248,8 @@ class GMusicWrapper(object):
 
         sorted_matches = sorted(scored_matches, key=lambda a: a['score'], reverse=True)
         top_scoring = sorted_matches[0]
-        self.logger.debug("The top scoring match was: " + str(top_scoring))
+        self.log('Fetching library...')
+        
         best_match = all_matches[top_scoring['index']]
 
         # Make sure we have a decent match (the score is n where 0 <= n <= 100)
@@ -263,5 +269,5 @@ class GMusicWrapper(object):
 
     @classmethod
     def generate_api(cls, **kwargs):
-        return cls(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'],
+        return cls(getenv('GOOGLE_EMAIL'), getenv('GOOGLE_PASSWORD'),
                    **kwargs)
