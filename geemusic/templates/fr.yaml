@@ -42,7 +42,7 @@ a commencé : "Commencé à {{ offset }}"
 start_over : "Il n'y a pas de chansons dans la file d'attente."
 curriculum vitae : "Reprendre"
 pause : "Pause"
-stop : "Arrêt".
+stop : "Arrêt"
 next_song : "Il n'y a plus de chansons dans la file d'attente."
 prev_song : "Vous ne pouvez pas retourner plus loin dans la file d'attente."
 shuffle_on : "Il n'y a pas de chansons à mélanger."
@@ -56,7 +56,7 @@ list_all_playlists_text : "Vous avez des listes de lecture {{ playlist_count }} 
 thumbs_no_song : "S'il vous plaît, jouez une chanson pour voter."
 thumbs_up_text : "upvoté"
 thumbs_down_text : "Downvoté"
-restart_tracks_none : "Veuillez indiquer un nom de chanson pour utiliser cette fonction.".
+restart_tracks_none : "Veuillez indiquer un nom de chanson pour utiliser cette fonction."
 restart_tracks_text : "Redémarrage des pistes."
 skip_to_no_song : "S'il vous plaît, dites un nom de chanson pour utiliser cette fonction."
 skip_to_no_match : "Désolé, je n'ai pas pu trouver une correspondance assez proche."
