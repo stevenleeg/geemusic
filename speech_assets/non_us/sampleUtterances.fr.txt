@@ -1,0 +1,118 @@
+GeeMusicPlayArtistIntent lis l'artiste {artist_name}
+GeeMusicPlayArtistIntent Jouer des chansons de {artist_name}
+GeeMusicPlayArtistIntent Jouer les meilleures chansons de {artist_name}
+GeeMusicPlayArtistIntent Lecture des premières pistes de {artist_name}
+GeeMusicPlayArtistIntent Jouer de la musique de {artist_name}
+GeeMusicPlayArtistIntent Lecture des pistes de {artist_name}
+
+GeeMusicPlayAlbumIntent Jouer l'album {album_name}.
+GeeMusicPlayAlbumIntent lis album {album_name}.
+GeeMusicPlayAlbumIntent Jouer l'album {album_name} de {artist_name}
+GeeMusicPlayAlbumIntent lis album {album_name} de {artist_name}
+GeeMusicPlayAlbumIntent Lecture des chansons de l'album {album_name} de {artist_name}
+
+GeeMusicPlaySimilarSongsRadioIntent Jouer des chansons similaires
+GeeMusicPlaySimilarSongsRadioIntent Jouer des chansons comme celle-ci
+GeeMusicPlaySimilarSongsRadioIntent Démarrer la radio avec cette chanson
+
+GeeMusicPlaySongIntent Jouer la chanson {song_name}
+GeeMusicPlaySongIntent lire la chanson {song_name}
+GeeMusicPlaySongIntent Jouer la chanson {song_name} de {artist_name}
+GeeMusicPlaySongIntent lire la chanson {song_name} de {artist_name}
+GeeMusicPlaySongIntent lis {song_name}
+GeeMusicPlaySongIntent lis {song_name} de {artist_name}
+GeeMusicPlaySongIntent met {song_name}
+GeeMusicPlaySongIntent met la chanson {song_name} de {artist_name}
+
+GeeMusicPlayArtistRadioIntent Démarrer la radio pour l'artiste {artist_name}
+GeeMusicPlayArtistRadioIntent Créer une station de radio pour l'artiste {artist_name}
+GeeMusicPlayArtistRadioIntent demarrer la radio de {artist_name} 
+GeeMusicPlayArtistRadioIntent Démarrer la radio de l'artiste pour {artist_name}
+GeeMusicPlayArtistRadioIntent Jouer des artistes comme {artist_name}
+
+GeeMusicPlaySongRadioIntent Démarrer la radio pour la chanson {song_name}
+GeeMusicPlaySongRadioIntent Créer une station de radio pour la chanson {song_name}
+GeeMusicPlaySongRadioIntent Start {song_name} song_name} song radio
+GeeMusicPlaySongRadioIntent Démarrer la chanson radio pour {song_name}
+GeeMusicPlaySongRadioIntent Jouer des chansons comme {song_name}
+GeeMusicPlaySongRadioIntent Jouer des chansons comme {song_name} à partir de {album_name}
+GeeMusicPlaySongRadioIntent Jouer des chansons comme {song_name} de {artist_name}
+GeeMusicPlaySongRadioIntent Jouer des chansons comme {song_name} de {artist_name} à partir de {album_name}
+
+GeeMusicPlayPlaylistIntent lis {playlist_name} liste de lecture
+GeeMusicPlayPlaylistIntent playlist {playlist_name}
+GeeMusicPlayPlaylistIntent Démarrer la playlist {playlist_name}
+GeeMusicPlayPlaylistIntention de jouer des chansons de ma liste de lecture {playlist_name}
+GeeMusicPlayPlaylistIntent lis playlist {playlist_name}
+
+GeeMusicPlayIFLRadioIntention de jouer de la musique
+GeeMusicPlayIFLRadioIntent lis I'm feeling lucky station
+GeeMusicPlayIFLRadioIntent Jouer ma station de radio
+GeeMusicPlayIFLRadioIntent Jouer ma station
+
+GeeMusicCurrentlyPlayingIntent Quelle est la chanson actuelle ?
+GeeMusicCurrentlyPlayingIntent Ce qui joue actuellement
+GeeMusicCurrentlyPlayingIntent Ce qui est en train de jouer maintenant
+GeeMusicCurrentlyPlayingIntent Quelle est cette chanson ?
+GeeMusicCurrentlyPlayingIntent Quel est le nom de cette chanson ?
+GeeMusicCurrentlyPlayingIntent Qu'est-ce que c'est ?
+
+GeeMusicQueueSongIntent lis la chanson suivante {song_name}
+GeeMusicQueueSongIntent chanson suivante {song_name}
+GeeMusicQueueSongIntent Lecture suivante de la chanson {song_name} de {artist_name}
+GeeMusicQueueSongIntent lis la chanson {song_name} par {artist_name}
+GeeMusicQueueSongIntent lis {song_name}
+GeeMusicQueueSongIntent Jouer la chanson {song_name} de {artist_name}
+GeeMusicQueueSongIntent ajouter a la liste de lecture {song_name}
+GeeMusicQueueSongIntent ajouter a la suite {song_name} de {artist_name}
+
+GeeMusicThumbsUpIntent Up vote
+GeeMusicThumbsUpIntent Vote positif
+GeeMusicThumbsUpIntent j'aime cette chanson
+GeeMusicThumbsUpIntent j'aime
+GeeMusicThumbsUpIntent pouce en l'air pour cette chanson
+
+GeeMusicThumbsDownIntent Vote à la baisse
+GeeMusicThumbsDownIntent Down vote this
+GeeMusicThumbsDownIntent Thumbs down this song
+GeeMusicThumbsDownIntention Pouces vers le bas
+GeeMusicThumbsDownIntention je n'aime pas cette chanson
+
+GeeMusicPlayThumbsUpIntent lis chansons promues
+GeeMusicPlayThumbsUpIntent Jouez les chansons votées.
+GeeMusicPlayThumbsUpIntent lis thumbs up songs
+
+GeeMusicListAllAlbumsIntent Liste de tous les albums de {artist_name}
+
+GeeMusicListLatestAlbumIntent Liste des derniers albums de {artist_name}
+GeeMusicListLatestAlbumIntent Quels sont les derniers albums de {artist_name} ?
+
+GeeMusicPlayLatestAlbumIntent Jouez le dernier album de {artist_name}
+
+GeeMusicPlayAlbumByArtistIntent Jouez un album du groupe {artist_name}
+GeeMusicPlayAlbumByArtistIntent Jouer un album de artiste {artist_name}
+GeeMusicPlayDifferentAlbumIntent Jouer un autre album
+
+GeeMusicPlayLibraryIntention jouer des chansons de ma bibliothèque
+GeeMusicPlayLibraryLibraryLecture pistes de ma bibliothèque
+GeeMusicPlayLibraryIntent jouer ma bibliothèque
+GeeMusicPlayLibraryIntention commencer à lire les pistes de ma bibliothèque.
+GeeMusicPlayLibraryIntention jouer des chansons de la bibliothèque
+
+GeeMusicRestartTracksIntent redemarre la chanson
+GeeMusicRestartTracksIntent redemarre la musique
+GeeMusicRestartTracksIntent Redémarre la liste de lecture
+GeeMusicRestartTracksIntent Reprendre la liste de lecture du début.
+GeeMusicRestartTracksIntent Reprendre la chanson du début
+GeeMusicRestartTracksIntent Reprendre la musique du début
+GeeMusicRestartTracksIntent Reprendre la liste de lecture du début
+GeeMusicRestartTracksIntent redemarre la liste de lecture du début.
+
+GeeMusicSkipTo Aller à {song_name} de {artist_name}
+GeeMusicSkipTo Aller à {song_name}
+GeeMusicSkipTo Aller à {song_name} de {artist_name}
+
+GeeMusicListAllPlaylists quelles listes de lecture ai-je ?
+GeeMusicListAllPlaylists lister mes playlists
+GeeMusicListAllPlaylists pour lister mes playlists
+GeeMusicListAllPlaylists quelles listes de lecture se trouvent dans ma bibliothèque
