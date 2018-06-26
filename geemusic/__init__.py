@@ -13,17 +13,17 @@ language = getenv('LANGUAGE', 'en')
     
 TEMPLATE_DIR = "templates/" + language + ".yaml"
 
+app = Flask(__name__)
+
 if getenv('ASK_VERIFY_REQUESTS') == 'False':
     app.config['ASK_VERIFY_REQUESTS'] = False
 
+ask = Ask(app, '/alexa', path=TEMPLATE_DIR)    
+    
 if getenv('DEBUG_MODE') == "True":
     log_level = logging.DEBUG
 else:
     log_level = logging.INFO
-
-
-app = Flask(__name__)
-ask = Ask(app, '/alexa', path=TEMPLATE_DIR)    
     
 logging.getLogger("flask_ask").setLevel(log_level)
 
