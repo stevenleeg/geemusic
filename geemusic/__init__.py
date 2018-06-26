@@ -24,7 +24,7 @@ if getenv('DEBUG_MODE') == "True":
     log_level = logging.DEBUG
 else:
     log_level = logging.INFO
-    
+
 logging.getLogger("flask_ask").setLevel(log_level)
 
 api = GMusicWrapper.generate_api(logger=app.logger)
