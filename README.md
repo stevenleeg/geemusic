@@ -1,4 +1,5 @@
 <p align="center"><img src="http://i.imgur.com/vJshMwW.png" /></p>
+<p align="center"><img src="https://travis-ci.com/fergyfresh/geemusic.svg?branch=adds-test" /></p>
 
 GeeMusic is an Alexa skill which bridges Google Music and Amazon's Alexa. It hopes to rescue all of those who want an Echo/Dot but don't want to switch off of Google Music or pay extra for an Amazon Music Unlimited subscription.
 
