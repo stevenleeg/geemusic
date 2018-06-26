@@ -14,6 +14,9 @@ language = getenv('LANGUAGE', 'en')
 TEMPLATE_DIR = "templates/" + language + ".yaml"
     
 app = Flask(__name__)
+if getenv('DONT_VERIFY', 'False') == 'True':
+    app.config['ASK_VERIFY_REQUESTS'] = False
+
 ask = Ask(app, '/alexa', path=TEMPLATE_DIR)
 
 if getenv('DEBUG_MODE') == "True":
