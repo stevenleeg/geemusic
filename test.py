@@ -133,10 +133,12 @@ class AudioIntegrationTests(unittest.TestCase):
         self.assertEqual('AudioPlayer.Play', directive['type'])
         
         stream = directive['audioItem']['stream']
+        stream_token = stream['url'].split('/')[-1]
         self.assertIsNotNone(stream['token'])
         self.assertIn(self.stream_url , stream['url'])
         self.assertEqual('stream', stream['url'].split('/')[-2]) 
-        self.assertIsNotNone(stream['url'].split('/')[-1])
+        self.assertIsNotNone(stream_token)
+        self.assertNotEqual(stream_token, '')
         self.assertEqual(0, stream['offsetInMilliseconds'])
 
 
