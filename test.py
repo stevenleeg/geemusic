@@ -2,6 +2,7 @@ import unittest
 import json
 import uuid
 
+from os import getenv
 from geemusic import app, ask
 from flask_ask import audio
 
@@ -58,7 +59,7 @@ class AudioIntegrationTests(unittest.TestCase):
         self.app = app
         self.ask = ask
         self.client = self.app.test_client()
-        self.stream_url = 'https://fakestream'
+        self.stream_url = getenv('APP_URL')
         self.custom_token = 'custom_uuid_{0}'.format(str(uuid.uuid4()))
 
         @self.ask.intent('TestPlay')
@@ -114,6 +115,31 @@ class AudioIntegrationTests(unittest.TestCase):
 
         # reset our play_request
         play_request['request']['intent']['name'] = original_intent_name
+
+    def test_play_some_music_intent(self):
+        """ Test that play some music intent works """
+        
+        psm_pr = play_request
+        psm_pr['request']['intent']['name'] = 'GeeMusicPlayIFLRadioIntent'
+
+        response = self.client.post('/alexa', data=json.dumps(play_request))
+        self.assertEqual(200, response.status_code)
+        
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertEqual('Playing music from your personalized station.',
+                         data['response']['outputSpeech']['text'])
+        
+        directive = data['response']['directives'][0]
+        self.assertEqual('AudioPlayer.Play', directive['type'])
+        
+        stream = directive['audioItem']['stream']
+        stream_token = stream['url'].split('/')[-1]
+        self.assertIsNotNone(stream['token'])
+        self.assertIn(self.stream_url , stream['url'])
+        self.assertEqual('stream', stream['url'].split('/')[-2]) 
+        self.assertIsNotNone(stream_token)
+        self.assertNotEqual(stream_token, '')
+        self.assertEqual(0, stream['offsetInMilliseconds'])
 
 
 if __name__ == '__main__':
