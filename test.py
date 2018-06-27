@@ -59,7 +59,7 @@ class AudioIntegrationTests(unittest.TestCase):
         self.app = app
         self.ask = ask
         self.client = self.app.test_client()
-        self.stream_url = 'https://fakestream'
+        self.stream_url = getenv('APP_URL')
         self.custom_token = 'custom_uuid_{0}'.format(str(uuid.uuid4()))
 
         @self.ask.intent('TestPlay')
@@ -134,7 +134,9 @@ class AudioIntegrationTests(unittest.TestCase):
         
         stream = directive['audioItem']['stream']
         self.assertIsNotNone(stream['token'])
-        self.assertEqual(getenv('APP_URL'), stream['url'])
+        self.assertIn(self.stream_url , stream['url'])
+        self.assertEqual('stream', stream['url'].split('/')[-2]) 
+        self.assertIsNotNone(stream['url'].split('/')[-1])
         self.assertEqual(0, stream['offsetInMilliseconds'])
 
 
