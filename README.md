@@ -294,6 +294,9 @@ LANGUAGE=en
 
 # German
 LANGUAGE=de
+
+# French
+LANGUAGE=fr
 ```
 
 If you want to add a language submit a PR to this repository and add translations for the language you want to support in `geemusic/templates/` dir with the global two character country code + `yaml`. For example, the English the file is `geemusic/templates/en.yaml`.
