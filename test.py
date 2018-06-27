@@ -2,6 +2,7 @@ import unittest
 import json
 import uuid
 
+from os import getenv
 from geemusic import app, ask
 from flask_ask import audio
 
@@ -114,6 +115,27 @@ class AudioIntegrationTests(unittest.TestCase):
 
         # reset our play_request
         play_request['request']['intent']['name'] = original_intent_name
+
+    def test_play_some_music_intent(self):
+        """ Test that play some music intent works """
+        
+        psm_pr = play_request
+        psm_pr['request']['intent']['name'] = 'GeeMusicPlayIFLRadioIntent'
+
+        response = self.client.post('/alexa', data=json.dumps(play_request))
+        self.assertEqual(200, response.status_code)
+        
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertEqual('Playing music from your personalized station.',
+                         data['response']['outputSpeech']['text'])
+        
+        directive = data['response']['directives'][0]
+        self.assertEqual('AudioPlayer.Play', directive['type'])
+        
+        stream = directive['audioItem']['stream']
+        self.assertIsNotNone(stream['token'])
+        self.assertEqual(getenv('APP_URL'), stream['url'])
+        self.assertEqual(0, stream['offsetInMilliseconds'])
 
 
 if __name__ == '__main__':
