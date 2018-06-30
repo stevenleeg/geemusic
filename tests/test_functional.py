@@ -1,6 +1,7 @@
 import unittest
 import json
 import uuid
+import yaml
 
 from os import getenv
 from geemusic import app, ask
@@ -52,8 +53,10 @@ play_request = {
 }
 
 
-class AudioIntegrationTests(unittest.TestCase):
-    """ Integration tests of the Audio Directives """
+en_strings = yaml.load(open('geemusic/templates/en.yaml'))
+
+class EnglishAudioIntegrationTests(unittest.TestCase):
+    """ Integration tests of the english Audio Directives """
 
     def setUp(self):
         self.app = app
@@ -126,7 +129,7 @@ class AudioIntegrationTests(unittest.TestCase):
         self.assertEqual(200, response.status_code)
         
         data = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(render_template('play_IFL_radio_text'),
+        self.assertEqual(en_strings["play_IFL_radio_text"],
                          data['response']['outputSpeech']['text'])
         
         directive = data['response']['directives'][0]
