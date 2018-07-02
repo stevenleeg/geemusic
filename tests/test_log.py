@@ -16,7 +16,6 @@ def surpress_warnings():
                                 message="unclosed",
                                 category=ResourceWarning)
         warnings.filterwarnings(action="ignore",
-                                message="inspect.getargspec() is deprecated",
                                 category=DeprecationWarning)
 
 class GMusicWrapperNoLogUnitTests(unittest.TestCase):
