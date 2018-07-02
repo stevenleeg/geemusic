@@ -1,3 +1,4 @@
+import sys
 import unittest
 import json
 import uuid
@@ -8,13 +9,18 @@ from testfixtures import log_capture
 from os import getenv
 from geemusic.utils.music import GMusicWrapper
 
+def surpress_warnings():
+    PY3 = sys.version_info[0] == 3
+    if PY3:
+        warnings.filterwarnings(action="ignore",
+                                message="unclosed",
+                                category=ResourceWarning) 
+
 class GMusicWrapperNoLogUnitTests(unittest.TestCase):
     """ Unit tests of the GMusicWrapper log functionality """
 
     def setUp(self):
-        warnings.filterwarnings(action="ignore",
-                                message="unclosed",
-                                category=ResourceWarning)
+        surpress_warnings()
         self.api = GMusicWrapper(getenv("GOOGLE_EMAIL"), getenv("GOOGLE_PASSWORD"))
     
     def tearDown(self):
@@ -31,9 +37,7 @@ class GMusicWrapperLogUnitTests(unittest.TestCase):
     """ Unit tests of the GMusicWrapper log functionality """
 
     def setUp(self):
-        warnings.filterwarnings(action="ignore",
-                                message="unclosed",
-                                category=ResourceWarning)
+        surpress_warnings()
         logger = logging.getLogger()
         self.api = GMusicWrapper(getenv("GOOGLE_EMAIL"), getenv("GOOGLE_PASSWORD"), logger)
     
