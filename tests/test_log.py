@@ -31,6 +31,9 @@ class GMusicWrapperLogUnitTests(unittest.TestCase):
     """ Unit tests of the GMusicWrapper log functionality """
 
     def setUp(self):
+        warnings.filterwarnings(action="ignore",
+                                message="unclosed",
+                                category=ResourceWarning)
         logger = logging.getLogger()
         self.api = GMusicWrapper(getenv("GOOGLE_EMAIL"), getenv("GOOGLE_PASSWORD"), logger)
     
