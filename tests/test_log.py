@@ -14,7 +14,10 @@ def surpress_warnings():
     if PY3:
         warnings.filterwarnings(action="ignore",
                                 message="unclosed",
-                                category=ResourceWarning) 
+                                category=ResourceWarning)
+        warnings.filterwarnings(action="ignore",
+                                message="unclosed",
+                                category=DeprecationWarning)
 
 class GMusicWrapperNoLogUnitTests(unittest.TestCase):
     """ Unit tests of the GMusicWrapper log functionality """
