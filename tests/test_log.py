@@ -2,6 +2,7 @@ import unittest
 import json
 import uuid
 import logging
+import warnings
 
 from testfixtures import log_capture
 from os import getenv
@@ -11,6 +12,9 @@ class GMusicWrapperNoLogUnitTests(unittest.TestCase):
     """ Unit tests of the GMusicWrapper log functionality """
 
     def setUp(self):
+        warnings.filterwarnings(action="ignore",
+                                message="unclosed",
+                                category=ResourceWarning)
         self.api = GMusicWrapper(getenv("GOOGLE_EMAIL"), getenv("GOOGLE_PASSWORD"))
     
     def tearDown(self):
