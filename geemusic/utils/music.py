@@ -24,7 +24,8 @@ class GMusicWrapper(object):
         self.indexing_thread.start()
 
     def log(self, log_str):
-        self.logger.debug(log_str)
+        if self.logger != None:
+            self.logger.debug(log_str)
 
     def _search(self, query_type, query):
         try:

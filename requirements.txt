@@ -17,7 +17,7 @@ docutils==0.14
 durationpy==0.5
 enum34==1.1.6
 Flask==0.12.2
-git+https://github.com/fergyfresh/flask-ask.git@master#egg=Flask-Ask
+Flask-Ask==0.9.8
 funcsigs==1.0.2
 future==0.16.0
 fuzzywuzzy==0.15.1
@@ -54,6 +54,7 @@ requests==2.18.3
 rsa==3.4.2
 s3transfer==0.1.13
 six==1.10.0
+testfixtures==6.2.0
 toml==0.9.4
 tqdm==4.19.1
 troposphere==2.2.1
