@@ -147,7 +147,10 @@ def currently_playing():
     if track is None:
         return audio(render_template("currently_playing_none"))
 
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    if 'albumArtRef' in queue.current_track():
+        thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    else:
+        thumbnail = None
     return statement(render_template("success_title")\
                            + render_template("success_text",
                                              song=track['title'],
