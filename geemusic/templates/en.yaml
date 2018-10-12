@@ -9,7 +9,6 @@ play_song_text: "Playing {{ song }} by {{ artist }}"
 
 # selection.py
 login_text: "Welcome to Gee Music. Try asking me to play a song or start a playlist."
-login_prompt: "For example, say play music by A Tribe Called Quest."
 login_title: "Welcome to Gee Music!"
 login_content: "Try asking me to play a song"
 help_text: "Here are some things you can say: \
@@ -24,6 +23,7 @@ help_text: "Here are some things you can say: \
 help_prompt: "For example say, play music by A Tribe Called Quest."
 play_promoted_songs_no_songs: "Sorry, I couldn't find any up voted songs."
 play_promoted_songs_text: "Playing your up voted songs."
+play_artist_none: "Sorry, I couldn't find any songs by {{ artist }}"
 play_artist_text: "Playing top tracks by {{ artist }}"
 play_similar_song_radio_no_song: "Please play a song to start radio."
 play_song_radio_text: "Playing songs like {{ song }} by {{ artist }}."

@@ -9,7 +9,6 @@ play_song_text: "Jouer {{ song }} par {{ artist }}"
 
 # selection.py
 login_text: "Bienvenue chez Gee Music. Essaie de me demander de jouer une chanson ou de commencer une playlist."
-login_prompt: "Par exemple, jouez la musique de A Tribe Called Quest."
 login_title: "Bienvenue chez Gee Music !"
 login_content: "Essaie de me demander de jouer une chanson"
 help_text: "Voici ce que vous pouvez dire : \
@@ -24,12 +23,13 @@ help_text: "Voici ce que vous pouvez dire : \
 help_prompt: "Par exemple, jouez la musique de A Tribe Called Quest."
 play_promoted_songs_no_songs_no_songs: "Désolé, je n'ai pas trouvé de chansons votées."
 play_promoted_songs_text: "Jouer les chansons votées."
+play_artist_none: "Sorry, I couldn't find any songs by {{ artist }}"  # TODO: translate
 play_artist_text: "lecture des meilleures chansons de l'artiste {{ artist }}"
-play_similar_song_song_radio_no_song: "S'il vous plaît, jouez une chanson pour démarrer la radio."
-play_artist_artist_radio_text: "Jouer à la radio."
+play_similar_song_radio_no_song: "S'il vous plaît, jouez une chanson pour démarrer la radio."
+play_artist_radio_text: "Jouer à la radio."
 queue_song_no_song: "Vous devez d'abord jouer une chanson."
 play_song_radio_text: "Joue des chansons qui ressemble à {{ song }} par {{ artist }}."
-queue_song_song_queued: "ajouter a la file d'attente {{ song }} par {{ artist }}"
+queue_song_queued: "ajouter a la file d'attente {{ song }} par {{ artist }}"
 play_playlist_no_match: "Désolé, je n'ai pas trouvé cette playlist dans votre bibliothèque."
 play_playlist_text: "Jouer des chansons de {{ playlist }}"
 play_IFL_radio_text: "Jouer de la musique à partir de votre station personnalisée."
