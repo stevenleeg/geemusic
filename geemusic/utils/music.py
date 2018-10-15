@@ -151,21 +151,30 @@ class GMusicWrapper(object):
         return False
 
     def get_song(self, name, artist_name=None, album_name=None):
-        if artist_name:
-            name = "%s %s" % (artist_name, name)
-        elif album_name:
-            name = "%s %s" % (album_name, name)
+        if self.is_subscribed:
+            if artist_name:
+                name = "%s %s" % (artist_name, name)
+            elif album_name:
+                name = "%s %s" % (album_name, name)
 
-        search = self._search("song", name)
+            search = self._search("song", name)
 
-        if len(search) == 0:
+            if len(search) == 0:
+                return False
+
+            if album_name:
+                for i in range(0, len(search) - 1):
+                    if album_name in search[i]['album']:
+                        return search[i]
+            return search[0]
+        else:
+            search = {}
+            for song_id, song in self.library.items():
+                if song['title'].lower() == name.lower():
+                    if not artist_name or ('artist' in song and song['artist'].lower() == artist_name.lower()):
+                        if not album_name or ('album' in song and song['album'].lower() == album_name.lower()):
+                            return song
             return False
-
-        if album_name:
-            for i in range(0, len(search) - 1):
-                if album_name in search[i]['album']:
-                    return search[i]
-        return search[0]
 
     def get_promoted_songs(self):
         return self._api.get_promoted_songs()
