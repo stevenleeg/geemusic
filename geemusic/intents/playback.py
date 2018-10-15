@@ -33,6 +33,7 @@ def nearly_finished():
         stream_url = api.get_stream_url(next_id)
 
         return audio().enqueue(stream_url)
+    return empty_response()
 
 
 @ask.on_playback_finished()
