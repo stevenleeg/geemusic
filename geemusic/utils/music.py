@@ -1,5 +1,5 @@
 from builtins import object
-from fuzzywuzzy import fuzz
+from fuzzywuzzy import fuzz, process
 from os import getenv
 import threading
 import random
@@ -19,6 +19,8 @@ class GMusicWrapper(object):
         self.is_subscribed = self._api.is_subscribed
         # Populate our library
         self.library = {}
+        self.albums = set([])
+        self.artists = set([])
         self.indexing_thread = threading.Thread(
             target=self.index_library
         )
@@ -60,6 +62,8 @@ class GMusicWrapper(object):
         for track in tracks:
             song_id = track['id']
             self.library[song_id] = track
+            self.albums.add(track['album'])
+            self.artists.add(track['artist'])
 
         self.log('Fetching library complete.')
 
@@ -78,8 +82,12 @@ class GMusicWrapper(object):
         else:
             search = {}
             search['topTracks'] = []
+            # Find the best artist we have, and then match songs to that artist
+            likely_artist, score = process.extractOne(name, self.artists)
+            if score < 70:
+                return None
             for song_id, song in self.library.items():
-                if 'artist' in song and song['artist'].lower() == name.lower():
+                if 'artist' in song and song['artist'].lower() == likely_artist.lower():
                     if not search['topTracks']:  # First entry
                         # Copy artist details from the first song into the general artist response
                         search['artistArtRef'] = song['artistArtRef'][0]['url']
@@ -105,6 +113,13 @@ class GMusicWrapper(object):
         else:
             search = {}
             search['tracks'] = []
+            if artist_name:
+                artist_name, score = process.extractOne(artist_name, self.artists)
+                if score < 70:
+                    return None
+            name, score = process.extractOne(name, self.albums)
+            if score < 70:
+                return None
             for song_id, song in self.library.items():
                 if 'album' in song and song['album'].lower() == name.lower():
                     if not artist_name or ('artist' in song and song['artist'].lower() == artist_name.lower()):
@@ -169,12 +184,20 @@ class GMusicWrapper(object):
             return search[0]
         else:
             search = {}
-            for song_id, song in self.library.items():
-                if song['title'].lower() == name.lower():
-                    if not artist_name or ('artist' in song and song['artist'].lower() == artist_name.lower()):
-                        if not album_name or ('album' in song and song['album'].lower() == album_name.lower()):
-                            return song
-            return False
+            if artist_name:
+                artist_name, score = process.extractOne(artist_name, self.artists)
+                if score < 70:
+                    return None
+            if album_name:
+                album_name, score = process.extractOne(album_name, self.albums)
+                if score < 70:
+                    return None
+            possible_songs = {song_id: song['title'] for song_id, song in self.library.items() if (not artist_name or ('artist' in song and song['artist'].lower() == artist_name.lower())) and (not album_name or ('album' in song and song['album'].lower() == album_name.lower()))}
+            song, score, song_id = process.extractOne(name.lower(), possible_songs)
+            if score < 70:
+                return None
+            else:
+                return self.library[song_id]
 
     def get_promoted_songs(self):
         return self._api.get_promoted_songs()
