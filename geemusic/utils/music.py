@@ -16,6 +16,7 @@ class GMusicWrapper(object):
         if not success:
             raise Exception("Unsuccessful login. Aborting!")
 
+        self.is_subscribed = self._api.is_subscribed
         # Populate our library
         self.library = {}
         self.indexing_thread = threading.Thread(
@@ -173,8 +174,10 @@ class GMusicWrapper(object):
         if 'track' in track:
             track = track['track']
 
-        if 'storeId' in track:
+        if self.is_subscribed and 'storeId' in track:
             return track, track['storeId']
+        elif 'id' in track:
+            return self.library[track['id']], track['id']
         elif 'trackId' in track:
             return self.library[track['trackId']], track['trackId']
         else:
