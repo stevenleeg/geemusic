@@ -248,7 +248,10 @@ def skip_to(song_name, artist_name):
     queue.current_index = index
     stream_url = api.get_stream_url(queue.current())
 
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    if "albumArtRef" in queue.current_track():
+        thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    else:
+        thumbnail = None
     speech_text = render_template("skip_to_speech_text",
                                   song=queue.current_track()['title'],
                                   artist=queue.current_track()['artist'])

@@ -84,7 +84,10 @@ def play_promoted_songs():
     first_song_id = queue.reset(promoted_songs)
     stream_url = api.get_stream_url(first_song_id)
 
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    if "albumArtRef" in queue.current_track():
+        thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    else:
+        thumbnail = None
     speech_text = render_template("play_promoted_songs_text")
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
@@ -107,7 +110,10 @@ def play_song(song_name, artist_name):
     first_song_id = queue.reset([song])
     stream_url = api.get_stream_url(first_song_id)
 
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    if "albumArtRef" in queue.current_track():
+        thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    else:
+        thumbnail = None
     speech_text = render_template("play_song_text", 
                                   song=song['title'],
                                   artist=song['artist'])
@@ -147,7 +153,10 @@ def play_similar_song_radio():
     first_song_id = queue.reset(tracks)
     stream_url = api.get_stream_url(first_song_id)
 
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    if "albumArtRef" in queue.current_track():
+        thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    else:
+        thumbnail = None
     speech_text = render_template("play_song_radio_text",
                                   song=song['title'],
                                   artist=song['artist'])
@@ -190,7 +199,10 @@ def play_song_radio(song_name, artist_name, album_name):
     first_song_id = queue.reset(tracks)
     stream_url = api.get_stream_url(first_song_id)
 
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    if "albumArtRef" in queue.current_track():
+        thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    else:
+        thumbnail = None
     speech_text = render_template("play_song_text",
                                   song=song['title'],
                                   artist=song['artist'])
@@ -245,7 +257,10 @@ def play_playlist(playlist_name):
 
     # Get a streaming URL for the first song in the playlist
     stream_url = api.get_stream_url(first_song_id)
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    if "albumArtRef" in queue.current_track():
+        thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    else:
+        thumbnail = None
     speech_text = render_template("play_playlist_text", playlist=best_match['name'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
@@ -291,7 +306,10 @@ def queue_song(song_name, artist_name):
     card_text = render_template("queue_song_queued",
                                 song=song['title'],
                                 artist=song['artist'])
-    thumbnail = api.get_thumbnail(song['albumArtRef'][0]['url'])
+    if "albumArtRef" in queue.current_track():
+        thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    else:
+        thumbnail = None
     return audio().enqueue(stream_url) \
         .standard_card(title=card_text,
                        text='',
