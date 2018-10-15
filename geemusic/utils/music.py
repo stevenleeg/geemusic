@@ -60,7 +60,7 @@ class GMusicWrapper(object):
             song_id = track['id']
             self.library[song_id] = track
 
-        self.log('Fetching library...')
+        self.log('Fetching library complete.')
 
     def get_artist(self, name):
         """
