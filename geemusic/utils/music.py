@@ -67,13 +67,29 @@ class GMusicWrapper(object):
         """
         Fetches information about an artist given its name
         """
-        search = self._search("artist", name)
+        if self.is_subscribed:
+            search = self._search("artist", name)
 
-        if len(search) == 0:
-            return False
+            if len(search) == 0:
+                return False
 
-        return self._api.get_artist_info(search[0]['artistId'],
-                                         max_top_tracks=100)
+            return self._api.get_artist_info(search[0]['artistId'],
+                                             max_top_tracks=100)
+        else:
+            search = {}
+            search['topTracks'] = []
+            for song_id, song in self.library.items():
+                if 'artist' in song and song['artist'].lower() == name.lower():
+                    if not search['topTracks']:  # First entry
+                        # Copy artist details from the first song into the general artist response
+                        search['artistArtRef'] = song['artistArtRef'][0]['url']
+                        search['name'] = song['artist']
+                    search['topTracks'].append(song)
+            random.shuffle(search['topTracks'])  # This is all music, not top, but the user probably would prefer it shuffled.
+            if not search['topTracks']:
+                return False
+
+            return search
 
     def get_album(self, name, artist_name=None):
         if artist_name:
