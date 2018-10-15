@@ -59,7 +59,10 @@ def play_album(album_name, artist_name):
     # Start streaming the first track
     stream_url = api.get_stream_url(first_song_id)
 
-    thumbnail = api.get_thumbnail(album['albumArtRef'])
+    if "albumArtRef" in album:
+        thumbnail = api.get_thumbnail(album['albumArtRef'])
+    else:
+        thumbnail = None
     speech_text = render_template("play_album_text",
                                   album=album['name'],
                                   artist=album['albumArtist'])

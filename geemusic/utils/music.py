@@ -92,15 +92,30 @@ class GMusicWrapper(object):
             return search
 
     def get_album(self, name, artist_name=None):
-        if artist_name:
-            name = "%s %s" % (name, artist_name)
+        if self.is_subscribed:
+            if artist_name:
+                name = "%s %s" % (name, artist_name)
 
-        search = self._search("album", name)
+            search = self._search("album", name)
 
-        if len(search) == 0:
-            return False
+            if len(search) == 0:
+                return False
 
-        return self._api.get_album_info(search[0]['albumId'])
+            return self._api.get_album_info(search[0]['albumId'])
+        else:
+            search = {}
+            search['tracks'] = []
+            for song_id, song in self.library.items():
+                if 'album' in song and song['album'].lower() == name.lower():
+                    if not artist_name or ('artist' in song and song['artist'].lower() == artist_name.lower()):
+                        if not search['tracks']:  # First entry
+                            search['albumArtist'] = song['albumArtist']
+                            search['name'] = song['album']
+                        search['tracks'].append(song)
+            if not search['tracks']:
+                return False
+
+            return search
 
     def get_latest_album(self, artist_name=None):
         search = self._search("artist", artist_name)
