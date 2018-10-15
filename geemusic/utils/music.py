@@ -231,7 +231,9 @@ class GMusicWrapper(object):
     def closest_match(self, request_name, all_matches, artist_name='', minimum_score=70):
         # Give each match a score based on its similarity to the requested
         # name
-        self.log('Fetching library...')
+        self.log('Finding closest match...')
+
+        best_match = None
 
         request_name = request_name.lower() + artist_name.lower()
         scored_matches = []
@@ -251,15 +253,16 @@ class GMusicWrapper(object):
             })
 
         sorted_matches = sorted(scored_matches, key=lambda a: a['score'], reverse=True)
-        top_scoring = sorted_matches[0]
-        self.log('Fetching library...')
 
-        best_match = all_matches[top_scoring['index']]
+        try:
+            top_scoring = sorted_matches[0]
+            # Make sure we have a decent match (the score is n where 0 <= n <= 100)
+            if top_scoring['score'] >= minimum_score:
+                best_match = all_matches[top_scoring['index']]
+        except IndexError:
+            pass
 
-        # Make sure we have a decent match (the score is n where 0 <= n <= 100)
-        if top_scoring['score'] < minimum_score:
-            return None
-
+        self.log('Found %s...' % best_match)
         return best_match
 
     def get_genres(self, parent_genre_id=None):
