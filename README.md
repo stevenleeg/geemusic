@@ -188,7 +188,7 @@ First, we need to deploy a copy of this code to Heroku. To do that, simply click
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/stevenleeg/geemusic/tree/master)
 
-Once you've named your app and the code has been deployed, the next step is to configure the app to work with your Google account. To do this click on the settings tab of Heroku's site. After the tab has loaded, click the button labeled Reveal Config Vars and add the variables below replacing the value below with your own account credentials and app settings.
+Once you've named your app and the code has been deployed, the next step is to configure the app to work with your Google account. To do this click on the settings tab of Heroku's site. After the tab has loaded, click the button labeled Reveal Config Vars and update the variables below replacing each temporary value with your own values.
 
 | Variable Name  | Value |
 | ------------- | ------------- |
