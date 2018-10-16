@@ -9,16 +9,21 @@ import json
 #
 
 
+def empty_response():
+    return json.dumps({"response" : {}, "version" : "1.0" }), 200
+
 @ask.on_playback_stopped()
 def stopped(offset):
     queue.paused_offset = offset
     app.logger.debug(render_template("stopped", offset=offset))
+    return empty_response()
 
 
 @ask.on_playback_started()
 def started(offset):
     app.logger.debug(render_template("started", offset=offset))
 
+    return empty_response()
 
 @ask.on_playback_nearly_finished()
 def nearly_finished():
@@ -28,11 +33,13 @@ def nearly_finished():
         stream_url = api.get_stream_url(next_id)
 
         return audio().enqueue(stream_url)
+    return empty_response()
 
 
 @ask.on_playback_finished()
 def finished():
     queue.next()
+    return empty_response()
 
 ##
 # Intents
