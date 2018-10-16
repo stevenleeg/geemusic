@@ -8,6 +8,7 @@ from geemusic import app, api
 
 BUCKET_NAME = environ.get("S3_BUCKET_NAME")
 
+
 def proxy_response(req):
     s3 = boto3.resource('s3')
     s3_client = boto3.client('s3', config=Config(signature_version='s3v4'))
@@ -16,24 +17,26 @@ def proxy_response(req):
     file_name = str(uuid4())
 
     obj = bucket.put_object(
-            Key=file_name,
-            Body = req.content,
-            ACL="authenticated-read",
-            ContentType=req.headers["content-type"]
-          )
-    
+        Key=file_name,
+        Body=req.content,
+        ACL="authenticated-read",
+        ContentType=req.headers["content-type"]
+    )
+
     url = s3_client.generate_presigned_url(
-            "get_object", 
-            Params = {
-                "Bucket": BUCKET_NAME, 
-                "Key"   : file_name},
-            ExpiresIn=120
-          )
+        "get_object",
+        Params={
+            "Bucket": BUCKET_NAME,
+            "Key": file_name},
+        ExpiresIn=120
+    )
     return redirect(url, 303)
+
 
 @app.route('/wake-up')
 def index():
-	return 'I am not sleeping!'
+    return 'I am not sleeping!'
+
 
 @app.route("/alexa/stream/<song_id>")
 def redirect_to_stream(song_id):
