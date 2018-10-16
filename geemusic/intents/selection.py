@@ -35,7 +35,10 @@ def play_artist(artist_name):
     stream_url = api.get_stream_url(first_song_id)
 
     thumbnail = api.get_thumbnail(artist['artistArtRef'])
-    speech_text = render_template("play_artist_text", artist=artist['name'])
+    if api.is_subscribed:
+        speech_text = render_template("play_artist_text", artist=artist['name'])
+    else:
+        speech_text = render_template("play_artist_text_library", artist=artist['name'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',

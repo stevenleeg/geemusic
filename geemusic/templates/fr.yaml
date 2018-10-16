@@ -25,6 +25,7 @@ play_promoted_songs_no_songs_no_songs: "Désolé, je n'ai pas trouvé de chanson
 play_promoted_songs_text: "Jouer les chansons votées."
 play_artist_none: "Sorry, I couldn't find any songs by {{ artist }}"  # TODO: translate
 play_artist_text: "lecture des meilleures chansons de l'artiste {{ artist }}"
+play_artist_text_library: "Playing tracks by {{ artist }} from your library."  # TODO: translate
 play_similar_song_radio_no_song: "S'il vous plaît, jouez une chanson pour démarrer la radio."
 play_artist_radio_text: "Jouer à la radio."
 queue_song_no_song: "Vous devez d'abord jouer une chanson."
