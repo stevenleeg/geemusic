@@ -182,29 +182,20 @@ Enjoy streaming Google Music via Alexa!
 
 ## (Optional) Setup a Heroku instance
 
-Setting up an instance on Heroku may be an easier option for you, and these instructions detail how to accomplish this. The following steps replace the need to setup a local server. First one must have Heroku setup on your local machine and an account associated. Visit [the CLI documentation](https://devcenter.heroku.com/articles/heroku-cli) for details on setting this up.
+Setting up an instance on Heroku may be an easier option for you, and these instructions detail how to accomplish this. The following steps replace the need to setup a local server.
 
-One must then clone the repository.
+First, we need to deploy a copy of this code to Heroku. To do that, simply click the Deploy to Heroku button below.
 
-```bash
-$ git clone https://github.com/stevenleeg/geemusic.git
-```
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/stevenleeg/geemusic/tree/master)
 
-Next, `cd` in to deploy the code. Then, setup the Heroku server by typing the following two commands.
+Once you've named your app and the code has been deployed, the next step is to configure the app to work with your Google account. To do this click on the settings tab of Heroku's site. After the tab has loaded, click the button labeled Reveal Config Vars and update the variables below replacing each temporary value with your own values.
 
-```bash
-$ heroku create
-$ git push heroku master
-```
-
-We now need to configure it to work with your Google account. Type the following commands, and replace details with your own account credentials and app settings.
-
-```bash
-$ heroku config:set GOOGLE_EMAIL=steve@stevegattuso.me
-$ heroku config:set GOOGLE_PASSWORD=[password]
-$ heroku config:set APP_URL=https://[heroku_app_name].herokuapp.com
-$ heroku config:set DEBUG_MODE=False
-```
+| Variable Name  | Value |
+| ------------- | ------------- |
+| GOOGLE_EMAIL  | YOUR_EMAIL |
+| GOOGLE_PASSWORD  | YOUR_PASSWORD  |
+| APP_URL | https://[heroku_app_name].herokuapp.com |
+| DEBUG_MODE | false |
 
 At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.` Note, that while using the free tier, you may experience timeout errors when you server has received no requests for over 30 minutes. However, you can use a service, such as [Kaffeine](http://kaffeine.herokuapp.com/) to minimize your downtime.
 
