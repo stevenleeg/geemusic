@@ -1,5 +1,5 @@
 {
-  "name": geemusic",
+  "name": "geemusic",
   "description": "GeeMusic is an Alexa skill which bridges Google Music and Amazon's Alexa.",
   "repository": "https://github.com/stevenleeg/geemusic",
   "logo": "http://i.imgur.com/vJshMwW.png",
