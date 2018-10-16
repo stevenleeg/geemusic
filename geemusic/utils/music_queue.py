@@ -1,4 +1,4 @@
-from builtins import object
+from builtins import object, super
 from flask_ask import context
 import random
 
