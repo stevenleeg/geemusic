@@ -1,0 +1,65 @@
+# common
+no_song: "Sorry, I couldn't find that song."
+no_artist: "Sorry, I couldn't find that artist."
+no_album: "Sorry, I couldnt find that album."
+no_albums: "Sorry, I couldn't find any albums."
+indexing: "Please wait for your tracks to finish indexing."
+play_album_text: "Playing album {{ album }} by {{ artist }}."
+play_song_text: "Playing {{ song }} by {{ artist }}"
+
+# selection.py
+login_text: "Welcome to Gee Music. Try asking me to play a song or start a playlist."
+login_prompt: "For example, say play music by A Tribe Called Quest."
+login_title: "Welcome to Gee Music!"
+login_content: "Try asking me to play a song"
+help_text: "Here are some things you can say: \
+            Play songs by Radiohead, \
+            Play the album Science For Girls, \
+            Play the song Fitter Happier, \
+            Start a radio station for artist Weezer, \
+            Start playlist Dance Party, \
+            and play some music, \
+            Of course you can also say skip, previous, shuffle, and more \
+            of alexa's music commands or, stop, if you're done."
+help_prompt: "For example say, play music by A Tribe Called Quest."
+play_promoted_songs_no_songs: "Sorry, I couldn't find any up voted songs."
+play_promoted_songs_text: "Playing your up voted songs."
+play_artist_text: "Playing top tracks by {{ artist }}"
+play_similar_song_radio_no_song: "Please play a song to start radio."
+play_song_radio_text: "Playing songs like {{ song }} by {{ artist }}."
+play_artist_radio_text: "Playing {{ artist }} radio."
+queue_song_no_song: "You must first play a song."
+queue_song_queued: "Queued {{ song }} by {{ artist }}"
+play_playlist_no_match: "Sorry, I couldn't find that playlist in your library."
+play_playlist_text: "Playing songs from {{ playlist }}"
+play_IFL_radio_text: "Playing music from your personalized station."
+play_IFL_radio_title: "Playing I'm Feeling Lucky Radio."
+play_different_album_no_track: "Sorry, there's no album playing currently."
+play_library_text: "Playing music from your library."
+
+# playback.py
+stopped: "Stopped at {{ offset }}"
+started: "Started at {{ offset }}"
+start_over: "There are no songs in the queue."
+resume: "Resuming"
+pause: "Pausing"
+stop: "Stopping"
+next_song: "There are no more songs in the queue."
+prev_song: "You can't go back any further in the queue."
+shuffle_on: "There are no songs to shuffle."
+shuffle_off: "There are no songs to unshuffle."
+loop_text: "There are no songs in the queue."
+currently_playing_none: "Nothing is playing right now."
+success_title: "The current track is "
+success_text: "{{ song }} by {{ artist }}"
+playlist_separator: "and"
+list_all_playlists_text: "You have {{ playlist_count }} playlists in your library. They are, {{ playlist_list }}."
+thumbs_no_song: "Please play a song to vote."
+thumbs_up_text: "Upvoted"
+thumbs_down_text: "Downvoted"
+restart_tracks_none: "Please say a song name to use this feature."
+restart_tracks_text: "Restarting tracks."
+skip_to_no_song: "Please say a song name to use this feature."
+skip_to_no_match: "Sorry, I couldn't find a close enough match."
+skip_to_no_song_match: "Sorry, I couldn't find that song in the queue."
+skip_to_speech_text: "Skipping to {{ song }} by {{ artist }}"

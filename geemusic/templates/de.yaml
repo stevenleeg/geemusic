@@ -1,0 +1,64 @@
+# common
+no_song: "Entschuldigung, ich konnte dieses Lied nicht finden."
+no_artist: "Entschuldigung, ich konnte diesen Künstler nicht finden."
+no_album: "Entschuldigung, ich konnte dieses Album nicht finden."
+no_albums: "Entschuldigung, ich konnte keine passenden Alben finden."
+indexing: "Bitte warte bis deine Bibliothek eingelesen wurde."
+play_album_text: "Hier ist {{ album }} von {{ artist }}."
+play_song_text: "Hier ist {{ song }} von {{ artist }}"
+
+# selection.py
+login_text: "Willkommen bei GeeMusic. Frage mich nach einem Album oder starte eine Playlist."
+login_prompt: "Sag zum Beispiel, spiele Musik von A Tribe Called Quest."
+login_title: "Willkommen bei GeeMusic!"
+login_content: "Frag mich nach einem Lied."
+help_text: "Hier sind einige Dinge, die du sagen kannst: \
+            Spiele Lieder von Radiohead, \
+            Spiele das Album Science For Girls, \
+            Spiele das Lied Fitter Happier, \
+            Spiele ein Radio für Weezer, \
+            Starte die Playlist Dance Party, \
+            und spiele etwas Musik, \
+            Natürlich kannst du auch Weiter, Zurück, Zufallswiedergabe, und andere \
+            Steuerbefehle sagen oder, Stop, wenn du fertig bist."
+help_prompt: "Sag zum Beispiel, spiele Musik von A Tribe Called Quest."
+play_promoted_songs_no_songs: "Entschuldigung, ich konnte keine Lieder finden, die du magst."
+play_promoted_songs_text: "Hier ist Musik, die du magst."
+play_artist_text: "Hier ist Musik von {{ artist }}, die du magst."
+play_similar_song_radio_no_song: "Bitte spiele ein Lied, um ein Radio zu starten."
+play_artist_radio_text: "Hier ist {{ artist }} Radio."
+queue_song_no_song: "Du musst erst ein Lied abspielen."
+queue_song_queued: "Ich habe {{ song }} von {{ artist }} eingereiht."
+play_playlist_no_match: "Entschuldigung, ich konnte diese Playlist in deiner Bibliothek nicht finden."
+play_playlist_text: "Hier ist Musik von {{ playlist }}"
+play_IFL_radio_text: "Hier ist Musik von deinem persönlichen Radiosender."
+play_IFL_radio_title: "Hier ist Zufallsradio."
+play_different_album_no_track: "Entschuldigung, gerade läuft kein bestimmtes Album."
+play_library_text: "Hier ist Musik aus deiner Bibliothek."
+
+# playback.py
+stopped: "Wiedergabe bei {{ offset }} gestoppt."
+started: "Wiedergabe bei {{ offset }} gestartet."
+start_over: "Es sind keine Lieder eingereiht."
+resume: "Setze Wiedergabe fort"
+pause: "Pausiere Wiedergabe"
+stop: "Stoppe Wiedergabe"
+next_song: "Es sind keine weiteren Lieder in der Warteschlange."
+prev_song: "Du bist bereits am Anfang."
+shuffle_on: "Keine Lieder für Zufallswiedergabe vorhanden."
+shuffle_off: "Keine Lieder für normale Wiedergabe vorhanden."
+loop_text: "Deine Warteschlange ist leer."
+currently_playing_none: "Gerade läuft nichts."
+success_title: "Gerade läuft "
+success_text: "{{ song }} von {{ artist }}"
+playlist_separator: "und"
+list_all_playlists_text: "Du hast {{ playlist_count }} Playlists in deiner Bibliothek. Sie sind, {{ playlist_list }}."
+thumbs_no_song: "Bitte spiele ein Lied um es als Gefällt mir zu markieren."
+thumbs_up_text: "Dieses Lied gefällt dir."
+thumbs_down_text: "Dieses Lied gefällt dir nicht."
+restart_tracks_none: "Bitte nenne einen Liednamen, um diese Funktion zu nutzen."
+restart_tracks_text: "Starte Lied neu."
+skip_to_no_song: "Bitte nenne einen Liednamen, um diese Funktion zu nutzen."
+skip_to_no_match: "Entschuldigung, ich konnte kein passendes Lied finden."
+skip_to_no_song_match: "Entschuldigung, ich konnte dieses Lied nicht in der Warteschlange finden."
+skip_to_speech_text: "Springe zu {{ song }} von {{ artist }}"
