@@ -26,7 +26,7 @@ def play_artist(artist_name):
     artist = api.get_artist(artist_name)
 
     if artist is False:
-        return statement(render_template("play_artist_none"))
+        return statement(render_template("play_artist_none", artist=artist_name))
 
     # Setup the queue
     first_song_id = queue.reset(artist['topTracks'])
