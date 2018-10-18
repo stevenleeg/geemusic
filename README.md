@@ -105,6 +105,7 @@ APP_URL=https://alexa-geemusic.stevegattuso.me
 
 # Debug mode: Set to True or False
 DEBUG_MODE=False
+DEBUG_FORCE_LIBRARY=False  # Forces a subscribed user to use local library playback, rather than the default Store
 ```
 
 I would *highly reccomend* that you enable 2-factor authentication on your Google account and only insert an application specific password into this file. Remember that it is stored in plaintext on your local computer! (TODO: fix this!)

@@ -67,7 +67,7 @@ class MusicQueueInternal(object):
         self.reset(tracks)
         self.current_index = 0
         self.api = api
-        self.is_subscribed = self.api.is_subscribed
+        self.use_store = self.api.use_store
 
     def next(self):
         if self.current():
@@ -132,7 +132,7 @@ class MusicQueueInternal(object):
             return self.song_ids[self.current_index]
 
     def enqueue_track(self, song):
-        if self.is_subscribed:
+        if self.use_store:
             song_id = song['storeId']
         else:
             song_id = song['id']

@@ -1,6 +1,7 @@
 from builtins import object
 from fuzzywuzzy import fuzz, process
 from os import getenv
+from ast import literal_eval
 import threading
 import random
 
@@ -16,7 +17,11 @@ class GMusicWrapper(object):
         if not success:
             raise Exception("Unsuccessful login. Aborting!")
 
-        self.is_subscribed = self._api.is_subscribed
+        try:
+            assert literal_eval(getenv("DEBUG_FORCE_LIBRARY", "False"))
+            self.use_store = False
+        except (AssertionError, ValueError):  # AssertionError if it's False, ValueError if it's not set / not set to a proper boolean string
+            self.use_store = self._api.is_subscribed
         # Populate our library
         self.library = {}
         self.albums = set([])
@@ -71,7 +76,7 @@ class GMusicWrapper(object):
         """
         Fetches information about an artist given its name
         """
-        if self.is_subscribed:
+        if self.use_store:
             search = self._search("artist", name)
 
             if len(search) == 0:
@@ -100,7 +105,7 @@ class GMusicWrapper(object):
             return search
 
     def get_album(self, name, artist_name=None):
-        if self.is_subscribed:
+        if self.use_store:
             if artist_name:
                 name = "%s %s" % (name, artist_name)
 
@@ -166,7 +171,7 @@ class GMusicWrapper(object):
         return False
 
     def get_song(self, name, artist_name=None, album_name=None):
-        if self.is_subscribed:
+        if self.use_store:
             if artist_name:
                 name = "%s %s" % (artist_name, name)
             elif album_name:
@@ -237,7 +242,7 @@ class GMusicWrapper(object):
         if 'track' in track:
             track = track['track']
 
-        if self.is_subscribed and 'storeId' in track:
+        if self.use_store and 'storeId' in track:
             return track, track['storeId']
         elif 'id' in track:
             return self.library[track['id']], track['id']
