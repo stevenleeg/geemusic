@@ -90,7 +90,7 @@ class GMusicWrapper(object):
             # Find the best artist we have, and then match songs to that artist
             likely_artist, score = process.extractOne(name, self.artists)
             if score < 70:
-                return None
+                return False
             for song_id, song in self.library.items():
                 if 'artist' in song and song['artist'].lower() == likely_artist.lower():
                     if not search['topTracks']:  # First entry
