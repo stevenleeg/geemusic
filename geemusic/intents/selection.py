@@ -22,6 +22,9 @@ def help():
 
 @ask.intent("GeeMusicPlayArtistIntent")
 def play_artist(artist_name):
+    if not api.use_store and api.is_indexing():
+        return statement(render_template("indexing"))
+
     # Fetch the artist
     artist = api.get_artist(artist_name)
 
@@ -48,6 +51,9 @@ def play_artist(artist_name):
 
 @ask.intent("GeeMusicPlayAlbumIntent")
 def play_album(album_name, artist_name):
+    if not api.use_store and api.is_indexing():
+        return statement(render_template("indexing"))
+
     app.logger.debug("Fetching album %s" % album_name)
 
     # Fetch the album
@@ -104,6 +110,9 @@ def play_promoted_songs():
 
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
+    if not api.use_store and api.is_indexing():
+        return statement(render_template("indexing"))
+
     app.logger.debug("Fetching song %s by %s" % (song_name, artist_name))
 
     # Fetch the song
@@ -175,6 +184,9 @@ def play_similar_song_radio():
 
 @ask.intent("GeeMusicPlaySongRadioIntent")
 def play_song_radio(song_name, artist_name, album_name):
+    if not api.use_store and api.is_indexing():
+        return statement(render_template("indexing"))
+
     app.logger.debug("Fetching song %s by %s from %s."
                      % (song_name, artist_name, album_name))
 
@@ -221,6 +233,9 @@ def play_song_radio(song_name, artist_name, album_name):
 
 @ask.intent("GeeMusicPlayArtistRadioIntent")
 def play_artist_radio(artist_name):
+    if not api.use_store and api.is_indexing():
+        return statement(render_template("indexing"))
+
     # Fetch the artist
     artist = api.get_artist(artist_name)
 
@@ -252,6 +267,9 @@ def play_artist_radio(artist_name):
 
 @ask.intent("GeeMusicPlayPlaylistIntent")
 def play_playlist(playlist_name):
+    if not api.use_store and api.is_indexing():
+        return statement(render_template("indexing"))
+
     # Retreve the content of all playlists in a users library
     all_playlists = api.get_all_user_playlist_contents()
 
