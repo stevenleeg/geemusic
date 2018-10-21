@@ -39,6 +39,7 @@ play_different_album_no_track: "Entschuldigung, gerade läuft kein bestimmtes Al
 play_library_text: "Hier ist Musik aus deiner Bibliothek."
 
 # playback.py
+indexing: "Indexing your Library"  # TODO: translate"
 stopped: "Wiedergabe bei {{ offset }} gestoppt."
 started: "Wiedergabe bei {{ offset }} gestartet."
 start_over: "Es sind keine Lieder eingereiht."

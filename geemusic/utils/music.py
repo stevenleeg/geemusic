@@ -23,6 +23,9 @@ class GMusicWrapper(object):
         except (AssertionError, ValueError):  # AssertionError if it's False, ValueError if it's not set / not set to a proper boolean string
             self.use_store = self._api.is_subscribed
         # Populate our library
+        self.start_indexing()
+
+    def start_indexing(self):
         self.library = {}
         self.albums = set([])
         self.artists = set([])

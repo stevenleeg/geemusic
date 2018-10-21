@@ -39,6 +39,7 @@ play_different_album_no_track: "Sorry, there's no album playing currently."
 play_library_text: "Playing music from your library."
 
 # playback.py
+indexing: "Indexing your Library"
 stopped: "Stopped at {{ offset }}"
 started: "Started at {{ offset }}"
 start_over: "There are no songs in the queue."

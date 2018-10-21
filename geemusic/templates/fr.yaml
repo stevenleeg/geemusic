@@ -39,6 +39,7 @@ play_different_album_no_track: "Désolé, il n'y a pas d'album en cours de lectu
 play_library_text : "Jouer de la musique de votre bibliothèque."
 
 # playback.py
+indexing: "Indexing your Library"  # TODO: translate
 stopped: "Arrêté à {{ offset }}"
 started: "Commencé à {{ offset }}"
 start_over: "Il n'y a pas de chansons dans la file d'attente."
