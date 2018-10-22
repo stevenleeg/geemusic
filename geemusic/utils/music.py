@@ -53,7 +53,7 @@ class GMusicWrapper(object):
         self.library with storeIds -> track definitions
         """
         self.log('Fetching library...')
-        
+
         tracks = self.get_all_songs()
 
         for track in tracks:
@@ -61,7 +61,7 @@ class GMusicWrapper(object):
             self.library[song_id] = track
 
         self.log('Fetching library...')
-        
+
     def get_artist(self, name):
         """
         Fetches information about an artist given its name
@@ -137,7 +137,7 @@ class GMusicWrapper(object):
 
     def get_promoted_songs(self):
         return self._api.get_promoted_songs()
-    
+
     def get_station(self, title, track_id=None, artist_id=None, album_id=None):
         if artist_id is not None:
             if album_id is not None:
@@ -229,7 +229,7 @@ class GMusicWrapper(object):
         # Give each match a score based on its similarity to the requested
         # name
         self.log('Fetching library...')
-        
+
         request_name = request_name.lower() + artist_name.lower()
         scored_matches = []
         for i, match in enumerate(all_matches):
@@ -250,7 +250,7 @@ class GMusicWrapper(object):
         sorted_matches = sorted(scored_matches, key=lambda a: a['score'], reverse=True)
         top_scoring = sorted_matches[0]
         self.log('Fetching library...')
-        
+
         best_match = all_matches[top_scoring['index']]
 
         # Make sure we have a decent match (the score is n where 0 <= n <= 100)

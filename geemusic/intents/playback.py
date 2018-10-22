@@ -10,7 +10,8 @@ import json
 
 
 def empty_response():
-    return json.dumps({"response" : {}, "version" : "1.0" }), 200
+    return json.dumps({"response": {}, "version": "1.0"}), 200
+
 
 @ask.on_playback_stopped()
 def stopped(offset):
@@ -24,6 +25,7 @@ def started(offset):
     app.logger.debug(render_template("started", offset=offset))
 
     return empty_response()
+
 
 @ask.on_playback_nearly_finished()
 def nearly_finished():
@@ -158,16 +160,16 @@ def currently_playing():
         thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
     else:
         thumbnail = None
-    return statement(render_template("success_title")\
-                           + render_template("success_text",
-                                             song=track['title'],
-                                             artist=track['artist']))\
-                           .standard_card(title=render_template("success_title"),
-                     text=render_template("success_text",
-                                          song=track['title'],
-                                          artist=track['artist']),
-                     small_image_url=thumbnail,
-                     large_image_url=thumbnail)
+    return statement(render_template("success_title")
+                     + render_template("success_text",
+                                       song=track['title'],
+                                       artist=track['artist']))\
+        .standard_card(title=render_template("success_title"),
+                       text=render_template("success_text",
+                                            song=track['title'],
+                                            artist=track['artist']),
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)
 
 
 @ask.intent('GeeMusicListAllPlaylists')
