@@ -8,52 +8,53 @@ from geemusic import app, ask
 from flask_ask import audio
 
 play_request = {
-  "version": "1.0",
-  "session": {
-    "new": True,
-    "sessionId": "amzn1.echo-api.session.0000000-0000-0000-0000-00000000000",
-    "application": {
-      "applicationId": "fake-application-id"
-    },
-    "attributes": {},
-    "user": {
-      "userId": "amzn1.account.AM3B00000000000000000000000"
-    }
-  },
-  "context": {
-    "System": {
-      "application": {
-        "applicationId": "fake-application-id"
-      },
-      "user": {
-        "userId": "amzn1.account.AM3B00000000000000000000000"
-      },
-      "device": {
-        "supportedInterfaces": {
-          "AudioPlayer": {}
+    "version": "1.0",
+    "session": {
+        "new": True,
+        "sessionId": "amzn1.echo-api.session.0000000-0000-0000-0000-00000000000",
+        "application": {
+            "applicationId": "fake-application-id"
+        },
+        "attributes": {},
+        "user": {
+            "userId": "amzn1.account.AM3B00000000000000000000000"
         }
-      }
     },
-    "AudioPlayer": {
-      "offsetInMilliseconds": 0,
-      "playerActivity": "IDLE"
-    }
-  },
-  "request": {
-    "type": "IntentRequest",
-    "requestId": "string",
-    "timestamp": "string",
-    "locale": "string",
-    "intent": {
-      "name": "TestPlay",
-      "slots": {
+    "context": {
+        "System": {
+            "application": {
+                "applicationId": "fake-application-id"
+            },
+            "user": {
+                "userId": "amzn1.account.AM3B00000000000000000000000"
+            },
+            "device": {
+                "supportedInterfaces": {
+                    "AudioPlayer": {}
+                }
+            }
+        },
+        "AudioPlayer": {
+            "offsetInMilliseconds": 0,
+            "playerActivity": "IDLE"
         }
-      }
+    },
+    "request": {
+        "type": "IntentRequest",
+        "requestId": "string",
+        "timestamp": "string",
+        "locale": "string",
+        "intent": {
+            "name": "TestPlay",
+            "slots": {
+            }
+        }
     }
 }
 
 
 en_strings = yaml.load(open('geemusic/templates/en.yaml'))
+
 
 class EnglishAudioIntegrationTests(unittest.TestCase):
     """ Integration tests of the english Audio Directives """
@@ -71,7 +72,7 @@ class EnglishAudioIntegrationTests(unittest.TestCase):
 
         @self.ask.intent('TestCustomTokenIntents')
         def custom_token_intents():
-            return audio('playing with custom token').play(self.stream_url, 
+            return audio('playing with custom token').play(self.stream_url,
                                                            opaque_token=self.custom_token)
 
     def tearDown(self):
@@ -121,25 +122,25 @@ class EnglishAudioIntegrationTests(unittest.TestCase):
 
     def test_play_some_music_intent(self):
         """ Test that play some music intent works """
-        
+
         psm_pr = play_request
         psm_pr['request']['intent']['name'] = 'GeeMusicPlayIFLRadioIntent'
 
         response = self.client.post('/alexa', data=json.dumps(play_request))
         self.assertEqual(200, response.status_code)
-        
+
         data = json.loads(response.data.decode('utf-8'))
         self.assertEqual(en_strings["play_IFL_radio_text"],
                          data['response']['outputSpeech']['text'])
-        
+
         directive = data['response']['directives'][0]
         self.assertEqual('AudioPlayer.Play', directive['type'])
-        
+
         stream = directive['audioItem']['stream']
         stream_token = stream['url'].split('/')[-1]
         self.assertIsNotNone(stream['token'])
-        self.assertIn(self.stream_url , stream['url'])
-        self.assertEqual('stream', stream['url'].split('/')[-2]) 
+        self.assertIn(self.stream_url, stream['url'])
+        self.assertEqual('stream', stream['url'].split('/')[-2])
         self.assertIsNotNone(stream_token)
         self.assertNotEqual(stream_token, '')
         self.assertEqual(0, stream['offsetInMilliseconds'])

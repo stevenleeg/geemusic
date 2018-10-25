@@ -2,25 +2,26 @@ from builtins import object, super
 from flask_ask import context
 import random
 
+
 class MusicQueue(object):
     def __init__(self, api, tracks=[]):
         self.queues = {}
         self.api = api
 
     def __setattr__(self, name, value):
-        if name == 'queues' or name =='api':
+        if name == 'queues' or name == 'api':
             super().__setattr__(name, value)
         else:
             return self.get_or_create_queue(context.System.device.deviceId).__setattr__(name, value)
 
     def __hasattr__(self, name):
-        if name == 'queues' or name =='api':
+        if name == 'queues' or name == 'api':
             return super().__hasattr__(name)
         else:
             return self.get_or_create_queue(context.System.device.deviceId).__hasattr__(name)
 
     def __getattr__(self, name):
-        if name == 'queues' or name =='api':
+        if name == 'queues' or name == 'api':
             return super().__getattr__(name)
         else:
             return self.get_or_create_queue(context.System.device.deviceId).__getattribute__(name)  # object methods don't have __getattr__
@@ -59,6 +60,7 @@ class MusicQueue(object):
 
     def __str__(self):
         return self.get_or_create_queue(context.System.device.deviceId).__str__()
+
 
 class MusicQueueInternal(object):
     def __init__(self, api, tracks=[]):

@@ -76,11 +76,11 @@ def play_album(album_name, artist_name):
 @ask.intent("GeeMusicPlayThumbsUpIntent")
 def play_promoted_songs():
     app.logger.debug("Fetching songs that you have up voted.")
-    
+
     promoted_songs = api.get_promoted_songs()
     if promoted_songs is False:
         return statement(render_template("play_promoted_songs_no_songs"))
-    
+
     first_song_id = queue.reset(promoted_songs)
     stream_url = api.get_stream_url(first_song_id)
 
@@ -93,12 +93,12 @@ def play_promoted_songs():
         .standard_card(title=speech_text,
                        text='',
                        small_image_url=thumbnail,
-                       large_image_url=thumbnail)    
+                       large_image_url=thumbnail)
 
 
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
-    app.logger.debug("Fetching song %s by %s" %(song_name, artist_name))
+    app.logger.debug("Fetching song %s by %s" % (song_name, artist_name))
 
     # Fetch the song
     song = api.get_song(song_name, artist_name)
@@ -114,7 +114,7 @@ def play_song(song_name, artist_name):
         thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
     else:
         thumbnail = None
-    speech_text = render_template("play_song_text", 
+    speech_text = render_template("play_song_text",
                                   song=song['title'],
                                   artist=song['artist'])
     return audio(speech_text).play(stream_url) \
@@ -137,15 +137,15 @@ def play_similar_song_radio():
     artist = api.get_artist(song['artist'])
     album = api.get_album(song['album'])
 
-    app.logger.debug("Fetching songs like %s by %s from %s"\
+    app.logger.debug("Fetching songs like %s by %s from %s"
                      % (song['title'], artist['name'], album['name']))
 
     if song is False:
         return statement(render_template("no_song"))
 
-    station_id = api.get_station("%s Radio" % song['title'], 
-                                 track_id=song['storeId'], 
-                                 artist_id=artist['artistId'], 
+    station_id = api.get_station("%s Radio" % song['title'],
+                                 track_id=song['storeId'],
+                                 artist_id=artist['artistId'],
                                  album_id=album['albumId'])
 
     tracks = api.get_station_tracks(station_id)
@@ -169,7 +169,7 @@ def play_similar_song_radio():
 
 @ask.intent("GeeMusicPlaySongRadioIntent")
 def play_song_radio(song_name, artist_name, album_name):
-    app.logger.debug("Fetching song %s by %s from %s."\
+    app.logger.debug("Fetching song %s by %s from %s."
                      % (song_name, artist_name, album_name))
 
     # Fetch the song
@@ -189,9 +189,9 @@ def play_song_radio(song_name, artist_name, album_name):
         return statement(render_template("no_song"))
 
     station_id = api.get_station("%s Radio" %
-                                 song['title'], 
-                                 track_id=song['storeId'], 
-                                 artist_id=artist['artistId'], 
+                                 song['title'],
+                                 track_id=song['storeId'],
+                                 artist_id=artist['artistId'],
                                  album_id=album['albumId'])
 
     tracks = api.get_station_tracks(station_id)
