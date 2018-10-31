@@ -100,6 +100,7 @@ class GMusicWrapper(object):
                         # Copy artist details from the first song into the general artist response
                         search['artistArtRef'] = song['artistArtRef'][0]['url']
                         search['name'] = song['artist']
+                        search['artistId'] = song['artistId']
                     search['topTracks'].append(song)
             random.shuffle(search['topTracks'])  # This is all music, not top, but the user probably would prefer it shuffled.
             if not search['topTracks']:
@@ -134,6 +135,7 @@ class GMusicWrapper(object):
                         if not search['tracks']:  # First entry
                             search['albumArtist'] = song['albumArtist']
                             search['name'] = song['album']
+                            search['albumId'] = song['albumId']
                         search['tracks'].append(song)
             if not search['tracks']:
                 return False

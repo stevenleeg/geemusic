@@ -141,6 +141,10 @@ def play_song(song_name, artist_name):
 
 @ask.intent("GeeMusicPlaySimilarSongsRadioIntent")
 def play_similar_song_radio():
+    # TODO -- can we do this without a subscription?
+    if not api.use_store:
+        return statement(render_template("not_supported_without_store"))
+
     if len(queue.song_ids) == 0:
         return statement(render_template("play_similar_song_radio_no_song"))
 
@@ -233,6 +237,10 @@ def play_song_radio(song_name, artist_name, album_name):
 
 @ask.intent("GeeMusicPlayArtistRadioIntent")
 def play_artist_radio(artist_name):
+    # TODO -- can we do this without a subscription?
+    if not api.use_store:
+        return statement(render_template("not_supported_without_store"))
+
     if not api.use_store and api.is_indexing():
         return statement(render_template("indexing"))
 
@@ -346,6 +354,10 @@ def queue_song(song_name, artist_name):
 
 @ask.intent("GeeMusicListAllAlbumsIntent")
 def list_album_by_artists(artist_name):
+    # TODO -- can we do this without a subscription?
+    if not api.use_store:
+        return statement(render_template("not_supported_without_store"))
+
     api = GMusicWrapper.generate_api()
     artist_album_list = api.get_artist_album_list(artist_name=artist_name)
     return statement(artist_album_list)
@@ -353,6 +365,10 @@ def list_album_by_artists(artist_name):
 
 @ask.intent("GeeMusicListLatestAlbumIntent")
 def list_latest_album_by_artist(artist_name):
+    # TODO -- can we do this without a subscription?
+    if not api.use_store:
+        return statement(render_template("not_supported_without_store"))
+
     api = GMusicWrapper.generate_api()
     latest_album = api.get_latest_artist_albums(artist_name=artist_name)
     return statement(latest_album)
@@ -360,6 +376,10 @@ def list_latest_album_by_artist(artist_name):
 
 @ask.intent("GeeMusicPlayLatestAlbumIntent")
 def play_latest_album_by_artist(artist_name):
+    # TODO -- can we do this without a subscription?
+    if not api.use_store:
+        return statement(render_template("not_supported_without_store"))
+
     api = GMusicWrapper.generate_api()
     latest_album = api.get_latest_album(artist_name)
 
@@ -400,6 +420,10 @@ def play_album_by_artist(artist_name):
 
 @ask.intent("GeeMusicPlayDifferentAlbumIntent")
 def play_different_album():
+    # TODO -- can we do this without a subscription?
+    if not api.use_store:
+        return statement(render_template("not_supported_without_store"))
+
     api = GMusicWrapper.generate_api()
 
     current_track = queue.current_track()
