@@ -125,10 +125,10 @@ class GMusicWrapper(object):
             if artist_name:
                 artist_name, score = process.extractOne(artist_name, self.artists)
                 if score < 70:
-                    return None
+                    return False
             name, score = process.extractOne(name, self.albums)
             if score < 70:
-                return None
+                return False
             for song_id, song in self.library.items():
                 if 'album' in song and song['album'].lower() == name.lower():
                     if not artist_name or ('artist' in song and song['artist'].lower() == artist_name.lower()):
@@ -197,15 +197,15 @@ class GMusicWrapper(object):
             if artist_name:
                 artist_name, score = process.extractOne(artist_name, self.artists)
                 if score < 70:
-                    return None
+                    return False
             if album_name:
                 album_name, score = process.extractOne(album_name, self.albums)
                 if score < 70:
-                    return None
+                    return False
             possible_songs = {song_id: song['title'] for song_id, song in self.library.items() if (not artist_name or ('artist' in song and song['artist'].lower() == artist_name.lower())) and (not album_name or ('album' in song and song['album'].lower() == album_name.lower()))}
             song, score, song_id = process.extractOne(name.lower(), possible_songs)
             if score < 70:
-                return None
+                return False
             else:
                 return self.library[song_id]
 
