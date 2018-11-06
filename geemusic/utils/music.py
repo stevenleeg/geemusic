@@ -194,6 +194,8 @@ class GMusicWrapper(object):
             return search[0]
         else:
             search = {}
+            if not name:
+                return False
             if artist_name:
                 artist_name, score = process.extractOne(artist_name, self.artists)
                 if score < 70:

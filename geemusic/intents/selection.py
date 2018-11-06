@@ -197,6 +197,10 @@ def play_song_radio(song_name, artist_name, album_name):
     # Fetch the song
 
     song = api.get_song(song_name, artist_name, album_name)
+
+    if song is False:
+        return statement(render_template("no_song"))
+
     if artist_name is not None:
         artist = api.get_artist(artist_name)
     else:
@@ -206,9 +210,6 @@ def play_song_radio(song_name, artist_name, album_name):
         album = api.get_album(album_name)
     else:
         album = api.get_album(song['album'])
-
-    if song is False:
-        return statement(render_template("no_song"))
 
     station_id = api.get_station("%s Radio" %
                                  song['title'],
