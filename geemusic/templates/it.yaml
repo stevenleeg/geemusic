@@ -1,0 +1,65 @@
+# common
+no_song: "Mi dispiace, non riesco a trovare questo brano."
+no_artist: "Mi dispiace, non riesco a trovare questo artista."
+no_album: "Mi dispiace, non riesco a trovare questo album."
+no_albums: "Mi dispiace, non riesco a trovare nessun album."
+indexing: "Per favore, aspetta la fine dell'indicizzazione delle tracce."
+play_album_text: "Riproduco l'album {{ album }} di {{ artist }}."
+play_song_text: "Riproduco {{ song }} di {{ artist }}"
+
+# selection.py
+login_text: "Benvenuto in Gee Music. Prova a chiedermi di riprodurre un brano o una playlist."
+login_title: "Benvenuto in Gee Music!"
+login_content: "Prova a chiedermi di riprodurre un brano"
+help_text: "Ecco alcune cose che puoi dire: \
+            Riproduci brani di Radiohead, \
+            Riproduci l'album Science For Girls, \
+            Riproduci la canzone Fitter Happier, \
+            Fai partire la radio dell'artista Weezer, \
+            Fai partire la playlist Dance Party, \
+            e riproduci della musica, \
+            Ovviamente puoi anche dire salta, precedente, casuale, e altro \
+            dei comandi per la musica di alexa o, stop, se hai finito."
+help_prompt: "Ad esempio di', riproduci musica di A Tribe Called Quest."
+play_promoted_songs_no_songs: "Mi dispiace, non riesco a trovare nessun brano votato positivamente."
+play_promoted_songs_text: "Riproduco i tuoi brani votati positivamente."
+play_artist_none: "Mi dispiace, non riesco a trovare nessun brano di {{ artist }}"
+play_artist_text: "Riproduco i brani preferiti di {{ artist }}"
+play_similar_song_radio_no_song: "Per favore, riproduci un brano per avviare la radio."
+play_song_radio_text: "Riproduci brani come {{ song }} di {{ artist }}."
+play_artist_radio_text: "Riproduci la radio di {{ artist }}."
+queue_song_no_song: "Devi prima riprodurre un brano."
+queue_song_queued: "Aggiunto in coda {{ song }} di {{ artist }}"
+play_playlist_no_match: "Mi dispiace, non riesco a trovare nessuna playlist nella tua libreria."
+play_playlist_text: "Riproduco brani da {{ playlist }}"
+play_IFL_radio_text: "Riproduco musica dalla tua stazione personalizzata."
+play_IFL_radio_title: "Riproduco la radio Mi sento fortunato."
+play_different_album_no_track: "Mi dispiace, non c'è nessun album attualmente in riproduzione."
+play_library_text: "Riproduco musica dalla tua libreria."
+
+# playback.py
+stopped: "Fermato a {{ offset }}"
+started: "Partito a {{ offset }}"
+start_over: "Non ci sono brani in coda."
+resume: "Riprendo"
+pause: "Metto in pausa"
+stop: "Arresto"
+next_song: "Non ci sono più canzoni in coda."
+prev_song: "Non puoi andare più indietro nella coda."
+shuffle_on: "Non ci sono canzoni da mescolare."
+shuffle_off: "Non ci sono canzoni da mescolare."
+loop_text: "Non ci sono brani in coda."
+currently_playing_none: "Non c'è nulla attualmente in riproduzione."
+success_title: "La traccia corrente è "
+success_text: "{{ song }} di {{ artist }}"
+playlist_separator: "e"
+list_all_playlists_text: "Hai {{ playlist_count }} playlists nella tua libreria. Esse sono, {{ playlist_list }}."
+thumbs_no_song: "Per favore, riproduci un brano per votare."
+thumbs_up_text: "Votato positivamente"
+thumbs_down_text: "Votato negativamente"
+restart_tracks_none: "Per favore di' il nome di un brano per utilizzare questa funzione."
+restart_tracks_text: "Faccio ripartire la traccia."
+skip_to_no_song: "Per favore di' il nome di un brano per utilizzare questa funzione."
+skip_to_no_match: "Mi dispiace, non riesco a trovare una corrispondenza abbastanza simile."
+skip_to_no_song_match: "Mi dispiace, non riesco a trovare questo brano nella coda."
+skip_to_speech_text: "Passo a {{ song }} di {{ artist }}"
