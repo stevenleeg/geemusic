@@ -1,0 +1,156 @@
+GeeMusicPlayArtistIntent Riproduci artista {artist_name}
+GeeMusicPlayArtistIntent Riproduci brani di {artist_name}
+GeeMusicPlayArtistIntent Riproduci brani preferiti di {artist_name}
+GeeMusicPlayArtistIntent Riproduci tracce preferite di {artist_name}
+GeeMusicPlayArtistIntent Riproduci musica di {artist_name}
+GeeMusicPlayArtistIntent Riproduci tracce di {artist_name}
+
+GeeMusicPlayAlbumIntent Riproduci l'album {album_name}
+GeeMusicPlayAlbumIntent Riproduci album {album_name}
+GeeMusicPlayAlbumIntent Riproduci l'album {album_name} di {artist_name}
+GeeMusicPlayAlbumIntent Riproduci album {album_name} di {artist_name}
+GeeMusicPlayAlbumIntent Riproduci brani dall'album {album_name} di {artist_name}
+
+GeeMusicPlaySimilarSongsRadioIntent Riproduci brani simili
+GeeMusicPlaySimilarSongsRadioIntent Riproduci brani come questo
+GeeMusicPlaySimilarSongsRadioIntent Fai partire una radio con questo brano
+GeeMusicPlaySimilarSongsRadioIntent Avvia una radio con questo brano
+
+GeeMusicPlaySongIntent Riproduci il brano {song_name}
+GeeMusicPlaySongIntent Riproduci brano {song_name}
+GeeMusicPlaySongIntent Riproduci il brano {song_name} di {artist_name}
+GeeMusicPlaySongIntent Riproduci brano {song_name} di {artist_name}
+GeeMusicPlaySongIntent Riproduci {song_name}
+GeeMusicPlaySongIntent Riproduci {song_name} di {artist_name}
+
+GeeMusicPlayArtistRadioIntent Avvia la radio dell'artista {artist_name}
+GeeMusicPlayArtistRadioIntent Fai partire la radio dell'artista {artist_name}
+GeeMusicPlayArtistRadioIntent Crea la radio per l'artista {artist_name}
+GeeMusicPlayArtistRadioIntent Avvia la radio di {artist_name}
+GeeMusicPlayArtistRadioIntent Fai partire la radio di {artist_name}
+GeeMusicPlayArtistRadioIntent Riproduci artisti come {artist_name}
+
+GeeMusicPlaySongRadioIntent Avvia la radio del brano {song_name}
+GeeMusicPlaySongRadioIntent Fai partire la radio del brano {song_name}
+GeeMusicPlaySongRadioIntent Crea la radio per il brano {song_name}
+GeeMusicPlaySongRadioIntent Avvia la radio della canzone {song_name}
+GeeMusicPlaySongRadioIntent Fai partire la radio della canzone {song_name}
+GeeMusicPlaySongRadioIntent Crea la radio per la canzone {song_name}
+GeeMusicPlaySongRadioIntent Riproduci brani come {song_name}
+GeeMusicPlaySongRadioIntent Riproduci brani come {song_name} da {album_name}
+GeeMusicPlaySongRadioIntent Riproduci brani come {song_name} di {artist_name}
+GeeMusicPlaySongRadioIntent Riproduci brani come {song_name} di {artist_name} da {album_name}
+
+GeeMusicPlayPlaylistIntent Riproduci {playlist_name} playlist
+GeeMusicPlayPlaylistIntent Playlist {playlist_name}
+GeeMusicPlayPlaylistIntent Avvia playlist {playlist_name}
+GeeMusicPlayPlaylistIntent Riproduci brani dalla playlist {playlist_name}
+GeeMusicPlayPlaylistIntent Riproduci playlist {playlist_name}
+
+GeeMusicPlayIFLRadioIntent Riproduci della musica
+GeeMusicPlayIFLRadioIntent Riproduci la radio Mi sento fortunato
+GeeMusicPlayIFLRadioIntent Riproduci la mia stazione radio
+GeeMusicPlayIFLRadioIntent Riproduci la mia radio
+
+GeeMusicCurrentlyPlayingIntent Cos'è il brano corrente
+GeeMusicCurrentlyPlayingIntent Cos'è la canzone corrente
+GeeMusicCurrentlyPlayingIntent Qual'è questo brano
+GeeMusicCurrentlyPlayingIntent Qual'è questa canzone
+GeeMusicCurrentlyPlayingIntent Qual'è il brano corrente
+GeeMusicCurrentlyPlayingIntent Qual'è la canzone corrente
+GeeMusicCurrentlyPlayingIntent Cosa sta suonando ora
+GeeMusicCurrentlyPlayingIntent Chi sta suonando ora
+GeeMusicCurrentlyPlayingIntent Cos'è questo brano
+GeeMusicCurrentlyPlayingIntent Cos'è questa canzone
+GeeMusicCurrentlyPlayingIntent Qual'è il nome di questo brano
+GeeMusicCurrentlyPlayingIntent Qual'è il nome di questa canzone
+GeeMusicCurrentlyPlayingIntent Cos'è questo
+GeeMusicCurrentlyPlayingIntent Chi è questo
+
+GeeMusicQueueSongIntent Dopo Riproduci il brano {song_name}
+GeeMusicQueueSongIntent Dopo Riproduci la canzone {song_name}
+GeeMusicQueueSongIntent Dopo Riproduci brano {song_name}
+GeeMusicQueueSongIntent Dopo Riproduci il brano {song_name} di {artist_name}
+GeeMusicQueueSongIntent Dopo Riproduci la canzone {song_name} di {artist_name}
+GeeMusicQueueSongIntent Dopo Riproduci brano {song_name} di {artist_name}
+GeeMusicQueueSongIntent Dopo Riproduci {song_name}
+GeeMusicQueueSongIntent Dopo Riproduci {song_name} di {artist_name}
+GeeMusicQueueSongIntent Accoda {song_name}
+GeeMusicQueueSongIntent Accoda {song_name} di {artist_name}
+
+GeeMusicThumbsUpIntent Vota positivamente questo brano
+GeeMusicThumbsUpIntent Vota positivo questo brano
+GeeMusicThumbsUpIntent Vota positivamente questo
+GeeMusicThumbsUpIntent Vota positivo questa canzone
+GeeMusicThumbsUpIntent Vota positivamente questa canzone
+GeeMusicThumbsUpIntent Vota positivo questo
+GeeMusicThumbsUpIntent Vota positivamente
+GeeMusicThumbsUpIntent Vota positivo
+GeeMusicThumbsUpIntent Mi piace
+GeeMusicThumbsUpIntent Mi piace questo brano
+GeeMusicThumbsUpIntent Mi piace questa canzone
+
+GeeMusicThumbsDownIntent Vota negativamente questo brano
+GeeMusicThumbsDownIntent Vota negativo questo brano
+GeeMusicThumbsDownIntent Vota negativamente questo
+GeeMusicThumbsDownIntent Vota negativo questa canzone
+GeeMusicThumbsDownIntent Vota negativamente questa canzone
+GeeMusicThumbsDownIntent Vota negativo questo
+GeeMusicThumbsDownIntent Vota negativamente
+GeeMusicThumbsDownIntent Vota negativo
+GeeMusicThumbsDownIntent Non mi piace
+GeeMusicThumbsDownIntent Non mi piace questo brano
+GeeMusicThumbsDownIntent Non mi piace questa canzone
+
+GeeMusicPlayThumbsUpIntent Riproduci i brani che mi piacciono
+GeeMusicPlayThumbsUpIntent Riproduci le canzoni che mi piacciono
+GeeMusicPlayThumbsUpIntent Riproduci i brani votati positivamente
+GeeMusicPlayThumbsUpIntent Riproduci le canzoni votate positivamente
+
+GeeMusicListAllAlbumsIntent Elenca tutti gli album di {artist_name}
+
+GeeMusicListLatestAlbumIntent Elenca gli ultimi albums di {artist_name}
+GeeMusicListLatestAlbumIntent Quali sono gli ultimi album di {artist_name}
+
+GeeMusicPlayLatestAlbumIntent Riproduci l'ultimo album di {artist_name}
+
+GeeMusicPlayAlbumByArtistIntent Riproduci un album di {artist_name}
+GeeMusicPlayAlbumByArtistIntent Riproduci un album dell'artista {artist_name}
+GeeMusicPlayDifferentAlbumIntent Riproduci a different album
+
+GeeMusicPlayLibraryIntent Riproduci musica dalla mia libreria
+GeeMusicPlayLibraryIntent Riproduci brani dalla mia libreria
+GeeMusicPlayLibraryIntent Riproduci tracce dalla mia libreria
+GeeMusicPlayLibraryIntent Riproduci musica dalla libreria
+GeeMusicPlayLibraryIntent Riproduci brani dalla libreria
+GeeMusicPlayLibraryIntent Riproduci tracce dalla libreria
+GeeMusicPlayLibraryIntent Riproduci la mia libreria
+GeeMusicPlayLibraryIntent Avvia la riproduzione di brani dalla mia libreria
+
+GeeMusicRestartTracksIntent Fai ripartire le tracce
+GeeMusicRestartTracksIntent Fai ripartire le canzoni
+GeeMusicRestartTracksIntent Fai ripartire i brani
+GeeMusicRestartTracksIntent Fai ripartire la playlist
+GeeMusicRestartTracksIntent Ricomincia la playlist dall'inizio
+
+GeeMusicSkipTo Salta a {song_name}
+GeeMusicSkipTo Salta a {song_name} di {artist_name}
+GeeMusicSkipTo Vai a {song_name}
+GeeMusicSkipTo Vai a {song_name} di {artist_name}
+GeeMusicSkipTo Salta al brano {song_name}
+GeeMusicSkipTo Salta al brano {song_name} di {artist_name}
+GeeMusicSkipTo Vai al brano {song_name}
+GeeMusicSkipTo Vai al brano {song_name} di {artist_name}
+GeeMusicSkipTo Salta alla canzone {song_name}
+GeeMusicSkipTo Salta alla canzone {song_name} di {artist_name}
+GeeMusicSkipTo Vai alla canzone {song_name}
+GeeMusicSkipTo Vai alla canzone {song_name} di {artist_name}
+
+GeeMusicListAllPlaylists quali playlist ho
+GeeMusicListAllPlaylists elenca le mie playlist
+GeeMusicListAllPlaylists elenca tutte le mie playlist
+GeeMusicListAllPlaylists elenca le playlist
+GeeMusicListAllPlaylists elenca playlist
+GeeMusicListAllPlaylists elenca tutte le playlist
+GeeMusicListAllPlaylists dimmi quali playlist sono nella mia libreria
+GeeMusicListAllPlaylists dimmi quali playlist sono nella libreria
