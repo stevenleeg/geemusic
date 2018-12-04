@@ -25,7 +25,7 @@ class GMusicWrapperNoLogUnitTests(unittest.TestCase):
 
     def setUp(self):
         surpress_warnings()
-        self.api = GMusicWrapper(getenv("GOOGLE_EMAIL"), getenv("GOOGLE_PASSWORD"))
+        self.api = GMusicWrapper(getenv("DEVICE_ID"))
 
     def tearDown(self):
         pass
@@ -44,7 +44,7 @@ class GMusicWrapperLogUnitTests(unittest.TestCase):
     def setUp(self):
         surpress_warnings()
         logger = logging.getLogger()
-        self.api = GMusicWrapper(getenv("GOOGLE_EMAIL"), getenv("GOOGLE_PASSWORD"), logger)
+        self.api = GMusicWrapper(getenv("DEVICE_ID"), logger)
 
     def tearDown(self):
         pass

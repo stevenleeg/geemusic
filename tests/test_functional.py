@@ -1,9 +1,9 @@
 import unittest
+import os
 import json
 import uuid
 import yaml
 
-from os import getenv
 from geemusic import app, ask
 from flask_ask import audio
 
@@ -63,7 +63,7 @@ class EnglishAudioIntegrationTests(unittest.TestCase):
         self.app = app
         self.ask = ask
         self.client = self.app.test_client()
-        self.stream_url = getenv('APP_URL')
+        self.stream_url = os.environ['APP_URL']
         self.custom_token = 'custom_uuid_{0}'.format(str(uuid.uuid4()))
 
         @self.ask.intent('TestPlay')
