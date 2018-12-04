@@ -60,6 +60,8 @@ class EnglishAudioIntegrationTests(unittest.TestCase):
     """ Integration tests of the english Audio Directives """
 
     def setUp(self):
+        os.environ["ASK_VERIFY_REQUESTS"] = 'False'
+        os.environ["APP_URL"] = 'http://localhost'
         self.app = app
         self.ask = ask
         self.client = self.app.test_client()
