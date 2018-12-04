@@ -93,12 +93,18 @@ $ source .venv/bin/activate
 $ pip3 install -r requirements.txt
 ```
 
-Once the requirements are installed we'll need to create a file, `.env` to store our credentials. Here's an example:
-
+You must first verify you can do this part, this might exception out and if 
+you're lucky, you can grab one of the alpha numeric strings at the bottom of
+exception string and replace <device_id> below with that alpha numeric device
+id. 
 ```
-# Google credentials
-GOOGLE_EMAIL=steve@stevegattuso.me
-GOOGLE_PASSWORD=password
+python -c 'from gmusicapi import Mobileclient as MC; m = MC(); print m.perform_oauth();
+python -c 'from gmusicapi import Mobileclient as MC; m = MC(); print m.oauth_login("<device_id>"); print m.get_all_songs()[0]'
+```
+
+Once the requirements are installed we'll need to create a file, `.env` to store our credentials. Here's an example:
+```
+DEVICE_ID=device_id
 
 # Publicly accessible URL to your server, WITHOUT trailing slash
 APP_URL=https://alexa-geemusic.stevegattuso.me
@@ -192,8 +198,7 @@ Once you've named your app and the code has been deployed, the next step is to c
 
 | Variable Name  | Value |
 | ------------- | ------------- |
-| GOOGLE_EMAIL  | YOUR_EMAIL |
-| GOOGLE_PASSWORD  | YOUR_PASSWORD  |
+| DEVICE_ID  | YOUR_DEVICE_ID  |
 | APP_URL | https://[heroku_app_name].herokuapp.com |
 | DEBUG_MODE | false |
 
@@ -218,7 +223,7 @@ $ docker build -t geemusic .
 Finally, run the container with the appropriate environment variables and port forwards. Alternatively set up a compose file or your orchestration engine, but those are outside the scope of this readme.
 
 ```bash
-$ docker run -d -e GOOGLE_EMAIL=steve@stevegattuso.me -e GOOGLE_PASSWORD=[password] \
+$ docker run -d -e DEVICE_ID=[device-id] \
 -e APP_URL=http://alexa-geemusic.stevegattuso.me -p 5000:5000 geemusic
 ```
 
