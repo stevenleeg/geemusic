@@ -98,8 +98,8 @@ you're lucky, you can grab one of the alpha numeric strings at the bottom of
 exception string and replace <device_id> below with that alpha numeric device
 id. 
 ```
-python -c 'from gmusicapi import Mobileclient as MC; m = MC(); print m.perform_oauth();
-python -c 'from gmusicapi import Mobileclient as MC; m = MC(); print m.oauth_login("<device_id>"); print m.get_all_songs()[0]'
+python -c 'from gmusicapi import Mobileclient as MC; m = MC(); print(m.perform_oauth());'
+python -c 'from gmusicapi import Mobileclient as MC; m = MC(); print(m.oauth_login("<device_id>")); print(m.get_all_songs()[0])'
 ```
 
 Once the requirements are installed we'll need to create a file, `.env` to store our credentials. Here's an example:
