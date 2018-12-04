@@ -1,6 +1,6 @@
+import os
 from builtins import object
 from fuzzywuzzy import fuzz
-from os import getenv
 import threading
 import random
 
@@ -8,10 +8,10 @@ from gmusicapi import CallFailure, Mobileclient
 
 
 class GMusicWrapper(object):
-    def __init__(self, username, password, logger=None):
+    def __init__(self, device_id, logger=None):
         self._api = Mobileclient()
         self.logger = logger
-        success = self._api.oauth_login(os.environ["ANDROID_ID"])
+        success = self._api.oauth_login(device_id)
 
         if not success:
             raise Exception("Unsuccessful login. Aborting!")
@@ -153,7 +153,7 @@ class GMusicWrapper(object):
         return self._api.get_stream_url(song_id)
 
     def get_stream_url(self, song_id):
-        return "%s/alexa/stream/%s" % (getenv('APP_URL'), song_id)
+        return "%s/alexa/stream/%s" % (os.environ['APP_URL'], song_id)
 
     def get_thumbnail(self, artist_art):
         return artist_art.replace("http://", "https://")
@@ -270,5 +270,5 @@ class GMusicWrapper(object):
 
     @classmethod
     def generate_api(cls, **kwargs):
-        return cls(getenv('GOOGLE_EMAIL'), getenv('GOOGLE_PASSWORD'),
+        return cls(os.environ['DEVICE_ID'],
                    **kwargs)
