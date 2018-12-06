@@ -67,9 +67,11 @@ class MusicQueueInternal(object):
         self.reset(tracks)
         self.current_index = 0
         self.api = api
+        self.use_store = self.api.use_store
 
     def next(self):
-        self.api.increment_song_playcount(self.current())
+        if self.current():
+            self.api.increment_song_playcount(self.current())
         if len(self.song_ids) == 0 or \
                 self.current_index + 1 >= len(self.song_ids):
             return None
@@ -130,7 +132,10 @@ class MusicQueueInternal(object):
             return self.song_ids[self.current_index]
 
     def enqueue_track(self, song):
-        song_id = song['storeId']
+        if self.use_store:
+            song_id = song['storeId']
+        else:
+            song_id = song['id']
         self.song_ids.append(song_id)
         self.tracks[song_id] = song
 

@@ -25,6 +25,7 @@ play_promoted_songs_no_songs: "Entschuldigung, ich konnte keine Lieder finden, d
 play_promoted_songs_text: "Hier ist Musik, die du magst."
 play_artist_none: "Entschuldigung, ich konnte keine Songs von {{ artist }} finden."
 play_artist_text: "Hier ist Musik von {{ artist }}, die du magst."
+play_artist_text_library: "Hier ist Musik von {{ artist }} von deiner Bibliothek"
 play_similar_song_radio_no_song: "Bitte spiele ein Lied, um ein Radio zu starten."
 play_song_radio_text: "Hier ist {{artist}} {{ song }} Radio."
 play_artist_radio_text: "Hier ist {{ artist }} Radio."
@@ -36,8 +37,10 @@ play_IFL_radio_text: "Hier ist Musik von deinem persönlichen Radiosender."
 play_IFL_radio_title: "Hier ist Zufallsradio."
 play_different_album_no_track: "Entschuldigung, gerade läuft kein bestimmtes Album."
 play_library_text: "Hier ist Musik aus deiner Bibliothek."
+not_supported_without_store: "Sorry, this feature requires a subscription to Google Music"  # TODO: translate
 
 # playback.py
+indexing: "Indexing your Library"  # TODO: translate"
 stopped: "Wiedergabe bei {{ offset }} gestoppt."
 started: "Wiedergabe bei {{ offset }} gestartet."
 start_over: "Es sind keine Lieder eingereiht."

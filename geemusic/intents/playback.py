@@ -48,6 +48,12 @@ def finished():
 #
 
 
+@ask.intent('GeeMusicRefreshLibrary')
+def index():
+    api.start_indexing()
+    return audio(render_template("indexing"))
+
+
 @ask.intent('AMAZON.StartOverIntent')
 def start_over():
     next_id = queue.current()
