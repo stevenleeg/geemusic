@@ -98,7 +98,10 @@ class GMusicWrapper(object):
                 if 'artist' in song and song['artist'].lower() == likely_artist.lower():
                     if not search['topTracks']:  # First entry
                         # Copy artist details from the first song into the general artist response
-                        search['artistArtRef'] = song['artistArtRef'][0]['url']
+                        try:
+                            search['artistArtRef'] = song['artistArtRef'][0]['url']
+                        except KeyError:
+                            pass
                         search['name'] = song['artist']
                         search['artistId'] = song['artistId']
                     search['topTracks'].append(song)
@@ -135,7 +138,11 @@ class GMusicWrapper(object):
                         if not search['tracks']:  # First entry
                             search['albumArtist'] = song['albumArtist']
                             search['name'] = song['album']
-                            search['albumId'] = song['albumId']
+                            try:
+                                search['albumId'] = song['albumId']
+                            except KeyError:
+                                pass
+
                         search['tracks'].append(song)
             if not search['tracks']:
                 return False
