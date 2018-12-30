@@ -1,0 +1,68 @@
+# common
+no_song: "Désolé, je n'ai pas trouvé cette chanson."
+no_artist: "Désolé, je n'ai pas pu trouver cet artist."
+no_album: "Désolé, je n'ai pas pu trouver cet album."
+no_albums: "Désolé, je n'ai pas trouvé d'albums."
+indexing: "Veuillez attendre la fin de l'indexation de vos pistes."
+play_album_text: "Lecture de l'album {{ album }} par {{ artist }}."
+play_song_text: "Jouer {{ song }} par {{ artist }}"
+
+# selection.py
+login_text: "Bienvenue chez Gee Music. Essaie de me demander de jouer une chanson ou de commencer une playlist."
+login_title: "Bienvenue chez Gee Music !"
+login_content: "Essaie de me demander de jouer une chanson"
+help_text: "Voici ce que vous pouvez dire : \
+            Joue des chansons de Radiohead, \
+            Jouez l'album Science For Girls, \
+            Jouez la chanson Fitter Happier, \
+            Démarrer une station de radio pour l'artist Weezer, \
+            demarrer la playlist Dance Party, \
+            et jouer de la musique,\
+            Bien sûr, vous pouvez aussi dire suivant, precédent, au hazard, et plus encore \
+            des commandes musicales d'Alexa ou, arrêtez, si vous avez fini."
+help_prompt: "Par exemple, jouez la musique de A Tribe Called Quest."
+play_promoted_songs_no_songs_no_songs: "Désolé, je n'ai pas trouvé de chansons votées."
+play_promoted_songs_text: "Jouer les chansons votées."
+play_artist_none: "Sorry, I couldn't find any songs by {{ artist }}"  # TODO: translate
+play_artist_text: "lecture des meilleures chansons de l'artiste {{ artist }}"
+play_artist_text_library: "Playing tracks by {{ artist }} from your library."  # TODO: translate
+play_similar_song_radio_no_song: "S'il vous plaît, jouez une chanson pour démarrer la radio."
+play_artist_radio_text: "Jouer à la radio."
+queue_song_no_song: "Vous devez d'abord jouer une chanson."
+play_song_radio_text: "Joue des chansons qui ressemble à {{ song }} par {{ artist }}."
+queue_song_queued: "ajouter a la file d'attente {{ song }} par {{ artist }}"
+play_playlist_no_match: "Désolé, je n'ai pas trouvé cette playlist dans votre bibliothèque."
+play_playlist_text: "Jouer des chansons de {{ playlist }}"
+play_IFL_radio_text: "Jouer de la musique à partir de votre station personnalisée."
+play_IFL_radio_title: "Jouer I'm Feeling Lucky Radio."
+play_different_album_no_track: "Désolé, il n'y a pas d'album en cours de lecture."
+play_library_text : "Jouer de la musique de votre bibliothèque."
+not_supported_without_store: "Sorry, this feature requires a subscription to Google Music"  # TODO: translate
+
+# playback.py
+indexing: "Indexing your Library"  # TODO: translate
+stopped: "Arrêté à {{ offset }}"
+started: "Commencé à {{ offset }}"
+start_over: "Il n'y a pas de chansons dans la file d'attente."
+resume: "Reprendre"
+pause: "Pause"
+stop: "Arrêt"
+next_song: "Il n'y a plus de chansons dans la file d'attente."
+prev_song: "Vous ne pouvez pas retourner plus loin dans la file d'attente."
+shuffle_on: "Il n'y a pas de chansons à mélanger."
+shuffle_off: "Il n'y a pas de chansons à mélanger."
+loop_text: "Il n'y a pas de chansons dans la file d'attente."
+currently_playing_none: "Rien ne joue en ce moment."
+success_title: "La piste actuelle est "
+success_text: "{{ song }} par {{ artist }}"
+playlist_separator: "et"
+list_all_playlists_text: "Vous avez des listes de lecture {{ playlist_count }} dans votre bibliothèque. Les voici, {{ playlist_list }}."
+thumbs_no_song: "S'il vous plaît, jouez une chanson pour voter."
+thumbs_up_text: "upvoté"
+thumbs_down_text: "Downvoté"
+restart_tracks_none: "Veuillez indiquer un nom de chanson pour utiliser cette fonction."
+restart_tracks_text: "Redémarrage des pistes."
+skip_to_no_song: "S'il vous plaît, dites un nom de chanson pour utiliser cette fonction."
+skip_to_no_match: "Désolé, je n'ai pas pu trouver une correspondance assez proche."
+skip_to_no_song_match: "Désolé, je n'ai pas trouvé cette chanson dans la file d'attente."
+skip_to_speech_text: "Sauter à {{ song }} par {{ artist }}"

@@ -1,6 +1,7 @@
 from builtins import object
-from fuzzywuzzy import fuzz
-from os import environ
+from fuzzywuzzy import fuzz, process
+from os import getenv
+from ast import literal_eval
 import threading
 import random
 
@@ -11,17 +12,31 @@ class GMusicWrapper(object):
     def __init__(self, username, password, logger=None):
         self._api = Mobileclient()
         self.logger = logger
-        success = self._api.login(username, password, environ.get('ANDROID_ID', Mobileclient.FROM_MAC_ADDRESS))
+        success = self._api.login(username, password, getenv('ANDROID_ID', Mobileclient.FROM_MAC_ADDRESS))
 
         if not success:
             raise Exception("Unsuccessful login. Aborting!")
 
+        try:
+            assert literal_eval(getenv("DEBUG_FORCE_LIBRARY", "False"))
+            self.use_store = False
+        except (AssertionError, ValueError):  # AssertionError if it's False, ValueError if it's not set / not set to a proper boolean string
+            self.use_store = self._api.is_subscribed
         # Populate our library
+        self.start_indexing()
+
+    def start_indexing(self):
         self.library = {}
+        self.albums = set([])
+        self.artists = set([])
         self.indexing_thread = threading.Thread(
             target=self.index_library
         )
         self.indexing_thread.start()
+
+    def log(self, log_str):
+        if self.logger != None:
+            self.logger.debug(log_str)
 
     def _search(self, query_type, query):
         try:
@@ -48,37 +63,84 @@ class GMusicWrapper(object):
         Downloads the a list of every track in a user's library and populates
         self.library with storeIds -> track definitions
         """
-        self.logger.debug('Fetching library...')
+        self.log('Fetching library...')
+
         tracks = self.get_all_songs()
 
         for track in tracks:
             song_id = track['id']
             self.library[song_id] = track
+            self.albums.add(track['album'])
+            self.artists.add(track['artist'])
 
-        self.logger.debug('Done! Discovered %d tracks.' % len(self.library))
+        self.log('Fetching library complete.')
 
     def get_artist(self, name):
         """
         Fetches information about an artist given its name
         """
-        search = self._search("artist", name)
+        if self.use_store:
+            search = self._search("artist", name)
 
-        if len(search) == 0:
-            return False
+            if len(search) == 0:
+                return False
 
-        return self._api.get_artist_info(search[0]['artistId'],
-                                         max_top_tracks=100)
+            return self._api.get_artist_info(search[0]['artistId'],
+                                             max_top_tracks=100)
+        else:
+            search = {}
+            search['topTracks'] = []
+            # Find the best artist we have, and then match songs to that artist
+            likely_artist, score = process.extractOne(name, self.artists)
+            if score < 70:
+                return False
+            for song_id, song in self.library.items():
+                if 'artist' in song and song['artist'].lower() == likely_artist.lower():
+                    if not search['topTracks']:  # First entry
+                        # Copy artist details from the first song into the general artist response
+                        search['artistArtRef'] = song['artistArtRef'][0]['url']
+                        search['name'] = song['artist']
+                        search['artistId'] = song['artistId']
+                    search['topTracks'].append(song)
+            random.shuffle(search['topTracks'])  # This is all music, not top, but the user probably would prefer it shuffled.
+            if not search['topTracks']:
+                return False
+
+            return search
 
     def get_album(self, name, artist_name=None):
-        if artist_name:
-            name = "%s %s" % (name, artist_name)
+        if self.use_store:
+            if artist_name:
+                name = "%s %s" % (name, artist_name)
 
-        search = self._search("album", name)
+            search = self._search("album", name)
 
-        if len(search) == 0:
-            return False
+            if len(search) == 0:
+                return False
 
-        return self._api.get_album_info(search[0]['albumId'])
+            return self._api.get_album_info(search[0]['albumId'])
+        else:
+            search = {}
+            search['tracks'] = []
+            if artist_name:
+                artist_name, score = process.extractOne(artist_name, self.artists)
+                if score < 70:
+                    return False
+            name, score = process.extractOne(name, self.albums)
+            if score < 70:
+                return False
+            for song_id, song in self.library.items():
+                if 'album' in song and song['album'].lower() == name.lower():
+                    if not artist_name or ('artist' in song and song['artist'].lower() == artist_name.lower()):
+                        if not search['tracks']:  # First entry
+                            search['albumArtist'] = song['albumArtist']
+                            search['name'] = song['album']
+                            search['albumId'] = song['albumId']
+                        search['tracks'].append(song)
+            if not search['tracks']:
+                return False
+
+            return search
 
     def get_latest_album(self, artist_name=None):
         search = self._search("artist", artist_name)
@@ -114,25 +176,44 @@ class GMusicWrapper(object):
         return False
 
     def get_song(self, name, artist_name=None, album_name=None):
-        if artist_name:
-            name = "%s %s" % (artist_name, name)
-        elif album_name:
-            name = "%s %s" % (album_name, name)
+        if self.use_store:
+            if artist_name:
+                name = "%s %s" % (artist_name, name)
+            elif album_name:
+                name = "%s %s" % (album_name, name)
 
-        search = self._search("song", name)
+            search = self._search("song", name)
 
-        if len(search) == 0:
-            return False
+            if len(search) == 0:
+                return False
 
-        if album_name:
-            for i in range(0, len(search) - 1):
-                if album_name in search[i]['album']:
-                    return search[i]
-        return search[0]
+            if album_name:
+                for i in range(0, len(search) - 1):
+                    if album_name in search[i]['album']:
+                        return search[i]
+            return search[0]
+        else:
+            search = {}
+            if not name:
+                return False
+            if artist_name:
+                artist_name, score = process.extractOne(artist_name, self.artists)
+                if score < 70:
+                    return False
+            if album_name:
+                album_name, score = process.extractOne(album_name, self.albums)
+                if score < 70:
+                    return False
+            possible_songs = {song_id: song['title'] for song_id, song in self.library.items() if (not artist_name or ('artist' in song and song['artist'].lower() == artist_name.lower())) and (not album_name or ('album' in song and song['album'].lower() == album_name.lower()))}
+            song, score, song_id = process.extractOne(name.lower(), possible_songs)
+            if score < 70:
+                return False
+            else:
+                return self.library[song_id]
 
     def get_promoted_songs(self):
         return self._api.get_promoted_songs()
-    
+
     def get_station(self, title, track_id=None, artist_id=None, album_id=None):
         if artist_id is not None:
             if album_id is not None:
@@ -148,7 +229,7 @@ class GMusicWrapper(object):
         return self._api.get_stream_url(song_id)
 
     def get_stream_url(self, song_id):
-        return "%s/alexa/stream/%s" % (environ['APP_URL'], song_id)
+        return "%s/alexa/stream/%s" % (getenv('APP_URL'), song_id)
 
     def get_thumbnail(self, artist_art):
         return artist_art.replace("http://", "https://")
@@ -168,8 +249,10 @@ class GMusicWrapper(object):
         if 'track' in track:
             track = track['track']
 
-        if 'storeId' in track:
+        if self.use_store and 'storeId' in track:
             return track, track['storeId']
+        elif 'id' in track:
+            return self.library[track['id']], track['id']
         elif 'trackId' in track:
             return self.library[track['trackId']], track['trackId']
         else:
@@ -223,7 +306,10 @@ class GMusicWrapper(object):
     def closest_match(self, request_name, all_matches, artist_name='', minimum_score=70):
         # Give each match a score based on its similarity to the requested
         # name
-        self.logger.debug("The artist name is " + str(artist_name))
+        self.log('Finding closest match...')
+
+        best_match = None
+
         request_name = request_name.lower() + artist_name.lower()
         scored_matches = []
         for i, match in enumerate(all_matches):
@@ -242,14 +328,16 @@ class GMusicWrapper(object):
             })
 
         sorted_matches = sorted(scored_matches, key=lambda a: a['score'], reverse=True)
-        top_scoring = sorted_matches[0]
-        self.logger.debug("The top scoring match was: " + str(top_scoring))
-        best_match = all_matches[top_scoring['index']]
 
-        # Make sure we have a decent match (the score is n where 0 <= n <= 100)
-        if top_scoring['score'] < minimum_score:
-            return None
+        try:
+            top_scoring = sorted_matches[0]
+            # Make sure we have a decent match (the score is n where 0 <= n <= 100)
+            if top_scoring['score'] >= minimum_score:
+                best_match = all_matches[top_scoring['index']]
+        except IndexError:
+            pass
 
+        self.log('Found %s...' % best_match)
         return best_match
 
     def get_genres(self, parent_genre_id=None):
@@ -263,5 +351,5 @@ class GMusicWrapper(object):
 
     @classmethod
     def generate_api(cls, **kwargs):
-        return cls(environ['GOOGLE_EMAIL'], environ['GOOGLE_PASSWORD'],
+        return cls(getenv('GOOGLE_EMAIL'), getenv('GOOGLE_PASSWORD'),
                    **kwargs)

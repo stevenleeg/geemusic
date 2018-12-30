@@ -1,4 +1,5 @@
 <p align="center"><img src="http://i.imgur.com/vJshMwW.png" /></p>
+<p align="center"><img src="https://travis-ci.com/stevenleeg/geemusic.svg?branch=master" /></p>
 
 GeeMusic is an Alexa skill which bridges Google Music and Amazon's Alexa. It hopes to rescue all of those who want an Echo/Dot but don't want to switch off of Google Music or pay extra for an Amazon Music Unlimited subscription.
 
@@ -104,6 +105,7 @@ APP_URL=https://alexa-geemusic.stevegattuso.me
 
 # Debug mode: Set to True or False
 DEBUG_MODE=False
+DEBUG_FORCE_LIBRARY=False  # Forces a subscribed user to use local library playback, rather than the default Store
 ```
 
 I would *highly reccomend* that you enable 2-factor authentication on your Google account and only insert an application specific password into this file. Remember that it is stored in plaintext on your local computer! (TODO: fix this!)
@@ -181,29 +183,20 @@ Enjoy streaming Google Music via Alexa!
 
 ## (Optional) Setup a Heroku instance
 
-Setting up an instance on Heroku may be an easier option for you, and these instructions detail how to accomplish this. The following steps replace the need to setup a local server. First one must have Heroku setup on your local machine and an account associated. Visit [the CLI documentation](https://devcenter.heroku.com/articles/heroku-cli) for details on setting this up.
+Setting up an instance on Heroku may be an easier option for you, and these instructions detail how to accomplish this. The following steps replace the need to setup a local server.
 
-One must then clone the repository.
+First, we need to deploy a copy of this code to Heroku. To do that, simply click the Deploy to Heroku button below.
 
-```bash
-$ git clone https://github.com/stevenleeg/geemusic.git
-```
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/stevenleeg/geemusic/tree/master)
 
-Next, `cd` in to deploy the code. Then, setup the Heroku server by typing the following two commands.
+Once you've named your app and the code has been deployed, the next step is to configure the app to work with your Google account. To do this click on the settings tab of Heroku's site. After the tab has loaded, click the button labeled Reveal Config Vars and update the variables below replacing each temporary value with your own values.
 
-```bash
-$ heroku create
-$ git push heroku master
-```
-
-We now need to configure it to work with your Google account. Type the following commands, and replace details with your own account credentials and app settings.
-
-```bash
-$ heroku config:set GOOGLE_EMAIL=steve@stevegattuso.me
-$ heroku config:set GOOGLE_PASSWORD=[password]
-$ heroku config:set APP_URL=https://[heroku_app_name].herokuapp.com
-$ heroku config:set DEBUG_MODE=False
-```
+| Variable Name  | Value |
+| ------------- | ------------- |
+| GOOGLE_EMAIL  | YOUR_EMAIL |
+| GOOGLE_PASSWORD  | YOUR_PASSWORD  |
+| APP_URL | https://[heroku_app_name].herokuapp.com |
+| DEBUG_MODE | false |
 
 At this point, your server should by live and ready to start accepting requests at `https://[heroku_app_name].herokuapp.com/alexa.` Note, that while using the free tier, you may experience timeout errors when you server has received no requests for over 30 minutes. However, you can use a service, such as [Kaffeine](http://kaffeine.herokuapp.com/) to minimize your downtime.
 
@@ -232,6 +225,54 @@ $ docker run -d -e GOOGLE_EMAIL=steve@stevegattuso.me -e GOOGLE_PASSWORD=[passwo
 
 At this point you're set up and ready.
 
+## (Optional) Use AWS Lambda
+*Note this costs about $0.30-$1.00 per month based on usage*
+
+Setting this up for AWS Lambda actually isn't that bad. You need to create an AWS account first though, [AWS](https://aws.amazon.com), and click "Create an AWS Account" and follow the instructions to create the account.
+
+We are also going to need a few more dependencies, so while you are in your virtualenv type the following: `pip install zappa awscli` and then `pip freeze > requirements.txt` if you wish to overwrite the base requirements.txt file with the proper requirements to deploy to AWS.
+
+### Deployment Part 1. Setting up IAM Account.
+
+Once your account is created:
+  1. Open the [IAM Console](https://console.aws.amazon.com/iam/home#/home), and sign in with your account that you should have by now. 
+  2. In the navigation pane, choose Users. 
+  3. Click the `Add User` button. 
+  4. Name the user zappa-deploy, choose `Programmatic` access for the Access type, then click the `Next: Permissions` button. 
+  5. On the permissions page, click the Attach existing policies directly option. 
+  6. A large list of policies is diplayed. Locate the AdministratorAccess policy, click its checkbox, then click the `Next: Review` button.
+  7. Finally, review the information that displays with the steps above and then click the `Create User` button.
+  8. Once the user is created, its `Access key ID` and `Secret access key` are displayed (click the `Show` link next to the Secret access to show it). 
+  9. Keep that tab open or copy them to a safe place because we will need those later. Treat those keys like you would your password because they have the same privileges.
+
+### Deployment Part 2. Configure IAM credentials locally.
+
+Type aws configure to begin the local setup.
+
+Follow the propts to input your `Access key ID` and `Secret access key`. For Default region name, type: `us-east-1` (it must be a valid region) For Default output format, accept the default by hitting the Enter key.
+
+The `aws configure` command installs credentials and config in an .aws directory inside your home directoy. Zappa knows how to use this figuration to create the AWS resources it needs to deploy Flask-Ask skills to Lambda.
+
+We're now almost ready to deploy our skill with Zappa.
+
+### Deployment Part 3. Deploy the skill with Zappa.
+
+In the terminal, create a zappa configuration file by typing: `zappa init` or by typing `mv gmusic_zappa_settings.json zappa_settings.json` to copy this skeleton file and update all the `redacted` fields with your own values.
+
+*Note: After a while you might have to grab an old valid working device ID from your account using the `Mobileclient.get_registered_devices()`. You'll have to login via a python shell using the `gmusicapi` on a computer that has a valid device id as Lambda functions don't have a MAC address.*
+
+Once the initialization is complete, deploy the skill by typing: `zappa deploy dev`
+
+Edit the zappa_settings.json file and fill in the `redacted` information with your own personal information specific to your deployment
+
+Then type the following: `zappa update dev`
+
+Finally you have to update your Alexa Skills Configuration tab to use this URL + /alexa. For example it looks like this, `https://[random-stuff].execute-api.us-east-1.amazonaws.com/dev/alexa`. Everything else for the configuration is the same as the heroku setup. 
+
+It still uses a wildcard SSL cert and doesn't use Account linking or list read/writes.
+
+
+
 ## (Optional) Last.fm support
 *Only attempt this if you have significant technical expertise.* To scrobble all played tracks to [Last.fm](http://www.last.fm) follow the instructions at [this repo](https://github.com/huberf/lastfm-scrobbler) to get auth tokens.
 
@@ -246,6 +287,9 @@ LANGUAGE=en
 
 # German
 LANGUAGE=de
+
+# French
+LANGUAGE=fr
 ```
 
 If you want to add a language submit a PR to this repository and add translations for the language you want to support in `geemusic/templates/` dir with the global two character country code + `yaml`. For example, the English the file is `geemusic/templates/en.yaml`.

@@ -59,6 +59,16 @@
             "samples": []
         },
         {
+            "name": "GeeMusicRefreshLibrary",
+            "slots": [],
+            "samples": [
+                "Refresh",
+                "Refresh my library",
+                "Reload",
+                "Reload my library"
+            ]
+        },
+        {
             "name": "GeeMusicPlayArtistIntent",
             "slots": [
             {

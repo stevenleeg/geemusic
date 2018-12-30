@@ -9,15 +9,22 @@ import json
 #
 
 
+def empty_response():
+    return json.dumps({"response": {}, "version": "1.0"}), 200
+
+
 @ask.on_playback_stopped()
 def stopped(offset):
     queue.paused_offset = offset
     app.logger.debug(render_template("stopped", offset=offset))
+    return empty_response()
 
 
 @ask.on_playback_started()
 def started(offset):
     app.logger.debug(render_template("started", offset=offset))
+
+    return empty_response()
 
 
 @ask.on_playback_nearly_finished()
@@ -28,15 +35,23 @@ def nearly_finished():
         stream_url = api.get_stream_url(next_id)
 
         return audio().enqueue(stream_url)
+    return empty_response()
 
 
 @ask.on_playback_finished()
 def finished():
     queue.next()
+    return empty_response()
 
 ##
 # Intents
 #
+
+
+@ask.intent('GeeMusicRefreshLibrary')
+def index():
+    api.start_indexing()
+    return audio(render_template("indexing"))
 
 
 @ask.intent('AMAZON.StartOverIntent')
@@ -147,17 +162,20 @@ def currently_playing():
     if track is None:
         return audio(render_template("currently_playing_none"))
 
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
-    return statement(render_template("success_title")\
-                           + render_template("success_text",
-                                             song=track['title'],
-                                             artist=track['artist']))\
-                           .standard_card(title=render_template("success_title"),
-                     text=render_template("success_text",
-                                          song=track['title'],
-                                          artist=track['artist']),
-                     small_image_url=thumbnail,
-                     large_image_url=thumbnail)
+    if 'albumArtRef' in queue.current_track():
+        thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    else:
+        thumbnail = None
+    return statement(render_template("success_title")
+                     + render_template("success_text",
+                                       song=track['title'],
+                                       artist=track['artist']))\
+        .standard_card(title=render_template("success_title"),
+                       text=render_template("success_text",
+                                            song=track['title'],
+                                            artist=track['artist']),
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)
 
 
 @ask.intent('GeeMusicListAllPlaylists')
@@ -245,7 +263,10 @@ def skip_to(song_name, artist_name):
     queue.current_index = index
     stream_url = api.get_stream_url(queue.current())
 
-    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    if "albumArtRef" in queue.current_track():
+        thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    else:
+        thumbnail = None
     speech_text = render_template("skip_to_speech_text",
                                   song=queue.current_track()['title'],
                                   artist=queue.current_track()['artist'])

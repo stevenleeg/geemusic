@@ -1,0 +1,13 @@
+language: python
+dist: xenial
+sudo: required
+python:
+  - "2.7"
+  - "3.6"
+  - "3.7"
+# command to install dependencies
+install:
+  - pip install -U 'pip<10' && pip install -r requirements.txt
+# command to run tests
+script:
+  - python -m unittest discover

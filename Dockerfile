@@ -10,7 +10,7 @@ RUN apk update \
 COPY . /geemusic
 WORKDIR /geemusic
 
-RUN pip3 install -r requirements.txt \
+RUN pip3 install -U 'pip<10' && pip3 install -r requirements.txt \
  && gem install foreman
 
 EXPOSE 5000

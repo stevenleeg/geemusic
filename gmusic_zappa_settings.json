@@ -1,0 +1,23 @@
+{
+    "dev": {
+        "apigateway_description": "API for Gee Music using Zappa",
+        "app_function": "geemusic.app",
+        "aws_region": "us-east-1",
+        "project_name": "geemusic-skill",
+        "runtime": "python3.6", 
+        "s3_bucket": "zappa-geemusic-skill",
+        "exclude": ["*.gz", "*.rar", ".tox",
+                    ".cache", "build", "htmlcov",
+                    "tests", "env", "egg-info" ],
+        "timeout_seconds": 60,
+        "aws_environment_variables": {
+            "APP_URL": "https://redacted.execute-api.us-east-1.amazonaws.com/dev",
+            "DEBUG_MODE": "False",
+            "GOOGLE_EMAIL": "redacted",
+            "GOOGLE_PASSWORD": "redacted",
+            "USE_S3_BUCKET"  : "True",
+            "S3_BUCKET_NAME" : "redacted",
+            "ANDROID_ID" : "valid_device_id"
+        }
+    }
+}
