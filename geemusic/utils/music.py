@@ -95,7 +95,7 @@ class GMusicWrapper(object):
             if score < 70:
                 return False
             for song_id, song in self.library.items():
-                if 'artist' in song and song['artist'].lower() == likely_artist.lower():
+                if 'artist' in song and song['artist'].lower() == likely_artist.lower() and 'artistId' in song:
                     if not search['topTracks']:  # First entry
                         # Copy artist details from the first song into the general artist response
                         try:
