@@ -1,6 +1,7 @@
 from flask import render_template
 from flask_ask import statement, audio
 from geemusic import ask, queue, app, api
+from os import environ
 import json
 
 
@@ -40,12 +41,31 @@ def nearly_finished():
 
 @ask.on_playback_finished()
 def finished():
+    # Scrobble if Last.fm is setup
+    if environ.get('LAST_FM_ACTIVE'):
+        song_info = queue.current_track()
+
+        if song_info is not None and 'title' in song_info and 'artist' in song_info:
+            from ..utils import last_fm
+
+            last_fm.scrobble(
+                song_info['title'],
+                song_info['artist'],
+                environ['LAST_FM_SESSION_KEY']
+            )
+
     queue.next()
     return empty_response()
 
 ##
 # Intents
 #
+
+
+@ask.intent('GeeMusicRefreshLibrary')
+def index():
+    api.start_indexing()
+    return audio(render_template("indexing"))
 
 
 @ask.intent('AMAZON.StartOverIntent')

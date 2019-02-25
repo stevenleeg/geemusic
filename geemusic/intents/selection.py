@@ -22,6 +22,9 @@ def help():
 
 @ask.intent("GeeMusicPlayArtistIntent")
 def play_artist(artist_name):
+    if not api.use_store and api.is_indexing():
+        return statement(render_template("indexing"))
+
     # Fetch the artist
     artist = api.get_artist(artist_name)
 
@@ -35,7 +38,10 @@ def play_artist(artist_name):
     stream_url = api.get_stream_url(first_song_id)
 
     thumbnail = api.get_thumbnail(artist['artistArtRef'])
-    speech_text = render_template("play_artist_text", artist=artist['name'])
+    if api.use_store:
+        speech_text = render_template("play_artist_text", artist=artist['name'])
+    else:
+        speech_text = render_template("play_artist_text_library", artist=artist['name'])
     return audio(speech_text).play(stream_url) \
         .standard_card(title=speech_text,
                        text='',
@@ -45,6 +51,9 @@ def play_artist(artist_name):
 
 @ask.intent("GeeMusicPlayAlbumIntent")
 def play_album(album_name, artist_name):
+    if not api.use_store and api.is_indexing():
+        return statement(render_template("indexing"))
+
     app.logger.debug("Fetching album %s" % album_name)
 
     # Fetch the album
@@ -59,7 +68,10 @@ def play_album(album_name, artist_name):
     # Start streaming the first track
     stream_url = api.get_stream_url(first_song_id)
 
-    thumbnail = api.get_thumbnail(album['albumArtRef'])
+    if "albumArtRef" in album:
+        thumbnail = api.get_thumbnail(album['albumArtRef'])
+    else:
+        thumbnail = None
     speech_text = render_template("play_album_text",
                                   album=album['name'],
                                   artist=album['albumArtist'])
@@ -98,6 +110,9 @@ def play_promoted_songs():
 
 @ask.intent("GeeMusicPlaySongIntent")
 def play_song(song_name, artist_name):
+    if not api.use_store and api.is_indexing():
+        return statement(render_template("indexing"))
+
     app.logger.debug("Fetching song %s by %s" % (song_name, artist_name))
 
     # Fetch the song
@@ -126,6 +141,10 @@ def play_song(song_name, artist_name):
 
 @ask.intent("GeeMusicPlaySimilarSongsRadioIntent")
 def play_similar_song_radio():
+    # TODO -- can we do this without a subscription?
+    if not api.use_store:
+        return statement(render_template("not_supported_without_store"))
+
     if len(queue.song_ids) == 0:
         return statement(render_template("play_similar_song_radio_no_song"))
 
@@ -169,12 +188,19 @@ def play_similar_song_radio():
 
 @ask.intent("GeeMusicPlaySongRadioIntent")
 def play_song_radio(song_name, artist_name, album_name):
+    if not api.use_store and api.is_indexing():
+        return statement(render_template("indexing"))
+
     app.logger.debug("Fetching song %s by %s from %s."
                      % (song_name, artist_name, album_name))
 
     # Fetch the song
 
     song = api.get_song(song_name, artist_name, album_name)
+
+    if song is False:
+        return statement(render_template("no_song"))
+
     if artist_name is not None:
         artist = api.get_artist(artist_name)
     else:
@@ -184,9 +210,6 @@ def play_song_radio(song_name, artist_name, album_name):
         album = api.get_album(album_name)
     else:
         album = api.get_album(song['album'])
-
-    if song is False:
-        return statement(render_template("no_song"))
 
     station_id = api.get_station("%s Radio" %
                                  song['title'],
@@ -215,6 +238,13 @@ def play_song_radio(song_name, artist_name, album_name):
 
 @ask.intent("GeeMusicPlayArtistRadioIntent")
 def play_artist_radio(artist_name):
+    # TODO -- can we do this without a subscription?
+    if not api.use_store:
+        return statement(render_template("not_supported_without_store"))
+
+    if not api.use_store and api.is_indexing():
+        return statement(render_template("indexing"))
+
     # Fetch the artist
     artist = api.get_artist(artist_name)
 
@@ -246,6 +276,9 @@ def play_artist_radio(artist_name):
 
 @ask.intent("GeeMusicPlayPlaylistIntent")
 def play_playlist(playlist_name):
+    if not api.use_store and api.is_indexing():
+        return statement(render_template("indexing"))
+
     # Retreve the content of all playlists in a users library
     all_playlists = api.get_all_user_playlist_contents()
 
@@ -322,6 +355,10 @@ def queue_song(song_name, artist_name):
 
 @ask.intent("GeeMusicListAllAlbumsIntent")
 def list_album_by_artists(artist_name):
+    # TODO -- can we do this without a subscription?
+    if not api.use_store:
+        return statement(render_template("not_supported_without_store"))
+
     api = GMusicWrapper.generate_api()
     artist_album_list = api.get_artist_album_list(artist_name=artist_name)
     return statement(artist_album_list)
@@ -329,6 +366,10 @@ def list_album_by_artists(artist_name):
 
 @ask.intent("GeeMusicListLatestAlbumIntent")
 def list_latest_album_by_artist(artist_name):
+    # TODO -- can we do this without a subscription?
+    if not api.use_store:
+        return statement(render_template("not_supported_without_store"))
+
     api = GMusicWrapper.generate_api()
     latest_album = api.get_latest_artist_albums(artist_name=artist_name)
     return statement(latest_album)
@@ -336,6 +377,10 @@ def list_latest_album_by_artist(artist_name):
 
 @ask.intent("GeeMusicPlayLatestAlbumIntent")
 def play_latest_album_by_artist(artist_name):
+    # TODO -- can we do this without a subscription?
+    if not api.use_store:
+        return statement(render_template("not_supported_without_store"))
+
     api = GMusicWrapper.generate_api()
     latest_album = api.get_latest_album(artist_name)
 
@@ -376,6 +421,10 @@ def play_album_by_artist(artist_name):
 
 @ask.intent("GeeMusicPlayDifferentAlbumIntent")
 def play_different_album():
+    # TODO -- can we do this without a subscription?
+    if not api.use_store:
+        return statement(render_template("not_supported_without_store"))
+
     api = GMusicWrapper.generate_api()
 
     current_track = queue.current_track()

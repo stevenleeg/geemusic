@@ -25,6 +25,7 @@ play_promoted_songs_no_songs_no_songs: "Désolé, je n'ai pas trouvé de chanson
 play_promoted_songs_text: "Jouer les chansons votées."
 play_artist_none: "Sorry, I couldn't find any songs by {{ artist }}"  # TODO: translate
 play_artist_text: "lecture des meilleures chansons de l'artiste {{ artist }}"
+play_artist_text_library: "Playing tracks by {{ artist }} from your library."  # TODO: translate
 play_similar_song_radio_no_song: "S'il vous plaît, jouez une chanson pour démarrer la radio."
 play_artist_radio_text: "Jouer à la radio."
 queue_song_no_song: "Vous devez d'abord jouer une chanson."
@@ -36,8 +37,10 @@ play_IFL_radio_text: "Jouer de la musique à partir de votre station personnalis
 play_IFL_radio_title: "Jouer I'm Feeling Lucky Radio."
 play_different_album_no_track: "Désolé, il n'y a pas d'album en cours de lecture."
 play_library_text : "Jouer de la musique de votre bibliothèque."
+not_supported_without_store: "Sorry, this feature requires a subscription to Google Music"  # TODO: translate
 
 # playback.py
+indexing: "Indexing your Library"  # TODO: translate
 stopped: "Arrêté à {{ offset }}"
 started: "Commencé à {{ offset }}"
 start_over: "Il n'y a pas de chansons dans la file d'attente."
