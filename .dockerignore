@@ -1,0 +1,8 @@
+.git/
+*.egg-info
+*.egg/
+*.pyc
+*.swp
+__pycache__
+*.un~
+.venv/
