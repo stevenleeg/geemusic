@@ -5,13 +5,14 @@ RUN apk update \
  && apk upgrade \
  && apk add --update curl wget bash ruby ruby-bundler python3 python3-dev py3-pip dumb-init musl linux-headers build-base libffi-dev openssl-dev ruby-rdoc ruby-irb\
  && rm -rf /var/cache/apk/* \
+ && gem install foreman \
  && mkdir /geemusic
+
+COPY requirements.txt /tmp
+RUN pip3 install -U 'pip<10' && pip3 install -r /tmp/requirements.txt 
 
 COPY . /geemusic
 WORKDIR /geemusic
-
-RUN pip3 install -U 'pip<10' && pip3 install -r requirements.txt \
- && gem install foreman
 
 EXPOSE 5000
 
