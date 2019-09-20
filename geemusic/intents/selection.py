@@ -37,7 +37,10 @@ def play_artist(artist_name):
     # Get a streaming URL for the top song
     stream_url = api.get_stream_url(first_song_id)
 
-    thumbnail = api.get_thumbnail(artist['artistArtRef'])
+    if "artistArtRef" in artist:
+        thumbnail = api.get_thumbnail(artist['albumArtRef'])
+    else:
+        thumbnail = None
     if api.use_store:
         speech_text = render_template("play_artist_text", artist=artist['name'])
     else:
