@@ -1,20 +1,22 @@
-FROM alpine:latest
+FROM python:3.7-alpine as python-base
 MAINTAINER Spencer Julian <hellothere@spencerjulian.com>
+RUN apk add --no-cache --update curl wget build-base libffi-dev openssl-dev 
+COPY requirements.txt /tmp
+RUN pip install -U 'pip<10'
+RUN pip wheel --wheel-dir=/root/wheels -r /tmp/requirements.txt
 
-RUN apk update \
- && apk upgrade \
- && apk add --update curl wget bash ruby ruby-bundler python3 python3-dev py3-pip dumb-init musl linux-headers build-base libffi-dev openssl-dev ruby-rdoc ruby-irb\
- && rm -rf /var/cache/apk/* \
- && mkdir /geemusic
+FROM python:3.7-alpine
+COPY --from=python-base /root/wheels /root/wheels
+RUN apk --no-cache add --update ruby ruby-bundler ruby-rdoc libffi openssl && \
+gem install foreman && \
+pip install -U 'pip<10' && \
+pip install --no-index --find-links=/root/wheels /root/wheels/* && \
+rm -rf /root/wheels
 
 COPY . /geemusic
 WORKDIR /geemusic
 
-RUN pip3 install -U 'pip<10' && pip3 install -r requirements.txt \
- && gem install foreman
-
 EXPOSE 5000
 
 # Make sure to run with the GOOGLE_EMAIL, GOOGLE_PASSWORD, and APP_URL environment vars!
-ENTRYPOINT ["/usr/bin/dumb-init"]
 CMD ["foreman", "start"]
