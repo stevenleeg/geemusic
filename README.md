@@ -65,8 +65,6 @@ Of course you can also say things like "Alexa stop," "Alexa next," etc.
 Play a station for bedtime
 Play a station for partying
 ```
-- [ ] Play a station for bedtime
-- [ ] Play a station for partying
 
 ## Setup
 Let's cut right to the chase: how can you enable this skill on your own Dot/Echo? Unfortunately the process is a bit finicky, but I'll try to make it as simple as I can.
