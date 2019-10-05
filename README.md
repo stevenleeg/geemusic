@@ -146,11 +146,11 @@ See the note at the top about supported languages.
 
 #### US English users
 
-On the "Interaction Model" step, paste in the contents of `speech_assets/interactionModel.json` to the JSON Editor.
+On the "Interaction Model" step, paste in the contents of [`speech_assets/interactionModel.json`](https://raw.githubusercontent.com/stevenleeg/geemusic/master/speech_assets/interactionModel.json) to the JSON Editor.
 
 #### Other language users
 
-On the "Interaction Model" step, paste in the contents of `speech_assets/non_us_custom_slot_version/interactionModel.json` to the JSON Editor.
+On the "Interaction Model" step, paste in the contents of [`speech_assets/non_us_custom_slot_version/interactionModel.json`](https://raw.githubusercontent.com/stevenleeg/geemusic/master/speech_assets/non_us_custom_slot_version/interactionModel.json) to the JSON Editor.
 
 
 ### Configuration
