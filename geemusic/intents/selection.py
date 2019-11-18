@@ -38,7 +38,7 @@ def play_artist(artist_name):
     stream_url = api.get_stream_url(first_song_id)
 
     if "artistArtRef" in artist:
-        thumbnail = api.get_thumbnail(artist['albumArtRef'])
+        thumbnail = api.get_thumbnail(artist['artistArtRef'])
     else:
         thumbnail = None
     if api.use_store:
