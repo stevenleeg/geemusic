@@ -24,7 +24,7 @@ fuzzywuzzy==0.15.1
 gmusicapi==10.1.2
 gpsoauth==0.4.1
 hjson==3.0.1
-httplib2==0.10.3
+httplib2==0.18.0
 idna==2.5
 ipaddress==1.0.18
 itsdangerous==0.24
