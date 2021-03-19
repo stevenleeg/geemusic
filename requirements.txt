@@ -28,7 +28,7 @@ httplib2==0.10.3
 idna==2.5
 ipaddress==1.0.18
 itsdangerous==0.24
-Jinja2==2.9.6
+Jinja2==2.11.3
 jmespath==0.9.3
 kappa==0.6.0
 lambda-packages==0.19.0
